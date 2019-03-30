@@ -1,0 +1,543 @@
+\documentclass[a4paper,11pt]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{mhchem}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+%\renewcommand{\Omega}{\varOmega}
+\newcommand{\bit}{\ \mathrm{bit}}
+\newcommand{\red}{\color{red}}
+\newcommand{\grandz}{\mathcal{Z}}
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{统计物理速成}
+\author{Probfia}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{系综与配分函数}
+统计物理的一个最重要假设就是等概论假设，它等效于最大熵原理。基于这个假设我们定义了3种系综：能量固定的微正则系综，固定温度允许能量变动的正则系综，固定温度和化学势允许能量和粒子数变动的巨正则系综。但实际上一个统计物理系统的性质和选择在什么系综下描述该系统并没有什么关系，系综的选择只是为了方便而已。一般我们在正则系综下处理问题。
+\par
+系统的所有可能的微观态数目$\varOmega$可能取决于系统的体积和总能量，也就是$\varOmega(V,E)$。$\varOmega$的对数（再乘上$k_B$）就是系统的熵$S(V,E)$，熵对$E$的偏导定义为温度；对$V$的偏导给出压强的定义。具体写成公式是
+\beq
+dS = \frac{1}{T}dE + \frac{P}{T} dV
+\eeq
+或者写成我们喜闻乐见的形式
+\beq
+dE = TdS - PdV
+\eeq
+系统处于能量本征值为$E_n$的态$|n\rangle$的概率可以由上式的泰勒展开得到，结果是我们熟知的
+\beq
+P(|n\rangle) \propto e^{-\frac{E_n}{k_B T}}
+\eeq
+上式右边称为玻尔兹曼因子。所有玻尔兹曼因子的和称为配分函数（这里定义了逆温$\beta \equiv 1/k_B T$，逆温其实是一个行为很多时候比温度更好的物理量）。
+\beq
+Z = \sum_{|n\rangle} e^{-\beta E_n}
+\eeq
+这是整个统计物理里最重要的概念！可以说有了配分函数就有了一切。利用配分函数的定义立刻可以得到系统的平均能量，也就是所谓内能
+\beq
+U = - \frac{\partial \ln Z}{\partial \beta}
+\eeq
+再利用熵的吉布斯定义$S = - k_B P(|n\rangle) \ln P(|n\rangle)$（这个定义可以通过最初熵的定义加上一些技巧得出，不过具体过程无关紧要了，这事实上是信息论的论题）可以得出熵与配分函数的关系，但这个关系并不方便记忆。我们需要的是通过熵与配分函数的定义得到亥姆霍兹自由能
+\beq
+F = U - TS
+\eeq
+与配分函数的关系。这个关系非常方便记忆，也非常容易计算
+\beq
+F= - k_B T \ln Z
+\eeq
+利用$U$和$F$与$Z$的关系，我们就有了所有的热力学量。{\color{red}配分函数就是一切热力学量的创世主}。其他热力学量都可以通过对$U$和$F$求偏导算出。注意该节的所有讨论都是建立在以$(V,T)$为自变量的基础上的，因此，得到的所有热力学量也都是这两个热力学量的显式表示。
+\par
+如果要考虑化学势，只用将配分函数改为巨配分函数。这个问题我们暂不讨论。
+\par
+上面讨论的配分函数都是对单个粒子而言的，通常我们将单粒子配分函数记为$Z_1$。$N$个粒子的配分函数，在粒子数密度不大的情况（通常情况），可以由排列组合的知识得到，是
+\beq
+Z_N  =\frac{Z_1^N}{N!}
+\eeq
+
+\section{热力学势}
+我总觉得热力学就是一系列数学游戏，虽然它的各个概念其实都有深刻的内涵，不过，初次学习热力学时，就当是在学习一套游戏规则好像也没什么不妥。
+\subsection{焓}
+系统的内能可以用统计方法得出，通过勒让德变换（说白了就是加个$PV$和减个$TS$，我也不知道这个东西为什么有这么好听的名字），可以得到其他三个热力学势。首先讨论焓$H = U + PV$，它的物理意义是等压下{\red 系统放热的潜力}。因为考虑系统固定压强时从$A$态到$B$态的变化，这个变化过程中的系统放热是
+\bea
+Q &= \int_A^B -TdS = -\int_A^B dH - VdP \\
+&\text{（固定压强不变，$dP = 0$）} \\
+&= -\int_A^B dH \\
+&= H(A) - H(B)
+\eea
+等压过程中的放热就是系统焓变的负值$-\Delta H$，高中化学课的美好回忆瞬间就涌上心头了。
+\subsection{亥姆霍兹自由能}
+这个量$F = U - TS$有很多名字，我喜欢最长的这个名字，因为听起来就显得很厉害。亥姆霍兹自由能的物理意义是系统在等温过程中{\red 对外做功的潜力}，基于类似于焓的讨论，有
+\bea
+W &= \int_A^B PdV = -\int_A^B dF + SdT \\
+&\text{（固定温度不变，$dT = 0$）} \\
+&= -\int_A^B dF \\
+&= F(A) - F(B)
+\eea
+\subsection{吉布斯自由能}
+吉布斯自由能定义为$G = U + PV - TS = H - TS = F + PV$，这个量是四个热力学势中最神奇的一个，因为它的微分为
+\beq
+dG = VdP - SdT
+\eeq
+也就是说它的自由变量为$(T,P)$，而这两个量都是强度量！如果将粒子数纳入考虑，引入化学势，这个全微分修正为
+\beq
+dG = VdP - SdT + \mu dN
+\eeq
+化学势的定义是各热力学势对粒子数的依赖。在吉布斯自由能的语境下，化学势为
+\beq
+\mu = (\frac{\partial G}{\partial N})_{P,T}
+\eeq
+现在，考虑一个系统，它的各热力学量是$(T,S,P,V,\mu,N)$，假如将这个系统扩大$\lambda$倍（可以这样想象这个过程：把两个完全相同的氧气罐用一根细导管连接起来，就是将系统扩大两倍），那么，新系统的各热力学量一定就是$(T,\lambda S,P,\lambda V,\mu,\lambda N)$。而各热力学势也应该扩大$\lambda$倍。对吉布斯自由能，这个过程可以表示为
+\beq
+G(T,P,\lambda N) = \lambda G(T,P,N)
+\eeq
+也就是说，{\red 吉布斯自由能一定和粒子数$N$成正比}！于是我们可以计算单粒子吉布斯自由能
+\beq
+G(T,P,1) = \frac{1}{N} G(T,P,N)
+\eeq
+但根据化学势的吉布斯自由能定义，{\red 单粒子吉布斯自由能就是化学势}。综上，吉布斯自由能的物理意义就是系统中所有粒子化学势的和。
+\subsection{热力学的其他问题}
+热力学是个繁琐的科目，我们应该熟悉各热力学定律，并能够在以统计物理为第一性原理的角度上阐释它们的实质。
+\par
+此外，应当熟悉各麦克斯韦关系。现在throw away your good friend, sports TV。麦克斯韦关系最好这样记忆，它的通式是
+\beq
+(\frac{\partial X}{\partial y})_x = \pm (\frac{\partial Y}{\partial x})_y
+\eeq
+其中对角线上的乘积$Xx$，$Yy$具有能量的量纲；当$T$和$V$出现在同侧时，该侧的符号为负。
+\par
+热力学其实是一个非常困难的科目，如果学不懂就建议不要学了。直接从各个统计实例入手会让我们对热力学的各个概念有更深入的认识。仅仅从热力学入手处理问题只是一种唯象理论，它不涉及任何的第一性原理。原则上可以从统计入手得到任何物质的性质，只是当我们在处理某类特别的热学问题时，从热力学入手先获得一般的理论，再将得到的公式从统计角度赋予物性，工作量会小一些。
+
+\section{经典统计和理想气体}
+计算配分函数不是对所有可能的能量$E_n$求和，而是对所有可能的能量本征态$|n\rangle$求和。比如有两个态的能量本征值都是$\epsilon$的话，对应的$e^{-\beta \epsilon}$需要加两次到配分函数上。而如果我们执意要对能量求和，必须做这样的修正
+\beq
+Z = \sum_{E_n} e^{-\beta E_n} g(E_n)
+\eeq
+其中$g(E_n)$称作能量简并度，是所有能量本征值为$E_n$的态的个数。例如刚刚那个例子里，$g(\epsilon) = 2$。
+\par
+在经典力学下，能量连续分布，单个粒子的能量由哈密顿量$H(\vec{p},\vec{q})$表征。粒子生活在相空间中，相空间的体积元$d^3 \vec{p} d^3 \vec{q}$中最大容纳的微观态数为$\cfrac{d^3 \vec{p} d^3 \vec{q}}{h^3}$，这就是简并度$g(H(\vec{p},\vec{q}))$。于是，单个经典粒子的配分函数是
+\bea
+Z_1 &= \sum_{(\vec{p},\vec{q})}  e^{-\beta H(\vec{p},\vec{q})} g(H(\vec{p},\vec{q})) \\
+&\simeq \frac{1}{h^3} \int e^{-\beta H(\vec{p},\vec{q})} d^3 \vec{p} d^3 \vec{q}
+\eea
+考虑这样的哈密顿量
+\beq
+H = f(\vec{p}) + \epsilon_{int}
+\eeq
+也就是说，粒子的能量只依赖于动量，而与位置无关，且有一个取决于自身性质的常数能量（例如化学键的键能，经典图像下在室温附近它对温度几乎没有依赖）。配分函数就是
+\bea
+Z_1 (\beta,V) &= \frac{1}{h^3} \int e^{-\beta (f(\vec{p}) + \epsilon_{int})}d^3 \vec{p} d^3 \vec{q} \\
+&\text{（被积函数不依赖与位置$\vec{q}$，对体积元$d^3 \vec{q}$的积分直接给出粒子运动空间的体积$V$）} \\
+& = V \frac{e^{-\beta \epsilon_{int}}}{h^3} \int e^{-\beta f(\vec{p})} d^3 \vec{p} \\
+&\text{（积分的结果只依赖于$\beta$，记这个积分结果为$\psi(\beta)$）} \\
+&\equiv V \frac{e^{-\beta \epsilon_{int}}}{h^3} \psi(\beta)
+\eea
+$N$个这样粒子的配分函数为
+\beq
+Z_N = \frac{V^N}{N!} \frac{e^{-N\beta \epsilon_{int}}}{h^{3N}} \psi^N(\beta)
+\eeq
+重要的是配分函数的对数
+\beq
+\ln Z_N = N\ln V - N\beta \epsilon_{int} - 3N\ln h + N \ln \psi(\beta) - N\ln N + N
+\eeq
+内能为
+\bea
+U &= - \frac{\partial \ln Z_N}{\partial \beta} \\
+&= N\epsilon_{int} + N \frac{\psi'(\beta)}{\psi(\beta)}
+\eea
+亥姆霍兹自由能为
+\bea
+F &= -\frac{1}{\beta} \ln Z_N \\
+&=  -\frac{1}{\beta}[N\ln V - N\beta \epsilon_{int} - 3N\ln h + N \ln \psi(\beta) - N\ln N + N]
+\eea
+由$dF = -SdT - PdV$，压强
+\bea
+P &= - \frac{\partial F}{\partial V}
+&= \frac{N}{\beta V}
+\eea
+或
+\beq
+PV = Nk_B T
+\eeq
+于是我们发现，{\red 只要粒子的能量不依赖与它的空间位置，粒子一定满足理想气体方程，无论它的动量-能量关系究竟是何种形式，也与粒子分子内部的能量无关}。
+\par
+吉布斯自由能
+\bea
+G &= F + PV \\
+&=  -\frac{1}{\beta}[N\ln V - N\beta \epsilon_{int} - 3N\ln h + N \ln \psi(\beta) - N\ln N]
+\eea
+这里吉布斯自由能没有完全正比于$N$是因为采用了$(\beta,V)$作为自变量，而非$(\beta,P)$。但化学势依然是单粒子吉布斯自由能
+\beq
+\mu = \frac{G}{N} = -\frac{1}{\beta}[\ln V - \beta \epsilon_{int} - 3\ln h +  \ln \psi(\beta) - \ln N]
+\eeq
+这个结果也可以通过$\mu = (\cfrac{\partial F}{\partial N})_{V,\beta}$得到。下面我们要介绍一个化学势的有用表述，将上式变形如下
+\bea
+\mu &= -\frac{1}{\beta}\ln \frac{V}{N} + \epsilon_{int} + \frac{1}{\beta}\ln \frac{h^3}{\psi(\beta)} \\
+&\text{（利用$P\beta V = N$）} \\
+&=\frac{1}{\beta}\ln \beta P + \epsilon_{int} + \frac{1}{\beta}\ln \frac{h^3}{\psi(\beta)} \\
+&=\frac{1}{\beta}\ln P + \epsilon_{int} + \chi(\beta)
+\eea
+或
+\beq
+\mu(P,T) = k_B T \ln P + \chi(T)+ \epsilon_{int}
+\eeq
+其中$\chi(T)$是一个只依赖于温度的函数（不依赖于粒子数，粒子数的依赖在这里被包括在对$P$的依赖中了）。$\epsilon_{int}$，一如既往，是分子的内能（主要是化学键中的能量）。
+\par
+取$(P,T)$为自由变量是一个良好的选择，因为这两个量都是强度量，用它们描述一个统计物理系统可以很好地摆脱对系统规模的依赖。
+
+\section{化学反应}
+通常我们考虑在恒压下进行的化学反应。一个化学反应可以写成
+\beq
+\sum_i \nu_i \mathrm{A}_i = 0
+\eeq
+例如著名的反应
+\beq
+\ce{N2 + 3H2 <=>T[高温、高压][催化剂] 2NH3}
+\eeq
+可以写成
+\beq
+\ce{N2 + 3H2 - 2NH3 = 0}
+\eeq
+$\nu_i$称作各反应物的化学计量数。上面这个例子里，$\nu(\mathrm{N_2}) = 1$，$\nu(\mathrm{H_2}) = 3$，$\nu(\mathrm{NH_3}) =-2$。假设一个反应体系中，反应物$\mathrm{A}_i$的粒子数为$n_i$，体系的吉布斯自由能为
+\beq
+G(n_1,n_2,\cdots;P,T)
+\eeq
+固定压强和温度，化学平衡达到时，体系的吉布斯自由能是极小值。各个粒子数之间并不相互独立，它们的变化满足由化学反应方程式所约束的比例关系
+\beq
+\frac{dn_i}{\nu_i} = \mathrm{const.}
+\eeq
+平衡时吉布斯自由能取极小相当于要求
+\beq
+\delta G = \sum_i (\frac{\partial G}{\partial n_i})_{P,T} \delta n_i = 0
+\eeq
+偏导数正好是化学势的定义。再利用$\delta n_i$间的比例关系，化学平衡条件就是
+\beq
+\sum_i \nu_i \mu_i = 0
+\eeq
+\par
+对气相反应，带入上一节中的理想气体化学势$\mu(P,T) = k_B T \ln P + \chi(T)+ \epsilon_{int}$，得到
+\beq
+\sum_i \nu_i [k_B T \ln P_i + \chi_i(T)+ \epsilon_{int,i} ]= 0
+\eeq
+其中$P_i$是第$i$个气态反应物的分压。稍微化简就得到
+\beq
+\prod_i P_i^{\nu_i} = e^{-\sum_i \nu_i [\chi_i(T)+ \epsilon_{int,i}]/k_B T}
+\eeq
+等式左边不是别的，就是高中化学的美好回忆：分压平衡常数
+\beq
+K_p(T) = \prod_i P_i^{\nu_i}
+\eeq
+这就是化学势的强大威力！{\red 化学势决定了化学平衡}，这也是它名字的由来。你可以自行讨论反映的吸放热（先计算出理想气体的焓，焓变即化学反应的放热）是如何体现在平衡常数的$e$指数之上的，并讨论温度变化和压强变化对平衡的影响。
+
+\section{相变}
+相变涉及到某些热力学量的不连续变化。这就很奇怪了，我们用配分函数计算各热力学量，得到的都是一些行为良好的连续（解析）函数，对它们作一些初等的，诸如求导一类的数学变化，结果也当然是连续的了。那不连续性从何而来呢？答案是，{\red 有限粒子数系统不可能发生相变}（原因就是刚才的论断）。相变发生在粒子数$N \to \infty$的情况下，且粒子间以一些精妙的方式发生相互作用，这时取极限使得某些不连续性成为可能。若一个相变中第一个不连续的量为第$m$阶热力学量（四个热力学势为零阶热力学量，零阶热力学量的导数为一阶热力学量，以此类推），这个相变就称为{\red $m$级相变}。
+\par
+如之前所述，仅仅采用热力学方法处理相变问题只是一种唯象理论。
+\subsection{一级相变的唯象理论}
+最简单的相变是一级相变，一级相变中最简单的是单元相变，这个好听的名字说白了就是同种物质的物态变化。它可以看作一种特殊的化学反应，例如饱和蒸气压下的水（想象回南天的地板），蒸汽的凝结与水的蒸发达到动态平衡
+\beq
+\ce{H2O(l) <=> H2O(g)}
+\eeq
+就可以看作一种特殊的可逆反应，因此它的平衡条件根据上节所述就是
+\beq
+\mu_l(T,P) = \mu_g(T,P)
+\eeq
+数学上讲，上式给出$(T,P)$平面上的一条曲线，称为共存曲线。这其实是一件很平凡的事，但总有些诸如汪志诚一类的人对这条曲线的斜率感兴趣。为了得到斜率，对上式两边求全微分，再利用化学势就是单粒子吉布斯自由能，于是有普适公式
+\beq
+(\cfrac{\partial \mu}{\partial T})_P = \cfrac{1}{N} (\cfrac{\partial G}{\partial T})_P = \cfrac{-S}{N} \equiv -s
+\eeq
+\beq(\cfrac{\partial \mu}{\partial P})_T = \cfrac{1}{N} (\cfrac{\partial G}{\partial T})_P = \cfrac{V}{N} \equiv v 
+\eeq
+其中引入的量$s$和$v$是单个分子（平均）的熵和体积。分别对液态和气体分子运用这个关系，有
+\beq
+v_l dP - s_l dT = v_g dP - s_g dT
+\eeq
+于是共存曲线的斜率就是
+\bea
+\frac{dT}{dP} &= \frac{v_g - v_l}{s_g - s_l} \\
+&\text{（相变在固定温度下发生，单分子的熵变就是吸热$l$除以相变温度）} \\
+&= \frac{T(v_g - v_l)}{l}
+\eea
+\par
+这一方程适用于所有一级相变，它的好处是巧妙地避开了化学势和熵这种难以从实验上测量的物理量。
+\par
+简单谈谈多元系相变问题。单元体系最多有3个相共存（例如，水的三相点），{\red 而对于$n$元体系，最多有$n+2$个相共存}。你可以简单把这条规律看作$3 = 1+2$的推广，具体的证明可以在任何一本热学教材上找到（{\red 吉布斯相律}）。多元相的处理方法和单元系是类似的，依然是利用各个物质每个相之间的化学势（注意，它现在不但依赖于整个系统公有的强度量$(T,P)$，还取决于这种物质在体系中的相对浓度）相等来建立等式。
+\subsection{伊幸模型的平均场理论}
+本节中我们考虑一个具体例子，从计算配分函数出发，观察一级相变如果过渡到二级相变。基于这个目的，一些繁琐的数学推导都被放到附录里了，正文只包含重要的计算结果。\par
+伊幸模型是一个$d$维的无限大网格，每个格点$i$上有一个粒子，它的自旋可以取为向上$s_i=+1$或向下$s_i=-1$，距这个格点最近的粒子有$q=2d$个（一维下有2个，此后每加一根坐标轴，它就会增加这根坐标轴左边和右边的两个邻居），粒子和它每个邻居$j$（自旋为$s_j$）间有相互作用能$-Js_is_j$。此外，整个格点放置一个外磁场中，使得每个粒子具有一个外势能$-Bs_i$。所有粒子$s$的平均值称为整个伊幸网格的磁矩$m$。整个网格的能量为
+\beq
+E(\{s_i\}) = -J\sum_{\text{临近的}i,j} s_i s_j - B \sum_{i} s_i
+\eeq
+配分函数为
+\beq
+Z=\sum_{\{s_i\}} e^{\beta J\sum_{\text{临近的}i,j} s_i s_j + B \sum_{i} s_i}
+\eeq
+$m$为$s_i$的平均值，可以从配分函数得到
+\beq
+m = \frac{1}{N\beta}\frac{\partial \ln Z}{\partial B}
+\eeq
+\par
+定性上来讲，低温时，粒子倾向于将它们的自旋取到一致的方向使得总能量最低，这时，根据外磁场的取向，$m$接近$+1$或者$-1$，当$B=0$时，这两种取向没有物理上的区别；高温时，粒子具有较高的平均能量且具有较大的熵，这使得它们选择混乱的随机排列方式，$m$接近于0。总的来讲，$m$是温度和外场的函数，以下是一个确定$m$的近似方法。
+\par
+第一项求和事实上我们并不会求，它只对$d=1,2$有精确解，而且要用到很厉害的数学。发挥物理系学生最拿手的近似，我们用平均磁矩$m$来做一点小魔术，经过一系列tricky的计算（见附录）得到上面这个合式近似等于
+\beq
+E \simeq \frac{qN}{2}Jm^2 - (Jqm+B)\sum_i s_i
+\eeq
+对所有可能的位形$\{s_i\}$对应的玻尔兹曼因子求和（过程见附录），得到配分函数为
+\beq
+Z =  e^{-\beta \frac{qN}{2}Jm^2}2^N\cosh^N\beta(Jqm+B)
+\eeq
+利用$m$与配分函数间的关系确定$m$与温度和外磁场（这里$B$的作用相当于压强）的关系为
+\beq \label{mbb}
+m = \tanh\beta(B + Jqm)
+\eeq
+这一方程确定了一个隐函数$m=m(\beta,B)$，于是自由能为
+\beq
+F(\beta,B) = \frac{qN}{2}Jm^2(\beta,B) -\frac{N}{\beta} T \ln 2 + \frac{N}{\beta} \ln\cosh\beta(Jqm(\beta,B)+B)
+\eeq
+\par
+自由能解析地依赖于各个参量和$m$，因此，若要使得自由能的某阶导数不连续，必须要$m(\beta,B)$随两个自变量发生不连续的变化。而且，因为$m$是$\ln Z$的一个一阶导数，也就是$F$的一个一阶导数，$m$的$k$阶不连续对应$F$的$k+1$阶不连续，也就是$k+1$级相变。用数值方法求解\cref{mbb}，例如用MATLAB，几行代码算几十分钟就可以得到一个很漂亮的曲面图如\cref{mbetab}。
+\cpicn{0.3}{mbetab}{$m(\beta,B)$的图像，取$Jq = 1$}
+\par
+我们看到，若$\beta > \cfrac{1}{Jq}$（低温情况），当$B$改变符号的时候，$m$断崖了！这就是一个一级相变。而且，这个相变存在一个临界温度$T_c = \cfrac{Jq}{k_B}$，如果温度高于临界温度，不发生相变现象；若温度正好等于临界温度，则发生二级相变。
+\par
+若固定$B = 0$，$m(\beta,B=0)$的变化曲线如\cref{isingtrans}，我们发现，在临界温度之上，平均磁矩恒等于0；而在临界温度之下，平均磁矩可以任意选取$m>0$或$m<0$的一个值（或者说，取决我们怎么定义自旋向上）。跨越临界温度时，$m$连续而一阶导数不连续，这也是一个二级相变。在高温时，粒子自旋的取向具有很好的$U(1)$对称性（这个好听的名字就是说向上和向下两个方向没有区别），这些粒子自旋的取向平均都差不多是0；但温度降低时，$U(1)$对称性被破坏了，粒子开始倾向朝某个特定的方向自旋，这就是大名鼎鼎的{\red 自发性对称破缺}。
+\cpicn{0.3}{isingtrans}{无外场时，$m$随温度的变化行为，取$Jq = 1$}
+\par
+你可以计算当$T\to T_c$或$B \to 0$时，量$m$和$F$的临界指数，这只需要运用一些小量展开的技巧而已。
+\par
+了解整个伊幸模型的处理过程非常exciting，从第一性原理出发计算出相变的存在非常之不平凡。历史上人们（和我初学统计物理的时候）都认为，因为配分函数是一些指数函数的和，而指数函数的性质又那么良好，从配分函数计算出不连续性是不可思议的，从而我们不可能从统计出发得到任何有关相变的理论。但当我们处理无限多个相互作用的粒子时，不连续性自然就发生了，非常不平凡的事实！凝聚态物理有一句著名的箴言：more is different. 伊幸模型是我们感悟到的这句话的第一个实例。
+
+\subsection{二级相变的唯象理论}
+二级相变的唯象理论是朗道提出的，它的核心思想是将自由能展开。朗道是个神奇的人，如果你去看他的书，很多地方都用到了一些十分微妙的小量展开，然后就凑出正确结果了。这里，他假设亥姆霍兹自由能依赖于温度$T$和某个相变参数$m$，且恒有$F(T,m) = F(T,-m)$。将$F$展开
+\beq
+F(T,m) = F_0 + a(T)m^2 + b(T)m^4 + \cdots
+\eeq
+$F$关于$m$为偶函数的要求禁止了$m$的奇次项的存在，且一般假设$b>0$。相变参数隐式地依赖于$T$，具体的依赖形式由亥姆霍兹自由能$F$取极小的两个条件给出。假设$a$对温度的依赖近似为
+\beq
+a(T) = a_0 (T-T_c)
+\eeq
+$T_c$为相变的临界温度。
+\par
+现在考虑$m$取何值能让$F$极小，这就是一点简单的求导取极值而已。当$T>T_c$时，$a>0$，$F$仅有一个极小值点$m=0$；而当$T<T_c$时，$a<0$，$F$的两个极小值点变为
+\beq
+m_0 = \pm \sqrt{\frac{-a}{2b}}
+\eeq
+而原来的$m=0$变为极大值点，它是不稳定的。温度低于临界温度时，系统将在$m$的正负两个取值中任意选择一个，这个选择破坏了$m=0$时原有的$U(1)$对称性，又是自发性对称破缺！
+\par
+此外，通过刚才对$a(T)$的具体假设，可以得到
+\beq
+m_0 \sim (T_c - T)^{1/2}
+\eeq
+上面的指数$1/2$就是所谓的临界指数（中的一个）。如果你计算了伊幸模型中的临界指数，它们是完全相同的。可以将朗道二级相变理论看成伊幸模型的抽象推广。
+
+\section{量子统计：三言两语}
+\subsection{平动态密度}
+我们最终考虑量子统计。为了得到各能量本征态来解出配分函数，我们需要解薛定谔方程。To make life easier，我们一般考虑三维无穷深势阱作为分子的容器。体积为$V = L^3$的正方体容器里，允许的波矢为
+\beq
+\vec{k} = \frac{\pi \vec{n}}{L}
+\eeq
+其中$\vec{n}$是一个三维矢量，每个分量的取值为从0开始的正整数。这些可能的波矢就是能量本征态。在波矢空间中，单个态占据的体积为
+\beq
+(\frac{\pi}{L})^3 = \frac{\pi^3}{V}
+\eeq
+在波矢空间的体积元$d^3\vec{k}$中，所有可能的态的数目为
+\beq
+\frac{d^3\vec{k}}{\frac{\pi^3}{V}}
+\eeq
+从直角坐标$(k_1,k_2,k_3)$变换到球坐标$(k,\theta,\phi)$，球壳$(k,k+dk)$在波矢空间内的体积元是（注意直角坐标下的$k_i$只取正值，因此，这事实上是第一卦限中的1/8球壳）
+\beq
+\frac{1}{8} 4\pi k^2 dk
+\eeq
+这个球壳中的微观态数目记为{\red 态密度}
+\bea
+g(k)dk &= \frac{\frac{1}{8} 4\pi k^2 dk}{\frac{\pi^3}{V}} \\
+&= \frac{Vk^2}{2\pi^2}dk
+\eea
+注意这是一个分布函数，描述了所有的能量本征态在波矢空间内的分布密度。
+\par
+假设能量由经典关系
+\beq
+E(k) = \frac{\hbar^2 k^2}{2m}
+\eeq
+给出，为了将态随波矢的密度函数变换到态随能量的密度函数，只需要利用概率元不变的形状
+\beq
+g(E)dE = g(k) dk
+\eeq
+得到
+\bea
+g(E)dE &= g(k(E)) \frac{dk(E)}{dE} dE \\
+&= \frac{V}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
+\eea
+于是，单粒子配分函数就是
+\beq
+Z_1 = \int_{E=0}^\infty e^{-\beta E}\frac{V}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
+\eeq
+\par
+用上面这个公式处理理想气体，得到的结果与在经典统计一节中将哈密顿量简单取为$H(\vec{p})= \cfrac{\vec{p}^2}{2m}$是一致的（原因在于上面采用的能量本征态连续分布这一近似）。
+\subsection{巨正则系综}
+量子统计最重要的一点是玻色子和费米子占据能量本征态的不同特性。为了考虑这些特性，需要在巨正则系综下讨论粒子，以体现粒子从外部环境进入，并占据系统的能量本征态的过程（占座位）。巨正则系综固定温度和化学势，而将其他热力学量（包括粒子数）作为变量。巨正则系综下的巨配分函数为
+\beq
+\grandz = \sum_{|\alpha \rangle}e^{\beta(\mu N_\alpha - E_\alpha)}
+\eeq
+求和对态$|\alpha \rangle$进行，它的粒子数本征值和能量本征值分别是$N_\alpha$和$E_\alpha$。因子$e^{\beta(\mu N_\alpha - E_\alpha)}$是系统处在态$|\alpha \rangle$的概率（可以用$S(E,N)$的展开式证明）。系统的平均粒子数因此是
+\beq
+N = \frac{1}{\beta} \frac{\partial \ln \grandz}{\partial \mu}
+\eeq
+如果系统只有一个可能的能量本征态，那么只需要对这个态上的所有可能的粒子数求和。
+\subsection{费米子和玻色子}
+对费米子，考虑一个能量本征态$|\alpha \rangle$，这个态有两个粒子数本征态：要么有1个粒子，要么没有粒子。这个能量本征态的巨配分函数就是
+\bea
+\grandz_{|\alpha \rangle} &= \sum_{n=0}^1 e^{n\beta(\mu - E_\alpha)} \\
+&= 1+ e^{\beta(\mu - E_\alpha)}
+\eea
+于是$|\alpha \rangle$态上的平均粒子数为
+\bea
+N_{|\alpha \rangle} &= \frac{1}{\beta} \frac{\partial \ln \grandz_{|\alpha \rangle}}{\partial \mu} \\
+&=\frac{e^{\beta(\mu - E_\alpha)}}{1+e^{\beta(\mu - E_\alpha)}} \\
+&= \frac{1}{1+e^{\beta(E_\alpha - \mu)}}
+\eea
+这是著名的费米-狄拉克分布。
+\par
+对玻色子，一个态上可以被无数个粒子占据，因此，能量本征态$|\alpha \rangle$的巨配分函数为
+\bea
+\grandz_{|\alpha \rangle} &= \sum_{n=0}^\infty e^{n\beta(\mu - E_\alpha)} \\
+&= \frac{1}{1- e^{\beta(\mu - E_\alpha)}}
+\eea
+这个态上的平均粒子数为
+\bea
+N_{|\alpha \rangle} &= \frac{1}{\beta} \frac{\partial \ln \grandz_{|\alpha \rangle}}{\partial \mu} \\
+&=-\frac{-e^{\beta(\mu - E_\alpha)}}{1-e^{\beta(\mu - E_\alpha)}} \\
+&= \frac{1}{ e^{\beta(E_\alpha - \mu)} - 1}
+\eea
+这是著名的波色-爱因斯坦分布。
+\par
+得到这个分布后，需要得到量子气体的巨配分函数。系统的巨配分函数等于每个单态的巨配分函数相乘。我们希望以能量为自变量对所有的态叠加，但我们似乎没有对“连续乘积”定义“积分”。于是我们退而求其次，既然巨配分函数的乘积可乘，那么它们的对数就可加。于是，量子气体的巨配分函数的对数就是
+\bea
+\ln \grandz_1 &= \sum_{|\alpha \rangle}\pm \ln (1 \pm e^{\beta(E_\alpha - \mu)}) \\
+&\text{（以能量为自变量，态密度代表能量微元内的微观态数目）} \\
+&\simeq \int_{E=0}^\infty \pm \ln (1 \pm e^{\beta(E_\alpha - \mu)})g(E)dE \\
+& \text{（代入非相对论性能量动量关系下的态密度）} \\
+&=\int_{E=0}^\infty \pm \ln (1 \pm e^{\beta(E_\alpha - \mu)})\frac{V}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
+\eea
+对玻色子上面的$\pm$取负号，对费米子取正号。不过不管取什么号，这个积分都是非初等的。讨论它的行为需要级数展开后交换求和与积分的次序，最后引入一个叫做多对数函数的很厉害的函数。这里就不多说了，需要明白的思想是如何在这种复杂的情形下应用配分函数。
+\par
+再重申一遍解决这个问题的思路：波矢空间中有很多个能量本征态，这些态彼此不相关，于是系统总的巨配分函数就是这些态的巨配分函数的积，或者总配分函数的对数是这些态的巨配分函数对数的和；每个态上可以有若干个粒子，这可以看作能量本征态的子态，对子态直接求和可以得到单个能量本征态的巨配分函数。
+\subsection{接近$0\mathrm{\ K}$}
+由于基态与第一激发态间间隔的能量的一个有限值而不是一个无穷小量，当温度降低时，分子的能量可能不足以激发分子的运动，这是经典统计失效的原因（回想热学里对双原子气体热容呈阶梯型上升的解释）。\par
+而当接近绝对零度时，基态上将会集中非常多的粒子，以至于我们不能再近似认为波矢空间中的那些能量本征态连续分布，从而用积分代替求和。至少我们需要估算出基态上的原子数加以修正。在绝对零度时，我们可以想象，所有原子都被冻结在了基态上，从而，整个系统的微观状态数只有这一个。熵，微观状态数的对数，于是就成为了0，这就是热力学第三定律。\par
+我们用配分函数方法计算出的熵总含有一个$\ln T$的依赖项，它在绝对零度处对数发射的性质乍看起来与热力学第三定律相违背。但请记住，我们得到过的配分函数要么是在经典图像下计算的，要么是用到量子统计，但是用积分代替了求和。但根据上面的讨论，在接近绝对零度时，这两个近似手段都悲惨地先后失效了。
+
+\appendix
+\section{伊幸模型的各个细节}
+伊幸模型是整个物理学历史上十分重要的模型，而且对它的研究现在也没有停止过。你可以在Wikipedia上的Ising model条目上看到关于这一模型的更多讨论。
+\subsection{交叉项的求和}
+考虑自旋关于平均磁矩的涨落，将合式这样变形
+\bea
+\sum_{\text{临近的}i,j} s_i s_j &= \sum_{\text{临近的}i,j} [(s_i-m)+m][ (s_j-m)+m]\\
+&= \sum_{\text{临近的}i,j}[(s_i-m)(s_j-m) +m(s_i+s_j) - m^2]
+\eea
+因为求和是对$(i,j)$对进行的，每个粒子被重复计算了。究竟被重复计算了多少次呢？假设网格有$N=l^d$个格点，那么，所有的对有$d(l-1)l^{d-1} \simeq dl^d=\cfrac{q}{2}N$个（你可以从难到易计算$d=1,2,3$的特殊情况从而领悟到一般的计算方法）。
+\beq
+\sum_{\text{临近的}i,j}m^2 =\frac{q}{2}Nm^2
+\eeq
+第二项对$(i,j)$对的单个粒子的自旋加起来求和，为了将这个式子$\sum_i s_i$建立联系，需要知道这样的求和等效于对多少个单粒子求和。$\cfrac{q}{2}N$个对中，每个对有两个粒子，得到
+\beq
+\sum_{\text{临近的}i,j} (s_i+s_j)= \frac{q}{2} \times 2 \sum_i s_i = q\sum_i s_i
+\eeq
+而第一个含交叉项的求和与邻居的自旋涨落的平方有关，相比求和的第二项是一个小量，我们忽略它的贡献，于是就有了文中的结果。
+\subsection{配分函数的计算}
+若$N$个粒子中有$n$个自旋向上，$N-n$个自旋向下，体系的能量就是
+\bea
+E(n) &\simeq \frac{qN}{2}Jm^2 - (Jqm+B)(n-(N-n))\\
+&= \frac{qN}{2}Jm^2 - (Jqm+B)(2n-N)
+\eea
+而这样的自旋取向对应的位形的数目一共有$g(n) = \mathrm{C}_N^n$种，于是配分函数
+\bea
+Z &= \sum_{n=0}^N e^{-\beta[\frac{qN}{2}Jm^2 - (Jqm+B)(2n-N)]}\mathrm{C}_N^n\\
+&= e^{-\beta \frac{qN}{2}Jm^2+(Jqm+B)N}\sum_{n=0}^N \mathrm{C}_N^n (e^{-2\beta(Jqm+B)})^n 1^{N-n} \\
+&= e^{-\beta \frac{qN}{2}Jm^2+(Jqm+B)N}(e^{-2\beta(Jqm+B)}+1)^N\\
+&= e^{-\beta \frac{qN}{2}Jm^2}2^N\cosh^N\beta(Jqm+B)
+\eea
+第三个等号用到了二项式定理。
+\subsection{数值计算$m$行为的MATLAB代码}
+你可以自己调整各个参数的取值，重绘出各个曲线图，并且定性地加以解释。
+\par
+计算$m(\beta,B)$的代码如下
+\begin{verbatim}
+betavals = 0:0.05:6;
+bvals = -3:0.05:3;
+mvals = [];
+
+for i = 1:length(betavals)
+    mi = zeros(1,length(bvals));
+    for j = 1:length(bvals)
+        syms x;
+        try_val = 0.7*sign(bvals(j));
+        m = vpasolve(x == tanh(betavals(i).*(x + bvals(j))),x,try_val);
+        if size(m) == 0,1;
+            m = 0;
+        end
+        mi(j) = double(m);
+    end
+    mvals = [mvals;mi];
+end
+
+surf(bvals,betavals,mvals)
+\end{verbatim}
+计算$m(\beta,B=0)$的代码如下
+\begin{verbatim}
+xvals = 0.01:0.01:5;
+pyvals = [];
+nyvals = [];
+for k = 1:length(xvals)
+    syms m;
+    y = vpasolve(m == tanh(m*xvals(k)),m,0.5);
+    pyvals = [pyvals,y];
+end
+
+plot(xvals,pyvals);
+hold on
+
+for k = 1:length(xvals)
+    syms m;
+    y = vpasolve(m == tanh(m*xvals(k)),m,-0.5);
+    nyvals = [nyvals,y];
+end
+
+plot(xvals,nyvals)
+\end{verbatim}
+我的MATLAB是现炒现卖的，欢迎大佬优化代码。
+
+
+
+\end{document}
