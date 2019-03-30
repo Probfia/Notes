@@ -1,0 +1,211 @@
+\documentclass{ctexart}
+
+\usepackage{amsmath}
+\usepackage[linkcolor = red]{hyperref}
+\usepackage{cleveref}
+
+\crefname{equation}{}{}
+
+\title{Hamilton-Jacobi Equation}
+\author{Probfia}
+\date{Dec. 20, 2018}
+
+\begin{document}
+\maketitle
+\section{哈密顿-雅可比方程的回顾}
+以积分上限和时间作为自变量的作用量$S(q,t)$满足方程
+\begin{equation} \label{seq}
+\frac{\partial S}{\partial t} + H(p,q,t) = 0
+\end{equation}
+和
+\begin{equation} \label{sqp}
+\frac{\partial S}{\partial q} = p
+\end{equation}
+我们约定\footnote{这个约定大概是我自己编的，它的意义在于，推导多自由度系统的力学规律时，通常可以当成只有一个自由度来推导，最后用这个约定直接外推到多个自由度的情况。}，在不特别指明下（上）标时，$p$和$q$都表征含$s$维矢量，并约定函数$f$对一个矢量$v$求偏导的结果为以$\cfrac{\partial f}{\partial v_i}$为第$i$个分量的矢量。因此，\cref{sqp}包含$s$个方程，其中的第$i$个方程为
+\begin{equation}
+\frac{\partial S}{\partial q_i} = p_i
+\end{equation}
+将\cref{sqp}带入\cref{seq}，就得到了所谓的哈密顿-雅可比方程
+\begin{equation} \label{hjeq}
+\frac{\partial S}{\partial t} + H(\frac{\partial S}{\partial q},q,t) = 0
+\end{equation}
+\cref{hjeq}为一阶偏微分方程，中含有$s+1$个独立变量，因此通解含有$s+1$个任意常数。但含$S$的项并仅以一阶偏导数的形式出现，因此，若$f(q,t)$为\cref{hjeq}的解，那么，相差一个常数的
+\begin{equation}
+S' = S(q,t) + C
+\end{equation}
+也是\cref{hjeq}的解。那么，我们仅仅对包含$s$个任意常数的$S(q,t)$感兴趣。设这$s$个常数为$\alpha_i$，将它们看成变量，记
+\begin{equation}
+f(q,t,\alpha) \equiv S(q,t)
+\end{equation}
+并将$f$看成一个正则变换的生成函数，视$\alpha$为变换后的广义动量。正则变换后的哈密顿函数为
+\begin{equation}
+H' = H + \frac{\partial f}{\partial t}
+\end{equation}
+由于$f$满足\cref{seq}，恰好有
+\begin{equation}
+H' \equiv 0
+\end{equation}
+那么，根据正则方程，变换后的广义动量$\alpha$和广义动量$\beta$都为常数！于是我们就找到了$f$中缺失的$s$个常数，他们正是$f$表征的正则变换对应的正则动量。并且，$\alpha$和$\beta$正好给出系统的$2s$个运动积分。
+
+\section{分离变量}
+解哈密顿-雅可比方程的一个通用技巧就是分离变量，它的思想是这样的：将\cref{hjeq}写成如下形式：
+\begin{equation}
+\varPhi (\frac{\partial S}{\partial t} , \frac{\partial S}{\partial q} , q ,t) \equiv \frac{\partial S}{\partial t} + H(\frac{\partial S}{\partial q},q,t) = 0
+\end{equation}
+可以发现，时间$t$和坐标$q$似乎拥有某种对等的关系，因此我们不如将他们合在一起，记为$\xi = (t,q)$，容易看出$\xi$有$s+1$个分量（$s$个坐标维度加一个时间维度），约定$\xi_i$中的$i$取遍$0,1,2,\cdots,s$，但$\xi_0$不一定代指时间分量\footnote{这个记号是我自己编的。}。总之，在这种约定下，哈密顿-雅可比方程可以写成下面这个非常简洁的形式：
+\begin{equation} \label{hjphieq}
+\varPhi (\frac{\partial S}{\partial \xi},\xi) = 0
+\end{equation}
+不妨把这里的$\varPhi$称为体系的Phimiltonian\footnote{这个名字也是我自己编的，不过灵感来源于二班的讲义中的咔密顿函数。}（或许中文叫$\Phi$密顿函数？）。我们发现，HJ方程就是说，体系的$\Phi$密顿函数恒等于0！\par
+分离变量的关键思想是，$\xi$的某个分量（不妨设为$\xi_0$）在\cref{hjphieq}中仅以某种组合$\varphi_0(\cfrac{\partial S}{\partial \xi_0},\xi_0)$的形式出现（例如
+$\varPhi = (\cfrac{\partial S}{\partial t} + t)\cfrac{\partial S}{\partial q} + aq^2$
+中，时间$t$对应的$\varphi_t = \cfrac{\partial S}{\partial t} + t$，坐标$q$则不可分离）。那么，\cref{hjphieq}可以写为
+\begin{equation}
+\varPhi (\frac{\partial S}{\partial \xi_i},\xi_i;\varphi_0(\cfrac{\partial S}{\partial \xi_0},\xi_0)) = 0\ , i = 1,2,\cdots,s
+\end{equation}
+我们寻求以下形式的分量变量解\footnote{我们以上标表示$S$中已经被剥离的变量。}：
+\begin{equation}
+S(\xi) = S_0(\xi_0) + S^0(\xi_i)\ , i = 1,2,\cdots,s
+\end{equation}
+于是有
+\begin{equation}
+\varPhi (\frac{\partial S^0(\xi_i)}{\partial \xi_i},\xi_i;\varphi_0(\cfrac{\partial S_0}{\partial \xi_0},\xi_0)) = 0\ , i = 1,2,\cdots,s
+\end{equation}
+现在让我们做这样的讨论：固定各$\xi_i$不变，改变$\xi_0$的值，$\varPhi$却不发生变化，始终等于0，因此，必须有
+\begin{equation} \label{const0}
+\varphi_0 (\cfrac{\partial S_0}{\partial \xi_0},\xi_0) = C_0
+\end{equation}
+为一个常量。这一点确立后，就可以立刻推关于出剩下的$s$个$\xi$分量的未知函数$S^0(\xi)$满足的方程
+\begin{equation}
+\varPhi (\frac{\partial S^0(\xi)}{\partial \xi},\xi;C_0) = 0\ , i = 1,2,\cdots,s
+\end{equation}
+假如下一个分量$\xi_1$在$\Phi$密顿函数中也以$\varphi_1(\cfrac{\partial S}{\partial \xi_1},\xi_1)$的形式出现，则可以继续设$S^0(\xi) = S^{01}(\xi_i) +S_1(\xi_1)\ ,i=2,3,\cdots,s$，从而将$\Phi$密顿函数写成
+\begin{equation}
+\varPhi (\frac{\partial S^{01}(\xi_i)}{\partial \xi_i},\xi_i;\varphi_1(\cfrac{\partial S_1}{\partial \xi_1},\xi_1);C_0) = 0\ , i = 2,3,\cdots,s
+\end{equation}
+那么定有
+\begin{gather}
+\varphi_1(\cfrac{\partial S_1}{\partial \xi_1},\xi_1) = C_1 \\
+\varPhi (\frac{\partial S^{01}(\xi_i)}{\partial \xi_i},\xi_i;C_0,C_1) = 0\ , i = 2,3,\cdots,s
+\end{gather} 
+假设$\xi$的前$s$个分量都在$\Phi$密顿函数中以组合$\varphi_i(\cfrac{\partial S}{\partial \xi_i},\xi_i)$的形式出现的话，上述操作就可以一直进行下去，直到将$\xi_{s-1}$按照$S^{0,1,\cdots,s-2}(\xi_{s-1},\xi_s) = S^{0,1,\cdots,s-1}(\xi_s) + S_{s-1}(\xi_{s-1})$的形式成功分离，不妨记$S^{0,1,\cdots,s-1}(\xi_s) = S_s(\xi_s)$这时，最后一个剩余的坐标$\xi_s$满足方程
+\begin{equation}
+\varPhi ( \frac{\partial S_s(\xi_s)}{\partial \xi_s} , \xi_s ; C_0,C_1,\cdots,C_{s-1}) = 0
+\end{equation}
+于是我们看到，$\xi_s$原本能不能从$\Phi$密顿函数里分离已经不重要了。我们一定从这个方程解出的$S_s$，但它将不含独立的任意常数\footnote{会含一个积分常数，但它的作用在于使得最后求出的$S$相差一个常数，我们已经谈到，我们对这种常数不感兴趣。}，而是依赖于其他$s$个常数$C_0,C_1,\cdots,C_{s-1}$，这与之前讨论的一致。因此，该体系的HJ方程的解就为
+\begin{equation} 
+S(\xi) = S_0(\xi_0) + S_1(\xi_1) + \cdots + S_s(\xi_s)
+\end{equation}
+或者，更加准确地，将每个$S_i$包含的任意常数纳入考虑
+\begin{multline} \label{sesol}
+S(\xi;C_0,C_1,\cdots,C_{s-1}) \\
+= S_0(\xi_0;C_0) + S_1(\xi_1;C_1) + \cdots +S_{s-1}(\xi_{s-1};C_{s-1}) + S_s(\xi_s;C_0,C_1,\cdots,C_{s-1})
+\end{multline}
+
+\section{分离变量解告诉我们什么}
+我们发现，我们已经成功解出含有$s$个独立常数的$S(\xi) \equiv S(t,q,C)$，但从第一节的讨论可知，$S$事实上也可以表征一个正则变换，它使变换后的哈密顿函数\footnote{其实变换后的哈密顿函数就是$\Phi$密顿函数。}为0，使得变换后的坐标和动量都守恒。那么，不如就\emph{钦定}这$s$个常数$C_0,C_1,\cdots,C_{s-1}$为变换后的动量\footnote{其实你钦定它们是坐标也可以，因为哈密顿力学里坐标和动量本来就没太大区别。}，而其对应的坐标由正则变换公式
+\begin{equation} \label{eqbi}
+B_i = \frac{\partial f}{\partial C_i}
+\end{equation}
+给出，它们也是守恒量。将已经得到的分离变量解\cref{sesol}带入\cref{eqbi}得到
+\begin{equation}
+\frac{\partial S_i(\xi_i;C_i)}{\partial C_i} + \frac{\partial S_s(\xi_s;C_0,C_1,\cdots,C_i,\cdots,C_{s-1})}{\partial C_i} = B_i
+\end{equation}
+上式第一项为$\xi_i$的函数，第二项为$\xi_s$的函数，于是，我们就可以将每个$\xi_i$都用$\xi_s$连同$s+1$个常数表达出来！
+\begin{equation} \label{eqtr}
+\xi_i = \xi_i(\xi_s;C_0,C_1,\cdots,C_{s-1};B_i)\ ,i = 0,1,2,\cdots,s-1
+\end{equation}
+上式的神奇之处在于，它事实上可以被看成一个参数方程，随着$\xi_s$的变动，其余的$\xi_i$一同变动，在\emph{时空}中划出一条曲线！（如果你不能理解这一点，考虑三维空间$\{x,y,z\}$，那么，方程组$y = y(x), z = z(x)$表征的就是一条曲线。）
+\par
+假如$\xi_s = t$，那么\cref{eqtr}给出各个坐标的时间演化$q_i \equiv \xi_{i-1}(t;C)$；假如系统的自由度$s=2$，即质点的平面运动，并令$(\xi_0,\xi_1,\xi_2) = (t,x,y)$，那么\cref{eqtr}在$i=1$时给出
+\begin{equation} \label{2dtr}
+x(y) = x(y;C_0,C_1;B_1)
+\end{equation}
+它正好是质点在这个平面内运动的轨迹方程！当然，上述讨论也可以自然推广到高维空间，因此我们发现，HJ方程可以非常方便地求解粒子的空间轨迹。
+\section{循环坐标和时间的分离变量}
+假设体系的哈密顿函数不显含$\xi_i$，那么，对应的$\Phi$密顿函数也不显含$\xi_i$，因此，HJ方程中与$\xi_i$有关的项只剩下$\varphi_i = \cfrac{\partial S}{\partial \xi_i}$，带入\cref{const0}就得到
+\begin{equation}
+\frac{d S_i}{d \xi_i} = C_i
+\end{equation}
+即
+\begin{equation} \label{seciri}
+S_i(\xi_i) = C_i \xi_i
+\end{equation}
+假如$\xi_i$不是时间，那么从前面的讨论可以得知，$C_i$就是$\xi_i$的广义动量。\par
+所有的循环坐标都可以这样分离变量，并且方便起见，循环坐标的分离应该优先进行（避免它成为最后一个$\xi$，否则上面的讨论就失效了）。
+\par
+一个特别的情况是保守体系，此时的哈密顿函数不显含时间，于是Phi密顿函数也不显含时间，尝试将HJ方程的解$S(q,t)$对时间$t$的分离变量为以下形式：
+\begin{equation}
+S(q,t) = S_t (t)+ W(q)
+\end{equation}
+根据\cref{seciri}得知
+\begin{equation}
+S_t(t) = C_t t
+\end{equation}
+有必要讨论常数$C_t$的物理意义：将分离变量解带入Phi密顿函数的表达式，得到
+\begin{equation}
+\frac{\partial C_t t}{\partial t} + H = 0
+\end{equation}
+即
+\begin{equation}
+ H \equiv -C_t
+\end{equation}
+这说明，保守体系的哈密顿函数守恒（废话），我们知道这个守恒量就是能量$E$，于是
+\begin{equation}
+C_t = -E
+\end{equation}
+这在某种意义上说明，在经典力学的框架下，时间对应的广义动量事实上是$-E$。
+
+\section{例子：带电粒子在偶极子场中的运动}
+我们来求解一个带电量为$e$的粒子在偶极子场$u(r,\theta) = \cfrac{p \cos \theta}{r^2}$中的运动轨迹。简单起见，我们将粒子的轨迹限定在平面内，并记粒子的势能为
+\begin{equation}
+V(r,\theta) = eu \equiv \frac{\alpha \cos \theta}{r^2}
+\end{equation}
+于是，粒子的哈密顿函数为
+\begin{equation}
+H = \frac{1}{2m}(p_r^2 + \frac{p_\theta^2}{r^2}) + \frac{\alpha \cos \theta}{r^2}
+\end{equation}
+对于的Phi密顿函数就是
+\begin{equation}
+\varPhi = \frac{\partial S}{\partial t} + \frac{1}{2m}[(\frac{\partial S}{\partial r})^2 + \frac{1}{r^2}(\frac{\partial S}{\partial \theta})^2] + \frac{\alpha \cos \theta}{r^2} = 0
+\end{equation}
+为了分离变量，将其写成一个更加紧凑的形式
+\begin{equation}
+\frac{\partial S}{\partial t} + \frac{1}{2m} (\frac{\partial S}{\partial r})^2 + \frac{1}{2mr^2}[(\frac{\partial S}{\partial \theta})^2 + 2m\alpha \cos \theta] = 0
+\end{equation}
+很明显，第一个可以分离的变量是时间$t$，记$S(t,r,\theta) = S_t(t) + W(r,\theta) = -Et+ W(r,\theta)$，就有
+\begin{equation}
+-E + \frac{1}{2m} (\frac{\partial W}{\partial r})^2 + \frac{1}{2mr^2}[(\frac{\partial W}{\partial \theta})^2 + 2m\alpha \cos \theta] = 0
+\end{equation}
+而$\theta$在这里又仅以组合$(\cfrac{\partial W}{\partial \theta})^2 + 2m\alpha \cos \theta$出现了，于是根据分离变量法的原则，该组合必定等于一个常数$J$
+\begin{equation}
+(\frac{dl W_\theta}{d \theta})^2 + 2m\alpha \cos \theta = J
+\end{equation}
+它的解（原函数不存在）为
+\begin{equation}
+W_\theta(\theta) = \int \sqrt{J - 2m\alpha \cos \theta} d\theta 
+\end{equation}
+最后剩下变量$r$，它满足
+\begin{equation}
+-E+\frac{J}{2mr^2} + \frac{1}{2m}(\frac{d W_r(r)}{dr})^2 = 0
+\end{equation}
+解得（感谢Mathematica，其实不需要把它积出来）
+\begin{multline}
+W_r(r) = \int \sqrt{2mE - \frac{J}{r^2}} dr \\
+= \sqrt{2mE r^2-J}+\sqrt{J} \arctan\frac{\sqrt{J}}{\sqrt{2mE r^2-J}}
+\end{multline}
+于是，对于这个粒子，HJ方程的解就是
+\begin{equation}
+S = -Et + \int \sqrt{J - 2m\alpha \cos \theta} d\theta +\sqrt{2mE r^2-J}+\sqrt{J} \arctan\frac{\sqrt{J}}{\sqrt{2mE r^2-J}}
+\end{equation}
+由\cref{2dtr}，这里$x = \theta$，$y = r$，于是
+\begin{equation}
+B_\theta = \frac{\partial S}{\partial J}
+\end{equation}
+求导后再从上式中反解出$\theta$，就得到了$\theta (r)$的表达式。结果过于冗长，所以就不写了。不过我们已经看到，HJ方程确实能够给出一个二维空间上粒子的轨迹方程。并且我们看到了一个值得注意的点：我们处理的最后一个变量在$\Phi$密顿函数中不需要具有可分离变量的形式，这在之前已经讨论过了。
+
+\section{注记}
+这个讲稿本来是抄朗道，但后来发现了一点新东西和新理解，主要在于将坐标和时间合写在矢量$\xi$里可以让我们对HJ方程的数学结构有更深刻的认识，也表明了在经典力学中其实已经出现了时间空间对等的雏形。很多记号是我走路的时候想出来的，所以可能有部分不妥。\par
+值得提的一点是，若一个势的HJ方程可以完全分离变量，则这个势对应的薛定谔方程也可以分离变量。在HJ方程中我们用加法分离变量，而在薛定谔方程中我们用乘法（如学过的其他数理方程一样）分离变量，这其实是因为，$S$和波函数$\psi$的关系\emph{大概}就是$S = \hbar \ln \psi$，对数将一个乘法变成了加法。
+
+\end{document}

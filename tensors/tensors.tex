@@ -1,0 +1,321 @@
+\documentclass[a4paper,11pt]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+%\renewcommand{\Omega}{\varOmega}
+\newcommand{\field}{\mathscr{F}}
+\newcommand{\red}{\color{red}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+
+
+\title{线性空间和张量}
+\author{Probfia}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{线性空间}
+我们熟悉的向量生活在线性空间中。所谓线性空间是一群向量的集合$V$连同一个代数域$\field$形成的代数结构。这个域的作用是定义向量的数乘。向量空间有8大条公理，不过这里就不必一一叙述了，只需要记住最重要的一条：
+\begin{axm}[封闭性]\par
+设$V$是一个线性空间，$\field$是它连同的域，则
+\beq
+\forall u,v \in V,\ u+v \in V
+\eeq
+\beq
+\forall v \in V,\ \forall \alpha \in \field,\ \alpha v \in V
+\eeq
+\end{axm}
+我们熟悉的长度为$n$的数组就生活在空间$\reals^n$中，它连同的域就是实数域$\reals$，如果让它连同的域是$\complexs$就会破坏第二条封闭性。数组只是向量的一个特例。
+\par
+如果一个线性空间中的所有向量都可以用其中的$n$个向量线性表示出（只涉及数乘和加法运算），那么就称这个线性空间的维度为$n$，记作$\dim V = n$。这$n$个向量称为这个线性空间的一组基。下面的定理确真：
+\begin{thm}[向量在基下的表示]\par
+设$V$有一组基$\{e_1,e_2,\cdots,e_n\}$，那么，
+\beq
+\forall v \in V,\ \exists ! (v^1,v^2,\cdots,v^n) \in \field^n,\ v = v^1 e_1 + v^2 e_2 + \cdots v^n e_n
+\eeq
+即任意向量$v$在这组基下的线性表示唯一。
+\end{thm}
+这个定理无聊爆了，唯一需要证明的是它的唯一性，不过这也无聊爆了，所以不证。各个域中的数$v^i$称为向量$v$在这组基下的坐标。采用爱因斯坦求和规则，上面这个式子可以用特别漂亮的方式写出
+\beq
+v = v^i e_i
+\eeq
+\par
+讲一个稍微有意思一点的话题。将$\complexs^n$作为线性空间，它的域可以是$\complexs$，也可以是$\reals$。假如让$\reals$作为域的话，会有$\dim \complexs^n = 2n$。你能一眼看出这个命题的证明吗？
+
+\section{对偶空间}
+考虑一个映射$f$，它将线性空间$V$中的元素映到这个空间的域$\field$上。此外，我们要求这个映射满足线性条件：
+\beq
+\forall u,v \in V, \ \forall \alpha, \beta \in \field,\ f(\alpha u + \beta v) = \alpha f(u) + \beta f(v)
+\eeq
+那么，这个映射就称为线性映射。我们定义线性映射$f$和$g$的加法为
+\beq
+(f+g): V\to \field,\ \forall v \in V,\  (f+g)(v)= f(v) + g(v)
+\eeq
+以及数乘
+\beq
+\alpha f: V \to \field,\ \forall v\in V,\ (\alpha f)(v) = \alpha f(v)
+\eeq
+其中$\alpha \in \field$。这也无聊爆了。还有一个更无聊的定理
+\begin{thm}\par
+线性空间$V$上所有的线性映射连同$V$上原本的域$\field$构成另一个线性空间，记作$V^*$，称为$V$的对偶空间。
+\end{thm}
+既然$V^*$是一个线性空间，那么它必然具有自己的维数，是多少呢？猜都不用猜，肯定是$\dim V^* = \dim V$。
+\par
+我们先定义几个特殊的线性映射。若$V$有一组基$\{e_i\}$，那么，定义线性映射$e^j$，使得
+\beq
+e^j(e_i) = \delta_i^j
+\eeq
+$e^j$对$V$中的向量$v$的作用是
+\bea
+e^j(v) &= e^j(v^i e_i) \\
+&= v^i e^j(e_i) \\
+&= v^i \delta_i^j = v^j
+\eea
+于是$e^j$也被称为求坐标函数。
+\par
+引入这些无聊的函数是为了这个稍微不那么无聊一点的定理
+\begin{thm}[对偶空间的基]\par
+设找到$V$的一组基为$\{e_1,e_2,\cdots,e_n\}$，那么，$\{e^1,e^2,\cdots,e^n\}$一定是$V^*$的一组基。
+\end{thm}
+这个定理的证明就不给了，反正也没人在意，而且我们也没时间讲线性空间的一些证明技巧（套路）。对$V^*$中的任意元素$f$，都有一个分解
+\beq
+f = f_j e^j
+\eeq
+这个线性函数作用到$V$中的元素$v$上得到的结果就是
+\beq
+f(v)= (f_j e^j) (v^i e_i) = f_j v^i e^j(e_i) = f_i v^i
+\eeq
+
+\section{变换基公式}
+习惯上将$V$中的向量记作列向量，而将$V^*$中的向量记为行向量。即下标对应列，上标对应行。如果有一个满秩矩阵$A = (a^i_{\ j})$，它将$V$的基$\{e_i\}$变换到$\{e'_i\}$的方式如
+\beq
+e'_j = a^i_{\ j} e_i
+\eeq
+也即
+\beq
+(e'_1,e'_2,\cdots,e'_n) = (e_1,e_2,\cdots,e_n) A
+\eeq
+那么，$V^*$的基变换公式就是
+\beq
+(e'^1,e'^2,\cdots,e'^n) = A^{-1}(e^1,e^2,\cdots,e^n)
+\eeq
+这个定理可以这样证明。设$e'^j = b^j_{\ k} e^k$，$B= b^j_{\ k}$。考虑$e'^j$对$e'_i$的作用，有
+\bea
+\delta_i^j &=e'^j(e'_i) \\
+ &= e'^j(a^l_{\ i} e_l) \\
+&=(b^j_{\ k} e^k)(a^l_{\ i} e_l) \\
+&=b^j_{\ k} a^l_{\ i} \delta_l^k \\
+&= b^j_{\ k} a^k_{\ i}
+\eea
+$b^j_{\ k} a^k_{\ i}$不是别的，就是矩阵乘积$BA$的第$i,j$个元素，它等于$\delta_i^j$。这就是说$BA= E$或$B = A^{-1}$。
+\par
+因为一个向量的坐标就是去坐标函数对这个向量的作用，因此，$V$中向量的坐标也会按$V^*$的基变换公式那样变换，也就是
+\beq
+(v'^1,v'^2,\cdots,v'^n) = A^{-1}(v^1,v^2,\cdots,v^n)
+\eeq
+或
+\beq
+v'^j = b^j_{\ i} v^i
+\eeq
+
+
+\section{张量和张量运算}
+有了对偶空间的基础，我们现在终于可以考虑张量了。$(s,t)$阶张量的一般定义是一个映射：
+\beq
+T:\underbrace{V\times V\times \cdots \times V}_{s\text{ 个}} \times  \underbrace{V^* \times V^* \times \cdots \times V^*}_{t\text{ 个}} \to \field
+\eeq
+其中$\times$是集合的笛卡尔积。此外，$T$必须对每一个自变量是单线性的。
+\par
+\textbf{讲人话……}
+\par
+张量$T$是一个函数，它接受$s+t$个自变量，其中$s$个是在线性空间$V$上的向量；$t$个是在对偶空间$V^*$上的向量。它的输出结果是$V$的代数域（同时也是$V^*$的代数域）上的一个数。单线性是指，对每个自变量，都要有
+\beq
+T(\cdots,\alpha u +\beta v,\cdots) = \alpha T(\cdots,u,\cdots) +\beta T(\cdots,v,\cdots)
+\eeq
+\par
+\textbf{这和上课老师讲的不一样啊……}
+\par
+别急，我们先来看看$(s,t) = (2,0)$的情况。假设$V$有一组基$\{e_i\}$，设有两个向量$u$，$v$，它们的坐标表示分别是$u = u^i e_i$和$v = v^j e_j$，那么
+\bea
+T(u,v) = &T(u^1 e_1 +u^2 e_2 + \cdots + u^n e_n, v) \\
+= &u^1 T(e_1,v) + u^2 T(e_2,v) +\cdots+ u^n T(e_n,v) \\
+=  &u^1 T(e_1,v^1 e_1 + v^2 e_2 +\cdots + v^n e_n) +  \\
+&u^2 T(e_2,v^1 e_1 + v^2 e_2+\cdots + v^n e_n) +  \\
+&\vdots \\
+&u^n T(e_n,v^1 e_1 + v^2 e_2+\cdots + v^n e_n) +  \\
+=
+&u^1v^1T(e_1,e_1)  + u^1v^2T(e_1,e_2) + \cdots + u^1v^n T(e_1,e_n) \\
+&u^2v^1T(e_2,e_1) + u^2v^2T(e_2,e_2) + \cdots + u^2v^n T(e_2,e_n) + \\ &\cdots + \\
+&u^nv^1T(e_n,e_1) + u^nv^2T(e_n,e_2) + \cdots + u^nv^n T(e_n,e_n) 
+\eea
+其实这么长而且这么丑陋无比的公式，用爱因斯坦求和规则写出来就是
+\beq
+T(u,v) = T(u^ie_i,v^je_j) = u^i v^j T(e_i,e_j)
+\eeq
+多么美观！爱因斯坦简直就是美学大师，而且他还帮我们节约了数以吨记的墨水，拯救了几千个亚马逊雨林。如果诺贝尔有环保奖的话，一定归爱因斯坦莫属。
+\par
+引入记号$T_{ij} = T(e_i,e_j)$，就有
+\beq
+T(u,v) = T_{ij} u^i v^j
+\eeq
+我们就回到了我们在课上学过的那种，和矩阵傻傻分不清的，带角标的张量了。
+\par
+推广到$(s,t)$型张量，若第$p$个$V$中的向量的坐标表示是$v_p = v_p^{i_p}e_{i_p}$，第$q$个$V^*$中的向量的坐标是$f_q = f_{q{j_q}} e^{j_q}$，那么就有
+\bea
+T(v_1,\cdots,v_s;f_1,\cdots,f_t) &= T(v_1^{i_1}e_{i_1},\cdots,v_s^{i_s}e_{i_s},f_{1{j_1}}e^{j_1},\cdots,f_{t{j_t}}e^{j_t})\\
+&=v_1^{i_1}\cdots v_s^{i_s}  f_{1{j_1}} \cdots f_{t{j_t}} T(e_{i_1},\cdots,e_{i_s},\cdots,e^{j_1},\cdots,e^{j_t}) \\
+&= v_1^{i_1}\cdots v_s^{i_s}  f_{1{j_1}} \cdots f_{t{j_t}}T_{i_1 \cdots i_s}^{j_1 \cdots j_t}
+\eea
+再一次，$T_{i_1 \cdots i_s}^{j_1 \cdots j_t}$就是我们一般知道的张量，或者说，它其实只是张量$T$的各个分量。这其实是所谓的张量的坐标表示。顺便一提，你可以发现上下标已经根本不够用了，我希望有一天可以发明三维的纸，这样就可以有左上、左下、右上、右下四个指标了；另外，拉丁字母和希腊字母符号也不够用了，我也希望有一天可以引入emoji表情作为符号。
+\par
+如果对于张量$T$，对换任意两个向量，都有$T(\cdots,u,\cdots,v,\cdots) = T(\cdots,v,\cdots,u,\cdots)$，就说这个张量的对称的，如果反过来，对任意两个向量，都有$T(\cdots,u,\cdots,v,\cdots) = - T(\cdots,v,\cdots,u,\cdots)$，就说这个张量是反称的。反称张量的一个著名例子是行列式张量：考虑$n$个$n$维列向量构成的矩阵的行列式
+\beq
+D(v_1,v_2,\cdots,v_n)
+\eeq
+它显然符合张量的一般定义，而且是反称的。你也很容易想到，行列式张量的坐标表示就是$\varepsilon_{i_1 i_2 \cdots i_n}$。\par
+对$(p,q)$张量$T$和$(s,t)$张量$U$，它们的代数乘积显然也是一个张量。
+\beq
+T(v_1,\cdots,v_p;f_1\cdots,f_q) U(u_1,\cdots,u_s;g_1,\cdots,g_t)
+\eeq
+对每个自变量都呈单线性，于是这个乘积的行为和张量的一般定义一致，它就是一个张量（著名谚语：If it looks like a duck, walks like a duck and quacks like a duck, then it's a duck）。乘积的坐标表示是
+\beq
+(TU)_{i_1 \cdots i_p k_1  \cdots k_s}^{j_1 \cdots j_q l_1 \cdots l_t} = T_{i_1 \cdots i_s}^{j_1 \cdots j_t} U_{k_1  \cdots k_s}^{l_1 \cdots l_t}
+\eeq
+\par
+$(s,t)$张量可以定义缩并运算得到一个$(s-1,t-1)$张量。这个定义如下：
+\beq
+T(v_1,\cdots,v_p,\cdots,v_s;f_1,\cdots,f_q,\cdots,f_t) \to T(v_1,\cdots,e_k,\cdots,v_s;f_1,\cdots,e^k,\cdots,f_t)
+\eeq
+注意这里需要对所有的$(e_k,e^k)$对求和。缩并后的张量对每一个自变量依然是单线性的，所以它还是一个张量。它的坐标表示很容易求得
+\bea
+&T(e_{i_1},\cdots，e_i,\cdots,e_{i_s},\cdots,e^{j_1},\cdots,e^i,\cdots,e^{j_t}) \\
+= &T_{i_1 \cdots k \cdots  i_s}^{j_1 \cdots k \cdots j_t}
+\eea
+注意这里也是要对所有的$k$求和。
+\par
+如果你理解不了乘积和缩并运算，举两个例子。考虑$\reals^n$的$(1,0)$张量（向量，列向量）$a$和$(0,1)$张量（对偶向量，行向量）$b^\mathrm{T}$间的乘积运算
+\beq
+ab^\mathrm{T}
+\eeq
+它的结果显然是一个$n$阶方阵，$n$阶方阵是$(1,1)$张量的坐标表示。每个坐标分量是
+\beq
+(ab^\mathrm{T})^j_{\ i} = a_i b^j
+\eeq
+缩并运算就是让两个指标相等并求和，它就是矩阵$ab^\mathrm{T}$的迹，而且就是$a$和$b$的内积。
+
+\section{度规张量和升降指标}
+欧几里得空间是一个定义了内积的线性空间。内积是用一个$(2,0)$型对称张量（度规）$g(\ ,\ )$定义的，它还满足正定性，也就是
+\beq
+\forall x \not= 0,\ g(x,x)>0
+\eeq
+显然像对一般张量的处理方式一样把$g$写成坐标形式，为$g_{ij}$。
+\par
+向量$x$的范数定义为$||x|| = \sqrt{g(x,x)}$，显然，用坐标形式写出来就是
+\beq
+||x|| = \sqrt{g_{ij} x^i x^j}
+\eeq
+一定存在一组基使得$g_{ij} = \delta_{ij}$，这组基称为$V$的单位正交基。
+\par
+度规可以让本体空间中的向量变到对偶空间去。考虑这样的映射
+\beq
+f_v:\ V \to \field,\ f_v (u) = g(v,u)
+\eeq
+对每个选定的向量$v$，$f_v$都是$V^*$中的元素（对$u$的线性映射）。
+\par
+度规张量和它的逆可以用来提升和下放一个张量的指标。张量指标的上升和下降操作定义为乘以度规的逆或者度规本身。但在平直的欧式空间中，只要好好选取坐标系，度规张量就是一个单位张量，于是，升降一个张量的指标不会带来数值上的区别，在这种情况下就可以把张量的所有角标全部写在下面。
+
+\section{张量的例子}
+我们最先接受的张量是转动惯量张量，它其实是一个二次型（对应一个$(2,0)$对称张量），接受两个角速度，返回一个动能值
+\beq
+T = I(\vec{\omega},\vec{\omega})
+\eeq
+其中$\vec{\omega}$是角速度矢量。而
+\beq
+\vec{J} = I(\vec{\omega},\ )
+\eeq
+将角速度变到对应的角动量（由本体空间变到对偶空间，或者用微分几何的语言，由切空间变到余切空间。二班的同学应该对这两个名字还有印象）。
+\par
+我们后来又遇到了应力张量，它是一个对称张量，接受两个方向，返回以其中一个方向为法向的面上朝另一个方向的应力分量
+\beq
+P = P(\vec{n}_1,\vec{n}_2)
+\eeq
+\par
+张量的映射定义比基变换定义更为自然，这也说明，如果一个带几个角标的量可以代表一个实实在在的物理量，那它通常就是一个张量。
+
+
+\section{坐标变换}
+考虑一个$(s,t)$张量$T(\cdots,v,\cdots;,\cdots,f,\cdots)$，它在基$\{e_i\}$下的坐标表示为$T_{\cdots i \cdots}^{\cdots j \cdots}$，那么当我们选取一组新基$\{e'_i\}$时，张量的坐标表示又会变成什么样子呢？
+\par
+回忆一下，旧基下，张量本身和它的坐标表示的关系为
+\bea
+T(\cdots,v,\cdots;,\cdots,f,\cdots) &= \cdots v^i \cdots  f_j \cdots T(\cdots,e_i,\cdots;,\cdots,e^j,\cdots) \\
+&\equiv \cdots v^i \cdots  f_j \cdots T_{\cdots i \cdots}^{\cdots j \cdots}
+\eea
+在新基下，有$e'_j = a^i_{\ j} e_i$和$e'^j = b^j_{\ k} e^k$，于是
+\bea
+T(\cdots,v,\cdots;\cdots,f,\cdots) &= T(\cdots,v'^i e'_i,\cdots;,\cdots,f'_j e'^j,\cdots) \\
+&= \cdots v'^i\cdots f'_j \cdots T(\cdots, e'_i,\cdots;,\cdots,e'^j,\cdots) \\
+&= \cdots v'^i f'_j \cdots a^k_{\ i}\cdots b^j_{\ l}\cdots  T(\cdots, e_k,\cdots;,\cdots,e^l,\cdots) \\
+&= v'^i f'_j  a^k_{\ i} b^j_{\ l} T_{\cdots k \cdots}^{\cdots l \cdots}\cdots
+\eea
+于是有
+\beq
+T'^{\cdots j \cdots}_{\cdots i \cdots} = \cdots a^k_{\ i} b^j_{\ l} T_{\cdots k \cdots}^{\cdots l \cdots}
+\eeq
+也就是说，张量上标按坐标变换规则变换$b^j_{\ l} = \cfrac{\partial x'^j}{\partial x^l}$，下标按基底变换规则变换（坐标变换规则的逆）$a^k_{\ i} = \cfrac{\partial e'_i}{\partial e^k} = \cfrac{\partial x^k}{\partial x'^i}$。这和课上讲的所谓张量识别定理是一样的。
+
+
+\section{张量计算练习}
+张量说着简单算着难，你可以体验一下。
+\par
+$\reals^3$内有单位双曲面$\vec{x}(u,v) = (\cosh u \cos v,\cosh u \sin v,\sinh u)$，
+\begin{enumerate}
+\item 计算度规张量，它的定义是$(u,v)$发生微小变化时，$\vec{x}$微小变化的长度，也即$g_{ij} = \cfrac{\partial \vec{x}}{\partial u^i} \cdot \cfrac{\partial \vec{x}}{\partial u^j}$。其中$(u^1,u^2) = (u,v)$。
+\item 计算度规张量的逆$g^{kl}$。
+\item 计算仿射联络$\varGamma_{ij}^k = \cfrac{1}{2} g^{lk}(\cfrac{\partial g_{il}}{\partial u^j} + \cfrac{\partial g_{jl}}{\partial u^i} - \cfrac{\partial g_{ij}}{\partial u^l})$（一共8个分量）。
+\item 写出测地线方程$\cfrac{d^2 u^k}{ds^2} + \varGamma_{ij}^k \cfrac{du^i}{ds}\cfrac{du^j}{ds} = 0$（2个方程）。
+\item 计算黎曼曲率张量$R_{ijk}^l = \partial_k \varGamma_{ij}^l -\partial_j \varGamma_{ik}^l + \varGamma_{ij}^m \varGamma_{km}^l - \varGamma_{ik}^m \varGamma_{jm}^l$（give it up, for life is short.）。
+\end{enumerate}
+
+
+
+\end{document}

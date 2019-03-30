@@ -1,0 +1,199 @@
+\documentclass[a4paper,11pt]{ctexart}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[colorlinks,
+            linkcolor=red,
+		 urlcolor=black]{hyperref}
+
+\usepackage{cleveref}
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+\newcommand{\reals}{\mathbb{R}}
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{简易微分几何}
+\author{Probfia}
+\date{}
+
+\begin{document}
+\maketitle
+\section{前言}
+古典微分几何研究$\reals^3$中的曲面，也就是曲面如何嵌入三维空间。而现代微分几何则认为曲面，或流形，不需要生活在平直的高维空间中。换言之，我们只需要设身处地地假象自己就是生活在曲面上的生物来研究曲面，而不需要采取上帝视角。我们今天将以尽量现代的视角处理古典微分几何的研究对象：曲面。需要注意的是，由于采用了现代视角，再加之3维空间的优良性质，这里得到的结论大都可以直接推广到高维流形。
+\par
+假定读者已经熟悉了对偶空间和爱因斯坦求和规则这些基本的代数概念。
+
+\section{切空间与余切空间}
+
+\par
+于是，我们可以建立曲面$M$上每一点$p$到$\reals^2$上的映射$\phi$，这就是曲面的局部坐标
+\beq
+\varphi : M \rightarrow \reals^2 ;\  \varphi(p) = (u^1,u^2)
+\eeq
+它的值域记作$\varphi(M)$。\cref{localcoor}是一个局部坐标映射的实例，它将双曲面的一部分映射到一个平面区域上。
+\cpicn{0.3}{localcoor}{双曲面的局部坐标映射}
+另外，我们要求$\varphi$的逆映射存在，它就是曲面的参数化表示
+\beq
+\varphi^{-1}: \varphi(M) \rightarrow \reals^3;\ \varphi^{-1}(u^1,u^2) = p
+\eeq
+或用熟悉的语言写成
+\beq
+\begin{cases}
+x^1 = x^1(u^1,u^2) \\
+x^2 = x^2(u^1,u^2) \\
+x^3 = x^3(u^1,u^2)
+\end{cases}
+\eeq
+也即
+\beq
+x^i = x^i(u^j),\ i = 1,2,3, \ j = 1,2
+\eeq
+例如，一个单位球面上的每一点都可以与经度和纬度$(\phi,\theta)$建立联系，这就是球面的局部坐标；而局部坐标的逆映射就是球面的参数化方程
+\beq
+\begin{cases}
+x = \sin \theta \cos \phi \\
+y = \sin \theta \sin \phi \\
+z = \cos \theta
+\end{cases}
+\eeq
+\par
+我们下面考虑曲面上的曲线。曲线$\gamma$是$\reals$的一个子区间$I$到曲面的映射
+\beq
+\gamma: I \to M; \ \gamma(t) = p
+\eeq
+我们可以将其与局部坐标映射复合以将曲线$\gamma (t)$参数化
+\beq
+\hat{\gamma} \equiv \varphi \circ \gamma: I \to \reals^2;\ \hat{\gamma}(t) = (u^1,u^2),\text{ where}
+\begin{cases}
+u^1 = \hat{\gamma}^1(t) \\
+u^2 = \hat{\gamma}^2(t)
+\end{cases}
+\eeq
+这个映射的图解如\cref{curve}。
+\cpicn{0.18}{curve}{曲线映射的坐标化}
+\par
+回到$\reals^3$中的视角，这条曲线的参数方程就是
+\beq
+\begin{cases}
+x^1 = x^1(\hat{\gamma}^1(t),\hat{\gamma}^2(t)) \\
+x^2 = x^2(\hat{\gamma}^1(t),\hat{\gamma}^2(t)) \\
+x^3 = x^3(\hat{\gamma}^1(t),\hat{\gamma}^2(t))
+\end{cases}
+\eeq
+我们来特别关注经过曲面上某一点$p$的所有曲线。我们合理选择参数的值，使得它们在$t = 0$时经过$p$。也即
+\beq
+\gamma(t)\bigg|_{t=0} = p
+\eeq
+精确到一阶小量，这些曲面在$p$点附近的局部坐标就是
+\beq
+\hat{\gamma}^i(t) = \varphi(p) + \frac{d\gamma^i}{dt}\bigg|_{t=0} t + o(t^2)
+\eeq
+所有$\varphi(p) + \cfrac{d\hat{\gamma}^i}{dt}\bigg|_{t=0} t$构成的集合定义为曲面$M$在$p$点处的切平面。几何直观告诉我们，切平面就是$\reals^3$上的一个过$p$点的平面，我们不给出这命题的证明，读者自证不难。
+\par
+简单起见，记$v^i = \cfrac{d\hat{\gamma}^i}{dt}\bigg|_{t=0},\ i = 1,2$。定义所有过$p$点且具有相同$v^i$的曲线$\gamma$为一个等价类$[\gamma]$。显然，所有的$[\gamma]$构成一个二维线性空间，这就是曲面在$p$点处的切空间，$v \equiv [\gamma]$是切空间上的切矢量。切矢量与一个实数对$(v^1,v^2)$具有一一对应的关系，它就是切矢量的坐标表示。
+\par
+切矢量的概念也可以这样引出。我们首先需要介绍曲面上的函数。简单来说，曲面函数是曲面上的点到$\reals$上的映射
+\beq
+f: M \rightarrow \reals;\ p \to f(p) 
+\eeq
+\cpicn{0.12}{coorfunc}{曲面函数的坐标化}
+但这一个形式并不方便计算。为了便于计算，我们需要将$f$坐标化，显然，我们只需要引入局部坐标$\varphi^{-1}$和$f$的复合$\hat{f}$
+\beq
+\hat{f} \equiv f \circ \varphi^{-1} : \varphi(M) \to \reals;\ (u^1,u^2) \to \hat{f}(u^1,u^2)
+\eeq
+这个映射的图解如\cref{coorfunc}。
+
+\par
+考虑曲面函数在某点$p$附近发生的变化，这个变化显然与我们选择的方向有关，而这个方向可以用切平面中的切矢量表征。于是我们定义方向导数映射
+\beq
+v:f \to \reals;\ v^*(f) = \frac{d\hat{f}(\hat{\gamma}^1(t),\hat{\gamma}^2(t))}{dt}\bigg|_{t = 0}
+\eeq
+其中$\gamma(t)$是在0点经过$p$且以$v$为切矢量的曲线。
+\par
+任何一个$v$都可以表示为$\partial_1$和$\partial_2$的线性组合，证明如下：
+\par
+对任意$v$，考虑其对$f$的作用，有
+\bea
+v(f) &= \frac{d\hat{f}(\hat{\gamma}^1(t),\hat{\gamma}^2(t))}{dt}\bigg|_{t = 0} \\
+&= \partial_1 \hat{f} \frac{\hat{\gamma}^1(t)}{dt}\bigg|_{t=0} + \partial_2 \hat{f} \frac{\hat{\gamma}(t)}{dt}\bigg|_{t=0} \\
+&= (v^1 \partial_1 + v^2 \partial_2)f
+\eea
+也即
+\beq
+v = v^1\partial_1 + v^2\partial_2
+\eeq
+于是我们发现所有的$v$都生活在以$\{\partial_1,\partial_2\}$为基的矢量空间中，它也是二维的，且与一个实数对$(v^1,v^2)$具有一一对应的关系。这也是切矢量的一个引入方式。
+\par
+上式还引出了另一个有用的概念：余切矢量和余切空间。函数$f$沿切矢量$v \equiv [\gamma]$方向的无穷小变化为
+\beq
+df = \partial_i \hat{f} \frac{d\hat{\gamma}^i}{dt} = \partial_i \hat{f}du^i
+\eeq
+其中引入了参数的无穷小变化
+\beq
+du^i = v^i dt
+\eeq
+由于对曲面而言，各个$du^i$之间相互独立（参数的独立性），$df$事实上与一个实数对$(\partial_1 \hat{f},\partial_2 \hat{f}) \equiv (p_1,p_2)$一一对应，于是我们又得到了一个矢量，这个矢量称为余切矢量，余切矢量生活在余切空间$T_p^*(M)$中，它的一组基是$\{du^1,du^2\}$。
+\par
+这样得到的余切矢量看起来是一个无穷小量。其实最好理解余切矢量的方式是精确到一阶相等的函数等价类，也就是
+\beq
+[f] = f(p) + \partial_i \hat{f}u^i
+\eeq
+总结一下，切矢量反映了参数曲线的无穷小变化，而余切矢量反映了函数的无穷小变化。它们之间互为对偶关系，这是因为，考虑两个空间的基之间的作用，有
+\beq
+\partial_i u^j = \delta_i^j
+\eeq
+再次强调，函数在曲面上某点附近的无穷小变化为
+\beq
+df = p_i v^i dt
+\eeq
+这和内积的定义非常相似。
+\par
+考虑一个$s$自由度的力学系统构成的曲面（流形），这个曲面上有局部坐标${q^1,q^2,\cdots,q^s}$。如上面的讨论一般考虑所有经过某一点的曲线（粒子运动轨迹）$\xi(t)$显然，广义速度
+\beq
+\dot{\xi} = \frac{d\xi}{dt}
+\eeq
+生活在切空间中。考虑莫培督作用量$S = \int p_i dq^i$的无穷小变化
+\beq
+dS = p_i d\xi^i
+\eeq
+这就是一个余切矢量，它的各分量就是所谓的广义动量。
+
+
+
+\section{度规和测地线}
+为了研究度规，先将我们的视角恢复到$\reals^3$中。在这里，切空间的一组基可以选为$\{\partial_1 \vec{x},\partial_2 \vec{x}\}$，两个切向量$\vec{u}$，$\vec{v}$在基下的坐标为$u^i$和$v^i$，则它们的内积为
+\beq
+\vec{u} \cdot \vec{v} = u^i v^j \partial_i \vec{x} \cdot \partial_j \vec{x}
+\eeq
+度规就定义为
+\beq
+g_{ij} = \partial_i \vec{x} \cdot \partial_j \vec{x}
+\eeq
+于是，当局部坐标发生分别发生无穷小变化$du^1$和$du^2$时，所画出的弧的弧长平方为
+\beq
+ds^2 = g_{ij} du^i du^j
+\eeq
+用很古老的语言讲，这是曲面的第一形式。
+
+
+\end{document}

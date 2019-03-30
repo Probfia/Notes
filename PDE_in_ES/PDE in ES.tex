@@ -1,0 +1,265 @@
+\documentclass[a4paper,10pt]{ctexart}
+
+\usepackage{amsmath}
+
+\title{PDE in Eletrostatics}
+\author{by Probe}
+\date{Oct. 25, 2018}
+
+\begin{document}
+
+\maketitle
+
+\section{静电场的偏微分方程}
+
+在静电场中的两个偏微分方程为
+\begin{gather}
+\vec{\nabla} \cdot \vec{E} = \frac{\rho}{\epsilon_0} \\
+\vec{\nabla} \phi = - \vec{E}
+\end{gather}
+上面两式可以合写为Poisson方程
+\begin{equation}
+\nabla^2 \phi = -\frac{\rho}{\epsilon_0}
+\end{equation}
+当$\rho=0$时，上式退化为Laplace方程；而当电荷系统由有限个点电荷组成时，我们可以通过减去这些点电荷势，将问题转化为一个Laplace方程。我们今天主要的研究对象就是Laplace方程在对称情况下的解，它为我们解决某些静电学问题提供了一个全新的思路。\par
+很多时候，由于问题的对称性，我们需要在球坐标$(r,\theta,\phi)$和柱坐标$(r,\theta,z)$下求解上面的方程，因此需要知道在这两个坐标系下的nabla算子和Laplace算子。在球坐标下：
+\begin{gather}
+\vec{\nabla} = \frac{\partial}{\partial r} \vec{e}_r + \frac{1}{r} \frac{\partial}{\partial \theta} \vec{e}_\theta + \frac{1}{r\sin \theta} \frac{\partial}{\partial \phi} \vec{e}_\phi \\
+\vec{\nabla} \cdot = \frac{1}{r^2} \frac{\partial}{\partial r}(r^2 \vec{e}_r \cdot)  + \frac{1}{r^2 \sin \theta} \frac{\partial}{\partial \theta}( \sin \theta  \vec{e}_\theta \cdot) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial}{\partial \phi}( \vec{e}_\phi \cdot)\\
+\nabla^2 = \frac{1}{r^2} \frac{\partial}{\partial r} (r^2 \frac{\partial}{\partial r}) + \frac{1}{r^2 \sin \theta} \frac{\partial}{\partial \theta}(\sin \theta \frac{\partial}{\partial \theta}) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial^2}{\partial \phi^2}
+\end{gather}
+在柱坐标下：
+\begin{gather}
+\vec{\nabla} = \frac{\partial}{\partial r} \vec{e}_r + \frac{1}{r} \frac{\partial}{\partial \theta} \vec{e}_\theta + \frac{\partial}{\partial z} \vec{e}_z \\
+\vec{\nabla} \cdot = \frac{1}{r} \frac{\partial}{\partial r} r\vec{e}_r\cdot + \frac{1}{r} \frac{\partial}{\partial \theta} \vec{e}_\theta\cdot + \frac{\partial}{\partial z} \vec{e}_z\cdot \\
+\nabla^2 = \frac{1}{r} \frac{\partial}{\partial r} (r \frac{\partial}{\partial r}) + \frac{1}{r^2}\frac{\partial^2}{\partial \theta^2} +\frac{\partial^2}{\partial z^2}
+\end{gather}
+请注意，(4)(7)只适用于梯度计算，对散度计算不成立，散度算符为(5)(8)两式。
+\par
+为了不让自己被上面的公式吓到，先看一个简单例子：\par
+\textbf{例1} 一个半径为$R$的带电球内的电荷分布满足$\rho (r) = \cfrac{\lambda}{r^2}$，其中$\lambda$为一常数，$r$为球内某点到球心的距离，试求球内的电场分布。
+\par
+\textbf{解答}：根据对称性，宜选用球坐标求解，而电场仅有径向分量，且仅为$r$的函数，即$\vec{E} = E(r) \vec{e}_r$，带入(5)得到
+\begin{equation}
+\vec{\nabla} \cdot \vec{E} = \frac{1}{r^2} \frac{d(r^2 E)}{dr} = \frac{\lambda}{\epsilon_0 r^2}
+\end{equation}
+很容易积分得到(10)的解为
+\begin{equation}
+E(r) = \frac{\lambda}{\epsilon_0 r} +\frac{A}{r^2}
+\end{equation}
+其中$A$为积分常数，该项对应一个在原点处的点电荷产生的场，但在原点处这样的点电荷是不存在的，因此$A = 0$，于是，球内的电场分布为
+\begin{equation}
+\vec{E} = \frac{\lambda}{\epsilon_0 r} \vec{e}_r
+\end{equation}
+但事实上，用高斯定理的积分形式也可以很容易得到上述解。
+
+\section{Laplace方程的球对称解}
+假设根据对称性可以判断出$\phi$仅仅依赖于$r$，带入(3)得到
+\begin{equation}
+\frac{1}{r^2} \frac{d}{dr}(r^2 \frac{d\phi}{dr})=0
+\end{equation}
+积分一次就可以得到Laplace方程的球对称解
+\begin{equation}
+\phi(r) = \frac{A}{r} + B
+\end{equation}
+$A$和$B$为积分常数，可以根据具体问题的边界条件确定。同样，形式上，(14)式就是一个点电荷势。我们来看一个简单例子：\par
+\textbf{例2} 一个半径为$R$的球壳电势为$V$，试求全空间的电势分布和球壳表面的面电荷密度。\par
+\textbf{解答概要}：对$r>R$，电势满足下列条件：
+\begin{equation}
+\begin{cases}
+\nabla^2 \phi = 0 \\
+\phi |_{r=R} =V \\
+\phi |_{r=\infty} = 0 
+\end{cases}
+\end{equation}
+将Laplace方程的通解带入第3个边界条件得到$B=0$，再带入第2个边界条件得到$A=VR$，得到解为$\phi = \cfrac{AR}{r}$。\par
+对$r<R$，电势满足条件：
+\begin{equation}
+\begin{cases}
+\nabla^2 \phi = 0 \\
+\phi |_{r=R} =V \\
+\phi |_{r=0} = \text{有限值}
+\end{cases}
+\end{equation}
+第3个边界条件得到$A=0$，再带入第2个边界条件得到$B=R$，得到解为$\phi = V$。空间的电势分布为
+\begin{equation}
+\phi = \begin{cases} V&, r \le 0 \\
+\cfrac{VR}{r}&, r>0
+\end{cases}
+\end{equation}
+面电荷密度为
+\begin{equation}
+\sigma = (-\frac{\partial \phi}{\partial r}|_{r=R+0} + \frac{\partial \phi}{\partial r}|_{r=R-0})\epsilon_0 = \frac{\epsilon_0 V}{ R}
+\end{equation}
+\par
+如果用电磁学中常规的积分方法，该题的做法为先设出球表面的面电荷密度，再算出球面的电压，令其等于$V$，从而解出面电荷密度。\par
+请注意，静电学问题中，电场允许突变而电势必须处处连续，否则后者将产生无穷大的电场，这在物理上是不可接受的，因为它使得电场能量密度为无穷大。
+
+\section{偏微分方程的分离变量解}
+上面我们讨论的特例中，都是根据对称性讨论出未知函数为单变量函数这一事实，将偏微分方程转化为常微分方程求解。但更多时候，未知函数是多元的，这时候，我们常常用分量变量法求解。例如，考虑二维直角坐标下Laplace方程，设它的解$u(x,y)$可以写成$u(x,y) = X(x)Y(y)$，那么，有
+\begin{equation}
+Y\frac{\partial^2 X}{\partial x^2} + X\frac{\partial^2 Y}{\partial y^2} = 0
+\end{equation}
+同除$XY$并移项，并注意到由于$X$和$Y$均为关于$x$和$y$的单变量函数，偏导运算转化为常规的导数运算，得到
+\begin{equation}
+\frac{1}{X} \frac{d^2 X}{d x^2} = -\frac{1}{Y} \frac{d^2 Y}{d y^2} 
+\end{equation}
+由于(14)左边仅仅是$x$的函数，而右边仅仅是$y$的函数，等式恒成立，只能两边各自等于一个常数$\lambda$。即
+\begin{equation}
+\begin{cases}
+\cfrac{d^2 X}{dx^2} - \lambda X = 0 \\
+\cfrac{d^2 Y}{dy^2} + \lambda Y = 0
+\end{cases}
+\end{equation}
+(21)为两个二阶常系数微分方程，设它们有解$X=X_\lambda(x)$, $Y=Y_\lambda(y)$，通过边界条件可以确定$\lambda$的一系列可能值。由于Laplace方程是线性方程，两个解之和依然是方程的解，因此，Laplace方程的解总可以写为
+\begin{equation}
+u(x,y) = \sum_\lambda c_\lambda X_\lambda(x)Y_\lambda(y)
+\end{equation}
+\par
+我们举一个例子说明上述方法：
+\par
+\textbf{例3} 在正方形区域$0<x,y<L$中，除顶边$0<x<L, y=L$的电势为$V$外，其余三边接地。求该正方形区域内的电势分布。\par
+\textbf{解答概要}：将$X$的边界条件带入(21)的第1式，得到所有的可能解为
+\begin{equation}
+X_n = a_n \sin \frac{n\pi x}{L}, n=0,1,2,\cdots
+\end{equation}
+(23)对应的$\lambda=-n^2$，带入(22)第2式和边界条件$u(x,0)=0$，得到所有可能解为
+\begin{equation}
+Y_n = b_n \sinh \frac{n\pi y}{L}, n=0,1,2,\cdots
+\end{equation}
+由(22)写出
+\begin{equation}
+u(x,y) = \sum_{n=1}^\infty c_n \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}
+\end{equation}
+将(25)代入边界条件$u(x,L) =V$，得到
+\begin{equation}
+\sum_{n=1}^\infty c_n \sin \frac{n\pi x}{L} \sinh n\pi = V
+\end{equation}
+将(26)两边同乘$\sin \cfrac{m\pi x}{L}$并对$x$从0到$L$积分（利用函数集$\{ \sin \cfrac{n \pi x}{L}\}$的正交性，相当于求$V$的傅里叶正弦展开系数），得到
+\begin{equation}
+c_n = \frac{4V}{m\pi \sinh n \pi} \delta_{mn} = \frac{4V}{n\pi \sinh n \pi}
+\end{equation}
+故正方形区域内的电势分布为
+\begin{equation}
+u(x,y) = 4V\sum_{n=1}^{\infty} \frac{1}{n\pi \sinh n \pi}  \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}
+\end{equation}
+\par
+唯一性定理保证了上述方法的合理性：只要找到了符合Laplace方程和边界条件的解，那它一定是正确且唯一的解。
+
+\section{多极展开的数学}
+\textbf{问题 }我们知道偶极子的远场近似为$\phi(r,\theta) = \cfrac{1}{4\pi \epsilon_0} \cfrac{qs \cos \theta}{r^2} \propto \cfrac{\cos \theta}{r^2}$，它的近场近似又如何呢？
+\par
+\textbf{解答概要}：写出势场的精确表达式，对变量$\cfrac{r}{s}$展开到一阶项，得到
+\begin{equation}
+\phi(r,\theta) \propto r\cos \theta
+\end{equation}\par
+\textbf{问题 }对线状电四级子，不用计算，你能猜出电势对$r$的依赖的近场和远场近似吗？\par
+\textbf{答案}：\begin{equation}
+\begin{cases}
+\phi \propto r^2 &,r\ll s \\
+\phi \propto \cfrac{1}{r^3} &, r\gg s
+\end{cases}
+\end{equation}
+\par
+对于线状的电$2^\ell$极子，问题无非是求解具有$z$轴对称性的Laplace方程。之所以采用Laplace方程，是因为电荷密度几乎处处为零。采用球坐标描述，这种问题的数理方程就是
+\begin{equation}
+\nabla^2 u = \frac{1}{r^2} \frac{\partial}{\partial r} (r^2 \frac{\partial u}{\partial r}) + \frac{1}{r^2 \sin \theta} \frac{\partial}{\partial \theta}(\sin \theta \frac{\partial u}{\partial \theta})
+\end{equation}
+我们同样寻求(31)的分离变量解$u(r,\theta) = R(r) \varTheta(\theta)$，带入(31)得到
+\begin{equation}
+\frac{1}{R} \frac{d}{dr}(r^2\frac{dR}{dr}) = -\frac{1}{\varTheta \sin \theta}\frac{d}{d\theta}(\sin \theta \frac{d\varTheta}{d\theta}) = \lambda
+\end{equation}
+径向方程比较简单，但角向方程必须满足自然边界条件$\varTheta(\theta +2\pi) \equiv \varTheta(\theta)$，这个边界条件限制$\lambda$只能取$\ell (\ell+1)$，其中$\ell =0,1,2,\cdots$。带入径向方程，得到
+\begin{equation}
+R(r) = Ar^\ell + \frac{B}{r^{\ell +1}}
+\end{equation}
+角向解较为复杂，具体的求解方法可以在不久之后的数理方法课上学到，总之，角向解是一个称为勒让德多项式(Legendre polynomial)的一个特殊函数$P_\ell(x)$
+\begin{equation}
+\varTheta(\theta) = P_\ell(\cos \theta)
+\end{equation}
+$P_\ell(x)$的具体表达式可以由罗巨格公式(Rodrigues formula)给出
+\begin{equation}
+P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} (x^2-1)^n
+\end{equation}
+于是，关于$z$轴对称分布的电场在形式上总能写成
+\begin{equation}
+u(r,\theta) = \sum_{\ell=0}^\infty (A_\ell r^\ell + B_\ell \frac{1}{r^{\ell +1}})P_\ell(\cos \theta)
+\end{equation}
+\par
+\textbf{例4} 计算$u(r,\theta)$的前三项（即$\ell =0,1,2$），验证它们正好对应点电荷，电偶极子和线状电四极子的势。\par
+\textbf{解答概要}：带入罗巨格公式算就行了。\par
+\textbf{例5}无源无漏的非黏滞流体（干水，dry water）的速度场满足方程$\vec{\nabla} \cdot \vec{v} = 0$和$\vec{\nabla} \times \vec{v} = 0$，试讨论定常流$\vec{v} = v \vec{e}_z$通过一个半径为$R$的刚性球附近时的速度场。\par
+\textbf{解答概要}：根据$\vec{v}$满足的方程，可以设$\vec{v} = \vec{\nabla} \phi$，于是$\phi$满足Laplace方程。这是一个$z$轴对称的系统，由于在远处$\phi \rightarrow vr\cos \theta$，形式上写出$\phi$满足的方程为
+\begin{equation}
+\phi (r,\theta) = \frac{B_\ell}{r^{\ell+1}} P_\ell (\cos \theta) + vr\cos\theta
+\end{equation}
+在刚性球表面，速度的径向分量必须处处为零（没有水流进或流出圆柱），因此有边界条件
+\begin{equation}
+\vec{v} \cdot \vec{e}_r |_{r=R}= \vec{\nabla} \phi \cdot \vec{e}_r |_{r=R}= 0
+\end{equation}
+将(37)和(7)带入(38)，比较系数得到
+\begin{equation}
+\phi(r,\theta) = v(\frac{R^3}{2r^2} + r)\cos \theta
+\end{equation}
+求一次梯度就得到了速度场
+\begin{equation}
+\vec{v}(r,\theta) = v[(1-\frac{R^3}{r^3})\cos\theta \vec{e}_r - (\frac{R^3}{2r^3}+1) \sin \theta \vec{e}_\theta]
+\end{equation}\par
+\textbf{例6} 匀强电场中放入一个半径为$R$的线性极化电介质球，其相对介电常数为$\epsilon_r$，求全空间的电场分布。\par
+\textbf{解答概要}：分球内外讨论。设球内和球外的电势分别为$u_{\mathrm{int}}(r,\theta)$和$u_{\mathrm{ext}}(r,\theta)$，那么，它们分别满足条件
+\begin{gather}
+\begin{cases}
+\nabla^2 u_\mathrm{int} = 0 \\
+u_\mathrm{int}|_{r=0} = \text{有限值}
+\end{cases} \\
+\begin{cases}
+\nabla^2 u_\mathrm{ext} = 0 \\
+u_\mathrm{ext}|_{r=\infty} = -Er\cos\theta
+\end{cases}
+\end{gather}
+在球面上，电势必须连续；由于不存在表面自由电荷，电场的边界条件也必须满足
+\begin{equation}
+\begin{cases}
+u_{\mathrm{int}}(R-0,\theta) = u_{\mathrm{ext}}(R+0,\theta) \\
+\epsilon_r \cfrac{\partial u_{\mathrm{int}}}{\partial r}|_{r=R-0} = \cfrac{\partial u_{\mathrm{ext}}}{\partial r}|_{r=R+0}
+\end{cases}
+\end{equation}
+根据(36)，$u_{\mathrm{int}}(r,\theta)=\sum_{\ell =0}^{\infty} A_\ell r^\ell P_\ell(\cos \theta)$；$u_{\mathrm{ext}}(r,\theta) = B_\ell \cfrac{1}{r^{\ell+1}}P_\ell(\cos \theta)$。带入(43)比较系数得到
+\begin{equation}
+\begin{cases}
+u_{\mathrm{int}}(r,\theta) = -\cfrac{3}{\epsilon_r +2}Er\cos \theta \\
+u_{\mathrm{ext}}(r,\theta) = \cfrac{\epsilon_r -1}{\epsilon_e +2} \cfrac{ER^3}{r^2} \cos\theta - Er\cos\theta
+\end{cases}
+\end{equation}
+上式的正确性可以通过极限情况确认：当$\epsilon_r=1$时，结果退化为电介质球不存在时的情形；当$\epsilon_r \rightarrow \infty$时，结果对应金属球的情形。
+\par
+
+\section{勒让德多项式的母函数}
+我们考虑一个半径为$r<1$的球面，在距离球心距离为$1$的位置有一个点电荷$q=4\pi \epsilon_0$。根据库仑定律，电荷在球面上产生的电势为
+\begin{equation}
+u(r,\theta) = \frac{1}{\sqrt{r^2 +1 -2r\cos \theta}}
+\end{equation}
+根据(36)，又可以将$u(r,\theta)$表示为
+\begin{equation}
+u(r,\theta) = \sum_{\ell=0}^\infty (A_\ell r^\ell + B_\ell \frac{1}{r^{\ell +1}})P_\ell(\cos \theta)
+\end{equation}
+由于球心处的电势显然为有限值，要满足这一条件，必须有所有的$B_\ell$都等于0。故
+\begin{equation}
+\frac{1}{\sqrt{r^2 +1 -2r\cos \theta}} = \sum_{\ell=0}^\infty A_\ell r^\ell P_\ell(\cos \theta)
+\end{equation}
+令$\theta=0$得到（注意到$P_\ell (1) =1$）
+\begin{equation}
+\frac{1}{1-r} =\sum_{\ell=0}^\infty A_\ell r^\ell
+\end{equation}
+又因为
+\begin{equation}
+\frac{1}{1-r} = \sum_{\ell=0}^\infty r^\ell
+\end{equation}
+因此$A_\ell=1$。带回(47)并令$x=\cos \theta$就可以得到
+\begin{equation}
+\sum_{\ell=0}^\infty  P_\ell(x) r^\ell  = \frac{1}{\sqrt{r^2 +1 -2rx}}, r<1
+\end{equation}
+这就是著名的勒让德多项式的母函数（生成函数，generating function）公式。\par
+\textbf{例7} 在半径为$R$的金属球壳内有一个距球心$a$，带电为$q$的点电荷，试求空间的电势分布和金属球表面电荷密度。\par
+\textbf{解答思路}：用勒让德多项式的母函数公式表达出点电荷在金属球表面产生的电势，将其作为感应电荷产生电势的边界条件，讨论球壳内外的电势分布。
+\end{document}
