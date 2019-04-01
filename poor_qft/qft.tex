@@ -1,0 +1,152 @@
+\documentclass[a4paper,11pt]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,
+            linkcolor=blue,
+		 urlcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+\newcommand{\red}{\color{red}}
+\newcommand{\grandz}{\mathcal{Z}}
+\newcommand{\lagden}{\mathcal{L}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\emptyline}{\\ \ \\}
+
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{乞丐版量子场论}
+\author{Probfia}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\vspace{5mm}
+\emph{
+全文中我们采取自然单位制$c = \hbar = 1$。度规$g_{\mu,\nu}$的符号是$(+,-,-,-)$，且不特别说明时它都是闵可夫斯基度规$\eta_{\mu \nu} = \diag (1,-1,-1,-1)$。
+}
+\section{准备工作}
+\subsection{经典场论}
+在$(D+1)$维经典场论中，标量场$\phi(t,\vec{x})$的拉格朗日密度为$\partial_\mu \phi$和$\phi$的函数，其中$\mu = 0,1,\cdots,D$，0指标代表时间指标。$\partial_\mu \phi$这样的偏导数是一个矢量，第$\mu$个分量是对$x_\mu$求导的结果。其次，定义$\partial^\mu \phi = g^{\mu \nu} \partial_\nu \phi$为它对应的对偶矢量。作用量为
+\beq
+S[\phi] = \int  \lagden(\partial_\mu \phi,\phi)dt d^D\vec{x}
+\eeq
+这个作用量对应的拉格朗日方程可以由以前在理论力学里学过的拉格朗日方程推广而来，这里$q$对应$\phi$，$t$对应$x^\mu$，$\dot{q}$对应$\partial_\mu \phi$，于是有
+\beq
+\partial_\mu (\frac{\partial \lagden}{\partial (\partial_\mu \phi)}) - \frac{\partial \lagden}{\partial \phi} = 0
+\eeq
+考虑二次型动能和二次势
+\beq
+\lagden = \frac{1}{2} \partial^\mu \phi \partial_\mu \phi - \frac{1}{2}m^2 \phi^2
+\eeq
+代入拉格朗日方程就可以得到场的方程了。不过初学的时候很容易因为不知道这个带下标的偏导数的偏导数怎么求，就放弃学习了（我本人）。它是这样进行的，首先，我们要求的东西是
+\beq
+\frac{\partial (\partial^\mu \phi \partial_\mu \phi)}{\partial (\partial_\mu \phi)}
+\eeq
+根据同一指标不出现三次的原则，把分子重新成$\partial^\mu \phi \partial_\mu \phi = \partial^\sigma \phi \partial_\sigma \phi = g^{\rho \sigma} \partial_\rho \phi \partial_\sigma \phi$再求导，注意到$\partial_\mu \phi$之间的独立性，有
+\beq
+\frac{\partial (\partial_\mu \phi )}{\partial (\partial_\nu \phi )} = \delta^\nu_\mu
+\eeq
+再利用乘积的求导法则得到
+\bea
+&\frac{\partial (g^{\rho \sigma} \partial_\rho \phi \partial_\sigma \phi)}{\partial \partial(\partial_\mu \phi)} \\
+= &g^{\rho \sigma} \partial_\rho \phi \delta^\mu_\sigma + g^{\rho \sigma} \delta^\mu_\rho \partial_\sigma \phi \\
+= &g^{\rho \mu}\partial_\rho \phi+ g^{\mu \sigma}\partial_\sigma \phi \\
+  &\text{（$\partial^\mu \phi$的定义）} \\
+= & 2\partial^\mu \phi
+\eea
+于是这样的拉格朗日密度对应的拉格朗日方程是
+\beq
+\partial_\mu \partial^\mu \phi + m^2 \phi = 0
+\eeq
+引入记号$\partial^2 \equiv \partial_\mu \partial^\mu = g^{\mu \nu} \partial_\mu \partial_\nu$，上式可以写成一个非常漂亮的形式
+\beq
+(\partial^2 + m^2) \phi = 0
+\eeq
+假设$\phi(x^\mu) = Ae^{i k_\mu x^\mu}$，$k_\mu = (\omega,\vec{k})$。带入闵可夫斯基度规，就有
+\beq
+\vec{k}^2 + m^2 = \omega^2
+\eeq
+看，这不就是$E^2 = m^2 + \vec{p}^2$吗。
+
+\subsection{高斯积分}
+我们对下面这个公式早已滚瓜烂熟倒背如流张口就来了
+\beq
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+\eeq
+做一点简单的变量代换就得到
+\beq \label{gasint}
+\int_{-\infty}^{\infty} e^{-\frac{ax^2}{2}} dx = \sqrt{\frac{2\pi}{a}}
+\eeq
+积分$$
+\int_{-\infty}^{\infty} x^{2n} e^{-\frac{ax^2}{2}}dx
+$$
+可以由两种方法求得。第一种是\cref{gasint}两边对$a$求$n$次导，第二种是利用$\Gamma$函数。结果是
+\beq
+\int_{-\infty}^{\infty} x^{2n} e^{-\frac{ax^2}{2}}dx = \frac{(2n-1)(2n-3)\cdots 3\cdot 1}{a^n} \sqrt{\frac{2\pi}{a}}
+\eeq
+\par
+如果指数上还有一个一次项，用初中学的配方法可以得到积分
+\beq
+\int_{-\infty}^{\infty} e^{-\frac{ax^2}{2} + Jx} dx = e^{\frac{J^2}{2a}} \sqrt{\frac{2\pi}{a}}
+\eeq
+现在将上面这个积分推广到$n$维。计算积分
+$$ \int e^{- \frac{1}{2} A_{ij} x^i x^j + J_k x^k} dx^1 dx^2 \cdots dx^n$$
+结果是怎么样呢？为了计算，将二次型对角化后，就可以拆成$n$个高斯积分的积了。设有一个正交矩阵$R$使得$\vec{x} = R\vec{y}$，二次型化为$\vec{x}^\mathrm{T} A \vec{x} = \vec{y}^\mathrm{T} R^{-1} A R \vec{y}$，其中$P = R^{-1} A R$是一个对角阵；一次项为$\vec{J}^\mathrm{T} \cdot \vec{x} = \vec{J}^\mathrm{T} R \vec{y}$。而且，因为坐标变换矩阵是正交矩阵，坐标变换的雅可比行列式为1，$d^n \vec{y} = d^n \vec{x}$。现在，上面这个积分是
+\beq
+\int e^{ - \frac{1}{2} P_{ii} (y^i)^2 + J_k R^k_{\ i} y^i} dy^1 dy^2 \cdots dy^n
+\eeq
+现在这个积分就变成$n$个积分的积了。单个积分的结果为
+\beq
+\int e^{ - \frac{1}{2} P_{ii} (y^i)^2 + J_k R^k_{\ i} y^i} dy^i = e^{\frac{(J_k R^k_{\ i})^2}{2P_{ii}}} \sqrt{\frac{2\pi}{P_{ii}}}
+\eeq
+指数上的分子就是$R\vec{J}$的第$i$个分量的平方。$n$个积分的积为
+\beq
+(\frac{2\pi}{\prod_i P_{ii}})^{n/2} e^{\frac{1}{2} \sum_i (R\vec{J})_i^2 / P_{ii}}
+\eeq
+和式为
+\beq
+\sum_i (R\vec{J})_i^2 / P_{ii}
+=\frac{1}{\prod_i P_{ii}} \sum_i (R\vec{J})_i^2 M_{ii}
+\eeq
+其中$M_{ii} = \prod_{j \not= i} P_{jj}$是对角阵$P$的代数余子式。而$\prod_i P_{ii}$就是$P$的行列式，于是$\cfrac{M_{ii}}{\prod_i P_{ii}}$就是$P$的逆矩阵的矩阵元$P^{-1}_{ii}$。利用$P=R^{-1} A R = R^\mathrm{T} A R$，两边取逆得到$P^{-1} = R^{-1} A^{-1} R = R^\mathrm{T} A^{-1} R$，因而上式进一步化简为
+\beq
+\sum_i (R\vec{J})_i^2 / P_{ii} = (R \vec{J})^\mathrm{T} P^{-1} (R \vec{J}) = \vec{J}^\mathrm{T} A^{-1} \vec{J}
+\eeq
+由于$A$和$P$相似，$\det A = \det P =\prod_i P_{ii}$我们得到
+\beq
+\int e^{- \frac{1}{2} A_{ij} x^i x^j + J_k x^k} dx^1 dx^2 \cdots dx^n = (\frac{2\pi}{\det A})^{n/2} e^{\frac{1}{2} \vec{J}^\mathrm{T} A^{-1} \vec{J}}
+\eeq
+
+\subsection{量子力学的路径积分描述}
+在双缝实验中，粒子到底屏幕的振幅是通过两个孔到底屏幕的振幅的代数和，或者说，所有可能的路径上的振幅的代数和。如果一个屏幕上有3个孔，那就是三个可能路径对应振幅的和；如果有2个挡板，其上分别有3个和4个孔，那么，到达屏幕的振幅就是12条可能路径对应振幅的代数和。
+\par
+假如我们有无数个挡板，每个挡板上有无数个孔，那就等于说没有挡板了！这个时候我们有无数条可能路径$q(t)$，但计算粒子到底屏幕的振幅的算法依旧可以推广过来，不过需要用积分代替求和。
+
+\end{document}
