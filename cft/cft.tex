@@ -181,8 +181,178 @@ j^\mu = \frac{\partial \lag}{\partial (\partial_\mu \phi)} X(\phi) - F^\mu
 \par
 诺特定理的证明有点构造性的意味，所以它的证明是由\textbf{数学家}诺特完成的。
 
+
+\section{能量动量张量}
+\subsection{绳上的守恒流}
+我们得到绳子的拉格朗日密度为
+\beq
+\lag = \frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2
+\eeq
+它不显含$(x,t)$带来的守恒定律是怎么样的呢？考虑$(x,t)$的无穷小变化$(x,t) \to (x + \delta x,t + \delta t)$，场$u$的无穷小变化就是
+\beq
+X(u) \equiv \delta u = \partial_t u \delta t + \partial_x u \delta x
+\eeq
+而拉格朗日密度的变化为
+\beq
+\delta \lag = \partial_t \lag \delta t + \partial_x \lag \delta x
+\eeq
+这里$F^\mu = (\lag \delta t, \lag \delta x)$，于是守恒流为
+\bea
+j^0 &= \frac{\partial \lag}{\partial (\partial_t u)} X(u) - F^0 \\
+&= \lambda (\partial_t u \delta t + \partial_x u \delta x) \partial_t u - (\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2) \delta t \\
+&=[\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2] \delta t + \lambda (\partial_t u)(\partial_x u) \delta x \\
+j^1 &= \frac{\partial \lag}{\partial (\partial_x u)} X(u) - F^1 \\
+&= -\lambda a^2 (\partial_x u \delta t + \partial_x u \delta x) \partial_x u - (\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2) \delta x \\
+&= - \lambda a^2 (\partial_t u)(\partial_x u) \delta t -[\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2] \delta x 
+\eea
+由于$\delta t$和$\delta x$多多少少是任取的，上式其实隐含了两个守恒流
+\beq
+j^\mu_t = (\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2, - \lambda a^2 (\partial_t u)(\partial_x u))
+\eeq
+\beq
+j^\mu_x = (\lambda (\partial_t u)(\partial_x u), -[\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2])
+\eeq
+注意上面的$\mu$在取0的时候代表$t$，取1时代表$x$。定义张量（矩阵）$T^\mu_{\ \nu} \equiv j^\mu_{\ \nu}$，有
+\beq
+T^\mu_{\ \nu} = 
+\begin{pmatrix}
+\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2 & - \lambda a^2 (\partial_t u)(\partial_x u) \\
+\lambda (\partial_t u)(\partial_x u) & -\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2
+\end{pmatrix}
+\eeq
+这就是大名鼎鼎的{\red 能量动量张量}！看看各项的含义吧：
+\begin{enumerate}
+\item[$T^0_{\ 0}$：] $\lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2$就是一小段绳的总能量（除以该段绳长），是绳的能量密度；
+\item[$T^1_{\ 0}$：] $\lambda (\partial_t u)(\partial_x u)$是一小段绳的动量沿绳方向的分量（除以该段绳长），是绳方向上的动量密度，见\cref{p1}；
+\item[$T^0_{\ 1}$：] 只和$T^1_{\ 0}$相差一个常数因子；
+\item[$T^1_{\ 1}$：] 负的能量密度，事实上是某种压强。
+\end{enumerate}
+\cpicn{0.3}{p1}{动量密度图解}
+\par
+时间和空间上的平移不变性带来了守恒流：能量动量张量流。
+
+\subsection{能量动量张量：一般情况}
+在一般的$3+1$维场论（或$D+1$维场论）中，同样可以用类似的方法证明能量动量张量的存在。考虑$x^\mu$坐标发生一个无穷小变化$x^\mu \to x^\mu + \epsilon^\mu$，场的变化是
+\beq
+\delta \phi = X(\phi) = \partial_\mu \phi \epsilon^\mu
+\eeq
+拉格朗日密度的变化是
+\beq
+\delta \lag = \partial_\mu \lag \epsilon^\mu
+\eeq
+这里，$F^\mu = \lag \epsilon^\mu$，守恒流为
+\bea
+j^\nu &= \frac{\partial \lag}{\partial (\partial_\nu \phi)} X(\phi) - F^\nu \\
+&= \frac{\partial \lag}{\partial (\partial_\nu \phi)}  \partial_\mu \phi \epsilon^\mu - \lag \epsilon^\nu \\
+&= \frac{\partial \lag}{\partial (\partial_\nu \phi)}  \partial_\mu \phi \epsilon^\mu - \delta^\nu_\mu \lag \epsilon^\mu \\
+& = [\frac{\partial \lag}{\partial (\partial_\nu \phi)}  \partial_\mu \phi - \delta^\nu_\mu \lag] \epsilon^\mu
+\eea
+对任意的$\epsilon^\mu$上式都要成立，守恒流事实上是
+\beq \label{emt}
+T^\nu_{\ \mu} = \frac{\partial \lag}{\partial (\partial_\nu \phi)}  \partial_\mu \phi - \delta^\nu_\mu \lag
+\eeq
+这是能量动量张量的一般表达式。
+
+\section{KG场}
+\subsection{KG场的一般理论}
+KG场是具有二次型动能和势能的场，它的拉格朗日密度由下式给出
+\beq
+\lag(\phi,\partial_\mu \phi) = \frac{1}{2} g^{\mu \nu} \partial_\mu \phi \partial_\nu \phi  - \frac{1}{2}m^2 \phi^2
+\eeq
+容易验证，KG场是洛伦兹不变的。因为
+\bea
+\partial_\mu \phi(x') \partial^\mu \phi(x') &= \frac{\partial \phi}{\partial x'^\mu} \frac{\partial \phi}{\partial x'^\nu} \eta^{\mu \nu} \\
+&= \frac{\partial \phi}{\partial x^\rho} \frac{\partial \phi}{\partial x^\sigma} \eta^{\mu \nu} (\Lambda)^\mu_{\ \rho} (\Lambda)^\nu_{\ \sigma} \\
+&= \frac{\partial \phi}{\partial x^\rho} \frac{\partial \phi}{\partial x^\sigma} \eta^{\rho \sigma} \\
+&= \partial_\rho \phi(x) \partial^\rho \phi(x)
+\eea
+它的运动方程可以很容易得到。首先有$\cfrac{\partial \lag}{\partial \phi} = m^2 \phi$，其次
+\bea
+\frac{\partial \lag}{\partial (\partial_\mu \phi)} &= \frac{\partial (\frac{1}{2} g^{\rho \sigma} \partial_\rho \phi \partial_\sigma \phi)}{\partial (\partial_\mu \phi)} \\
+&= \frac{1}{2} g^{\rho \sigma} \delta^\mu_\rho \partial_\sigma \phi + \frac{1}{2} g^{\rho \sigma} \partial_\rho \phi \delta^\mu_\sigma \\
+&= \frac{1}{2} g^{\mu \sigma} \partial_\sigma \phi + \frac{1}{2} g^{\rho \mu} \partial_\rho \phi \\
+&= \partial^\mu \phi
+\eea
+其中第二行利用了各$\partial_\mu \phi$间的独立性；最后一行利用了度规张量的对称性和定义$\partial^\mu \ = g^{\mu \nu} \partial_\nu$。于是运动方程为
+\beq
+\partial_\mu \partial^\mu \phi + m^2 \phi = 0
+\eeq
+或
+\beq
+g^{\mu \nu} \partial_\nu \phi \partial_\mu \phi + m^2 \phi = 0
+\eeq
+为了得到上式的通解，带入试探解$\phi=  e^{i k_\rho x^\rho}$，注意到
+\beq
+\partial_\mu \phi = \frac{\partial \phi}{\partial x^\mu}
+= i k_\rho \frac{\partial x^\rho}{\partial x^\mu} \phi
+= i k_\rho \delta^\rho_\mu \phi = ik_\mu \phi
+\eeq
+有
+\beq \label{confi}
+g^{\mu \nu} k_\mu k_\nu + m^2 = 0
+\eeq
+由于在$n+1$维场论中$k_\mu$共有$n+1$个分量，上述方程解出的$k_\mu$事实上有$n$个自由度。通解就是这些试探解的线性组合
+\beq
+\phi(x) = \int c(k) e^{i k_\mu x^\mu} d^{n}k
+\eeq
+\subsection{时间维特殊化}
+若将$n$个自由变化的$k_\mu$选为空间分量$\vec{k}$，则时间分量$k_0 \equiv \omega$随之变化。再进一步地，把度规选成闵可夫斯基度规$\eta^{\mu \nu} = \diag (1,-1,-1,-1)$，那么\cref{confi}变为
+\beq
+-\omega^2 + \vec{k}^2 + m^2 = 0
+\eeq
+假如我们在自然单位制$c = \hbar = 1$下工作的话，上面这个式子实际上告诉了我们质能关系$E^2 = \vec{p}^2 + m^2$。解出$\omega$得到
+\beq
+\omega(\vec{k}) = \sqrt{m^2 + \vec{k}^2}
+\eeq
+于是KG场运动方程有通解
+\beq
+\phi(\vec{x},t) = \int c(\vec{k}) e^{i \omega(\vec{k}) t} e^{i \vec{k} \cdot \vec{x}} d^3 \vec{k}
+\eeq
+聪明的小朋友可能已经看出来了，这就是一个傅立叶变换而已。
+\par
+KG场在各个振动模式（傅立叶分解）下的行为就是一个谐振子，而谐振子可以被很容易地量子化，于是，KG场也就可以被量子化。我们在此敲响了量子场论的大门。
+\subsection{FRW度规下的KG场：暴涨}
+当度规不是闵可夫斯基度规时，为了让作用量满足任意坐标变换下的不变性（不仅限于洛伦兹变换），需要对作用量的表达式作如下修正
+\beq
+S[\phi] = \int \sqrt{ - \det g} \lag(\phi,\partial_\mu \phi) d^4 x
+\eeq
+引入因子$\sqrt{ - \det g}$是为了使得坐标变换时，该因子与体积元$d^4 x$的变换因子：Jacobi行列式相抵消。
+\par
+假设度规为$g^{\mu \nu} = \diag(1,-a^2(t),-a^2(t),-a^2(t))$，拉格朗日密度取推广后的KG场$\lag = \frac{1}{2} g^{\mu \nu} \partial_\mu \phi \partial_\nu \phi - V(\phi)$，那么，作用量现在是
+\beq
+S[\phi] = \int a^3 [\dot{\phi}^2 - a^2 \sum_i (\partial_i \phi)^2 - V(\phi)]d^4 x
+\eeq
+进一步假设$\phi$不依赖于空间坐标$x^i$，作用量为
+\beq
+S[\phi] = \int [a^3 \dot{\phi}^2 - V(\phi)]d^4 x
+\eeq
+这就相当于平直时空中的拉格朗日密度$\lag = a^3 [\dot{\phi}^2 - V(\phi)]$对应的作用量，于是拉格朗日方程给出
+\beq
+\frac{\partial}{\partial t} \frac{\partial \lag}{\partial \dot{\phi}} = \frac{\partial (a^3 \dot{\phi})}{\partial t} = 3a^2 \dot{a} \dot{\phi} + a^3 \ddot{\phi}
+\eeq
+\beq
+\frac{\partial \lag}{\partial \phi} = - a^3 \frac{\partial V}{\partial \phi}
+\eeq
+$\phi (t)$的运动方程于是为
+\beq
+\ddot{\phi} + 3\frac{\dot{a}}{a} \dot{\phi} + \frac{\partial V}{\partial \phi} = 0
+\eeq
+引入哈勃常数（which is not a constant）$H(t) = \cfrac{\dot{a}}{a}$，上式也写成
+\beq
+\ddot{\phi} + 3H \dot{\phi} + \frac{\partial V}{\partial \phi} = 0
+\eeq
+在宇宙学上，$\phi$事实上主导宇宙诞生初期暴涨的场。带入$\cref{emt}$得到暴涨场的能量动量张量为
+\beq
+T^\mu_{\ \nu} = \partial^\mu \phi \partial_\nu \phi - \frac{1}{2} \delta^\mu_\nu \partial^\rho \phi \partial_\rho \phi + \frac{1}{2} \delta^\mu_\nu V(\phi)
+\eeq
+由于各偏导数仅有$\partial_0$非零，很容易得到
+\beq
+T^\mu_{\ \nu} = \diag \big(\frac{1}{2}\dot{\phi}^2 + V(\phi),-\frac{1}{2}\dot{\phi}^2 + V(\phi),-\frac{1}{2}\dot{\phi}^2 + V(\phi),-\frac{1}{2}\dot{\phi}^2 + V(\phi)\big)
+\eeq
+再把这个能量-动量张量带到爱因斯坦场方程就可以得到另一个$a$的演化方程。
+
 \section{洛伦兹不变性}
-经典力学中我们有旋转不变性，而在时空中它被推广为洛伦兹不变性。我们知道，$x$轴的洛伦兹变换为
+经典力学中我们有旋转不变性，而在时空中它被推广为洛伦兹不变性。满足洛伦兹不变性是一个“好的场论”的基本要求。我们知道，$x$轴的洛伦兹变换为
 \beq
 \begin{pmatrix}
 t \\ x \\ y \\ z
@@ -257,138 +427,6 @@ v_\mu(x) = (\Lambda^{-1})^\nu_{\ \mu} v'_\nu(x')
 但实际上要判断一个标量、矢量和张量是否是洛伦兹不变的很简单，一般来说，用$\mu$作指标的量，除了二阶以上的导数以外（这个时候必须引入仿射联络）都是洛伦兹不变的。
 \par
 洛伦兹不变性对应三维空间的中的旋转不变性。
-
-\section{能量动量张量}
-\subsection{绳上的守恒流}
-我们得到绳子的拉格朗日密度为
-\beq
-\lag = \frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2
-\eeq
-它不显含$(x,t)$带来的守恒定律是怎么样的呢？考虑$(x,t)$的无穷小变化$(x,t) \to (x + \delta x,t + \delta t)$，场$u$的无穷小变化就是
-\beq
-X(u) \equiv \delta u = \partial_t u \delta t + \partial_x u \delta x
-\eeq
-而拉格朗日密度的变化为
-\beq
-\delta \lag = \partial_t \lag \delta t + \partial_x \lag \delta x
-\eeq
-这里$F^\mu = (\lag \delta t, \lag \delta x)$，于是守恒流为
-\bea
-j^0 &= \frac{\partial \lag}{\partial (\partial_t u)} X(u) - F^0 \\
-&= \lambda (\partial_t u \delta t + \partial_x u \delta x) \partial_t u - (\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2) \delta t \\
-&=[\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2] \delta t + \lambda (\partial_t u)(\partial_x u) \delta x \\
-j^1 &= \frac{\partial \lag}{\partial (\partial_x u)} X(u) - F^1 \\
-&= -\lambda a^2 (\partial_x u \delta t + \partial_x u \delta x) \partial_x u - (\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2) \delta x \\
-&= - \lambda a^2 (\partial_t u)(\partial_x u) \delta t -[\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2] \delta x 
-\eea
-由于$\delta t$和$\delta x$多多少少是任取的，上式其实隐含了两个守恒流
-\beq
-j^\mu_t = (\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2, - \lambda a^2 (\partial_t u)(\partial_x u))
-\eeq
-\beq
-j^\mu_x = (\lambda (\partial_t u)(\partial_x u), -[\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2])
-\eeq
-注意上面的$\mu$在取0的时候代表$t$，取1时代表$x$。定义张量（矩阵）$T^\mu_{\ \nu} \equiv j^\mu_{\ \nu}$，有
-\beq
-T^\mu_{\ \nu} = 
-\begin{pmatrix}
-\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2 & - \lambda a^2 (\partial_t u)(\partial_x u) \\
-\lambda (\partial_t u)(\partial_x u) & -\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2
-\end{pmatrix}
-\eeq
-这就是大名鼎鼎的{\red 能量动量张量}！看看各项的含义吧：
-\begin{enumerate}
-\item[$T^0_{\ 0}$：] $\lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2$就是一小段绳的总能量（除以该段绳长），是绳的能量密度；
-\item[$T^1_{\ 0}$：] $\lambda (\partial_t u)(\partial_x u)$是一小段绳的动量沿绳方向的分量（除以该段绳长），是绳方向上的动量密度，见\cref{p1}；
-\item[$T^0_{\ 1}$：] 只和$T^1_{\ 0}$相差一个常数因子；
-\item[$T^1_{\ 1}$：] 负的能量密度，事实上是某种压强。
-\end{enumerate}
-\cpicn{0.3}{p1}{动量密度图解}
-\par
-时间和空间上的平移不变性带来了守恒流：能量动量张量流。
-
-\subsection{能量动量张量：一般情况}
-在一般的$3+1$维场论（或$D+1$维场论）中，同样可以用类似的方法证明能量动量张量的存在。考虑$x^\mu$坐标发生一个无穷小变化$x^\mu \to x^\mu + \epsilon^\mu$，场的变化是
-\beq
-\delta \phi = X(\phi) = \partial_\mu \phi \epsilon^\mu
-\eeq
-拉格朗日密度的变化是
-\beq
-\delta \lag = \partial_\mu \lag \epsilon^\mu
-\eeq
-这里，$F^\mu = \lag \epsilon^\mu$，守恒流为
-\bea
-j^\nu &= \frac{\partial \lag}{\partial (\partial_\nu \phi)} X(\phi) - F^\nu \\
-&= \frac{\partial \lag}{\partial (\partial_\nu \phi)}  \partial_\mu \phi \epsilon^\mu - \lag \epsilon^\nu \\
-&= \frac{\partial \lag}{\partial (\partial_\nu \phi)}  \partial_\mu \phi \epsilon^\mu - \delta^\nu_\mu \lag \epsilon^\mu \\
-& = [\frac{\partial \lag}{\partial (\partial_\nu \phi)}  \partial_\mu \phi - \delta^\nu_\mu \lag] \epsilon^\mu
-\eea
-对任意的$\epsilon^\mu$上式都要成立，守恒流事实上是
-\beq
-T^\nu_{\ \mu} = \frac{\partial \lag}{\partial (\partial_\nu \phi)}  \partial_\mu \phi - \delta^\nu_\mu \lag
-\eeq
-这是能量动量张量的一般表达式。
-
-\section{KG场}
-\subsection{KG场的一般理论}
-KG场是具有二次型动能和势能的场，它的拉格朗日密度由下式给出
-\beq
-\lag(\phi,\partial_\mu \phi) = \frac{1}{2} g^{\mu \nu} \partial_\mu \phi \partial_\nu \phi  - \frac{1}{2}m^2 \phi^2
-\eeq
-容易验证，KG场是洛伦兹不变的。因为
-\bea
-\partial_\mu \phi(x') \partial^\mu \phi(x') &= \frac{\partial \phi}{\partial x'^\mu} \frac{\partial \phi}{\partial x'^\nu} \eta^{\mu \nu} \\
-&= \frac{\partial \phi}{\partial x^\rho} \frac{\partial \phi}{\partial x^\sigma} \eta^{\mu \nu} (\Lambda)^\mu_{\ \rho} (\Lambda)^\nu_{\ \sigma} \\
-&= \frac{\partial \phi}{\partial x^\rho} \frac{\partial \phi}{\partial x^\sigma} \eta^{\rho \sigma} \\
-&= \partial_\rho \phi(x) \partial^\rho \phi(x)
-\eea
-它的运动方程可以很容易得到。首先有$\cfrac{\partial \lag}{\partial \phi} = m^2 \phi$，其次
-\bea
-\frac{\partial \lag}{\partial (\partial_\mu \phi)} &= \frac{\partial (\frac{1}{2} g^{\rho \sigma} \partial_\rho \phi \partial_\sigma \phi)}{\partial (\partial_\mu \phi)} \\
-&= \frac{1}{2} g^{\rho \sigma} \delta^\mu_\rho \partial_\sigma \phi + \frac{1}{2} g^{\rho \sigma} \partial_\rho \phi \delta^\mu_\sigma \\
-&= \frac{1}{2} g^{\mu \sigma} \partial_\sigma \phi + \frac{1}{2} g^{\rho \mu} \partial_\rho \phi \\
-&= \partial^\mu \phi
-\eea
-其中第二行利用了各$\partial_\mu \phi$间的独立性；最后一行利用了度规张量的对称性和定义$\partial^\mu \ = g^{\mu \nu} \partial_\nu$。于是运动方程为
-\beq
-\partial_\mu \partial^\mu \phi + m^2 \phi = 0
-\eeq
-或
-\beq
-g^{\mu \nu} \partial_\nu \phi \partial_\mu \phi + m^2 \phi = 0
-\eeq
-为了得到上式的通解，带入试探解$\phi=  e^{i k_\rho x^\rho}$，注意到
-\beq
-\partial_\mu \phi = \frac{\partial \phi}{\partial x^\mu}
-= i k_\rho \frac{\partial x^\rho}{\partial x^\mu} \phi
-= i k_\rho \delta^\rho_\mu \phi = ik_\mu \phi
-\eeq
-有
-\beq \label{confi}
-g^{\mu \nu} k_\mu k_\nu + m^2 = 0
-\eeq
-由于在$n+1$维场论中$k_\mu$共有$n+1$个分量，上述方程解出的$k_\mu$事实上有$n$个自由度。通解就是这些试探解的线性组合
-\beq
-\phi(x) = \int c(k) e^{i k_\mu x^\mu} d^{n}k
-\eeq
-\subsection{时间维特殊化}
-若将$n$个自由变化的$k_\mu$选为空间分量$\vec{k}$，则时间分量$k_0 \equiv \omega$随之变化。再进一步地，把度规选成闵可夫斯基度规$\eta^{\mu \nu} = \diag (1,-1,-1,-1)$，那么\cref{confi}变为
-\beq
--\omega^2 + \vec{k}^2 + m^2 = 0
-\eeq
-假如我们在自然单位制$c = \hbar = 1$下工作的话，上面这个式子实际上告诉了我们质能关系$E^2 = \vec{p}^2 + m^2$。解出$\omega$得到
-\beq
-\omega(\vec{k}) = \sqrt{m^2 + \vec{k}^2}
-\eeq
-于是KG场运动方程有通解
-\beq
-\phi(\vec{x},t) = \int c(\vec{k}) e^{i \omega(\vec{k}) t} e^{i \vec{k} \cdot \vec{x}} d^3 \vec{k}
-\eeq
-聪明的小朋友可能已经看出来了，这就是一个傅立叶变换而已。
-\par
-KG场在各个振动模式（傅立叶分解）下的行为就是一个谐振子，而谐振子可以被很容易地量子化，于是，KG场也就可以被量子化。我们在此敲响了量子场论的大门。
-
-
 
 
 
