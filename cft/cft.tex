@@ -318,15 +318,15 @@ S[\phi] = \int \sqrt{ - \det g} \lag(\phi,\partial_\mu \phi) d^4 x
 \eeq
 引入因子$\sqrt{ - \det g}$是为了使得坐标变换时，该因子与体积元$d^4 x$的变换因子：Jacobi行列式相抵消。
 \par
-假设度规为$g^{\mu \nu} = \diag(1,-a^2(t),-a^2(t),-a^2(t))$，拉格朗日密度取推广后的KG场$\lag = \frac{1}{2} g^{\mu \nu} \partial_\mu \phi \partial_\nu \phi - V(\phi)$，那么，作用量现在是
+假设度规为$g_{\mu \nu} = \diag(1,-a^2(t),-a^2(t),-a^2(t))$，拉格朗日密度取推广后的KG场$\lag = \frac{1}{2} g^{\mu \nu} \partial_\mu \phi \partial_\nu \phi - V(\phi)$，那么，作用量现在是
 \beq
-S[\phi] = \int a^3 [\dot{\phi}^2 - a^2 \sum_i (\partial_i \phi)^2 - V(\phi)]d^4 x
+S[\phi] = \int a^3 [\dot{\phi}^2 - a^{-2} \sum_i (\partial_i \phi)^2 - V(\phi)]d^4 x
 \eeq
 进一步假设$\phi$不依赖于空间坐标$x^i$，作用量为
 \beq
 S[\phi] = \int a^3[ \dot{\phi}^2 - V(\phi)]d^4 x
 \eeq
-这就相当于平直时空中的拉格朗日密度$\lag = a^3 [\dot{\phi}^2 - V(\phi)]$对应的作用量，于是拉格朗日方程给出
+这就相当于平直时空中的拉格朗日密度$\lag = a^3(t) [\dot{\phi}^2 - V(\phi)]$对应的作用量，于是拉格朗日方程给出
 \beq
 \frac{\partial}{\partial t} \frac{\partial \lag}{\partial \dot{\phi}} = \frac{\partial (a^3 \dot{\phi})}{\partial t} = 3a^2 \dot{a} \dot{\phi} + a^3 \ddot{\phi}
 \eeq
@@ -337,7 +337,7 @@ $\phi (t)$的运动方程于是为
 \beq
 \ddot{\phi} + 3\frac{\dot{a}}{a} \dot{\phi} + \frac{\partial V}{\partial \phi} = 0
 \eeq
-引入哈勃常数（which is not a constant）$H(t) = \cfrac{\dot{a}}{a}$，上式也写成
+引入哈勃常数（which is not a constant）$H(t) = \cfrac{\dot{a}(t)}{a(t)}$，上式也写成
 \beq
 \ddot{\phi} + 3H \dot{\phi} + \frac{\partial V}{\partial \phi} = 0
 \eeq
@@ -347,9 +347,13 @@ T^\mu_{\ \nu} = \partial^\mu \phi \partial_\nu \phi - \frac{1}{2} \delta^\mu_\nu
 \eeq
 由于各偏导数仅有$\partial_0$非零，很容易得到
 \beq
-T^\mu_{\ \nu} = \diag \big(\frac{1}{2}\dot{\phi}^2 + V(\phi),-\frac{1}{2}\dot{\phi}^2 + V(\phi),-\frac{1}{2}\dot{\phi}^2 + V(\phi),-\frac{1}{2}\dot{\phi}^2 + V(\phi)\big)
+T^\mu_{\ \nu} = \diag \big(\frac{1}{2}\dot{\phi}^2 + V(\phi),\frac{1}{2}\dot{\phi}^2 - V(\phi),\frac{1}{2}\dot{\phi}^2 - V(\phi),\frac{1}{2}\dot{\phi}^2 - V(\phi)\big)
 \eeq
-再把这个能量-动量张量带到爱因斯坦场方程就可以得到另一个$a$的演化方程。
+由此看出暴涨场的能量密度为$\rho = \cfrac{1}{2}\dot{\phi}^2 + V(\phi)$，压强为$p = \cfrac{1}{2}\dot{\phi}^2 - V(\phi)$。再把这个能量-动量张量带到爱因斯坦场方程（或Friedmann第一方程）就可以得到另一个$a$的演化方程。
+\beq
+\ddot{a} = \frac{4\pi G}{3} (\rho + 3p)a = \frac{8\pi G}{3} (\dot{\phi}^2 + V(\phi))a
+\eeq
+上面两个方程可以解出宇宙尺度因子$a$和标量场$\phi$的时间演化，结果表明，给定一个$\phi$的初值以及合适的势$V(\phi)$（或者加上所谓慢滚条件），$a$可以在很短的时间内达到至少$e^{60}$倍的增长，这就是宇宙的暴涨。
 
 \section{洛伦兹不变性}
 经典力学中我们有旋转不变性，而在时空中它被推广为洛伦兹不变性。满足洛伦兹不变性是一个“好的场论”的基本要求。我们知道，$x$轴的洛伦兹变换为
