@@ -1,0 +1,209 @@
+\documentclass[a4paper,11pt]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,
+            linkcolor=blue,
+		 urlcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+\newcommand{\red}{\color{red}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\emptyline}{\\ \ \\}
+
+\newcommand{\pfrac}[2]{\frac{\partial #1}{\partial #2}}
+
+\newtheorem{thm}{定理}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+
+\title{Kinetic Theory}
+\author{Probfia}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{准备工作}
+\subsection{刘维尔定理}
+在哈密顿力学中我们已经熟知，对任意一个物理量$f(p,q,t)$，都有
+\bea
+\frac{df}{dt} &= \pfrac{f}{t} + \pfrac{f}{p} \dot{p} + \pfrac{f}{q} \dot{q} \\
+&= \pfrac{f}{t} - \pfrac{f}{p} \pfrac{H}{q} + \pfrac{f}{q} \pfrac{H}{p} \\
+&= \pfrac{f}{t} + [f,H]
+\eea
+其中$[f,H]$为泊松括号。
+\par
+刘维尔定理告诉我们，相点在相空间内的分布函数$f(p,q,t)$不随时间变化
+\beq
+\frac{df}{dt} = 0
+\eeq
+根据全导数和泊松括号间的关系，刘维尔定理也可以表示为
+\beq
+\pfrac{f}{t} = [H,f]
+\eeq
+这是我们以后经常要用到的结论。
+\subsection{空间导数的积分}
+下面定理确真：
+\begin{thm}
+若$n$维空间上的函数$f$满足$\int f d^n x < \infty$，函数$g$满足$g < \infty$，则
+\begin{enumerate}
+\item[(1)] $\forall \text{空间指标\ } i,\ \int \partial_i (fg) d^n x= 0$。
+\item[(2)] $\int g\partial_i f d^n x = - \int f \partial_i g d^n x $。
+\end{enumerate}
+\end{thm}
+首先，由于$\int f d^n x < \infty$，$f$必然在足够远处趋于0。\par
+我们在3维空间下证明(1)，其结果自然可以推广到$n$维空间。记向量函数$\vec{v}$的第$i$个分量为$fg$，其他分量为$0$，于是有
+\bea
+\int \partial_i (fg) d^3 \vec{x} &= \int \vec{\nabla} \cdot \vec{v} d^3 \vec{x} \\
+&= \int_{S_\infty} \vec{v} \cdot d\vec{S}
+\eea
+其中$S_\infty$为一半径无穷大的球面，在这个球面上，$fg$的取值趋于0，因而上述积分为0。
+\par
+(2)只需要利用(1)就可以得到
+\beq
+\int g\partial_i f d^n x = \int [\partial_i(fg) - f \partial_i g]d^n x =  - \int f \partial_i g d^n x 
+\eeq
+
+\section{玻尔兹曼方程}
+\subsection{相空间分布函数}
+动理论处理的是与平衡态略有偏离的热学问题，因为这个偏离，我们不能像统计物理一样单单考虑能量的分布，而需要考虑粒子间的碰撞和粒子在相空间中的分布。原则上来说，我们需要考虑$N\sim 10^{23}$个粒子的哈密顿量
+\beq
+H = \sum_{i=1}^{N} \frac{\vec{p}_i^2}{2m} + \sum_{i=1}^{N} V(\vec{x}_i) + \sum_{j>i} U(\vec{x}_j - \vec{x}_i)
+\eeq
+这一哈密顿函数确定了$N$粒子相空间分布函数$f(\vec{p}_i,\vec{x}_i;t)$的演化，演化由刘维尔定理给出
+\beq
+\pfrac{f}{t} = [H,f]
+\eeq
+此外$f$本身是分布函数的事实要求下列归一化条件成立
+\beq
+1 = \int f(\vec{p}_i,\vec{x}_i;t) d^{3n} \vec{x} d^{3n} \vec{p}
+\eeq
+对一个物理量$A(\vec{p},\vec{x})$，$A$的期望值为
+\beq
+\langle A \rangle = \int  A(\vec{p}_i,\vec{x}_i) f(\vec{p}_i,\vec{x}_i;t) d^{3n} \vec{r} d^{3n} \vec{p}
+\eeq
+它显式地依赖于时间，时间演化为
+\bea
+\frac{d\langle A \rangle}{dt} &=  \int  A(\vec{p}_i,\vec{x}_i) \pfrac{f(\vec{p}_i,\vec{x}_i;t)}{t} d^{3n} \vec{x} d^{3n} \vec{p} \\
+&= \int A (\pfrac{H}{\vec{x}_i} \pfrac{f}{\vec{p}_i} - \pfrac{f}{\vec{x}_i} \pfrac{H}{\vec{p}_i}) d^{3n} \vec{x} d^{3n} \vec{p} \\
+&= \int (- f \pfrac{}{\vec{p}_i}(A \pfrac{H}{\vec{x}_i}) + f \pfrac{}{\vec{x}_i}(A \pfrac{H}{\vec{p}_i}))  d^{3n} \vec{x} d^{3n} \vec{p} \\
+&= \int (- f \pfrac{A}{\vec{p}_i}\pfrac{H}{\vec{x}_i} - fA \frac{\partial^2 H}{\partial \vec{p}_i \partial \vec{x}_i} + f \pfrac{A}{\vec{x}_i}\pfrac{H}{\vec{p}_i} + fA \frac{\partial^2 H}{\partial \vec{p}_i \partial \vec{x}_i})  d^{3n} \vec{x} d^{3n} \vec{p} \\
+&= \int f [A,H]  d^{3n} \vec{x} d^{3n} \vec{p} \\
+&= \langle [A,H] \rangle
+\eea
+\subsection{单粒子分布函数的准刘维尔定理}
+刘维尔定理依赖于$6N\sim 10^{24}$个变量，这几乎是不可解的。为了简化工作，我们考虑指标为$1$的那个粒子的分布函数，为了得到这个粒子的分布函数，只需要积掉对指标为$i\geq 2$以上的坐标和动量。
+\beq
+f_1(\vec{p},\vec{x};t) = N\int f(\vec{p},\vec{x},\vec{p}_i,\vec{x}_i;t) \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i
+\eeq
+前面的系数$N$是因为我们希望$f_1$的归一化能够得到总粒子数$N$而引入的。单粒子分布函数$f_1$有如下性质：
+\begin{enumerate}
+\item 归一化给出总粒子数 $\int f_1(\vec{p},\vec{x};t) d^3 \vec{p} d^3 \vec{x} = N$，
+\item 对动量空间的积分给出粒子在坐标空间的分布密度 $n(\vec{x};t) = \int f_1(\vec{p},\vec{r};t) d^3 \vec{p}$，
+\item 某物理量$A(\vec{p},\vec{x})$的平均值为$\langle A \rangle = \int A(\vec{p},\vec{x}) f_1(\vec{p},\vec{x};t) d^3 \vec{p} d^3 \vec{x}$，
+\item 某物理量$A(\vec{p},\vec{x})$在空间中某点的值为$A(\vec{x};t) = \int A(\vec{p},\vec{x}) f_1(\vec{p},\vec{x};t) d^3 \vec{p}$。
+\end{enumerate}
+上面的各性质都可以从$f_1$的定义得到。此外，$f_1$随时间的演化为
+\bea
+\pfrac{f_1}{t} &=  N\int \pfrac{f}{t} \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i \\
+&= N\int [H,f] \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i \\
+&=  N\int (\pfrac{H}{\vec{x}_i}\pfrac{f}{\vec{p}_i} - \pfrac{H}{\vec{p}_i}\pfrac{f}{\vec{x}_i}) \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i \\
+&= N\int (\pfrac{H}{\vec{x}_1}\pfrac{f}{\vec{p}_1} - \pfrac{H}{\vec{p}_1}\pfrac{f}{\vec{x}_1}) \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i \\
+\eea
+最后一行中，由于$i \geq 2$以上的指标都是$\partial_i f$形状的积分，而这些积分的结果都是0。为了进一步化简，我们寻找哈密顿函数的单粒子分解
+\bea
+H &= \sum_{i=1}^{N} \frac{\vec{p}_i^2}{2m} + \sum_{i=1}^{N} V(\vec{x}_i) + \sum_{j>i} U(\vec{x}_j - \vec{x}_i) \\
+&= \frac{\vec{p}_1^2}{2m} + V(\vec{x}_1) + \sum_{i=2}^{N} \frac{\vec{p}_i^2}{2m} + \sum_{i=2}^{N} V(\vec{x}_i) + \sum_{j>i} U(\vec{x}_j - \vec{x}_i)\\
+&\equiv H_1(\vec{p}_1,\vec{x}_1) + H_{other}
+\eea
+于是
+\bea
+\pfrac{f_1}{t} &= N\int (\pfrac{H}{\vec{x}_1}\pfrac{f}{\vec{p}_1} - \pfrac{H}{\vec{p}_1}\pfrac{f}{\vec{x}_1}) \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i \\
+&= N\int \big([H_1(\vec{p},\vec{x}),f] + \pfrac{H_{other}}{\vec{x}_1}\pfrac{f}{\vec{p}_1} - \pfrac{H_{other}}{\vec{p}_1}\pfrac{f}{\vec{x}_1}\big) \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i d^3 \vec{x}_i d^3 \vec{p}_i \\
+&= [H_1(\vec{p},\vec{x}),f_1] + N\int \big(\pfrac{H_{other}}{\vec{x}_1}\pfrac{f}{\vec{p}_1} - \pfrac{H_{other}}{\vec{p}_1}\pfrac{f}{\vec{x}_1}\big) \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i d^3 \vec{x}_i d^3 \vec{p}_i
+\eea
+定义碰撞项
+\beq
+\bigg(\pfrac{f}{t}\bigg)_{coll} =  N\int \big(\pfrac{H_{other}}{\vec{x}_1}\pfrac{f}{\vec{p}_1} - \pfrac{H_{other}}{\vec{p}_1}\pfrac{f}{\vec{x}_1}\big) \prod_{i=2}^{N} d^3 \vec{x}_i d^3 \vec{p}_i d^3 \vec{x}_i d^3 \vec{p}_i
+\eeq
+我们就得到了{\red 单粒子分布函数$f_1$满足的准刘维尔定理}
+\beq
+\pfrac{f_1}{t} = [H_1,f_1] + \bigg(\pfrac{f}{t}\bigg)_{coll}
+\eeq
+其中$H_1 = \cfrac{\vec{p}^2}{2m} + V(\vec{x})$为单粒子哈密顿函数。
+\subsection{碰撞项与细致平衡}
+我们不加证明地指出，碰撞项衡量了两粒子间相互作用使得单粒子分布函数移进和移出相空间元$(\vec{p},\vec{p} + d\vec{p})\times (\vec{x},\vec{x}+d\vec{x})$的净速率。这一速率可以形式上地写成
+\bea
+&\bigg(\pfrac{f}{t}\bigg)_{coll} = \\ &\int d^3 \vec{p}'_1 d^3 \vec{p}'_2 d^3 \vec{p}_2 \ \omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2) - \omega(\vec{p},\vec{p}_2|\vec{p}'_1,\vec{p}'_2)f_1(\vec{x},\vec{p})f_1(\vec{x},\vec{p}_2)
+\eea
+我们对上面这个公式作如下诠释：$\omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2)$衡量两个粒子从动量元$(\vec{p}'_1,\vec{p}'_1 + d^3\vec{p}'_1)$和$(\vec{p}'_2,\vec{p}'_2 + d^3\vec{p}'_2)$在$\vec{x}$处碰撞进入动量元$(\vec{p},\vec{p} + d^3\vec{p})$和$(\vec{p}_2,\vec{p}_2 + d^3\vec{p}_2)$的概率，$\omega$衡量的是这种碰撞发生的可能性，而$f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2)$衡量两个粒子初态位于带撇的初始动量元的概率。这一项将一个粒子撞进$(\vec{p},\vec{p} + d^3\vec{p})$动量元，因此对$f_1(\vec{p},\vec{x};t)$有正的贡献。而将$\omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2)$对$d^3 \vec{p}'_1 d^3 \vec{p}'_2 d^3 \vec{p}_2$求和给出所有可能的初态和末态状态对$f_1$的贡献。第二项则是反过来。
+\par
+从对称性上可以论证，$\omega$项必须满足
+\beq
+\omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2) = \omega(\vec{p},\vec{p}_2|\vec{p}'_1,\vec{p}'_2)
+\eeq
+于是有
+\beq
+\bigg(\pfrac{f}{t}\bigg)_{coll} = \int d^3 \vec{p}'_1 d^3 \vec{p}'_2 d^3 \vec{p}_2\ \omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)[f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2) - f_1(\vec{x},\vec{p})f_1(\vec{x},\vec{p}_2)]
+\eeq
+上式连同单粒子分布函数的准刘维尔定理一同构成所谓的玻尔兹曼方程
+\beq
+\pfrac{f_1}{t} = [H_1,f_1] + \int d^3 \vec{p}'_1 d^3 \vec{p}'_2 d^3 \vec{p}_2\ \omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)[f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2) - f_1(\vec{x},\vec{p})f_1(\vec{x},\vec{p}_2)]
+\eeq
+\par
+$\omega$事实上可以由$U(\vec{r})$的具体形式，由粒子散射（微分散射截面）算出来。但即便如此，玻尔兹曼方程事实上是一个微分-积分方程：它的左边是微分，右边是积分，因此它的通解几乎是无法求得的。我们通常对上式采取一些近似，来求解系统略微偏离平衡态时的性质。
+\par
+第一个近似是，系统完全处于平衡态中，这时碰撞项应该严格等于0，这事实上是要求两个处于平衡态的粒子碰撞前后
+\beq
+f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2) =f_1(\vec{x},\vec{p})f_1(\vec{x},\vec{p}_2)]
+\eeq
+或者
+\beq
+\ln f_1(\vec{x},\vec{p}'_1) + \ln f_1(\vec{x},\vec{p}'_2) = \ln f_1(\vec{x},\vec{p}) + \ln f_1(\vec{x},\vec{p}_2)
+\eeq
+这事实上是说，$\ln f_1$是一个守恒量，或者说是一个运动积分。但单个粒子的运动积分至多只有7个，因此$\ln f_1$一定可以用粒子的能量和动量表示出来（已经假设$f_1$不依赖于角动量）。
+\beq
+\ln f_1(\vec{x},\vec{p}) = \beta (-E(\vec{x},\vec{p}) + \vec{u} \cdot \vec{p} + \mu)
+\eeq
+常数$\mu$可以用$f_1$的归一化条件求出，上式事实上是说
+\beq
+f_1(\vec{x},\vec{p}) \sim e^{-\beta (-E(\vec{x},\vec{p}) - \vec{u} \cdot \vec{p})}
+\eeq
+这其实就是麦克斯韦-玻尔兹曼分布。进一步假设能量$E = \vec{p}^2/2m$和动量$\vec{p} = m\vec{v}$，可以连同归一化条件一起给出真正的麦克斯韦分布
+\beq
+f_1(\vec{x},\vec{v})  =  \frac{N}{V} \big( \frac{\beta}{2\pi m}\big)^{3/2} e^{-\beta m (\vec{v} - \vec{u})^2/2}
+\eeq
+多出来的$\vec{u}$事实上描述了整体流动，$\vec{v}-\vec{u}$才是真正的热运动速度。
+\par
+$\ln f_1$为运动积分的事实称为{\red 细致平衡原理}，而我们已经看到，细致平衡原理必然导出麦克斯韦-玻尔兹曼分布。
+
+
+
+\end{document}
