@@ -127,8 +127,8 @@ f_1(\vec{p},\vec{x};t) = N\int f(\vec{p},\vec{x},\vec{p}_i,\vec{x}_i;t) \prod_{i
 \begin{enumerate}
 \item 归一化给出总粒子数 $\int f_1(\vec{p},\vec{x};t) d^3 \vec{p} d^3 \vec{x} = N$，
 \item 对动量空间的积分给出粒子在坐标空间的分布密度 $n(\vec{x};t) = \int f_1(\vec{p},\vec{r};t) d^3 \vec{p}$，
-\item 某物理量$A(\vec{p},\vec{x})$的平均值为$\langle A \rangle = \int A(\vec{p},\vec{x}) f_1(\vec{p},\vec{x};t) d^3 \vec{p} d^3 \vec{x}$，
-\item 某物理量$A(\vec{p},\vec{x})$在空间中某点的值为$A(\vec{x};t) = \int A(\vec{p},\vec{x}) f_1(\vec{p},\vec{x};t) d^3 \vec{p}$。
+\item 某物理量$A(\vec{p},\vec{x})$的平均值为$\langle A \rangle = \frac{1}{N} \int A(\vec{p},\vec{x}) f_1(\vec{p},\vec{x};t) d^3 \vec{p} d^3 \vec{x}$，
+\item 某物理量$A(\vec{p},\vec{x})$在空间中某点的值为$A(\vec{x};t) = \frac{1}{n(\vec{x},t)}\int A(\vec{p},\vec{x}) f_1(\vec{p},\vec{x};t) d^3 \vec{p}$。
 \end{enumerate}
 上面的各性质都可以从$f_1$的定义得到。此外，$f_1$随时间的演化为
 \bea
@@ -165,7 +165,7 @@ H &= \sum_{i=1}^{N} \frac{\vec{p}_i^2}{2m} + \sum_{i=1}^{N} V(\vec{x}_i) + \sum_
 \eea
 我们对上面这个公式作如下诠释：$\omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2)$衡量两个粒子从动量元$(\vec{p}'_1,\vec{p}'_1 + d^3\vec{p}'_1)$和$(\vec{p}'_2,\vec{p}'_2 + d^3\vec{p}'_2)$在$\vec{x}$处碰撞进入动量元$(\vec{p},\vec{p} + d^3\vec{p})$和$(\vec{p}_2,\vec{p}_2 + d^3\vec{p}_2)$的概率，$\omega$衡量的是这种碰撞发生的可能性，而$f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2)$衡量两个粒子初态位于带撇的初始动量元的概率。这一项将一个粒子撞进$(\vec{p},\vec{p} + d^3\vec{p})$动量元，因此对$f_1(\vec{p},\vec{x};t)$有正的贡献。而将$\omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2)$对$d^3 \vec{p}'_1 d^3 \vec{p}'_2 d^3 \vec{p}_2$求和给出所有可能的初态和末态状态对$f_1$的贡献。第二项则是反过来。
 \par
-从对称性上可以论证，$\omega$项必须满足
+由于经典力学具有时间反演不变性，即如果两个碰撞的粒子以动量$(\vec{p}'_1,\vec{p}'_2)$碰撞到$(\vec{p},\vec{p}_2)$，那么两个以动量$(\vec{p},\vec{p}_2)$相撞的粒子必然回到动量$(\vec{p}'_1,\vec{p}'_2)$。于是$\omega$项必须满足
 \beq
 \omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2) = \omega(\vec{p},\vec{p}_2|\vec{p}'_1,\vec{p}'_2)
 \eeq
@@ -173,16 +173,16 @@ H &= \sum_{i=1}^{N} \frac{\vec{p}_i^2}{2m} + \sum_{i=1}^{N} V(\vec{x}_i) + \sum_
 \beq
 \bigg(\pfrac{f}{t}\bigg)_{coll} = \int d^3 \vec{p}'_1 d^3 \vec{p}'_2 d^3 \vec{p}_2\ \omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)[f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2) - f_1(\vec{x},\vec{p})f_1(\vec{x},\vec{p}_2)]
 \eeq
-上式连同单粒子分布函数的准刘维尔定理一同构成所谓的玻尔兹曼方程
+上式连同单粒子分布函数的准刘维尔定理一同构成所谓的{\red 玻尔兹曼方程}
 \beq
 \pfrac{f_1}{t} = [H_1,f_1] + \int d^3 \vec{p}'_1 d^3 \vec{p}'_2 d^3 \vec{p}_2\ \omega(\vec{p}'_1,\vec{p}'_2|\vec{p},\vec{p}_2)[f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2) - f_1(\vec{x},\vec{p})f_1(\vec{x},\vec{p}_2)]
 \eeq
 \par
 $\omega$事实上可以由$U(\vec{r})$的具体形式，由粒子散射（微分散射截面）算出来。但即便如此，玻尔兹曼方程事实上是一个微分-积分方程：它的左边是微分，右边是积分，因此它的通解几乎是无法求得的。我们通常对上式采取一些近似，来求解系统略微偏离平衡态时的性质。
 \par
-第一个近似是，系统完全处于平衡态中，这时碰撞项应该严格等于0，这事实上是要求两个处于平衡态的粒子碰撞前后
+第一种近似是，系统完全处于平衡态中，这时碰撞项应该严格等于0，这事实上是要求两个处于平衡态的粒子碰撞前后
 \beq
-f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2) =f_1(\vec{x},\vec{p})f_1(\vec{x},\vec{p}_2)]
+f_1(\vec{x},\vec{p}'_1)f_1(\vec{x},\vec{p}'_2) =f_1(\vec{x},\vec{p})f_1(\vec{x},\vec{p}_2)
 \eeq
 或者
 \beq
@@ -203,6 +203,20 @@ f_1(\vec{x},\vec{v})  =  \frac{N}{V} \big( \frac{\beta}{2\pi m}\big)^{3/2} e^{-\
 多出来的$\vec{u}$事实上描述了整体流动，$\vec{v}-\vec{u}$才是真正的热运动速度。
 \par
 $\ln f_1$为运动积分的事实称为{\red 细致平衡原理}，而我们已经看到，细致平衡原理必然导出麦克斯韦-玻尔兹曼分布。
+
+\subsection{$H$定理}
+我们简单介绍一下$H$定理的基本内容和图像而不去详细地证明它。玻尔兹曼引入了一个量
+\beq
+H = \int d^3 \vec{p} d^3 \vec{x} f_1(\vec{p},\vec{x};t) \ln f_1(\vec{p},\vec{x};t)
+\eeq
+可以看到，$H$事实上是系统吉布斯熵的负值（再除以$k_B$）。而$H$的变化率事实上仅仅取决于分子碰撞
+\beq
+\frac{dH}{dt} = \int d^3 \vec{p} d^3 \bigg(\pfrac{f}{t}\bigg)_{coll}
+\eeq
+再利用$\omega$的对称性就可以证明，上式始终小于等于0。$H$随时间减小的事实对应熵始终增大的事实。
+
+\section{流体中的玻尔兹曼方程}
+
 
 
 
