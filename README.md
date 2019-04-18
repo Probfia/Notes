@@ -9,3 +9,6 @@ Currently we have:
 
 I am still working on:
 1. Differential geometry
+2. Quantum field theory
+
+If any mistake/error/typeo is fonud, please let me know.
