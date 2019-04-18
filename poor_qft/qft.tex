@@ -20,6 +20,8 @@
 \newcommand{\red}{\color{red}}
 \newcommand{\grandz}{\mathcal{Z}}
 \newcommand{\lagden}{\mathcal{L}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
 \newcommand{\diag}{\mathrm{diag}}
 \newcommand{\emptyline}{\\ \ \\}
 
@@ -94,7 +96,19 @@ S[\phi] = \int  \lagden(\partial_\mu \phi,\phi)dt d^D\vec{x}
 \vec{k}^2 + m^2 = \omega^2
 \eeq
 看，这不就是$E^2 = m^2 + \vec{p}^2$吗。
-
+\par
+将时间维特殊化，记$\dot{\phi} = \partial_0 \phi$，定义场的动量为
+\beq
+\pi = \frac{\partial \lag}{\partial \dot{\phi}}
+\eeq
+定义哈密顿密度为
+\beq
+\ham = \pi \dot{\phi} - \lag
+\eeq
+可以算出，$\lag = \frac{1}{2} \partial^\mu \phi \partial_\mu \phi - \frac{1}{2}m^2 \phi^2$的哈密顿密度为
+\beq
+\ham = \frac{1}{2}（\dot{\phi}^2  + (\vec{\nabla} \phi)^2 + m^2\phi^2）
+\eeq
 \subsection{高斯积分}
 我们对下面这个公式早已滚瓜烂熟倒背如流张口就来了
 \beq
@@ -141,12 +155,144 @@ $$ \int e^{- \frac{1}{2} A_{ij} x^i x^j + J_k x^k} dx^1 dx^2 \cdots dx^n$$
 \eeq
 由于$A$和$P$相似，$\det A = \det P =\prod_i P_{ii}$我们得到
 \beq
-\int e^{- \frac{1}{2} A_{ij} x^i x^j + J_k x^k} dx^1 dx^2 \cdots dx^n = (\frac{2\pi}{\det A})^{n/2} e^{\frac{1}{2} \vec{J}^\mathrm{T} A^{-1} \vec{J}}
+\int e^{- \frac{1}{2} A_{ij} x^i x^j + J_k x^k} dx^1 dx^2 \cdots dx^n = (\frac{2\pi}{\det A})^{n/2} e^{\frac{1}{2} {\vec{J}}^\mathrm{T} A^{-1} \vec{J}}
 \eeq
 
-\subsection{量子力学的路径积分描述}
-在双缝实验中，粒子到底屏幕的振幅是通过两个孔到底屏幕的振幅的代数和，或者说，所有可能的路径上的振幅的代数和。如果一个屏幕上有3个孔，那就是三个可能路径对应振幅的和；如果有2个挡板，其上分别有3个和4个孔，那么，到达屏幕的振幅就是12条可能路径对应振幅的代数和。
+\subsection{谐振子的量子化}
+经典力学中的谐振子具有哈密顿函数
+\beq
+H = \frac{1}{2}p^2 + \frac{1}{2}\omega^2 q^2
+\eeq
+量子力学中，力学量用算符表示。谐振子的哈密顿算符可以用动量算符和坐标算符表示为
+\beq
+\hat{H} = \frac{1}{2} \hat{p}^2 + \frac{1}{2}\omega^2 \hat{q}^2
+\eeq
+设产生算符$\hat{a}^\dagger$和湮灭算符$\hat{a}$使得
+\beq
+\hat{q} = \frac{1}{\sqrt{2\omega}}(\hat{a}^\dagger + \hat{a})
+\eeq
+\beq
+\hat{p} = -i \sqrt{\frac{\omega}{2}}(\hat{a}^\dagger - \hat{a})
+\eeq
+假设坐标算符和动量算符间满足对易关系$[\hat{q},\hat{p}] = i$（由经典力学中坐标和动量的泊松括号推广而来），可以算出
+\bea
+i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger - \hat{a}] \\
+&= \frac{-i}{2}( [\hat{a}^\dagger,-\hat{a}] + [\hat{a},\hat{a}^\dagger] ) = i [\hat{a},\hat{a}^\dagger]
+\eea
+于是我们得到产生湮灭算符间的对易关系为$[\hat{a},\hat{a}^\dagger] = 1$。
 \par
-假如我们有无数个挡板，每个挡板上有无数个孔，那就等于说没有挡板了！这个时候我们有无数条可能路径$q(t)$，但计算粒子到底屏幕的振幅的算法依旧可以推广过来，不过需要用积分代替求和。
+哈密顿算符用产生湮灭算符表示为
+\beq
+\hat{H} = \omega(\hat{a}^\dagger \hat{a} + \frac{1}{2})
+\eeq
+并可以定义粒子数算符
+\beq
+\hat{N} = \hat{a}^\dagger \hat{a}
+\eeq
+它可以用哈密顿算符直接表示出来，因此，$\hat{H}$与$\hat{N}$对易，粒子数$N$为一个守恒量。此外可以验证以下事实
+\begin{enumerate}
+\item $\hat{H}$和$\hat{N}$都是厄米算符，它们的本征值都是实数；
+\item 如果$\hat{N}|n\rangle = N |n\rangle$，则$\hat{a}|n\rangle$和$\hat{a}^\dagger |n\rangle$分别是$\hat{N}$的本征值为$N-1$和$N+1$的本征态；
+\end{enumerate}
+\par
+定义谐振子的基态满足$\hat{a} |0\rangle = 0|0\rangle$，即它不能再被湮灭算符湮灭。那么，将这个条件带入哈密顿算符的表达式并利用产生算符的性质，就可以得到谐振子的能级公式$E_N = (N+ \frac{1}{2})\omega$。
 
+\section{自由场的量子化}
+\subsection{自由实标量场}
+\subsubsection{模式分解}
+我们已经指出，拉格朗日密度$\lagden = \frac{1}{2} \partial^\mu \phi \partial_\mu \phi - \frac{1}{2}m^2 \phi^2$对应的标量场满足运动方程
+\beq
+(\partial^2 + m^2) \phi = \ddot{\phi} -\vec{\nabla}^2 \phi+ m^2 \phi = 0
+\eeq
+设振动模式$\vec{p}$对应的解是$\phi_{\vec{p}} (t,\vec{x}) = e^{i \vec{p} \cdot \vec{x} - i \omega_{\vec{p}} t}$，带入运动方程就得到
+\beq
+\omega_{\vec{p}} = \sqrt{\vec{p}^2 + m^2}
+\eeq
+在经典场论下，每个振动模式$\vec{p}$的行为都像单个谐振子，而对单个谐振子的量子化是容易的。类比地写出模式$\vec{p}$满足的产生湮灭算符满足
+\beq
+\hat{\phi}(\vec{x})  =\int \frac{d^3 \vec{p}}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\vec{p}}}} (\hat{a}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}} + \hat{a}_{\vec{p}}^\dagger e^{-i\vec{p} \cdot \vec{x}})
+\eeq
+\beq
+\hat{\pi}(\vec{x})  = -i \int \frac{d^3 \vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}}(\hat{a}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}} - \hat{a}_{\vec{p}}^\dagger e^{-i\vec{p} \cdot \vec{x}})
+\eeq
+其中$\hat{\phi}$和$\hat{\pi}$为场的场算符和动量算符。
+\par
+可以证明下面两组对易关系等价
+\beq
+[\hat{\phi}(\vec{x}),\hat{\phi}(\vec{y})] = [\hat{\pi}(\vec{x}),\hat{\pi}(\vec{y})] = 0 ,\ [\hat{\phi}(\vec{x}),\hat{\pi}(\vec{y})] = i\delta^3(\vec{x}-\vec{y})
+\eeq
+\beq
+[\hat{a}_{\vec{p}},\hat{a}_{\vec{q}}] = [\hat{a}_{\vec{p}}^\dagger,\hat{a}_{\vec{q}}^\dagger] = 0 ,\ [\hat{a}_{\vec{p}},\hat{a}_{\vec{q}}^\dagger] = (2\pi)^3 \delta^3(\vec{p}-\vec{q})
+\eeq
+这与谐振子的两组对易关系对应。
+\par
+利用上面的对易关系和KG场哈密顿密度的定义，将对应的场和动量换成场算符和动量算符，化简得到哈密顿密度算符，再对哈密顿密度算符对全空间积分得到哈密顿算符
+\beq
+\hat{H} = \int \frac{d^3 \vec{p}}{(2\pi)^3} \omega_{\vec{p}} \left[\hat{}a_{\vec{p}}^{\dagger} \hat{a}_{\vec{p}}+\frac{1}{2}(2 \pi)^{3} \delta^{(3)}(0)\right]
+\eeq
+这里的$\delta$函数项与谐振子中的零点能$\frac{1}{2}\omega$对应，对全空间的积分使得该项发散。我们重新定义哈密顿量为减去零点能的哈密顿量，哈密顿算符就是
+\beq \label{singleham}
+\hat{H} = \int \frac{d^3 \vec{p}}{(2\pi)^3} \omega_{\vec{p}} \hat{a}_{\vec{p}}^\dagger \hat{a}_{\vec{p}}
+\eeq
+\par
+最后重申，这里的图像是，对每个振动模式$\vec{p}$的行为都类似谐振子，将每个模式量子化后再按模式的体积元$\frac{d^3\vec{p}}{(2\pi)^3}$叠加得到整个场的量子化。
+\subsubsection{真空与粒子}
+定义场的真空态$|0\rangle$，使得对于任意模式$\vec{p}$都有$\hat{a}_{\vec{p}} |0\rangle = 0|0\rangle$。带入\cref{singleham}得到$\hat{H}|0\rangle = 0 |0\rangle$，也即真空能量为0。
+\par
+定义粒子态
+\beq
+|\vec{p}_1,\vec{p}_2,\cdots,\vec{p}_n\rangle = \hat{a}_{\vec{p}_1}^\dagger \hat{a}_{\vec{p}_2}^\dagger \cdots \hat{a}_{\vec{p}_n}^\dagger
+\eeq
+和粒子数算符
+\beq
+\hat{N} = \int \frac{d^3 \vec{p}}{(2\pi)^3} \hat{a}_{\vec{p}}^\dagger \hat{a}_{\vec{p}} 
+\eeq
+利用产生湮灭算符间的对易关系和真空态的定义可以验证
+\beq
+\hat{N} |\vec{p}_1,\vec{p}_2,\cdots,\vec{p}_n\rangle = n |\vec{p}_1,\vec{p}_2,\cdots,\vec{p}_n\rangle
+\eeq
+也就是说，粒子态可以被诠释为具有一系列动量的$n$个粒子。而产生算符则用来产生这些粒子，因此我们说，粒子是场的激发态。此外有
+\beq
+|\vec{p},\vec{q} \rangle = \hat{a}_{\vec{p}}^\dagger \hat{a}_{\vec{q}}^\dagger |0\rangle = \hat{a}_{\vec{q}}^\dagger \hat{a}_{\vec{p}}^\dagger |0\rangle = |\vec{q},\vec{p} \rangle
+\eeq
+中间一步我们利用了产生算符间的可交换性。上式表明，KG场表征的粒子对交换算符的本征值为1，为玻色子。
+\par
+此外，粒子数算符和哈密顿算符对应，按量子力学，与哈密顿算符对易的算符表征的力学量为守恒量，于是我们得到了粒子数守恒的结论
+
+\subsection{复自由标量场}
+\subsubsection{复自由场}
+定义复值场$\psi$的拉格朗日密度为
+\beq
+\lag = \partial_\mu \psi \partial^\mu \psi^* - m^2 \psi \psi^*
+\eeq
+它的运动方程为
+\beq
+\partial_\mu \partial^\mu \psi + m^2 \psi = 0
+\eeq
+\beq
+\partial_\mu \partial^\mu \psi^* + m^2 \psi^* = 0
+\eeq
+同样的，场和它共轭分别在各个模式$\vec{p}$下的行为类似谐振子，可以同样地进行量子化。不过，这里有两个方程，也就是有原来2倍的自由度。这迫使我们定义两种产生湮灭算符$\hat{b}_{\vec{p}}^\dagger$，$\hat{c}_{\vec{p}}^\dagger$，$\hat{b}_{\vec{p}}$和$\hat{c}_{\vec{p}}$。同组产生湮灭算符内满足的对易关系与之前实标量场一致，并且增加它们之间的对易关系为$[\hat{b}_{\vec{p}},\hat{c}_{\vec{p}}^\dagger] = [\hat{c}_{\vec{p}},\hat{b}_{\vec{p}}^\dagger] = 0$。写出场及其共轭的场算符和动量算符为
+\beq
+\hat{\psi}(\vec{x}) = \int \frac{d^3 \vec{p}}{(2\pi)^3} \frac{1}{\sqrt{2 \omega_{\vec{p}}}} (\hat{b}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}} + \hat{c}_{\vec{p}}^\dagger e^{-i\vec{p}\cdot \vec{x}})
+\eeq
+\beq
+\hat{\psi}^\dagger (\vec{x}) = \int \frac{d^3 \vec{p}}{(2\pi)^3} \frac{1}{\sqrt{2 \omega_{\vec{p}}}} (\hat{b}_{\vec{p}}^\dagger e^{-i\vec{p} \cdot \vec{x}} + \hat{c}_{\vec{p}} e^{i\vec{p}\cdot \vec{x}})
+\eeq
+\beq
+\hat{\pi}(\vec{x}) = i \int \frac{d^3\vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}} (\hat{b}_{\vec{p}}^\dagger e^{-i\vec{p} \cdot \vec{x}} - \hat{c}_{\vec{p}} e^{i\vec{p}\cdot \vec{x}})
+\eeq
+\beq
+\hat{\pi}(\vec{x}) = -i \int \frac{d^3\vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}} (\hat{b}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}}  -\hat{c}_{\vec{p}}^\dagger e^{-i\vec{p}\cdot \vec{x}})
+\eeq
+
+\subsubsection{粒子与反粒子}
+采用与之前相当的真空定义，定义正粒子数算符
+\beq
+\hat{N}_b = \int \frac{d^3 \vec{p}}{(2\pi)^3}   \hat{b}_{\vec{p}}^\dagger \hat{b}_{\vec{p}}
+\eeq
+和反粒子数算符
+\beq
+\hat{N}_c = \int \frac{d^3 \vec{p}}{(2\pi)^3} \hat{c}_{\vec{p}}^\dagger \hat{c}_{\vec{p}}
+\eeq
 \end{document}
