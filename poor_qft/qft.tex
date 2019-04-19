@@ -25,7 +25,6 @@
 \newcommand{\diag}{\mathrm{diag}}
 \newcommand{\emptyline}{\\ \ \\}
 
-
 %\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
 \newcommand{\cpic}[2]{
 \begin{center}
@@ -54,6 +53,25 @@
 全文中我们采取自然单位制$c = \hbar = 1$。度规$g_{\mu,\nu}$的符号是$(+,-,-,-)$，且不特别说明时它都是闵可夫斯基度规$\eta_{\mu \nu} = \diag (1,-1,-1,-1)$。
 }
 \section{准备工作}
+\subsection{单位制和量纲}
+因为我们采用$c = \hbar = 1$的单位制，因此，力学量量纲的自由度只有1。我们一般选质量量纲为基表示出其他量的量纲。首先我们有
+\beq
+\frac{L}{T} = \frac{ML^2}{T} = 1
+\eeq
+得到
+\beq
+L = T = M^{-1}
+\eeq
+通过一个量在自然单位制下的量纲和上述关系，就可以得到一个量在自由单位制下的量纲，例如能量
+\beq
+\dim E = \frac{ML^2}{T^2} = M
+\eeq
+和能量密度
+\beq
+\dim u = \frac{[E]}{L^3} = M^4
+\eeq
+我们引入记号$[Q] \equiv \log_M \dim Q$为物理量$Q$的量纲指数，很显然有$[u] = 4$等等。
+
 \subsection{经典场论}
 在$(D+1)$维经典场论中，标量场$\phi(t,\vec{x})$的拉格朗日密度为$\partial_\mu \phi$和$\phi$的函数，其中$\mu = 0,1,\cdots,D$，0指标代表时间指标。$\partial_\mu \phi$这样的偏导数是一个矢量，第$\mu$个分量是对$x_\mu$求导的结果。其次，定义$\partial^\mu \phi = g^{\mu \nu} \partial_\nu \phi$为它对应的对偶矢量。作用量为
 \beq
@@ -226,7 +244,7 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \eeq
 这与谐振子的两组对易关系对应。
 \par
-利用上面的对易关系和KG场哈密顿密度的定义，将对应的场和动量换成场算符和动量算符，化简得到哈密顿密度算符，再对哈密顿密度算符对全空间积分得到哈密顿算符
+利用上面的对易关系和KG场哈密顿密度的定义，将对应的场和动量换成场算符和动量算符\footnote{这里有一个替换规则，把经典中的物理量换成算符时，湮灭算符必须放在产生算符的右边。这称为常序规则。}，化简得到哈密顿密度算符，再对哈密顿密度算符对全空间积分得到哈密顿算符
 \beq
 \hat{H} = \int \frac{d^3 \vec{p}}{(2\pi)^3} \omega_{\vec{p}} \left[\hat{}a_{\vec{p}}^{\dagger} \hat{a}_{\vec{p}}+\frac{1}{2}(2 \pi)^{3} \delta^{(3)}(0)\right]
 \eeq
@@ -235,7 +253,7 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \hat{H} = \int \frac{d^3 \vec{p}}{(2\pi)^3} \omega_{\vec{p}} \hat{a}_{\vec{p}}^\dagger \hat{a}_{\vec{p}}
 \eeq
 \par
-最后重申，这里的图像是，对每个振动模式$\vec{p}$的行为都类似谐振子，将每个模式量子化后再按模式的体积元$\frac{d^3\vec{p}}{(2\pi)^3}$叠加得到整个场的量子化。
+最后重申，这里的图像是，对每个傅立叶分解下的振动模式$\vec{p}$的行为都类似谐振子，将每个模式量子化后再按模式的体积元$\frac{d^3\vec{p}}{(2\pi)^3}$叠加（傅立叶逆变换）得到整个场的量子化。
 \subsubsection{真空与粒子}
 定义场的真空态$|0\rangle$，使得对于任意模式$\vec{p}$都有$\hat{a}_{\vec{p}} |0\rangle = 0|0\rangle$。带入\cref{singleham}得到$\hat{H}|0\rangle = 0 |0\rangle$，也即真空能量为0。
 \par
@@ -257,7 +275,7 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \eeq
 中间一步我们利用了产生算符间的可交换性。上式表明，KG场表征的粒子对交换算符的本征值为1，为玻色子。
 \par
-此外，粒子数算符和哈密顿算符对应，按量子力学，与哈密顿算符对易的算符表征的力学量为守恒量，于是我们得到了粒子数守恒的结论
+此外，粒子数算符和哈密顿算符对应，按量子力学，与哈密顿算符对易的算符表征的力学量为守恒量，于是我们得到了粒子数守恒的结论。
 
 \subsection{复自由标量场}
 \subsubsection{复自由场}
@@ -272,6 +290,19 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \beq
 \partial_\mu \partial^\mu \psi^* + m^2 \psi^* = 0
 \eeq
+\par
+场和共轭的动量为
+\beq
+\pi = \frac{\partial \lag}{\partial (\partial_0 \psi)} = \dot{\psi^*}
+\eeq
+\beq
+\pi^* = \frac{\partial \lag}{\partial (\partial_0 \psi^*)} = \dot{\psi}
+\eeq
+哈密顿密度为
+\par
+\beq
+\ham = \pi \dot{\psi} + \pi \dot{\psi} - \lag = \pi \pi^* + \vec{\nabla}\psi \cdot \vec{\nabla}\psi^* + m^2 \psi \psi^*
+\eeq
 同样的，场和它共轭分别在各个模式$\vec{p}$下的行为类似谐振子，可以同样地进行量子化。不过，这里有两个方程，也就是有原来2倍的自由度。这迫使我们定义两种产生湮灭算符$\hat{b}_{\vec{p}}^\dagger$，$\hat{c}_{\vec{p}}^\dagger$，$\hat{b}_{\vec{p}}$和$\hat{c}_{\vec{p}}$。同组产生湮灭算符内满足的对易关系与之前实标量场一致，并且增加它们之间的对易关系为$[\hat{b}_{\vec{p}},\hat{c}_{\vec{p}}^\dagger] = [\hat{c}_{\vec{p}},\hat{b}_{\vec{p}}^\dagger] = 0$。写出场及其共轭的场算符和动量算符为
 \beq
 \hat{\psi}(\vec{x}) = \int \frac{d^3 \vec{p}}{(2\pi)^3} \frac{1}{\sqrt{2 \omega_{\vec{p}}}} (\hat{b}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}} + \hat{c}_{\vec{p}}^\dagger e^{-i\vec{p}\cdot \vec{x}})
@@ -283,7 +314,7 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \hat{\pi}(\vec{x}) = i \int \frac{d^3\vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}} (\hat{b}_{\vec{p}}^\dagger e^{-i\vec{p} \cdot \vec{x}} - \hat{c}_{\vec{p}} e^{i\vec{p}\cdot \vec{x}})
 \eeq
 \beq
-\hat{\pi}(\vec{x}) = -i \int \frac{d^3\vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}} (\hat{b}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}}  -\hat{c}_{\vec{p}}^\dagger e^{-i\vec{p}\cdot \vec{x}})
+\hat{\pi}(\vec{x})^\dagger = -i \int \frac{d^3\vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}} (\hat{b}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}}  -\hat{c}_{\vec{p}}^\dagger e^{-i\vec{p}\cdot \vec{x}})
 \eeq
 
 \subsubsection{粒子与反粒子}
@@ -295,4 +326,21 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \beq
 \hat{N}_c = \int \frac{d^3 \vec{p}}{(2\pi)^3} \hat{c}_{\vec{p}}^\dagger \hat{c}_{\vec{p}}
 \eeq
+\par
+正粒子产生算符作用到真空态上产生一个正粒子，如$\hat{b}_{\vec{p}}^\dagger |0\rangle = |\vec{p}_b \rangle$，等等，反粒子亦如此。粒子数算符的本征值为正粒子或反粒子的粒子数。
+\par
+替换规则可以给出去掉零点能的全空间哈密顿量为
+\beq \label{complexham}
+\hat{H} = \int \frac{d^3 \vec{p}}{(2\pi)^3} \omega_{\vec{p}} (\hat{b}_{\vec{p}}^\dagger \hat{b}_{\vec{p}} +\hat{c}_{\vec{p}}^\dagger \hat{c}_{\vec{p}}
+\eeq
+很容易看出，哈密顿量和各个粒子数算符间都是对易的，因此在自由场下，正粒子和反粒子数分别守恒。
+\par
+在复自由场的经典场论中，$Q = i \int d^3 \vec{x} (\dot{\psi}^* \psi - \dot{\psi} \psi^*)$为一个守恒量，这可以从诺特定理直接推出，也可以对时间求导，并假定场$\phi$在无穷远处趋于零（或满足一般零边界条件）推出。在量子场论中，带入各个产生湮灭算符的定义和常序规则，化简得到$Q$的算符对应为
+\beq
+\hat{Q} = \hat{N}_b - \hat{N}_c
+\eeq
+也就是说，正粒子数与反粒子数的差为一个常数。这个结论在相互作用的场论中依然成立。
+
+\section{传播子和路径积分}
+
 \end{document}
