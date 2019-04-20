@@ -62,7 +62,7 @@
 \beq
 L = T = M^{-1}
 \eeq
-通过一个量在自然单位制下的量纲和上述关系，就可以得到一个量在自由单位制下的量纲，例如能量
+通过一个量在SI制下的量纲和上述关系，就可以得到一个量在自然单位制下的量纲，例如能量
 \beq
 \dim E = \frac{ML^2}{T^2} = M
 \eeq
@@ -277,7 +277,7 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \par
 此外，粒子数算符和哈密顿算符对应，按量子力学，与哈密顿算符对易的算符表征的力学量为守恒量，于是我们得到了粒子数守恒的结论。
 
-\subsection{复自由标量场}
+\subsection{自由复标量场}
 \subsubsection{复自由场}
 定义复值场$\psi$的拉格朗日密度为
 \beq
@@ -314,7 +314,7 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \hat{\pi}(\vec{x}) = i \int \frac{d^3\vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}} (\hat{b}_{\vec{p}}^\dagger e^{-i\vec{p} \cdot \vec{x}} - \hat{c}_{\vec{p}} e^{i\vec{p}\cdot \vec{x}})
 \eeq
 \beq
-\hat{\pi}(\vec{x})^\dagger = -i \int \frac{d^3\vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}} (\hat{b}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}}  -\hat{c}_{\vec{p}}^\dagger e^{-i\vec{p}\cdot \vec{x}})
+\hat{\pi}^\dagger(\vec{x}) = -i \int \frac{d^3\vec{p}}{(2\pi)^3} \sqrt{\frac{\omega_{\vec{p}}}{2}} (\hat{b}_{\vec{p}} e^{i\vec{p} \cdot \vec{x}}  -\hat{c}_{\vec{p}}^\dagger e^{-i\vec{p}\cdot \vec{x}})
 \eeq
 
 \subsubsection{粒子与反粒子}
@@ -331,13 +331,13 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 \par
 替换规则可以给出去掉零点能的全空间哈密顿量为
 \beq \label{complexham}
-\hat{H} = \int \frac{d^3 \vec{p}}{(2\pi)^3} \omega_{\vec{p}} (\hat{b}_{\vec{p}}^\dagger \hat{b}_{\vec{p}} +\hat{c}_{\vec{p}}^\dagger \hat{c}_{\vec{p}}
+\hat{H} = \int \frac{d^3 \vec{p}}{(2\pi)^3} \omega_{\vec{p}} (\hat{b}_{\vec{p}}^\dagger \hat{b}_{\vec{p}} +\hat{c}_{\vec{p}}^\dagger \hat{c}_{\vec{p}})
 \eeq
 很容易看出，哈密顿量和各个粒子数算符间都是对易的，因此在自由场下，正粒子和反粒子数分别守恒。
 \par
 在复自由场的经典场论中，$Q = i \int d^3 \vec{x} (\dot{\psi}^* \psi - \dot{\psi} \psi^*)$为一个守恒量，这可以从诺特定理直接推出，也可以对时间求导，并假定场$\phi$在无穷远处趋于零（或满足一般零边界条件）推出。在量子场论中，带入各个产生湮灭算符的定义和常序规则，化简得到$Q$的算符对应为
 \beq
-\hat{Q} = \hat{N}_b - \hat{N}_c
+\hat{Q} = \hat{N}_c - \hat{N}_b
 \eeq
 也就是说，正粒子数与反粒子数的差为一个常数。这个结论在相互作用的场论中依然成立。
 
