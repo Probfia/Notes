@@ -1,0 +1,158 @@
+\documentclass[a4paper,11pt]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+%\renewcommand{\Omega}{\varOmega}
+\newcommand{\field}{\mathscr{F}}
+\newcommand{\red}{\color{red}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{群的实例和表示论简介}
+\author{Probfia}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{群及其实例}
+\subsection{群的定义}
+简单的说，群是一个集合连同一个运算构成的封闭代数结构。群的弱化为半群，它的定义如下：
+\begin{dfn}[半群]
+设$G$是一个集合，$\cdot$为集合中元素的一个运算，称$(G,\cdot)$构成一个半群。若
+\begin{enumerate}
+\item 封闭性： $\forall a,b \in G,\ a \cdot b \in G$；
+\item 存在单位元： $\exists e \in G, \ \forall a \in G,\ a\cdot e = e \cdot a = a$
+\item 结合律： $\forall a,b,c \in G,\ a\cdot(b\cdot c) = (a \cdot b) \cdot c =$，因此可以将连乘无歧义地记作$a\cdot b\cdot c$。
+\end{enumerate}
+\end{dfn}
+举例来说，全体自然数连同自然加法运算构成半群，单位元为$0$；全体$n$阶方阵构成的集合连同矩阵乘法运算也构成半群，单位元为$n$阶单位阵$E$。一般在不引起歧义的时候将$(G,\cdot)$简记为$G$，并且将运算$a \cdot b$简记成$ab$。
+\par
+群的定义为半群加上逆元的存在性
+\begin{dfn}[群]
+若$(G,\cdot)$为一个半群，称$(G,\cdot)$一个群，若
+\begin{enumerate}
+\item 存在逆元： $\forall a \in G,\ \exists r \in G,\ a\cdot r = r\cdot a = e$，其中$e$为$G$的单位元。
+\end{enumerate}
+\end{dfn}
+举例来说，全体整数连同自然加法运算构成群，单位元为$0$，逆元为某个元素的负；全体可逆$n$阶方阵构成的集合连同矩阵乘法运算也构成群，单位元为$n$阶单位阵$E$，逆元为某个矩阵的逆。上面的例子建议了下面定理的正确性。
+\begin{thm}[逆元的唯一性]
+群$G$中任意元素的逆元唯一，因此可以将$a$的逆元无歧义地记作$a^{-1}$。
+\end{thm}
+证明如下：\par
+\emph{设$r,s$同时为$a$的逆元，则有$e = ar$和$e = sa$，在第一个等式两边左乘$s$得到
+\beq
+s = se = sar = er = r
+\eeq
+}
+\par
+有时候我们会遇到阿贝尔群，它的定义是满足交换律的群
+\begin{dfn}[阿贝尔群]
+称群$G$是一个阿贝尔群，或者说，群$G$是阿贝尔的，或可交换的，若群$(G,\cdot)$满足
+\begin{enumerate}
+\item 交换律： $\forall a,b \in G,\ a\cdot b = b \cdot a$。
+\end{enumerate}
+\end{dfn}
+从上面的例子看出，全体整数构成的群是阿贝尔的，而可逆方阵构成的群则不是。
+
+\subsection{旋转群}
+\subsubsection{SO(2)群}
+我们考虑2维平面对一个向量绕原点旋转的操作。例如将一个向量$\vec{x}$旋转一定角度$\theta$的操作后得到的向量记作$\hat{R}(\theta) \vec{x}$，我们可以对$\hat{R}(\theta) \vec{x}$再次沿另一个角度旋转，得到向量$\hat{R}(\phi) (\hat{R}(\theta) \vec{x})$。但我们知道，旋转两次这个操作也可以通过一次旋转$\hat{R}(\theta + \phi)$完成，因此，我们定义旋转操作的乘法运算
+\beq
+\hat{R}_1 \hat{R}_2, \ \forall \vec{x}\in \reals^2,\ \hat{R}_1 (\hat{R}_2 \vec{x}) = \hat{R}_1 (\hat{R}_2 \vec{x})
+\eeq
+即两个旋转操作的乘积的结果是，先按第二个操作旋转，再按第一个操作旋转。
+\par
+我们看到，旋转操作的乘积依然是旋转操作，再加之，零角度旋转是旋转操作的单位元；每个旋转操作$\hat{R}(\theta)$的逆元就是$\hat{R}(-\theta)$。因此，所有二维旋转操作$\hat{R}$连同它们的乘法运算构成一个群。这个群记作$SO(2)$。此外我们注意到，$SO(2)$事实上是一个阿贝尔群，因为两次旋转的总旋转角度就是两个角度的代数和，而代数和是可交换的。
+\subsubsection{SO(3)群}
+三维空间中绕原点的转动不能仅仅由一个角度定义，还需要一个转动轴$\vec{n}$作为转动方向的表征。我们将一个向量$\vec{x}$沿$\vec{n}$轴（逆时针）转动$\theta$角后得到的向量记作$\hat{R}(\vec{n},\theta) \vec{x}$。两次旋转$\hat{R}(\vec{n_2},\phi) \hat{R}(\vec{n_1},\theta) \vec{x}$事实上可以由一次总的旋转完成（给定一个初末位置，你总能找个一个旋转方法让向量一次就由初位置转到末位置）。仿照之前的乘法定义，我们发现，三维空间中的旋转操作也对乘法运算封闭，且零角度旋转是旋转操作的单位元；每个旋转操作$\hat{R}(\vec{n},\theta)$的逆元就是$\hat{R}(\vec{n},-\theta)$，因此，所有三维空间内的旋转操作构成群，这个群记作$SO(3)$。\par
+与$SO(2)$群不同，我们很容易发现，$SO(3)$是非阿贝尔的。对$\vec{n_1} \not= \vec{n_2}$，显然有$\hat{R}(\vec{n_2},\phi) \hat{R}(\vec{n_1},\theta) \not=  \hat{R}(\vec{n_1},\theta) \hat{R}(\vec{n_2},\phi)$。
+\subsubsection{SO(n)群、子群}
+一般地，$\reals^n$中的旋转操作也构成一个群，这个群称为$SO(n)$群，其中$S$代表special（特殊），$O$代表orthogonal（正交）。其意义将在下一节阐明。一般地，除了之前提到的$n=2$的情况，$SO(n)$群都是非阿贝尔的\footnote{我们不讨论$n=1$的平凡情况}。\par
+任何$n-1$维空间中的旋转操作都可以视作$n$维空间中的旋转操作，即$SO(n-1) \subset SO(n)$。一般地，我们有如下子群定义：
+\begin{dfn}[子群]
+若$(G,\cdot)$为一个群，集合$S \subset G$，称$(S,\cdot)$为$(G,\cdot)$的子群，若$(S,\cdot)$构成群。
+\end{dfn}
+$SO(n)$中除了这种降维的子群外，也有限制旋转角度的子群，例如$SO(2)$中的子群$D_4 = \{ \hat{R}(\theta) \in SO(2) | \theta = n\cdot 90^\circ,\ n \in \ints \}$表征了$90^\circ$的旋转等，这种限制旋转角度的子群在晶体学中十分有用，因为它表征了晶体的旋转对称性。 
+
+\subsection{旋转群的矩阵表示}
+旋转群事实上一个线性变换
+\beq
+\hat{R}: \reals^n \to \reals^n,\ \vec{x} \to \hat{R} \vec{x}
+\eeq
+而线性变换总可以用一个矩阵表示。我们先寻找$SO(2)$群的矩阵表示，设$\vec{x} = x \vec{e}_x + y \vec{e}_y = r\cos \phi \vec{e}_x + r\sin \phi \vec{e}_y$，将它逆时针旋转$\theta$角得到的向量是
+\bea
+\hat{R}(\theta) \vec{x} &= r \cos(\phi + \theta) \vec{e}_x + r \sin(\phi + \theta) \vec{e}_y \\
+&= (r\cos \phi \cos \theta - r \sin \phi \sin \theta)\vec{e}_x + (r \sin \phi \cos \theta + r \sin \theta \cos \phi) \vec{e}_y \\
+&= (x \cos \theta - y \sin \theta) \vec{e}_x + (y \cos \theta + x \sin \theta) \vec{e}_y \\
+&= \begin{pmatrix}
+\cos \theta & - \sin \theta \\
+\sin \theta & \cos \theta
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+\eea
+于是旋转操作的矩阵表示
+\beq
+R(\theta) = \begin{pmatrix}
+\cos \theta & - \sin \theta \\
+\sin \theta & \cos \theta
+\end{pmatrix}
+\eeq
+上式称为$SO(2)$的代表元，它具有以下性质
+\begin{enumerate}
+\item $\det R = 1$
+\item $RR^T = E$
+\end{enumerate}
+满足第二条性质的所有矩阵构成$O(2)$群，即二维正交群；在二维正交群上加上第一条限制就成为了二维特殊正交群。可以想象，二维正交群包括了选择操作和镜像反转操作（$\vec{x} \to -\vec{x}$），而特殊性的要求剔除了镜像反转操作的存在。
+
+\subsection{洛伦兹群及其矩阵表示}
+
+\subsection{量子力学：$SU(n)$群}
+
+\section{旋转群的李代数表示}
+\subsection{李代数}
+\subsection{旋转群的李代数}
+
+\section{表示论简介}
+
+\end{document}
