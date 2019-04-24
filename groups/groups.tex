@@ -24,6 +24,9 @@
 \newcommand{\complexs}{\mathbb{C}}
 \newcommand{\ints}{\mathbb{Z}}
 %\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\diag}{\mathrm{diag \ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
 
 \newtheorem{thm}{定理}[section]
 \newtheorem{axm}{公理}[section]
@@ -59,7 +62,7 @@
 设$G$是一个集合，$\cdot$为集合中元素的一个运算，称$(G,\cdot)$构成一个半群。若
 \begin{enumerate}
 \item 封闭性： $\forall a,b \in G,\ a \cdot b \in G$；
-\item 存在单位元： $\exists e \in G, \ \forall a \in G,\ a\cdot e = e \cdot a = a$
+\item 存在单位元： $\exists e \in G, \ \forall a \in G,\ a\cdot e = e \cdot a = a$；
 \item 结合律： $\forall a,b,c \in G,\ a\cdot(b\cdot c) = (a \cdot b) \cdot c =$，因此可以将连乘无歧义地记作$a\cdot b\cdot c$。
 \end{enumerate}
 \end{dfn}
@@ -93,7 +96,7 @@ s = se = sar = er = r
 从上面的例子看出，全体整数构成的群是阿贝尔的，而可逆方阵构成的群则不是。
 
 \subsection{旋转群}
-\subsubsection{SO(2)群}
+\subsubsection{$SO(2)$群}
 我们考虑2维平面对一个向量绕原点旋转的操作。例如将一个向量$\vec{x}$旋转一定角度$\theta$的操作后得到的向量记作$\hat{R}(\theta) \vec{x}$，我们可以对$\hat{R}(\theta) \vec{x}$再次沿另一个角度旋转，得到向量$\hat{R}(\phi) (\hat{R}(\theta) \vec{x})$。但我们知道，旋转两次这个操作也可以通过一次旋转$\hat{R}(\theta + \phi)$完成，因此，我们定义旋转操作的乘法运算
 \beq
 \hat{R}_1 \hat{R}_2, \ \forall \vec{x}\in \reals^2,\ \hat{R}_1 (\hat{R}_2 \vec{x}) = \hat{R}_1 (\hat{R}_2 \vec{x})
@@ -101,11 +104,11 @@ s = se = sar = er = r
 即两个旋转操作的乘积的结果是，先按第二个操作旋转，再按第一个操作旋转。
 \par
 我们看到，旋转操作的乘积依然是旋转操作，再加之，零角度旋转是旋转操作的单位元；每个旋转操作$\hat{R}(\theta)$的逆元就是$\hat{R}(-\theta)$。因此，所有二维旋转操作$\hat{R}$连同它们的乘法运算构成一个群。这个群记作$SO(2)$。此外我们注意到，$SO(2)$事实上是一个阿贝尔群，因为两次旋转的总旋转角度就是两个角度的代数和，而代数和是可交换的。
-\subsubsection{SO(3)群}
+\subsubsection{$SO(3)$群}
 三维空间中绕原点的转动不能仅仅由一个角度定义，还需要一个转动轴$\vec{n}$作为转动方向的表征。我们将一个向量$\vec{x}$沿$\vec{n}$轴（逆时针）转动$\theta$角后得到的向量记作$\hat{R}(\vec{n},\theta) \vec{x}$。两次旋转$\hat{R}(\vec{n_2},\phi) \hat{R}(\vec{n_1},\theta) \vec{x}$事实上可以由一次总的旋转完成（给定一个初末位置，你总能找个一个旋转方法让向量一次就由初位置转到末位置）。仿照之前的乘法定义，我们发现，三维空间中的旋转操作也对乘法运算封闭，且零角度旋转是旋转操作的单位元；每个旋转操作$\hat{R}(\vec{n},\theta)$的逆元就是$\hat{R}(\vec{n},-\theta)$，因此，所有三维空间内的旋转操作构成群，这个群记作$SO(3)$。\par
 与$SO(2)$群不同，我们很容易发现，$SO(3)$是非阿贝尔的。对$\vec{n_1} \not= \vec{n_2}$，显然有$\hat{R}(\vec{n_2},\phi) \hat{R}(\vec{n_1},\theta) \not=  \hat{R}(\vec{n_1},\theta) \hat{R}(\vec{n_2},\phi)$。
-\subsubsection{SO(n)群、子群}
-一般地，$\reals^n$中的旋转操作也构成一个群，这个群称为$SO(n)$群，其中$S$代表special（特殊），$O$代表orthogonal（正交）。其意义将在下一节阐明。一般地，除了之前提到的$n=2$的情况，$SO(n)$群都是非阿贝尔的\footnote{我们不讨论$n=1$的平凡情况}。\par
+\subsubsection{$SO(n)$群、子群}
+一般地，$\reals^n$中的旋转操作也构成一个群，这个群称为$SO(n)$群，其中$S$代表special（特殊），$O$代表orthogonal（正交）。其意义将在下一节阐明。一般地，除了之前提到的$n=2$的情况，$SO(n)$群都是非阿贝尔的\footnote{我们不讨论$n=1$的平凡情况}。我们稍后给出$n$维空间旋转的完整定义。\par
 任何$n-1$维空间中的旋转操作都可以视作$n$维空间中的旋转操作，即$SO(n-1) \subset SO(n)$。一般地，我们有如下子群定义：
 \begin{dfn}[子群]
 若$(G,\cdot)$为一个群，集合$S \subset G$，称$(S,\cdot)$为$(G,\cdot)$的子群，若$(S,\cdot)$构成群。
@@ -113,7 +116,7 @@ s = se = sar = er = r
 $SO(n)$中除了这种降维的子群外，也有限制旋转角度的子群，例如$SO(2)$中的子群$D_4 = \{ \hat{R}(\theta) \in SO(2) | \theta = n\cdot 90^\circ,\ n \in \ints \}$表征了$90^\circ$的旋转等，这种限制旋转角度的子群在晶体学中十分有用，因为它表征了晶体的旋转对称性。 
 
 \subsection{旋转群的矩阵表示}
-旋转群事实上一个线性变换
+旋转群事实上是一个线性变换
 \beq
 \hat{R}: \reals^n \to \reals^n,\ \vec{x} \to \hat{R} \vec{x}
 \eeq
@@ -143,16 +146,247 @@ R(\theta) = \begin{pmatrix}
 \item $\det R = 1$
 \item $RR^T = E$
 \end{enumerate}
-满足第二条性质的所有矩阵构成$O(2)$群，即二维正交群；在二维正交群上加上第一条限制就成为了二维特殊正交群。可以想象，二维正交群包括了选择操作和镜像反转操作（$\vec{x} \to -\vec{x}$），而特殊性的要求剔除了镜像反转操作的存在。
+满足第二条性质的所有矩阵构成$O(2)$群，即二维正交群；在二维正交群上加上第一条限制就成为了二维特殊正交群。可以想象，二维正交群包括了选择操作和镜像反转操作（$\vec{x} \to -\vec{x}$），而特殊性的要求剔除了镜像反转操作的存在。\par
+我们希望定义$n$维空间中的旋转。可以这样考虑，$n$维空间是一个内积空间，我们希望两个向量按同样方式旋转后的内积保持不变，于是有
+\beq
+x^T y \equiv (x,y)  = (\hat{R} x,\hat{R} y) = x^T R^T R y
+\eeq
+此外我们希望禁止镜像反转操作的存在（这种操作显然也可以使内积不变），于是我们预期$\det R = 1$。这使我们定义$n$维空间中的旋转操作如下
+\begin{dfn}[$n$维空间中的旋转]
+称操作$\hat{R}$是$\reals^n$中的旋转，若在一个$\reals^n$的单位正交基下，$\hat{R}$的矩阵表示$R$满足
+\beq
+R^T R= E
+\eeq
+和
+\beq
+\det R = 1
+\eeq
+\end{dfn}
+旋转变换事实上有主动变换和被动变换两种。之前我们讨论的都是主动变换，在固定坐标架下旋转空间中的向量，得到旋转后向量的新坐标；但有时我们也需要讨论被动变换，在固定向量下旋转坐标架，得到向量在新的坐标架中的坐标。被动变换在物理上的意义其实更加明确，因为向量在坐标变换下不变是物理中的一个基本要求。之后我们的讨论都建立在被动变换的图景上。
 
 \subsection{洛伦兹群及其矩阵表示}
+我们知道，若两个坐标系间的空间坐标轴平行，且在$x$轴上有相对运动速度$v$，则两个坐标系间的洛伦兹变换为
+\beq
+\begin{pmatrix}
+t \\ x \\ y \\ z
+\end{pmatrix}
+=
+\begin{pmatrix}
+\gamma & \gamma v & 0 & 0 \\
+\gamma v & \gamma & 0 & 0  \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+t' \\ x' \\ y' \\ z'
+\end{pmatrix}
+\eeq
+记$ \Lambda_x = \begin{pmatrix}
+\gamma & \gamma v  \\
+\gamma v & \gamma   \\
+\end{pmatrix}$为$x$轴的洛伦兹变换矩阵。但一般的洛伦兹变换应该能够沿任何方向进行而非偏偏选定$x$轴，为此，我们将存在相对运动的那个轴用一个旋转矩阵$R$变到$x$轴上
+\beq
+\begin{pmatrix}
+t' \\ x' \\ y' \\ z'
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0\\
+0 & R\\
+\end{pmatrix}
+\begin{pmatrix}
+t'' \\ x'' \\ y'' \\ z''
+\end{pmatrix}
+\eeq
+于是完整（任意）的洛伦兹变换就是
+\beq
+\begin{pmatrix}
+t \\ x \\ y \\ z
+\end{pmatrix}
+=
+\begin{pmatrix} 
+\Lambda_x & 0\\
+0  & E
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0\\
+0 & R\\
+\end{pmatrix}
+\begin{pmatrix}
+t'' \\ x'' \\ y'' \\ z''
+\end{pmatrix}
+\eeq
+矩阵$\Lambda_x$是$SO(1,1)$群的元素，它使得$\Lambda_x^\mathrm{T} \eta \Lambda_x = \eta$，其中$\eta = \diag(1,-1)$为$1+1$维闵可夫斯基度规，而且有$\det \Lambda_x = 1$。$R$是$SO(3)$群的元素，它使得$R^\mathrm{T} E R = E$，其中$E = \diag (1,1,1)$为三维空间的单位矩阵，也是三维空间的度规。两者的乘积为完整的洛伦兹变换，为$SO(1,3)$群的元素。因此$SO(1,3)$群的自然构造就是$SO(1,3) = SO(1,1) \times SO(3)$。$SO(1,3)$群中的元素$\Lambda$满足$\Lambda^\mathrm{T} \eta \Lambda = \eta$和$\det \Lambda = 1$。第一个条件的分量表示为
+\bea
+\eta_{\rho \sigma} &= (\Lambda^\mathrm{T})^{\ \sigma}_{\rho} \eta_{\sigma \mu} \Lambda^\mu_{\ \nu} \\
+&= \Lambda^\sigma_{\ \rho} \eta_{\sigma \mu} \Lambda^\mu_{\ \nu} 
+\eea
+\par
+说人话，四维时空的洛伦兹变换就是三维空间的转动加上二维时空的洛伦兹变换。
+\par
+我们看到，旋转群和洛伦兹群都是保度规的变换。任何洛伦兹群中的元素都保证坐标变换前后，四维矢量的内积保持不变。这其实是洛伦兹群的抽象定义，它和之前提到的$n$维旋转群的抽象定义一致。
 
-\subsection{量子力学：$SU(n)$群}
+\subsection{量子力学中的自旋：$SU(2)$群}
+\subsubsection{$SU(2)$群}
+在SG实验中，银离子束经过$z$轴梯度磁场后被分解成自旋向上和向下的两束。也就是说，SG装置可以对自旋进行测量，使自旋态塌缩到$\hat{S}_z$的本征态$\mid \up \rangle$和$\mid \down \rangle$，即
+\beq
+\hat{S}_z \mid \up \rangle = \frac{\hbar}{2} \mid \up \rangle
+\eeq
+和
+\beq
+\hat{S}_z \mid \down \rangle = -\frac{\hbar}{2} \mid \down \rangle
+\eeq
+记$\mid \up \rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} $和$\mid \down \rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix} $，可以得到自旋算符$\hat{S}_z$的矩阵表示为
+\beq
+S_z = \frac{\hbar}{2} 
+\begin{pmatrix}
+ 1 & 0 \\
+ 0 & -1 \\
+\end{pmatrix}
+\eeq
+对一个混合态$\begin{pmatrix} a \\ b \end{pmatrix}, \ (|a|^2 + |b|^2 = 1)$进行测量，由于这个混合态不是$\hat{S}_z$的本征态，我们只能计算测得自旋的期望值。量子力学中，（厄米）算符$\hat{A}$对态$\mid \psi \rangle$的期望值定义为$\langle A \rangle = \langle \psi \mid \hat{A} \mid \psi \rangle$。
+\beq
+\langle \hat{S}_z \rangle = (a^*,b^*) \begin{pmatrix}
+ 1 & 0 \\
+ 0 & -1 \\
+\end{pmatrix}
+\begin{pmatrix} a \\ b \end{pmatrix}
+= \frac{\hbar}{2} (|a|^2 - |b|^2)
+\eeq
+概率诠释为，测得自旋向上的概率为$|a|^2$，自旋向下的概率为$|b|^2$。\par
+SG装置也可以安放在$x$轴和$y$轴上，测得$x$轴和$y$轴上的自旋。推广经典力学中角动量的泊松括号关系$[J_i,J_j] = \epsilon_{ijk} J_k$到三个空间方向上的自旋算符$\hat{S}_x$，$\hat{S}_x$，$\hat{S}_z$为$[\hat{S}_x,\hat{S}_y] = i\hbar \hat{S}_z$\footnote{算符间的对易子$[\ ,\ ]$定义为$[\hat{A},\hat{B}] = \hat{A} \hat{B} - \hat{B} \hat{A}$，显然有$[\hat{A},\hat{B}] = - [\hat{B},\hat{A}]$。}，$[\hat{S}_y,\hat{S}_z] = i\hbar \hat{S}_x$和$[\hat{S}_z,\hat{S}_x] = i\hbar \hat{S}_y$。可以验证，下面定义的$S_x$和$S_y$符合上面的对易关系
+\beq
+S_x = \frac{\hbar}{2} \begin{pmatrix}
+ 0 & 1 \\
+ 1 & 0 \\
+\end{pmatrix}
+\eeq
+\beq
+S_y = \frac{\hbar}{2} \begin{pmatrix}
+ 0 & -i \\
+ i & 0 \\
+\end{pmatrix}
+\eeq
+假如让一束银离子通过一个$x$轴方向上的SG装置，将测得银离子在$x$轴方向上的自旋。已知一个自旋混合态$\begin{pmatrix} a \\ b \end{pmatrix}$，为了得到测得$x$自旋向上和向下的概率，需要将这个混合态向$\hat{S}_x$的两个本征矢上正交分解。$S_x$的本征值很容易求到（猜到），为$\pm \frac{\hbar}{2}$，于是得到自旋向上的本征矢
+\beq
+\mid x\up \rangle = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+\eeq
+和自旋向下的本征矢
+\beq
+\mid x\down \rangle = \frac{1}{\sqrt{2}} \begin{pmatrix} -1 \\ 1 \end{pmatrix}
+\eeq
+$\hat{S}_z$和$\hat{S}_x$的本征矢都可以作为自旋空间的一组基。它们之间的基变换关系为
+\beq
+(\mid x\up \rangle, \mid x\down \rangle) =  (\mid z\up \rangle, \mid z\down \rangle) \begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} &  \frac{1}{\sqrt{2}} \end{pmatrix} 
+\eeq
+同理可以算得，$\hat{S}_x$的本征矢到$\hat{S}_y$的本征矢间的变换为
+\beq
+(\mid y\up \rangle, \mid y\down \rangle) =  (\mid z\up \rangle, \mid z\down \rangle) \begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{i}{\sqrt{2}} \\ \frac{i}{\sqrt{2}} &  \frac{1}{\sqrt{2}} \end{pmatrix} 
+\eeq
+由上面两式可以得到
+\beq
+(\mid x\up \rangle, \mid x\down \rangle) = (\mid y\up \rangle, \mid y\down \rangle) \begin{pmatrix} \frac{1+i}{2} & \frac{1-i}{2} \\ \frac{-1-i}{2} &  \frac{1-i}{2} \end{pmatrix}
+\eeq
+我们得到的三个基变换矩阵都满足下面两条性质
+\begin{enumerate}
+\item $\det U = 1$；
+\item $U^\dagger U = E$
+\end{enumerate}
+所有满足上面要求的$n$阶复方阵$U$构成群$SU(n)$，我们上面特别讨论了$SU(2)$群，它表征自旋$1/2$粒子本征态间的基变换关系。
+\subsubsection{$SU(n)$群}
+一般的$SU(n)$群则表征了基矢间的变换，设$\mid a \rangle$为一个量子态，它经过一个基底变换后的矩阵表示为$U \mid a \rangle$，我们希望它的模方保持不变（概率诠释的基本要求），于是有
+\beq
+\langle a \mid U^\dagger U \mid a \rangle = \langle a \mid a \rangle
+\eeq
+也就是
+\beq
+U^\dagger U = E
+\eeq
+此外再加上行列式为1的要求，则构成了$SU(n)$群的一般定义。此外不难看出，$SO(n)$是$SU(n)$的子群。
 
 \section{旋转群的李代数表示}
 \subsection{李代数}
+\begin{dfn}[李代数]
+李代数是一个线性空间$V$和对易子$[\ ,\ ]$构成的代数结构，后者是$V\times V$到$V$上的映射，且满足
+\begin{enumerate}
+\item 反称性：$\forall u,v \in V,\ [u,v] = -[v,u]$；
+\item 雅可比恒等式：$\forall u,v,w \in V,\ [u,[v,w]] + [v,[w,u]] + [w,[u,v]] = 0$。
+\end{enumerate}
+\end{dfn}
+例如$\reals^3$中的向量连同叉乘运算$\vec{a} \times \vec{b} \equiv [\vec{a},\vec{b}]$构成一个李代数。再例如，$n$阶方阵连同对易子运算$[A,B] \equiv AB - BA$也构成一个李代数。
 \subsection{旋转群的李代数}
+\subsubsection{$SO(2)$的无穷小变换}
+我们知道，$SO(2)$中的元素总有代表元
+\beq
+R(\theta) = \begin{pmatrix}
+\cos \theta & - \sin \theta \\
+\sin \theta & \cos \theta
+\end{pmatrix}
+\eeq
+当旋转角$\theta$为一个小量时，展开到1阶，上式为
+\beq
+R(\theta) \simeq \begin{pmatrix}
+1 & - \theta \\
+\theta & 1
+\end{pmatrix}
+\equiv E+ \theta J
+\eeq
+其中$J = \begin{pmatrix} 0 & - 1// 1 & 0 \end{pmatrix}$。这称为二维无穷小旋转。一个向量$\vec{x}$在无穷小旋转下变换为
+\beq
+\hat{R} \vec{x} = (E + \theta J) \vec{x}
+\eeq
+其中$\theta \ll 1$。假如我们要让$\vec{x}$一共旋转有限角度$\theta$，那么，预期上我们可以用$n$个$\theta /n$的无穷小旋转实现这个转动。
+\beq
+R(\theta) = \lim_{n \to \infty} (E + \frac{\theta}{n} J)^n
+\eeq
+极限式与我们学过的实数的指数映射是一致的
+\beq
+e^x \equiv \lim_{n \to \infty} (1 + \frac{x}{n})^n
+\eeq
+于是我们定义矩阵的指数映射
+\beq
+\lim_{n \to \infty} (E + \frac{1}{n} J)^n \equiv e^{ J}
+\eeq
+就有
+\beq
+R(\theta) = e^{\theta \varOmega}
+\eeq
+我们下面先讨论指数映射的一些基本性质。
+\subsubsection{矩阵的指数映射}
+如前所述，任意$n$阶方阵的指数映射定义为$e^A = \lim_{n \to \infty} = (E + \frac{1}{n} A)^n$。按二项式定理展开，并且注意到$E$和$A$对易，得到
+\beq
+e^A= \sum_{n=0}^{\infty} \frac{A^n}{n!}
+\eeq
+其中定义$A^0 = E$。
+\par
+此外，假设$A$可以被对角化为$A = P^{-1} \diag (\lambda_1,\cdots,\lambda_n) P$，就有$A^k = P^{-1} \diag (\lambda_1^k,\cdots ,\lambda_n^k) P$，于是
+\beq
+e^A = P^{-1} \diag (e^{\lambda_1},\cdots,e^{\lambda_n}) P
+\eeq
+此外有以下定理
+\begin{thm}
+如果矩阵$A$和$B$对易，则有$e^{A+B} = e^Ae^B$。
+\end{thm}
+证明如下\par
+\bea
+e^A e^B &= \sum_{n=0}^{\infty} \frac{A^n}{n!} \sum_{m=0}^{\infty} \frac{B^m}{m!} \\
+&= \sum_{m,n = 0} \binom{m+n}{m} A^n B^m     \frac{1}{(m+n)!} \\
+&= \sum_{m+n = 0}^\infty \frac{(A+B)^{m+n}}{(m+n)!} \equiv e^{A+B}
+\eea
+第二行利用了$A$和$B$对易的事实。
 
+\subsubsection{$SO(2)$作为李群及其李代数}
+\emph{李群是谁？}粗略来说，李群是可以被参数化表示的群。$SO(2)$群可以被参数$\theta$表示为$e^{\theta J}$。矩阵$J$可以被表示为
+\beq
+J = \frac{d e^{\theta J}}{d \theta}\bigg|_{\theta = 0}
+\eeq
+这事实上是$SO(2)$的李代数的元素。我们稍后阐释这种说法的合理性，但首先我们看到，李群和李代数间的关系大致如下
+\beq
+\text{李群} = e^{\text{参数} \times \text{李代数}}
+\eeq
+\beq
+\text{李代数} = \frac{d \text{(李群)}}{d \text{(参数)}} \bigg|_{\text{参数} = 0}
+\eeq
 \section{表示论简介}
 
 \end{document}
