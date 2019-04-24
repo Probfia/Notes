@@ -123,6 +123,35 @@ $u(x,t)$服从的方程依然由变分原理给出
 这跟我们在数理方法课上学到的绳振动方程是一样的。
 \par
 把$u$看成一个场，拉格朗日密度给出了$u$关于两个变量$(x,t)$的演化，这就是一个1+1维场论，第一个1代表空间的维度，第二个1代表一维的时间轴。你现在应该明白说分析力学（经典力学）是0+1维场论的原因了。
+\subsection{静电场：$3+0$维场论}
+场也可以不取决与时间而保持静态。考虑一个自由空间中电势$\phi(\vec{x})$的分布，显然这个分布会满足电场能量取极小值。电场的能量为能量密度$u = \frac{1}{2}\epsilon_0 (\vec{\nabla} \phi)^2$对全空间的积分
+\beq
+S[\phi] =\int \frac{1}{2}\epsilon (\vec{\nabla} \phi)^2 d^3 \vec{x}
+\eeq
+上述作用量取极值的条件依然，直接套用之前得到的拉格朗日方程就行了
+\beq
+\vec{\nabla} \cdot \frac{\partial (\frac{1}{2}\epsilon_0 (\vec{\nabla} \phi)^2 d^3 \vec{x})}{\partial (\vec{\nabla} \phi)} = 0
+\eeq
+即
+\beq
+\nabla^2 \phi = 0
+\eeq
+这就是自由空间中电势满足的拉普拉斯方程，与我们的预期相符。
+\par
+当空间中存在电荷分布时，电场能量需要加上电势能$\rho(\vec{x}) \phi$的贡献
+\beq
+S[\phi] =\int [\frac{1}{2}\epsilon_0 (\vec{\nabla} \phi)^2 + \rho \phi] d^3 \vec{x}
+\eeq
+此时的拉格朗日方程为
+\bea
+0 &= \vec{\nabla} \cdot \frac{\partial (\frac{1}{2}\epsilon_0 (\vec{\nabla} \phi)^2 d^3 \vec{x})}{\partial (\vec{\nabla} \phi)} - \frac{\partial (\rho \phi)}{\partial \phi} \\
+&=\epsilon_0 \nabla^2 \phi + \rho
+\eea
+即
+\beq
+\nabla^2 \phi = -\frac{\rho}{\epsilon_0}
+\eeq
+我们又得到了静电场满足的泊松方程。
 
 \section{3+1维场论和诺特定理}
 \subsection{3+1维场论}
@@ -203,7 +232,7 @@ j^0 &= \frac{\partial \lag}{\partial (\partial_t u)} X(u) - F^0 \\
 &= \lambda (\partial_t u \delta t + \partial_x u \delta x) \partial_t u - (\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2) \delta t \\
 &=[\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2] \delta t + \lambda (\partial_t u)(\partial_x u) \delta x \\
 j^1 &= \frac{\partial \lag}{\partial (\partial_x u)} X(u) - F^1 \\
-&= -\lambda a^2 (\partial_x u \delta t + \partial_x u \delta x) \partial_x u - (\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2) \delta x \\
+&= -\lambda a^2 (\partial_t u \delta t + \partial_x u \delta x) \partial_x u - (\frac{1}{2} \lambda (\partial_t u)^2 - \frac{1}{2} a^2 \lambda (\partial_x u)^2) \delta x \\
 &= - \lambda a^2 (\partial_t u)(\partial_x u) \delta t -[\frac{1}{2} \lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2] \delta x 
 \eea
 由于$\delta t$和$\delta x$多多少少是任取的，上式其实隐含了两个守恒流
@@ -226,7 +255,7 @@ T^\mu_{\ \nu} =
 \item[$T^0_{\ 0}$：] $\lambda (\partial_t u)^2 + \frac{1}{2} a^2 \lambda (\partial_x u)^2$就是一小段绳的总能量（除以该段绳长），是绳的能量密度；
 \item[$T^1_{\ 0}$：] $\lambda (\partial_t u)(\partial_x u)$是一小段绳的动量沿绳方向的分量（除以该段绳长），是绳方向上的动量密度，见\cref{p1}；
 \item[$T^0_{\ 1}$：] 只和$T^1_{\ 0}$相差一个常数因子；
-\item[$T^1_{\ 1}$：] 负的能量密度，事实上是某种压强。
+\item[$T^1_{\ 1}$：] 负的能量密度。
 \end{enumerate}
 \cpicn{0.3}{p1}{动量密度图解}
 \par
