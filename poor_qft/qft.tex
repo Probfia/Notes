@@ -24,6 +24,7 @@
 \newcommand{\ham}{\mathcal{H}}
 \newcommand{\diag}{\mathrm{diag}}
 \newcommand{\emptyline}{\\ \ \\}
+\newcommand{\op}{\hat{\mathcal{O}}}
 
 %\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
 \newcommand{\cpic}[2]{
@@ -342,5 +343,47 @@ i &= [\hat{q},\hat{p}] = \frac{-i}{2} [\hat{a}^\dagger + \hat{a},\hat{a}^\dagger
 也就是说，正粒子数与反粒子数的差为一个常数。这个结论在相互作用的场论中依然成立。
 
 \section{传播子和路径积分}
+\subsection{薛定谔绘景和海森堡绘景}
+量子力学有三种绘景：薛定谔绘景、海森堡绘景和相互作用绘景。大致上来讲，薛定谔绘景中的算符保持不变而态随时演化；海森堡绘景则反过来，算符随时间演化而态保持不变。\par
+在薛定谔绘景中，态$|a(t) \rangle$的时间演化遵循薛定谔方程
+\beq
+i \frac{d |a(t) \rangle}{dt} = \hat{H}| a(t) \rangle
+\eeq
+也即
+\beq
+|a(t)\rangle =  e^{- i \hat{H} t} |a(0)\rangle
+\eeq
+\par
+在海森堡绘景中，我们希望时间演化算符$e^{- i \hat{H} t}$从态矢移到算符上。我们希望在两种绘景中，算符的期望值都是相等的，也就是说，若薛定谔绘景下的态和算符分别为$|a(t) \rangle_S$和$\op_S$，海森堡绘景下的态和算符分别为$|a \rangle_H$和$\op_H(t)$，必须有
+\beq
+\langle a(t) |\op_S |a(t) \rangle = \langle a|\op_H(t)|a \rangle
+\eeq
+带入$| a(t) \rangle$的表达式就得到
+\beq
+\op_H(t) = e^{i \hat{H} t} \op_S e^{-i \hat{H} t}
+\eeq
+\subsection{量子力学的路径积分描述}
+在经典的双缝实验中，粒子到达屏上的概率幅是两个可能路径概率幅的和；如果这个屏上有许多孔，而且有许多这样的屏，那么，概率幅依然是所有可能路径上所有概率幅的和。
+\beq
+\text{到达屏的概率幅} = \sum_{\text{所有可能路径}} \text{路径上的概率幅}
+\eeq
+于是就有一个量子力学鬼才出现了，他说，要是我在这个屏上钻无数个孔，然后放无数个屏，会怎么样呢？答案当然与之前相同。
+\beq
+\text{在$T$时间到达屏的概率幅} = \int Dq \text{路径$q(t)$上的概率幅}
+\eeq
+其中$Dq$是路径$q$的权重，具体形式可以求得，但无关紧要。
+\par
+一条路径$q$上的概率幅怎么求得呢？假设一条路径可以被分成$n$个小段，从位置$q_i$到$q_{i+1}$的概率幅为
+\beq
+q_{i+1} = q_i e^{-i \hat{H}(\hat{p},q_i) \frac{T}{n} }
+\eeq
+然后利用一些技巧，可以得到一个相当好记的结果
+\beq
+\text{路径$q(t)$上的概率幅} = e^{i \int L dt}
+\eeq
+其中积分就是路径$q(t)$上的经典作用量。于是在$T$时间从$q_I$到$q_F$的概率幅就是
+\beq
+\langle q_F | q_I \rangle(T) = \int Dq e^{i \int L dt}
+\eeq
 
 \end{document}
