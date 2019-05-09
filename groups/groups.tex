@@ -27,6 +27,9 @@
 \newcommand{\diag}{\mathrm{diag \ }}
 \newcommand{\up}{\uparrow}
 \newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\tr}{\mathrm{tr\ }}
 
 \newtheorem{thm}{定理}[section]
 \newtheorem{axm}{公理}[section]
@@ -48,7 +51,7 @@
 \end{figure}
 }
 
-\title{群的实例和表示论简介}
+\title{群的实例和李代数简介}
 \author{Probfia}
 
 \begin{document}
@@ -57,7 +60,7 @@
 
 \section{群及其实例}
 \subsection{群的定义}
-简单的说，群是一个集合连同一个运算构成的封闭代数结构。群的弱化为半群，它的定义如下：
+简单的说，{\red 群是一个集合连同一个运算构成的封闭代数结构}。群的弱化为半群，它的定义如下：
 \begin{dfn}[半群]
 设$G$是一个集合，$\cdot$为集合中元素的一个运算，称$(G,\cdot)$构成一个半群。若
 \begin{enumerate}
@@ -224,10 +227,26 @@ t'' \\ x'' \\ y'' \\ z''
 \par
 说人话，四维时空的洛伦兹变换就是三维空间的转动加上二维时空的洛伦兹变换。
 \par
-我们看到，旋转群和洛伦兹群都是保度规的变换。任何洛伦兹群中的元素都保证坐标变换前后，四维矢量的内积保持不变。这其实是洛伦兹群的抽象定义，它和之前提到的$n$维旋转群的抽象定义一致。
+我们看到，{\red 旋转群和洛伦兹群都是保度规的变换}。任何洛伦兹群中的元素都保证坐标变换前后，四维矢量的内积保持不变。这其实是洛伦兹群的抽象定义，它和之前提到的$n$维旋转群的抽象定义一致。
 
-\subsection{量子力学中的自旋：$SU(2)$群}
-\subsubsection{$SU(2)$群}
+\subsection{量子力学中基矢变换：$SU(n)$群}
+\subsubsection{$SU(n)$群}
+一般的$SU(n)$群则表征了基矢间的变换，设$\mid a \rangle$为一个量子态，它经过一个基底变换后的矩阵表示为$U \mid a \rangle$，我们希望它的模方保持不变（概率诠释的基本要求），于是有
+\beq
+\langle a \mid U^\dagger U \mid a \rangle = \langle a \mid a \rangle
+\eeq
+也就是
+\beq
+U^\dagger U = E
+\eeq
+此外再加上行列式为1的要求，则构成了$SU(n)$群的一般定义。此外不难看出，$SO(n)$是$SU(n)$的子群。
+\par
+一个例子，在薛定谔图景下的量子力学中，若哈密顿算符不显含时间，则态矢$| \alpha \rangle$的时间演化是
+\beq
+| \alpha , t \rangle =  e^{-\frac{i}{\hbar} \hat{H} t} | \alpha , t=0 \rangle
+\eeq
+其中指数矩阵的定义见后。这里的$e^{-\frac{i}{\hbar} \hat{H} t}$就是一个时间演化算符，它显然是$SU(n)$群的元素。
+\subsubsection{自旋：$SU(2)$群}
 在SG实验中，银离子束经过$z$轴梯度磁场后被分解成自旋向上和向下的两束。也就是说，SG装置可以对自旋进行测量，使自旋态塌缩到$\hat{S}_z$的本征态$\mid \up \rangle$和$\mid \down \rangle$，即
 \beq
 \hat{S}_z \mid \up \rangle = \frac{\hbar}{2} \mid \up \rangle
@@ -293,16 +312,7 @@ $\hat{S}_z$和$\hat{S}_x$的本征矢都可以作为自旋空间的一组基。�
 \item $U^\dagger U = E$
 \end{enumerate}
 所有满足上面要求的$n$阶复方阵$U$构成群$SU(n)$，我们上面特别讨论了$SU(2)$群，它表征自旋$1/2$粒子本征态间的基变换关系。
-\subsubsection{$SU(n)$群}
-一般的$SU(n)$群则表征了基矢间的变换，设$\mid a \rangle$为一个量子态，它经过一个基底变换后的矩阵表示为$U \mid a \rangle$，我们希望它的模方保持不变（概率诠释的基本要求），于是有
-\beq
-\langle a \mid U^\dagger U \mid a \rangle = \langle a \mid a \rangle
-\eeq
-也就是
-\beq
-U^\dagger U = E
-\eeq
-此外再加上行列式为1的要求，则构成了$SU(n)$群的一般定义。此外不难看出，$SO(n)$是$SU(n)$的子群。
+
 
 \section{旋转群的李代数表示}
 \subsection{李代数}
@@ -331,7 +341,7 @@ R(\theta) \simeq \begin{pmatrix}
 \end{pmatrix}
 \equiv E+ \theta J
 \eeq
-其中$J = \begin{pmatrix} 0 & - 1// 1 & 0 \end{pmatrix}$。这称为二维无穷小旋转。一个向量$\vec{x}$在无穷小旋转下变换为
+其中$J = \begin{pmatrix} 0 & - 1\\ 1 & 0 \end{pmatrix}$，称为二维旋转的生成矩阵。这称为二维无穷小旋转。一个向量$\vec{x}$在无穷小旋转下变换为
 \beq
 \hat{R} \vec{x} = (E + \theta J) \vec{x}
 \eeq
@@ -349,7 +359,7 @@ e^x \equiv \lim_{n \to \infty} (1 + \frac{x}{n})^n
 \eeq
 就有
 \beq
-R(\theta) = e^{\theta \varOmega}
+R(\theta) = e^{\theta J}
 \eeq
 我们下面先讨论指数映射的一些基本性质。
 \subsubsection{矩阵的指数映射}
@@ -360,7 +370,7 @@ e^A= \sum_{n=0}^{\infty} \frac{A^n}{n!}
 其中定义$A^0 = E$。
 \par
 此外，假设$A$可以被对角化为$A = P^{-1} \diag (\lambda_1,\cdots,\lambda_n) P$，就有$A^k = P^{-1} \diag (\lambda_1^k,\cdots ,\lambda_n^k) P$，于是
-\beq
+\beq \label{expdia}
 e^A = P^{-1} \diag (e^{\lambda_1},\cdots,e^{\lambda_n}) P
 \eeq
 此外有以下定理
@@ -374,9 +384,15 @@ e^A e^B &= \sum_{n=0}^{\infty} \frac{A^n}{n!} \sum_{m=0}^{\infty} \frac{B^m}{m!}
 &= \sum_{m+n = 0}^\infty \frac{(A+B)^{m+n}}{(m+n)!} \equiv e^{A+B}
 \eea
 第二行利用了$A$和$B$对易的事实。
-
+\begin{thm}
+\beq
+\det e^A= e^{\tr A}
+\eeq
+\end{thm}
+证明只需要利用\cref{expdia}。
 \subsubsection{$SO(2)$作为李群及其李代数}
-\emph{李群是谁？}粗略来说，李群是可以被参数化表示的群。$SO(2)$群可以被参数$\theta$表示为$e^{\theta J}$。矩阵$J$可以被表示为
+\emph{李群是谁？}\par
+粗略来说，李群是可以被参数化表示的群。$SO(2)$群可以被参数$\theta$表示为$e^{\theta J}$。矩阵$J$可以被表示为
 \beq
 J = \frac{d e^{\theta J}}{d \theta}\bigg|_{\theta = 0}
 \eeq
@@ -387,6 +403,49 @@ J = \frac{d e^{\theta J}}{d \theta}\bigg|_{\theta = 0}
 \beq
 \text{李代数} = \frac{d \text{(李群)}}{d \text{(参数)}} \bigg|_{\text{参数} = 0}
 \eeq
-\section{表示论简介}
+\par
+我们没有钦定$J$当李代数的意思。任何$J$的倍数，例如$-J$，$2J$，都可以用来当二维旋转的生成矩阵。但不管他们中的哪个成为生成矩阵，他们都满足
+\beq
+J^T = -J
+\eeq
+也即，所有2阶反对称矩阵都可以所为二阶旋转的生成元。记所有二阶反称矩阵的集合为$\so(2)$，它显然构成一个线性空间，因为任何两个二阶反称矩阵的线性组合还是反称矩阵；定义矩阵对易子$[A,B] = AB - BA$，它显然有$[A,B] = - [B,A]$，且满足雅各比恒等式，且对任意两个反称矩阵的对易子，输出的结果还是反称矩阵。于是，$\so(2)$的确构成了一个具有李代数结构的线性空间。
+\par
+可以看出，$\so(2)$是向量$J$的张成空间，维数是1。$\dim \so(2) = 1$这个结论也可以这样看出，因为$\so(2)$是所有二阶反称阵的集合，而二阶反称阵的自由变元只有1个。
+\subsubsection{$SO(2)$与$U(1)$间的关系，群同构}
+我们知道，复平面$\complexs$上对一个复数$z$的旋转$\theta$角的结果为$ze^{i\theta}$，于是$e^{i\theta}$复数的旋转操作。这建议我们验证，$e^{i\theta}$是否符合$SU(n)$群中元素的一般性质，显然不是。事实上很容易验证，$SU(1)$中只有一个元素：1。$e^{i\theta}$事实上是$U(1)$群的元素。\par
+我们很容易建立$SO(2)$群和$U(1)$间的映射
+\beq
+\varphi : SO(2) \to U(1),\ e^{\theta J} \to e^{i\theta}
+\eeq
+映射$\varphi$是一个一对一的映射（单射），且映满整个$U(1)$集合（满射），也就是说这是一个双射（满且单）。并且它还满足$\varphi(R_1 R_2) = \varphi(R_1) \varphi(R_2)$。
+\par
+一般地有如下定义：
+\begin{dfn}[同构]
+称群$(G,\cdot)$和$(H,\times)$同构，若存在双射$\varphi: G\to H$，满足
+\beq
+\forall g_1,g_2 \in G,\ \varphi(g_1 \cdot g_2) = \varphi(g_1) \times \varphi(g_2)
+\eeq
+群同构记作$G \simeq H$，映射$\varphi$称为同构映射。
+\end{dfn}
+容易想到同构关系的一个例子是$(\reals^+,+)$和$(\reals,\times)$同构，同构映射$\varphi = \ln$。
+\par
+我们看到$SO(2)$与$U(1)$间存在同构关系，这与我们的直觉相符：它们分别代表2维平面上对向量的旋转和复平面上对复数的旋转，由于平面向量与复数间有一一对应关系，这两种操作间也应该有这样的关系。此外可以看到，$U(1)$的李代数$\mathfrak{u}(1)$为虚数单位$i$的张成空间，其维数也是1。线性代数知识告诉我们，两个维数相同的线性空间必然同构与彼此，因此$\mathfrak{u}(1) \simeq \so(2)$。这也侧面暗示了李群$SO(2)$和$U(1)$间的同构关系。
+\par
+我们不加证明地指出，$SO(3)$群和$SU(2)$群也存在同构关系，原因在于，从物理上讲，$SU(2)$群代表了不同方向上的SG装置的自旋本征矢间的旋转关系，而不同方向上的SG装置，又可以由一个$SO(3)$的旋转操作变化而来。
+\subsubsection{$SO(n)$的李代数}
+仿照$SO(2)$中的讨论，假设$n$维空间中的无穷小旋转可以由单位阵加上一个无穷小矩阵，即$R= E + \varOmega$，利用关系$R^\mathrm{T} R= E$，保留到一阶项得到
+\beq
+\varOmega + \varOmega^\mathrm{T} = 0
+\eeq
+$\varOmega$是$n$阶反称方阵，其维数为$\frac{n(n-1)}{2}$。反称方程在矩阵对易子运算下依然是反称的，因此它们构成一个李代数结构$\so (n)$。
+\par
+设$\varOmega$的一组基是$\omega_i$（共$\dim \su(n) = \frac{n(n-1}{2}$个），那么，$SO(n)$群的元素就可以表示为
+\beq
+R = e^{\sum_i \omega_i t_i}
+\eeq
+其中$t_i$是对应的旋转参数。
+\par
+当且仅当$n = 3$时，$\dim \so(n) = 3$。也就是说，3维旋转群的李代数可以由一个3维矢量表征，这个矢量就是所谓的角速度矢量。或者说，只有在三维空间中，旋转才是绕这个空间中的一条轴进行的。
+
 
 \end{document}
