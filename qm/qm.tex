@@ -1,0 +1,204 @@
+\documentclass[a4paper,11pt]{ctexart}
+
+\usepackage{amsmath,amssymb}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,
+            linkcolor=blue,
+		 urlcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+\newcommand{\red}{\color{red}}
+\newcommand{\grandz}{\mathcal{Z}}
+\newcommand{\lagden}{\mathcal{L}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\emptyline}{\\ \ \\}
+\newcommand{\op}{\hat{\mathcal{O}}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\tr}{\mathrm{tr\ }}
+\newcommand{\state}[1]{| #1 \rangle}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{量子力学纲要}
+\author{Probfia}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{形式理论}
+量子力学中的力学量是由厄米算符表示的。
+\subsection{离散谱}
+\subsubsection{态矢}
+物理系统具有许多态，一个态用$|\alpha \rangle$表示，称作态矢。可以定义态矢的加法和数乘运算（作用的数域是复数域$\complexs$），使之构成一个向量空间，称作ket空间，或希尔伯特空间。
+\par
+可观测量由算符表示，一个算符作用在ket空间的态矢上得到一个新的ket空间中的态矢。特别地，给定一个算符$\hat{A}$，存在一些特别的态矢$|a_i\rangle$使得
+\beq
+\hat{A} | a_i \rangle = a_i | a_i \rangle
+\eeq
+这些态矢称为算符$\hat{A}$的本征态，本征态构成ket空间的一组基。
+\par
+定义ket空间中态矢$| \alpha \rangle$的bra对偶为$\langle \alpha |$，且满足$\mu \state{\alpha} + \nu \state{\beta}$的对偶是$\mu^* \langle \alpha | + \nu^* \langle \beta |$。所有的对偶态构成ket空间的对偶空间bra空间。
+\par
+定义态矢$\state{\alpha}$和$\state{\beta}$的内积为$\langle \beta | \alpha \rangle$，它将两个态矢映射到一个复数，且（按向量空间中内积的一般要求）满足单线性性，非退化性和对称性
+\beq
+\langle \beta | \alpha \rangle = \langle \alpha | \beta \rangle^*
+\eeq
+\par
+定义算符$\hat{A}$的共轭$\hat{A}^\dagger$满足态矢$\hat{A} \state{\alpha}$的对偶为$\langle \alpha | \hat{A}^\dagger$。算符间的乘法定义为从右到左以此对态矢的作用。可观测量由厄米算符表示，它的定义是
+\begin{dfn}[厄米算符]
+称算符$\hat{A}$是厄米的(Hermitian)，如果$\hat{A}^\dagger = \hat{A}$。
+\end{dfn}
+可以利用这一定义证明如下定理
+\begin{thm}
+厄米算符的本征值必为实数，各本征矢必彼此正交。
+\end{thm}
+要求可观测量以厄米算符代表的原因就是测量得到的物理量都是实的。\par
+如果一个厄米算符的本征矢间单位正交，即$| a_i \rangle$间满足$\langle a_i | a_j \rangle = \delta_{ij}$，则任何一个态矢都可以展开为
+\beq
+| \alpha \rangle = \sum_i \langle a_i | \alpha \rangle | a_i \rangle
+\eeq
+厄米算符的本征态也称纯态，按上式展开的其他态称为叠加态。
+\par
+态矢的外积$| \alpha \rangle \langle \beta |$为一个算符。可以证明
+\begin{thm}[量子力学的伟大定律]
+若$\{ | a_i \rangle \}$是一个厄米算符的各个本征矢，且它们彼此单位正交，则
+\beq
+\sum_i | a_i \rangle \langle a_i | = \hat{1}
+\eeq
+其中等式右边是恒等算符。
+\end{thm}
+证明在左边和右边分别作用任意的ket矢和bra矢，并利用它们在基下的展开。此外，算符$\hat{A}$可以利用它的本征矢和本征值表示为
+\beq
+\hat{A} = \hat{A} \hat{1} = \hat{A} \sum_i | a_i \rangle \langle a_i | = \sum_i a_i | a_i \rangle \langle a_i |
+\eeq
+\par
+按上面所有给出的运算：算符作用于态矢、态矢内积、态矢外积依顺序写出的表达式称为合法表达式。例如$| \alpha \rangle | \beta \rangle$，$\state{\alpha} \hat{A}$为非法表达式。有如下公理
+\begin{axm}[乘法结合律]
+合法表达式间可以任意加括号。
+\end{axm}
+乘法交换律一般不成立。为此，定义算符$\hat{A}$和$\hat{B}$间的对易子
+\beq
+[\hat{A},\hat{B}] = \hat{A} \hat{B} - \hat{B} \hat{A}
+\eeq
+\begin{dfn}[对易算符]
+称算符$\hat{A}$, $\hat{B}$对易，若$[\hat{A},\hat{B}]=0$。
+\end{dfn}
+在合法表达式中，对易算符可交换顺序。
+
+\subsubsection{矩阵描述}
+当我们选定了ket空间的一组单位正交基$\{ | e_i\rangle \}$后，任何的态矢可以展开为
+\beq
+| \alpha \rangle = \sum_i \langle e_i | \alpha \rangle | e_i \rangle
+\eeq
+其中各个$\langle e_i | \alpha \rangle$可以用一个数组表征，习惯上表示为列向量。
+\par
+对应bra矢可以展开为
+\beq
+\langle \alpha | = \sum_i \langle \alpha | e_i \rangle \langle e_i |
+\eeq
+其中各个$\langle \alpha | e_i \rangle$可以用一个数组表征，习惯上表示为行向量。
+利用恒等式$\sum_i | e_i \rangle \langle e_i | = \hat{1}$，任意的算符$\hat{A}$可以展开为
+\beq
+\hat{A} = \hat{1} \hat{A} \hat{1} = \sum_{i,j} | e_i \rangle \langle e_i | \hat{A} | e_j \rangle \langle e_j |
+\eeq
+所有的$\langle e_i | \hat{A} | e_j \rangle$构成一个$n$阶方阵，为算符在给定基底下的矩阵表示。\par
+厄米算符的矩阵表示必为酉矩阵，因此酉矩阵也称厄米矩阵。证明很简单
+\bea
+\langle e_i | \hat{A} | e_j \rangle &= \langle e_i | \hat{A}^\dagger | e_j \rangle \\
+&= \langle e_i | (\hat{A}^\dagger | e_j \rangle) = (\langle e_j | \hat{A}) | e_i \rangle^* \\
+&=\langle e_j | \hat{A} | e_i \rangle^*
+\eea
+聪明的你能看出每一步的依据何在吗？
+
+\subsubsection{概率诠释}
+量子力学的概率诠释中，若对一个处于$|\alpha \rangle$的态测量算符$\hat{A}$所对应的物理量，态将迅速塌缩到$\hat{A}$对应的某个本征态上，塌缩到$| a_i \rangle$态（测得这个物理量的值为$a_i$）的概率正比于
+\beq
+| \langle a_i | \alpha \rangle |^2 
+\eeq
+为了让正比关系变为等于关系，在概率诠释下，我们要求态是归一的
+\beq
+| \langle \alpha | \alpha \rangle |^2 = 1
+\eeq
+对一个任意的归一态$| \alpha \rangle$测量$\hat{A}$所对应的物理量，所得到的期望值按数学期望的一般定义是
+\bea
+\langle A \rangle_\alpha &= \sum_i a_i | \langle a_i | \alpha \rangle |^2  \\
+&= \sum_i \langle \alpha | a_i \rangle a_i \langle a_i | \alpha \rangle = \langle \alpha \sum_i(a_i | a_i \rangle \langle a_i |) \alpha \rangle \\
+&= \langle \alpha | \hat{A} | \alpha \rangle
+\eea
+非常容易证明，如果$\alpha$是一个本征态，那么期望值就是本征值，与我们的直觉相符。
+
+\subsection{连续谱}
+若一个算符具有无穷多个连续的本征值，ket空间的基也就有不可数无穷多个。幸运的是，在量子力学下，我们可以将之前得到的有限本征值的空间展开直接推广而来。推广的规则是，求和以积分替换；$\delta_{ij}$由狄拉克$\delta$函数替换。
+\par
+因此，如果$\hat{Q}$有无穷个连续的本征值为$q$的本征态$| q \rangle$，伟大定律$\sum_i | a_i \rangle \langle a_i | = \hat{1}$的推广为$\int dq | q \rangle \langle q | = \hat{1}$；正交条件是$\langle q_1 | q_2 \rangle = \delta(q_1 - q_2)$。\par
+由正交条件，任意态$|\alpha \rangle $在基下的展开就是
+\beq
+| \alpha \rangle = \int dq\ \langle q | \alpha \rangle | q \rangle
+\eeq
+\subsubsection{坐标空间波函数}
+我们先将自己局限在一维空间。坐标算符$\hat{x}$表征对粒子$x$坐标的测量，记它的本征矢为$| x \rangle$，那么任意态$\alpha$在坐标本征矢下的展开就是
+\beq
+| \alpha \rangle = \int dx\ \langle x | \alpha \rangle | x \rangle
+\eeq
+等式右边给出坐标空间波函数的定义
+\begin{dfn}[坐标空间波函数]
+称$\langle x | \alpha \rangle$为坐标空间波函数，其中$\langle x |$为单位正交的坐标本征矢。坐标空间波函数记作$\psi_\alpha (x)$。
+\end{dfn}
+态矢的归一化要求坐标空间波函数的归一化
+\begin{thm}[波函数归一化条件]
+若态$| \alpha \rangle$是按$| \langle \alpha | \alpha \rangle |^2$归一的，则坐标空间波函数$\psi_\alpha (x)$必须按下式归一
+\beq
+\int dx\ \psi_\alpha^* (x) \psi_\alpha (x) = 1
+\eeq
+\end{thm}
+证明需要对态矢在坐标本征矢下展开，并利用态矢的归一化条件。
+\subsubsection{无穷小空间平移算符}
+\subsubsection{动量空间波函数}
+\subsubsection{3维坐标空间的推广}
+
+\section{薛定谔方程}
+\subsection{时间演化算符}
+\subsection{薛定谔方程}
+\subsection{海森堡图景}
+
+
+
+
+
+\end{document}
