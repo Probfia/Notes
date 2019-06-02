@@ -1,0 +1,129 @@
+\documentclass[CJK]{beamer}
+\input{macros.tex}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{mhchem}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+
+\newcommand{\bit}{\ \mathrm{bit}}
+\newcommand{\grandz}{\mathcal{Z}}
+\begin{document}
+
+\begin{frame}
+ 
+\begin{center}
+\bch
+\begin{Large}
+{\bf \LARGE 习题}
+
+\skipline
+{\small 我没有答案}
+
+
+\end{Large}
+\skipline
+
+高寒   
+
+
+gaoh26@mail2.sysu.edu.cn 
+
+\ech
+\end{center}
+\end{frame}
+
+
+\section{Lec 1}
+
+\begin{frame}
+\chtitle{1.1.1}
+\bch
+Compute the partition function of a quantum harmonic oscillator with frequency $\omega$
+and energy levels$$E_{n}=\hbar \omega\left(n+\frac{1}{2}\right) \quad n \in \mathbf{Z}$$
+Find the average energy $U$ and entropy $S$ as a function of temperature $T$.\par
+
+\ech
+\end{frame}
+
+\begin{frame}
+\chtitle{1.1.2}
+\bch
+Einstein constructed a simple model of a solid as $N$ atoms, each of which vibrates with
+the same frequency $\omega$. Treating these vibrations as a harmonic oscillator, show that at
+high temperatures, $k_B T \gg \hbar \omega$, the Einstein model correctly predicts the Dulong-Petit
+law for the heat capacity of a solid, $$C_V = 3Nk_B$$ At low temperatures, the heat capacity of many solids is experimentally observed to
+tend to zero as $c_V \sim T^3$. Was Einstein right about this?
+\ech
+\end{frame}
+
+\begin{frame}
+\chtitle{1.2}
+\bch
+A particle moving in one dimension has Hamiltonian $$H=\frac{p^{2}}{2 m}+\lambda q^{4}$$ Show that the heat capacity for a gas of $N$ such particles is $C_V = 3Nk_B/4$. Explainwhy the heat capacity is the same regardless of whether the particles are distinguishable or indistinguishable.
+\ech
+\end{frame}
+
+\begin{frame}
+\chtitle{1.3}
+\bch
+A non-relativistic particle is confined in a spherical container with radii $R$ with potential$$ V(r) = \begin{cases} -h&,\ r<a \\ 0 &,\ a\leq r <R \\ +\infty &,\ r>R\end{cases}$$
+Firstly predict the rough behavior of the pressure for a gas of $N$ such particles as a function of $T$, then determine $P(T)$ by statistics.
+\ech
+\end{frame}
+
+\section{Lec 2}
+\begin{frame}
+\chtitle{2.1}
+\bch
+Show that
+\begin{enumerate}
+\item $$C_P - C_V = T \left(\frac{\partial V}{\partial T}\right)_P \left(\frac{\partial P}{\partial T}\right)_V = - T \left( \frac{\partial V}{\partial T}\right)_P^2 \left( \frac{\partial P}{\partial V}\right)_T$$
+\item $$\pfrac{U}{V}{T} = T \pfrac{P}{T}{V} - P$$
+\item $$\pfrac{U}{P}{T} = -T \pfrac{V}{T}{P} - P \pfrac{V}{P}{T}$$
+\end{enumerate}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\chtitle{2.1}
+\bch
+\begin{enumerate}
+\item[4.] $$\pfrac{C_V}{V}{T} = T \left( \frac{\partial^2 P}{\partial T^2} \right)_V$$
+\item[5.] $$\pfrac{C_P}{P}{T} = -T \left( \frac{\partial^2 V}{\partial T^2} \right)_P$$
+\end{enumerate}
+From equations above, show that for any non-ideal gas with constant $C_V$ and $C_P$, the equation of state can be written as $$ (C_P - C_V) T = (P+a)(V+b)$$ where $a$ and $b$ are constants.
+\ech
+\end{frame}
+
+\begin{frame}
+\chtitle{2.2}
+\bch
+Consider the neutral gas of electrons, protons and Hydrogen. They undergo a reaction as $$ \ce{e- + p+ <=> H}$$ You know from Quantum Mechanics that the Hydrogen atom
+has binding energy $E = -I$ ( where $I = 13.6 \mathrm{\ eV}$). Let the number of Hydrogen atoms
+be $N_{\rm H} = (1-x) N$ and the e number of electrons and protons be $N_{\rm e} = N_{\rm p} = xN$ with $x\in [0,1]$.
+\begin{enumerate}
+\item What is the equilibrium condition for the gas?
+\item From the condition above, show that $$\frac{x^{2}}{1-x}=\frac{V}{N}\left(\frac{m_{\rm e} m_{\rm p}}{2 \pi \hbar^{2} m_{\rm H}}\right)^{3 / 2}\left(k_{B} T\right)^{3 / 2} e^{-I / k_{B} T}$$
+\end{enumerate}
+\ech
+\end{frame}
+
+
+\end{document}
+
+
+
