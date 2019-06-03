@@ -7,7 +7,8 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{cleveref}
-
+\usepackage{float}
+\usepackage[hmargin=1.25in,vmargin=1in]{geometry}
 \crefname{equation}{}{}
 \crefname{figure}{图}{图}
 \crefname{footnote}{注释}{注释}
@@ -20,6 +21,8 @@
 \newcommand{\bit}{\ \mathrm{bit}}
 \newcommand{\red}{\color{red}}
 \newcommand{\grandz}{\mathcal{Z}}
+\newcommand{\Li}[1]{\mathrm{Li}_{#1}}
+\def\pfrac#1#2#3{\left(\frac{\partial #1}{\partial #2}\right)_{#3}}
 
 %\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
 \newcommand{\cpic}[2]{
@@ -31,7 +34,7 @@
 %\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
 \newcommand{\cpicn}[3]
 {
-\begin{figure}[h!]
+\begin{figure}[H]
 \cpic{#1}{#2}
 \caption{#3\label{#2}}
 \end{figure}
@@ -395,15 +398,15 @@ g(E)dE = g(k) dk
 \eeq
 得到
 \bea
-g(E)dE &= g(k(E)) \frac{dk(E)}{dE} dE \\
-&= \frac{V}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
+g(E)dE &= g_s g(k(E)) \frac{dk(E)}{dE} dE \\
+&= \frac{Vg_s}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
 \eea
-于是，单粒子配分函数就是
+其中$g_s$是自旋简并度，对应所有可能的自旋取向。于是，单粒子配分函数就是
 \beq
-Z_1 = \int_{E=0}^\infty e^{-\beta E}\frac{V}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
+Z_1 = \int_{E=0}^\infty e^{-\beta E}\frac{Vg_s}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
 \eeq
 \par
-用上面这个公式处理理想气体，得到的结果与在经典统计一节中将哈密顿量简单取为$H(\vec{p})= \cfrac{\vec{p}^2}{2m}$是一致的（原因在于上面采用的能量本征态连续分布这一近似）。
+用上面这个公式处理理想气体，得到的结果与在经典统计一节中将哈密顿量简单取为$H(\vec{p})= \cfrac{\vec{p}^2}{2m}$是一致的（原因在于上面采用的能量本征态连续分布这一近似）。后面的讨论中，不加说明，我们都忽略自旋，取$g_s = 1$。
 \subsection{巨正则系综}
 量子统计最重要的一点是玻色子和费米子占据能量本征态的不同特性。为了考虑这些特性，需要在巨正则系综下讨论粒子，以体现粒子从外部环境进入，并占据系统的能量本征态的过程（占座位）。巨正则系综固定温度和化学势，而将其他热力学量（包括粒子数）作为变量。巨正则系综下的巨配分函数为
 \beq
@@ -415,6 +418,7 @@ N = \frac{1}{\beta} \frac{\partial \ln \grandz}{\partial \mu}
 \eeq
 如果系统只有一个可能的能量本征态，那么只需要对这个态上的所有可能的粒子数求和。
 \subsection{费米子和玻色子}
+\subsubsection{波色分布和费米分布}
 对费米子，考虑一个能量本征态$|\alpha \rangle$，这个态有两个粒子数本征态：要么有1个粒子，要么没有粒子。这个能量本征态的巨配分函数就是
 \bea
 \grandz_{|\alpha \rangle} &= \sum_{n=0}^1 e^{n\beta(\mu - E_\alpha)} \\
@@ -429,7 +433,7 @@ N_{|\alpha \rangle} &= \frac{1}{\beta} \frac{\partial \ln \grandz_{|\alpha \rang
 这是著名的费米-狄拉克分布。
 \par
 对玻色子，一个态上可以被无数个粒子占据，因此，能量本征态$|\alpha \rangle$的巨配分函数为
-\bea
+\bea \label{bez}
 \grandz_{|\alpha \rangle} &= \sum_{n=0}^\infty e^{n\beta(\mu - E_\alpha)} \\
 &= \frac{1}{1- e^{\beta(\mu - E_\alpha)}}
 \eea
@@ -443,19 +447,161 @@ N_{|\alpha \rangle} &= \frac{1}{\beta} \frac{\partial \ln \grandz_{|\alpha \rang
 \par
 得到这个分布后，需要得到量子气体的巨配分函数。系统的巨配分函数等于每个单态的巨配分函数相乘。我们希望以能量为自变量对所有的态叠加，但我们似乎没有对“连续乘积”定义“积分”。于是我们退而求其次，既然巨配分函数的乘积可乘，那么它们的对数就可加。于是，量子气体的巨配分函数的对数就是
 \bea
-\ln \grandz_1 &= \sum_{|\alpha \rangle}\pm \ln (1 \pm e^{\beta(E_\alpha - \mu)}) \\
+\ln \grandz &= \sum_{|\alpha \rangle}\pm \ln (1 \pm e^{\beta(\mu - E_\alpha )}) \\
 &\text{（以能量为自变量，态密度代表能量微元内的微观态数目）} \\
-&\simeq \int_{E=0}^\infty \pm \ln (1 \pm e^{\beta(E_\alpha - \mu)})g(E)dE \\
+&\simeq \int_{E=0}^\infty \pm \ln (1 \pm e^{\beta(\mu - E)})g(E)dE \\
 & \text{（代入非相对论性能量动量关系下的态密度）} \\
-&=\int_{E=0}^\infty \pm \ln (1 \pm e^{\beta(E_\alpha - \mu)})\frac{V}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
+&=\int_{E=0}^\infty \pm \ln (1 \pm e^{\beta(\mu - E)})\frac{V}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
 \eea
 对玻色子上面的$\pm$取负号，对费米子取正号。不过不管取什么号，这个积分都是非初等的。讨论它的行为需要级数展开后交换求和与积分的次序，最后引入一个叫做多对数函数的很厉害的函数。这里就不多说了，需要明白的思想是如何在这种复杂的情形下应用配分函数。
 \par
 再重申一遍解决这个问题的思路：波矢空间中有很多个能量本征态，这些态彼此不相关，于是系统总的巨配分函数就是这些态的巨配分函数的积，或者总配分函数的对数是这些态的巨配分函数对数的和；每个态上可以有若干个粒子，这可以看作能量本征态的子态，对子态直接求和可以得到单个能量本征态的巨配分函数。
+\subsubsection{波色-爱因斯坦凝聚}
+存在一个温度，使得玻色子几乎全部聚集在基态上，这相当与要求在这个温度$T_c$下，$\mu(T_c) = 0$，这样，玻色子的分布就是
+\beq
+N_{|\alpha \rangle} \simeq \begin{cases} \infty &,\ E_\alpha \simeq 0; \\ 0&,\ E_\alpha > 0. 
+\end{cases}
+\eeq
+\par
+由巨配分函数，玻色子数为（积分做法见附录）
+\bea
+N &= \frac{1}{\beta} \frac{\partial \ln \grandz}{\partial \mu}\\
+&= \frac{V}{4\pi^2} \left(\frac{\sqrt{2m}}{\hbar}\right)^3 \int_{E=0}^\infty \frac{e^{\beta (\mu - E)}}{1 - e^{\beta (\mu - E)}} E^{1/2} dE \\
+&= \frac{V}{4\pi^2} \left(\frac{\sqrt{2mk_B T}}{\hbar} \right)^3 \Gamma \left(\frac{3}{2}\right) \Li{\frac{3}{2}} (e^{\beta \mu}) \\
+&= V \left(\frac{\sqrt{2\pi m k_B T}}{h}\right)^3 \Li{\frac{3}{2}} (e^{\beta \mu})
+\eea
+其中
+\beq
+\Li{s}(x) \equiv \sum_{n=1}^\infty \frac{x^n}{n^s}
+\eeq
+为所谓多对数函数，上面定义式给出的绝对收敛域为$|x|<1$，但它可以进行解析延拓到整个复平面。\par
+要了解波色气体在波色-爱因斯坦凝聚温度附近的行为，需要对$\Li{\frac{3}{2}} (e^{\beta \mu})$在$\mu = 0$附近做展开。{\red 在一次工作中，Zonglin Mo 首先发现了这个展开式}（证明见附录，以后就暂且叫它莫大佬公式）
+\beq
+\Li{s} (e^x) = \sum_{n=0}^\infty \frac{\zeta(s-n)}{n!} x^n
+\eeq
+其中$\zeta(s) \equiv \sum_{n=1}^\infty \frac{1}{n^s}$为黎曼$\zeta$函数。于是
+\beq
+\frac{N}{V} \simeq \left(\frac{\sqrt{2\pi m k_B T}}{h}\right)^3 \left( \zeta \left(\frac{3}{2}\right) -\zeta \left(\frac{1}{2}\right) \frac{\mu}{k_B T}\right)
+\eeq
+于是波色气体的化学势为
+\bea
+\mu(T) &\simeq  \frac{1}{\zeta \left(\frac{1}{2}\right)} \left[ \zeta \left(\frac{3}{2}\right) k_B T - \frac{N}{V} \left( \frac{h}{\sqrt{2\pi m}}\right)^3 \frac{1}{\sqrt{k_B T}} \right] \\
+&\approx 1.481 k_B T - 0.685 \frac{N}{V} \left( \frac{h}{\sqrt{2\pi m}}\right)^3 \frac{1}{\sqrt{k_B T}}
+\eea
+令$\mu = 0$也可以得到波色-爱因斯坦凝聚发生的临界温度
+\beq
+T_c = \frac{h^2}{2\pi m k_B} \left( \frac{N}{2.612V} \right)^{\frac{2}{3}} = 0.084 \frac{h^2}{mk_B} \left( \frac{N}{V}\right)^{\frac{2}{3}}
+\eeq
+当$T<T_c$时，$\mu <0$，但波色气体的化学势不能小于基态能量0，否则会使得\cref{bez}对任何能级都不收敛。从物理上理解，化学势是在系统中再放入一个粒子所需要付出的能量，这个能量显然至少需要不小于基态能量。于是我们不得不认为
+\beq
+\mu(T) \simeq \begin{cases} 0 &,\ T<T_c \\
+1.481 k_B T - 0.685 \cfrac{N}{V} \left( \cfrac{h}{\sqrt{2\pi m}}\right)^3 \cfrac{1}{\sqrt{k_B T}}&,\ T\geq T_c
+\end{cases}
+\eeq
+上式对应的图像如\cref{bec_mu}。
+\cpicn{0.45}{bec_mu}{波色气体的化学势对温度的依赖，取$k_B = h = 2\pi m = 1$。}
+聪明的小朋友马上就看出来了，这里存在一个相变。如果你仔细算出热容，会发现它的一阶导数在$T_c$处不连续，这是一个三级相变（二级相变热容本身不连续）。低于临界温度的相称为{\red 波色-爱因斯坦凝聚相}。
+\subsubsection{费米-狄拉克凝聚}
+当温度足够低时，气体总是倾向于占据低能态，对波色-爱因斯坦分布，这就相当于粒子全部集中于基态，形成波色-爱因斯坦分布；同样的对费米-狄拉克分布，存在一个温度$T_F$，使得化学势等于$\mu(T_F) \equiv E_F$称为{\red 费米能}。低于这个温度时，所有能量低于$E_F$的态都被占满。费米-狄拉克分布退化为
+\beq
+N_{|\alpha \rangle} \simeq \begin{cases} 1 &, \ E < E_F;\\
+0 &,\ E\geq E_F
+\end{cases}
+\eeq
+系统的总粒子数为
+\bea
+N &= \int_{E= 0}^{\infty} g(E) N_E dE \\
+&\simeq \int_{E= 0}^{E_F} \frac{V}{4\pi^2} \left(\frac{\sqrt{2m}}{\hbar}\right)^3 E^{1/2} dE \\
+&=\frac{V}{6\pi^2} \left(\frac{\sqrt{2mE_F}}{\hbar}\right)^3
+\eea
+于是费米能
+\beq
+E_F= \left( \frac{6\pi^2 N}{V} \right)^{\frac{2}{3}} \frac{\hbar^2}{2m}
+\eeq
+对应的温度为$T_F = E_F/k_B$。注意，这里忽略了粒子自旋，如果考虑了自旋，应该将因子$V$改为$Vg_s$（见6.1节）。例如对于电子，费米能的因子6应该修正为3。
+\par
+聪明的小朋友马上能看出来费米-狄拉克凝聚并不是一个相变，因为相变只发生在无穷多粒子体系中，而占据费米面内能级的粒子数总是有限的。
+
+\subsubsection{光子气体}
+光子气体有两个特点，第一，化学势为0；第二，色散关系为完全相对论性的$E = pc$或$\omega = c k$，而非动量的二次函数。此外，光子的有两种可能的偏振（左旋和右旋），对应$g_s = 2$。光子的平动态密度为
+\beq
+g(\omega)d\omega = 2\frac{Vk^2}{2\pi^2} dk = \frac{V\omega^2}{\pi^2 c^3} d\omega
+\eeq
+乘以能量为$\hbar \omega$，化学势为0的波色-爱因斯坦分布因子就得到了光子数密度的频率分布
+\beq
+n(\omega)d\omega = \frac{\omega^2}{\pi^2 c^3}\frac{1}{ e^{\beta\hbar \omega} - 1} d\omega
+\eeq
+能量密度分布为
+\beq
+u(\omega)d\omega = \hbar \omega n(\omega) d\omega = \frac{\hbar \omega^3}{\pi^2 c^3}\frac{1}{ e^{\beta\hbar \omega} - 1} d\omega
+\eeq
+对上式积分可以得到整个光子气体的能量，结果大家都已经耳熟能详了。
+
 \subsection{接近$0\mathrm{\ K}$}
 由于基态与第一激发态间间隔的能量的一个有限值而不是一个无穷小量，当温度降低时，分子的能量可能不足以激发分子的运动，这是经典统计失效的原因（回想热学里对双原子气体热容呈阶梯型上升的解释）。\par
 而当接近绝对零度时，基态上将会集中非常多的粒子，以至于我们不能再近似认为波矢空间中的那些能量本征态连续分布，从而用积分代替求和。至少我们需要估算出基态上的原子数加以修正。在绝对零度时，我们可以想象，所有原子都被冻结在了基态上，从而，整个系统的微观状态数只有这一个。熵，微观状态数的对数，于是就成为了0，这就是热力学第三定律。\par
 我们用配分函数方法计算出的熵总含有一个$\ln T$的依赖项，它在绝对零度处对数发射的性质乍看起来与热力学第三定律相违背。但请记住，我们得到过的配分函数要么是在经典图像下计算的，要么是用到量子统计，但是用积分代替了求和。但根据上面的讨论，在接近绝对零度时，这两个近似手段都悲惨地先后失效了。
+
+\section{偏离平衡态}
+
+\subsection{涨落}
+在正则系综和巨正则系综下，我们都以一个物理量的平均值代替物理量本身，这种方法的合理性我们还没有论证过。其实根据中心极限定理，在粒子数很多的时候这个近似肯定，用脚就能想出来是非常好的，但汪志诚还是想细细讨论。\par
+一个物理量的涨落定义为
+\beq
+\sigma_A = \sqrt{\langle (A - \langle A \rangle )^2 \rangle }
+\eeq
+大家都知道它也可以这样写
+\beq
+\sigma_A = \sqrt{\langle A^2 \rangle - \langle A \rangle^2 }
+\eeq
+在正则系综里，内能的涨落为
+\beq
+\sigma_U = \sqrt{\langle E^2 \rangle - U^2}
+\eeq
+利用$\langle E^2 \rangle = \frac{1}{Z} \sum_i E_i^2 e^{-\beta E_i}$，很容易算出
+\beq
+\sigma_U^2 = \frac{\partial^2 \ln Z}{\partial \beta^2} = \frac{1}{k_B T^2} C_V
+\eeq
+由于$U \sim C_V \sim N$，涨落$\sigma_U \sim \sqrt{N}$，相对涨落\beq 
+\frac{\sigma_U}{U} \sim \frac{1}{\sqrt{N}} 
+\eeq
+因此在热力学极限下，涨落是可以忽略的。
+\par
+其他热力学量的涨落可以如法炮制地推出，也利用热力学第一定律的几个微分表达式也可以得到更多的涨落，例如$dU = TdS - PdV$可以推出
+\beq
+\sigma_S = \frac{\sigma_U + P \sigma_V}{T}
+\eeq
+等等。
+\subsection{动理论}
+动理论基于粒子在相空间中的分布函数。详尽的讨论非常复杂，我们直接给出动理论的核心：玻尔兹曼方程
+\beq
+\frac{\partial f}{\partial t} + \vec{v} \cdot \vec{\nabla} f + \vec{F} \cdot \frac{\partial f}{\partial \vec{p}} = C[f]
+\eeq
+其中$f = f(\vec{q},\vec{p},t)$为单粒子分布函数，它按
+\beq
+\int d^3 \vec{q} d^3 \vec{p}\ f(\vec{q},\vec{p},t) = N
+\eeq
+归一化，$N$为总粒子数。$C[f]$称为碰撞项。如果没有碰撞项，等式差不多就是一个刘维尔定理。但刘维尔定理应该把$N$个粒子全部纳入考虑，讨论$6N$维相空间的分布，这里的相空间是6维的，只考虑单粒子的结果就是碰撞项的产生。\par
+分布函数对动量空间的积分给出粒子在坐标空间的分布密度
+\beq
+\int  d^3 \vec{p}\ f(\vec{q},\vec{p},t) = n(\vec{q},t)
+\eeq
+\par
+但玻尔兹曼方程，{\red 根本没法解}，因此我们常常考虑弛豫时间近似或无碰撞近似。对弛豫时间近似，我们将分布函数$f$写成一个准平衡态分布和一阶修正的形式
+\beq
+f = f_0 + \delta f
+\eeq
+碰撞项为
+\beq
+C[f] = - \frac{\delta f}{\tau}
+\eeq
+其中$\tau$为弛豫时间，而$f_0$，其实本身并不满足无碰撞的玻尔兹曼方程，它完全是人猜出来的，只不过猜的依据是将平衡态的分布函数局域化。
+\par
+无碰撞近似更为简单，它必将引向{\red 细致平衡原理}，这一原理的简单表述是：$\ln f$是一个运动积分。由于运动积分仅有7个，因此它一定能被用能量、动量、角动量表示出来。对称性的考虑要求它只依赖于能量，于是就可以立即推出麦克斯韦分布。
+\par
+碰撞项本身的对称性质可以引出$H$定理，它事实上是热力学第二定律的体现，即平衡态的熵最大，而任何系统在足够长时间后总趋于平衡态。
+
+
 
 \appendix
 \section{伊幸模型的各个细节}
@@ -538,6 +684,46 @@ plot(xvals,nyvals)
 \end{verbatim}
 我的MATLAB是现炒现卖的，欢迎大佬优化代码。
 
+\section{多对数函数}
+\subsection{波色分布的积分}
+在量子统计中频繁遇到这种积分
+\beq
+I = \int_{x=0}^\infty \frac{ze^{-x}}{1 - ze^{-x}} x^{s-1} dx
+\eeq
+这种积分的同一做法是级数展开后交换积分与求和的次序
+\bea
+I &= \int_{x=0}^\infty \frac{ze^{-x}}{1 - ze^{-x}} x^{s-1} dx \\
+&= \int_{x=0}^\infty \sum_{n=0}^\infty \left( ze^{-x}\right)^n x^{s-1} dx\\
+&= \sum_{n=0}^\infty z^n \int_{x=0}^\infty  e^{-nx} x^{s-1} dx\\
+&= \sum_{n=0}^\infty z^n \int_{nx=0}^\infty  \frac{e^{-nx}}{n^s} (nx)^{s-1} d(nx)\\
+&= \sum_{n=0}^\infty \frac{z^n}{n^s} \Gamma(s) \\
+&\equiv \Gamma(s) \Li{s}(z)
+\eea
+其中引入了多对数函数
+\beq
+\Li{s}(z) = \sum_{n=0}^\infty \frac{z^n}{n^s}
+\eeq
+\subsection{多对数函数的基本性质}
+多对数函数有如下几条平凡的性质
+\begin{enumerate}
+\item $\Li{1}(z) = \ln (1 - z)$；
+\item $\Li{s}(0) = 1$；
+\item $\Li{s}(1) = \zeta(s)$，其中$\zeta$为黎曼$\zeta$函数$\zeta(s) \equiv \sum_{n=1}^\infty \frac{1}{n^s}$。
+\end{enumerate}
+根据第三条性质可以得到另一个常用积分的结果
+\beq
+\int_{x=0}^\infty \frac{1}{e^{x} - 1} x^{s-1} dx = \Gamma(s) \zeta(s)
+\eeq
+
+\subsection{莫大佬公式的证明}
+当$z \to 0$时，多对数函数的级数定义就是它的渐近展开式，但当$x \to 0$时，$\Li{s}(e^x)$的展开式十分重要，却不是那么容易求得。Zonglin Mo 给出了下面这个神奇的证明
+\bea
+\Li{s}(e^x) &= \sum_{n=0}^\infty \frac{e^{nx}}{n^s}\\
+&= \sum_{n=0}^\infty \sum_{m = 0}^\infty \frac{(nx)^m}{m! n^s} \\
+&= \sum_{m=0}^\infty \frac{x^m}{m!} \sum_{n=0}^\infty \frac{1}{n^{s-m}} \\
+&= \sum_{m=0}^\infty \frac{\zeta(s-m)}{m!} x^m
+\eea
+上面这个证明有无数个地方可以被数学系的纠出来打，但它就是对的，而且最后结果收敛性比一开始的出发点还要强得多！
 
 
 \end{document}
