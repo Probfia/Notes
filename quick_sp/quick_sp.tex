@@ -45,7 +45,10 @@
 \date{}
 
 \begin{document}
+\begin{titlepage}
 \maketitle
+\cpic{0.07}{hotpot}
+\end{titlepage}
 \tableofcontents
 
 \section{系综与配分函数}
@@ -83,7 +86,7 @@ F= - k_B T \ln Z
 \par
 如果要考虑化学势，只用将配分函数改为巨配分函数。这个问题我们暂不讨论。
 \par
-上面讨论的配分函数都是对单个粒子而言的，通常我们将单粒子配分函数记为$Z_1$。$N$个粒子的配分函数，在粒子数密度不大的情况（通常情况），可以由排列组合的知识得到，是
+如果一个系统可以分为两个相互独立的子系统，则总的配方函数是子系统各自配方函数的积$Z = Z_1 Z_2$；若涉及不可分别性，则需要除以$2!$（或对于$n$的子系统，除$n!$）。一般讨论的配分函数都是对单个粒子而言的，通常我们将单粒子配分函数记为$Z_1$。$N$个粒子的配分函数，在粒子数密度不大的情况（通常情况），可以由排列组合的知识得到，是
 \beq
 Z_N  =\frac{Z_1^N}{N!}
 \eeq
@@ -138,7 +141,11 @@ G(T,P,1) = \frac{1}{N} G(T,P,N)
 \eeq
 其中对角线上的乘积$Xx$，$Yy$具有能量的量纲；当$T$和$V$出现在同侧时，该侧的符号为负。
 \par
-热力学其实是一个非常困难的科目，如果学不懂就建议不要学了。直接从各个统计实例入手会让我们对热力学的各个概念有更深入的认识。仅仅从热力学入手处理问题只是一种唯象理论，它不涉及任何的第一性原理。原则上可以从统计入手得到任何物质的性质，只是当我们在处理某类特别的热学问题时，从热力学入手先获得一般的理论，再将得到的公式从统计角度赋予物性，工作量会小一些。
+热力学其实是一个非常困难的科目，如果学不懂就建议不要学了\footnote{\tiny Thermodynamics is a funny subject. The first time you go through it, you
+don't understand it at all. The second time you go through it, you think
+you understand it, except for one or two small points. The third time you
+go through it, you know you don't understand it, but by that time you are
+used to it, so it doesn't bother you any more. (Arnold Sommerfeld)}。直接从各个统计实例入手会让我们对热力学的各个概念有更深入的认识。仅仅从热力学入手处理问题只是一种唯象理论，它不涉及任何的第一性原理。原则上可以从统计入手得到任何物质的性质，只是当我们在处理某类特别的热学问题时，从热力学入手先获得一般的理论，再将得到的公式从统计角度赋予物性，工作量会小一些。
 
 \section{经典统计和理想气体}
 计算配分函数不是对所有可能的能量$E_n$求和，而是对所有可能的能量本征态$|n\rangle$求和。比如有两个态的能量本征值都是$\epsilon$的话，对应的$e^{-\beta \epsilon}$需要加两次到配分函数上。而如果我们执意要对能量求和，必须做这样的修正
@@ -417,7 +424,7 @@ Z_1 = \int_{E=0}^\infty e^{-\beta E}\frac{Vg_s}{4\pi^2} \left(\frac{\sqrt{2m}}{\
 \beq
 N = \frac{1}{\beta} \frac{\partial \ln \grandz}{\partial \mu}
 \eeq
-如果系统只有一个可能的能量本征态，那么只需要对这个态上的所有可能的粒子数求和。
+如果系统只有一个可能的能量本征态，那么只需要对这个态上的所有可能的粒子数求和。也可以讨论单个态的巨配分函数，这时只用对粒子数求和。
 \subsection{费米子和波色子}
 \subsubsection{波色分布和费米分布}
 对费米子，考虑一个能量本征态$|\alpha \rangle$，这个态有两个粒子数本征态：要么有1个粒子，要么没有粒子。这个能量本征态的巨配分函数就是
@@ -464,7 +471,7 @@ N_{|\alpha \rangle} \simeq \begin{cases} \infty &,\ E_\alpha \simeq 0; \\ 0&,\ E
 \end{cases}
 \eeq
 \par
-由巨配分函数，玻色子数为（积分做法见附录）
+由巨配分函数（也可以直接由波色-爱因斯坦分布乘以能量简并度$g(E)dE$积分算得），玻色子数为（积分做法见附录）
 \bea
 N &= \frac{1}{\beta} \frac{\partial \ln \grandz}{\partial \mu}\\
 &= \frac{V}{4\pi^2} \left(\frac{\sqrt{2m}}{\hbar}\right)^3 \int_{E=0}^\infty \frac{e^{\beta (\mu - E)}}{1 - e^{\beta (\mu - E)}} E^{1/2} dE \\
@@ -608,7 +615,7 @@ f = f_0 + \delta f
 \beq
 C[f] = - \frac{\delta f}{\tau}
 \eeq
-其中$\tau$为弛豫时间，而$f_0$，其实本身并不满足无碰撞的玻尔兹曼方程，它完全是人猜出来的，只不过猜的依据是将平衡态的分布函数局域化。弛豫时间近似的解法一般是做傅里叶变换。
+其中$\tau \sim \sqrt{\frac{m}{T}}$为弛豫时间，而$f_0$，其实本身并不满足无碰撞的玻尔兹曼方程，它完全是人猜出来的，只不过猜的依据是将平衡态的分布函数局域化。弛豫时间近似的解法一般是做傅里叶变换。
 \par
 平衡态下的$f$使得碰撞项为零，它必将引向{\red 细致平衡原理}，这一原理的简单表述是：平衡分布函数的对数$\ln f$是一个运动积分。由于运动积分仅有7个，因此它一定能被用能量、动量、角动量表示出来。对称性的考虑要求它只依赖于能量，于是就可以立即推出麦克斯韦分布。
 \par
@@ -652,6 +659,9 @@ Z &= \sum_{n=0}^N e^{-\beta[\frac{qN}{2}Jm^2 - (Jqm+B)(2n-N)]}\mathrm{C}_N^n\\
 你可以自己调整各个参数的取值，重绘出各个曲线图，并且定性地加以解释。
 \par
 \url{https://github.com/Probfia/Ising_model-average_field}
+\subsection{伊幸切片MC模拟}
+这是统计场论的内容，讨论一个大的伊幸片中平均场随位置的分布$m(\vec{x})$。
+\url{http://physics.weber.edu/thermal/isingPyTk.html}
 
 \section{多对数函数}
 \subsection{波色分布的积分}
@@ -700,6 +710,8 @@ I &= \int_{x=0}^\infty \frac{ze^{-x}}{1 - ze^{-x}} x^{s-1} dx \\
 &= 2\sum_{n=0}^k \frac{\zeta(2k-2n)}{(2n)!} x^{2n} = \zeta(2k) + \frac{1}{2}\zeta(2k-2)x^2 + \cdots - \frac{1}{2(2k)!}x^{2k} \\
 \eea
 其中用到了$\zeta(0) = - \frac{1}{2}$和$\zeta(-2n) = 0$的事实。是不是神奇炸了？物理系学生看到一个式子，从来不管收不收敛，有什么操作就上什么操作。
+
+
 
 
 \end{document}
