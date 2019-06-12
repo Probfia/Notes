@@ -4,7 +4,9 @@
 \usepackage{mhchem}
 \usepackage{color}
 \usepackage{mathrsfs}
-\usepackage{hyperref}
+\usepackage[colorlinks,
+            linkcolor=cyan,
+		 urlcolor=blue]{hyperref}
 \usepackage{graphicx}
 \usepackage{cleveref}
 \usepackage{float}
@@ -40,14 +42,19 @@
 \end{figure}
 }
 
-\title{统计物理速成}
-\author{Probfia}
-\date{}
+\title{\bf 统计物理速成}
+\author{@Probfia}
+\date{Last update: \today}
 
 \begin{document}
 \begin{titlepage}
 \maketitle
 \cpic{0.07}{hotpot}
+
+\vspace{11cm}
+{\centering \small
+\url{https://github.com/Probfia/Notes/tree/master/quick_sp}
+}
 \end{titlepage}
 \tableofcontents
 
@@ -92,6 +99,15 @@ Z_N  =\frac{Z_1^N}{N!}
 \eeq
 
 \section{热力学势}
+首先引用一句喜闻乐见的经典名言：
+\\
+\emph{
+Thermodynamics is a funny subject. The first time you go through it, you
+don't understand it at all. The second time you go through it, you think
+you understand it, except for one or two small points. The third time you
+go through it, you know you don't understand it, but by that time you are
+used to it, so it doesn't bother you any more.}(Arnold Sommerfeld)
+\\
 我总觉得热力学就是一系列数学游戏，虽然它的各个概念其实都有深刻的内涵，不过，初次学习热力学时，就当是在学习一套游戏规则好像也没什么不妥。
 \subsection{焓}
 系统的内能可以用统计方法得出，通过勒让德变换（说白了就是加个$PV$和减个$TS$，我也不知道这个东西为什么有这么好听的名字），可以得到其他三个热力学势。首先讨论焓$H = U + PV$，它的物理意义是等压下{\red 系统放热的潜力}。因为考虑系统固定压强时从$A$态到$B$态的变化，这个变化过程中的系统放热是
@@ -141,13 +157,10 @@ G(T,P,1) = \frac{1}{N} G(T,P,N)
 \eeq
 其中对角线上的乘积$Xx$，$Yy$具有能量的量纲；当$T$和$V$出现在同侧时，该侧的符号为负。
 \par
-热力学其实是一个非常困难的科目，如果学不懂就建议不要学了\footnote{\tiny Thermodynamics is a funny subject. The first time you go through it, you
-don't understand it at all. The second time you go through it, you think
-you understand it, except for one or two small points. The third time you
-go through it, you know you don't understand it, but by that time you are
-used to it, so it doesn't bother you any more. (Arnold Sommerfeld)}。直接从各个统计实例入手会让我们对热力学的各个概念有更深入的认识。仅仅从热力学入手处理问题只是一种唯象理论，它不涉及任何的第一性原理。原则上可以从统计入手得到任何物质的性质，只是当我们在处理某类特别的热学问题时，从热力学入手先获得一般的理论，再将得到的公式从统计角度赋予物性，工作量会小一些。
+热力学其实是一个非常困难的科目，如果学不懂就建议不要学了。直接从各个统计实例入手会让我们对热力学的各个概念有更深入的认识。仅仅从热力学入手处理问题只是一种唯象理论，它不涉及任何的第一性原理。原则上可以从统计入手得到任何物质的性质，只是当我们在处理某类特别的热学问题时，从热力学入手先获得一般的理论，再将得到的公式从统计角度赋予物性，工作量会小一些。
 
-\section{经典统计和理想气体}
+\section{经典统计}
+\subsection{经典图像下的配分函数}
 计算配分函数不是对所有可能的能量$E_n$求和，而是对所有可能的能量本征态$|n\rangle$求和。比如有两个态的能量本征值都是$\epsilon$的话，对应的$e^{-\beta \epsilon}$需要加两次到配分函数上。而如果我们执意要对能量求和，必须做这样的修正
 \beq
 Z = \sum_{E_n} e^{-\beta E_n} g(E_n)
@@ -159,6 +172,12 @@ Z = \sum_{E_n} e^{-\beta E_n} g(E_n)
 Z_1 &= \sum_{(\vec{p},\vec{q})}  e^{-\beta H(\vec{p},\vec{q})} g(H(\vec{p},\vec{q})) \\
 &\simeq \frac{1}{h^3} \int e^{-\beta H(\vec{p},\vec{q})} d^3 \vec{p} d^3 \vec{q}
 \eea
+或者是，如果要考虑粒子间的相互作用，就可以在整个相空间内积分，并除以不可分辨性因子$N!$
+\beq
+Z_N = \frac{1}{h^3} \int \prod_{i=1}^N d^3 \vec{p}_i d^3 \vec{q}_i \ e^{-\beta H(\vec{p}_i,\vec{q}_i)}
+\eeq
+这个配分函数用来计算实际的相互作用气体，见汪志诚书上系综理论的某节。
+\subsection{理想气体}
 考虑这样的哈密顿量
 \beq
 H = f(\vec{p}) + \epsilon_{int}
@@ -220,11 +239,11 @@ G &= F + PV \\
 \beq
 \mu(P,T) = k_B T \ln P + \chi(T)+ \epsilon_{int}
 \eeq
-其中$\chi(T)$是一个只依赖于温度的函数（不依赖于粒子数，粒子数的依赖在这里被包括在对$P$的依赖中了）。$\epsilon_{int}$，一如既往，是分子的内能（主要是化学键中的能量）。
+其中$\chi(T)$是一个只依赖于温度的函数（不依赖于粒子数，粒子数的依赖在这里被包括在对$P$的依赖中了）。$\epsilon_{int}$，一如既往，是分子的“内”能（主要是化学键中的能量）。
 \par
 取$(P,T)$为自由变量是一个良好的选择，因为这两个量都是强度量，用它们描述一个统计物理系统可以很好地摆脱对系统规模的依赖。
 
-\section{化学反应}
+\subsection{化学反应}
 通常我们考虑在恒压下进行的化学反应。一个化学反应可以写成
 \beq
 \sum_i \nu_i \mathrm{A}_i = 0
@@ -371,7 +390,7 @@ m_0 \sim (T_c - T)^{1/2}
 \eeq
 上面的指数$1/2$就是所谓的临界指数（中的一个）。如果你计算了伊幸模型中的临界指数，它们是完全相同的。可以将朗道二级相变理论看成伊幸模型的抽象推广。
 
-\section{量子统计：三言两语}
+\section{量子统计}
 \subsection{平动态密度}
 我们最终考虑量子统计。为了得到各能量本征态来解出配分函数，我们需要解薛定谔方程。To make life easier，我们一般考虑三维无穷深势阱作为分子的容器。体积为$V = L^3$的正方体容器里，允许的波矢为
 \beq
@@ -416,6 +435,7 @@ Z_1 = \int_{E=0}^\infty e^{-\beta E}\frac{Vg_s}{4\pi^2} \left(\frac{\sqrt{2m}}{\
 \par
 用上面这个公式处理理想气体，得到的结果与在经典统计一节中将哈密顿量简单取为$H(\vec{p})= \cfrac{\vec{p}^2}{2m}$是一致的（原因在于上面采用的能量本征态连续分布这一近似）。后面的讨论中，不加说明，我们都忽略自旋，取$g_s = 1$。
 \subsection{巨正则系综}
+\subsubsection{巨配分函数}
 量子统计最重要的一点是玻色子和费米子占据能量本征态的不同特性。为了考虑这些特性，需要在巨正则系综下讨论粒子，以体现粒子从外部环境进入，并占据系统的能量本征态的过程（占座位）。巨正则系综固定温度和化学势，而将其他热力学量（包括粒子数）作为变量。巨正则系综下的巨配分函数为
 \beq
 \grandz = \sum_{|\alpha \rangle}e^{\beta(\mu N_\alpha - E_\alpha)}
@@ -425,6 +445,14 @@ Z_1 = \int_{E=0}^\infty e^{-\beta E}\frac{Vg_s}{4\pi^2} \left(\frac{\sqrt{2m}}{\
 N = \frac{1}{\beta} \frac{\partial \ln \grandz}{\partial \mu}
 \eeq
 如果系统只有一个可能的能量本征态，那么只需要对这个态上的所有可能的粒子数求和。也可以讨论单个态的巨配分函数，这时只用对粒子数求和。
+\subsubsection{三种系综的概括}
+我们有三种系综：
+\begin{enumerate}
+\item 微正则系综：孤立系统，统计性质由$\varOmega(E,V)$给出；
+\item 正则系综：一个泡在固定温度的热浴中的小系统，两者之间交换能量且组成一个孤立系统（火锅和里面的肉），统计性质由配分函数$Z(T,V)$给出；
+\item 巨正则系综：一个泡在固定温度和固定化学势的热浴中的小系统，两者间交换能量和粒子且组成一个孤立系统，统计性质由巨配分函数$\grandz (\mu,T,V)$给出。
+\end{enumerate}
+一个统计实例的计算结果不会随系综的选取而改变，一般选用最方便计算的系综。例如量子统计里，用化学势$\mu$作自变量比用粒子数$N$方便，因此我们这里选用巨正则系综，也即计算巨配分函数。
 \subsection{费米子和波色子}
 \subsubsection{波色分布和费米分布}
 对费米子，考虑一个能量本征态$|\alpha \rangle$，这个态有两个粒子数本征态：要么有1个粒子，要么没有粒子。这个能量本征态的巨配分函数就是
@@ -615,7 +643,7 @@ f = f_0 + \delta f
 \beq
 C[f] = - \frac{\delta f}{\tau}
 \eeq
-其中$\tau \sim \sqrt{\frac{m}{T}}$为弛豫时间，而$f_0$，其实本身并不满足无碰撞的玻尔兹曼方程，它完全是人猜出来的，只不过猜的依据是将平衡态的分布函数局域化。弛豫时间近似的解法一般是做傅里叶变换。
+其中$\tau \sim \sqrt{\frac{m}{T}}$为弛豫时间，而$f_0$，其实本身并不满足无碰撞的玻尔兹曼方程，它完全是人猜出来的，只不过猜的依据是将平衡态的分布函数局域化。弛豫时间近似的解法一般是做傅里叶变换（或者在左边完全忽略$\delta f$，这就只用做一个乘法运算）。
 \par
 平衡态下的$f$使得碰撞项为零，它必将引向{\red 细致平衡原理}，这一原理的简单表述是：平衡分布函数的对数$\ln f$是一个运动积分。由于运动积分仅有7个，因此它一定能被用能量、动量、角动量表示出来。对称性的考虑要求它只依赖于能量，于是就可以立即推出麦克斯韦分布。
 \par
@@ -659,8 +687,8 @@ Z &= \sum_{n=0}^N e^{-\beta[\frac{qN}{2}Jm^2 - (Jqm+B)(2n-N)]}\mathrm{C}_N^n\\
 你可以自己调整各个参数的取值，重绘出各个曲线图，并且定性地加以解释。
 \par
 \url{https://github.com/Probfia/Ising_model-average_field}
-\subsection{伊幸切片MC模拟}
-这是统计场论的内容，讨论一个大的伊幸片中平均场随位置的分布$m(\vec{x})$。
+\par
+这是统计场论的内容，讨论一个大的伊幸片中平均场随位置的分布$m(\vec{x})$。\par
 \url{http://physics.weber.edu/thermal/isingPyTk.html}
 
 \section{多对数函数}
