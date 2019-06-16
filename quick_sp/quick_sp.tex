@@ -519,23 +519,27 @@ N &= \frac{1}{\beta} \frac{\partial \ln \grandz}{\partial \mu}\\
 \beq
 \frac{N}{V} \simeq \left(\frac{\sqrt{2\pi m k_B T}}{h}\right)^3 \left( \zeta \left(\frac{3}{2}\right) -\zeta \left(\frac{1}{2}\right) \frac{\mu}{k_B T}\right)
 \eeq
-于是波色气体的化学势为
+于是波色气体的化学势为\footnote{$\zeta(3/2) = 2.6124$，$\zeta(1/2) = -1.4604$。}
 \bea
 \mu(T) &\simeq  \frac{1}{\zeta \left(\frac{1}{2}\right)} \left[ \zeta \left(\frac{3}{2}\right) k_B T - \frac{N}{V} \left( \frac{h}{\sqrt{2\pi m}}\right)^3 \frac{1}{\sqrt{k_B T}} \right] \\
-&\approx 1.481 k_B T - 0.685 \frac{N}{V} \left( \frac{h}{\sqrt{2\pi m}}\right)^3 \frac{1}{\sqrt{k_B T}}
+&\approx- 1.481 k_B T + 0.685 \frac{N}{V} \left( \frac{h}{\sqrt{2\pi m}}\right)^3 \frac{1}{\sqrt{k_B T}}
 \eea
 令$\mu = 0$也可以得到波色-爱因斯坦凝聚发生的临界温度
 \beq
-T_c = \frac{h^2}{2\pi m k_B} \left( \frac{N}{2.612V} \right)^{\frac{2}{3}} = 0.084 \frac{h^2}{mk_B} \left( \frac{N}{V}\right)^{\frac{2}{3}}
+T_c = \frac{h^2}{2\pi m k_B} \left( \frac{N}{\zeta(3/2)V} \right)^{\frac{2}{3}} = 0.084 \frac{h^2}{mk_B} \left( \frac{N}{V}\right)^{\frac{2}{3}}
 \eeq
-当$T<T_c$时，$\mu <0$，但波色气体的化学势不能小于基态能量0，否则会使得\cref{bez}对任何能级都不收敛。从物理上理解，化学势是在系统中再放入一个粒子所需要付出的能量，这个能量显然至少需要不小于基态能量。于是我们不得不认为
+这一温度的量级为
+\beq
+T_c \sim 0.1 \times \frac{7 \times 10^{-34}}{10^{-27} \times 10^{-23}} \times (10^{24})^(2/3)\mathrm{\ K} \sim 1{\rm \ K}
+\eeq
+当$T>T_c$时，$\mu >0$，但波色气体的化学势不能大于基态能量0，否则会使得\cref{bez}对任何能级都不收敛。于是我们不得不认为
 \beq
 \mu(T) \simeq \begin{cases} 0 &,\ T<T_c \\
-1.481 k_B T - 0.685 \cfrac{N}{V} \left( \cfrac{h}{\sqrt{2\pi m}}\right)^3 \cfrac{1}{\sqrt{k_B T}}&,\ T\geq T_c
+-1.481 k_B T + 0.685 \cfrac{N}{V} \left( \cfrac{h}{\sqrt{2\pi m}}\right)^3 \cfrac{1}{\sqrt{k_B T}}&,\ T\geq T_c
 \end{cases}
 \eeq
 上式对应的图像如\cref{bec_mu}。
-\cpicn{0.45}{bec_mu}{波色气体的化学势对温度的依赖，取$k_B = h = 2\pi m = 1$。}
+\cpicn{0.6}{bec_mu}{波色气体的化学势对温度的依赖，取$k_B = h = 2\pi m = N/V= 1$。}
 聪明的小朋友马上就看出来了，这里存在一个相变。如果你仔细算出热容，会发现它的一阶导数在$T_c$处不连续，这是一个三级相变（二级相变热容本身不连续）。低于临界温度的相称为{\red 波色-爱因斯坦凝聚相}。
 \subsubsection{费米-狄拉克凝聚}
 当温度足够低时，气体总是倾向于占据低能态，对波色-爱因斯坦分布，这就相当于粒子全部集中于基态，形成波色-爱因斯坦分布；同样的对费米-狄拉克分布，存在一个温度$T_F$，使得化学势等于$\mu(T_F) \equiv E_F$称为{\red 费米能}。低于这个温度时，所有能量低于$E_F$的态都被占满。费米-狄拉克分布退化为
