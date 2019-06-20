@@ -489,9 +489,7 @@ N_{|\alpha \rangle} &= \frac{1}{\beta} \frac{\partial \ln \grandz_{|\alpha \rang
 & \text{（代入非相对论性能量动量关系下的态密度）} \\
 &=\int_{E=0}^\infty \pm \ln (1 \pm e^{\beta(\mu - E)})\frac{V}{4\pi^2} (\frac{\sqrt{2m}}{\hbar})^3 E^{1/2} dE
 \eea
-对玻色子上面的$\pm$取负号，对费米子取正号。不过不管取什么号，这个积分都是非初等的。讨论它的行为需要级数展开后交换求和与积分的次序，最后引入一个叫做多对数函数的很厉害的函数。这里就不多说了，需要明白的思想是如何在这种复杂的情形下应用配分函数。
-\par
-再重申一遍解决这个问题的思路：波矢空间中有很多个能量本征态，这些态彼此不相关，于是系统总的巨配分函数就是这些态的巨配分函数的积，或者总配分函数的对数是这些态的巨配分函数对数的和；每个态上可以有若干个粒子，这可以看作能量本征态的子态，对子态直接求和可以得到单个能量本征态的巨配分函数。
+对玻色子上面的$\pm$取负号，对费米子取正号。不过不管取什么号，这个积分都是非初等的。讨论它的行为需要级数展开后交换求和与积分的次序，最后引入一个叫做多对数函数的很厉害的函数。
 \subsubsection{波色-爱因斯坦凝聚}
 存在一个温度，使得玻色子几乎全部聚集在基态上，这相当与要求在这个温度$T_c$下，$\mu(T_c) = 0$，这样，玻色子的分布就是
 \beq
@@ -530,9 +528,9 @@ T_c = \frac{h^2}{2\pi m k_B} \left( \frac{N}{\zeta(3/2)V} \right)^{\frac{2}{3}} 
 \eeq
 这一温度的量级为
 \beq
-T_c \sim 0.1 \times \frac{7 \times 10^{-34}}{10^{-27} \times 10^{-23}} \times (10^{24})^(2/3)\mathrm{\ K} \sim 1{\rm \ K}
+T_c \sim 0.1 \times \frac{7 \times 10^{-34}}{10^{-27} \times 10^{-23}} \times (10^{24})^{2/3}\mathrm{\ K} \sim 1{\rm \ K}
 \eeq
-当$T>T_c$时，$\mu >0$，但波色气体的化学势不能大于基态能量0，否则会使得\cref{bez}对任何能级都不收敛。于是我们不得不认为
+当$T<T_c$时，$\mu >0$，但波色气体的化学势不能大于基态能量0，否则会使得\cref{bez}对任何能级都不收敛。于是我们不得不认为
 \beq
 \mu(T) \simeq \begin{cases} 0 &,\ T<T_c \\
 -1.481 k_B T + 0.685 \cfrac{N}{V} \left( \cfrac{h}{\sqrt{2\pi m}}\right)^3 \cfrac{1}{\sqrt{k_B T}}&,\ T\geq T_c
@@ -687,7 +685,7 @@ Z &= \sum_{n=0}^N e^{-\beta[\frac{qN}{2}Jm^2 - (Jqm+B)(2n-N)]}\mathrm{C}_N^n\\
 &= e^{-\beta \frac{qN}{2}Jm^2}2^N\cosh^N\beta(Jqm+B)
 \eea
 第三个等号用到了二项式定理。
-\subsection{数值计算$m$行为的MATLAB代码}
+\subsection{平均场理论及其MATLAB实现}
 你可以自己调整各个参数的取值，重绘出各个曲线图，并且定性地加以解释。
 \par
 \url{https://github.com/Probfia/Ising_model-average_field}
