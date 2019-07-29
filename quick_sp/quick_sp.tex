@@ -699,7 +699,7 @@ Z &= \sum_{n=0}^N e^{-\beta[\frac{qN}{2}Jm^2 - (Jqm+B)(2n-N)]}\mathrm{C}_N^n\\
 \beq
 I = \int_{x=0}^\infty \frac{ze^{-x}}{1 - ze^{-x}} x^{s-1} dx
 \eeq
-这种积分的同一做法是级数展开后交换积分与求和的次序
+这种积分的统一做法是级数展开后交换积分与求和的次序
 \bea
 I &= \int_{x=0}^\infty \frac{ze^{-x}}{1 - ze^{-x}} x^{s-1} dx \\
 &= \int_{x=0}^\infty \sum_{n=0}^\infty \left( ze^{-x}\right)^n x^{s-1} dx\\
@@ -727,9 +727,9 @@ I &= \int_{x=0}^\infty \frac{ze^{-x}}{1 - ze^{-x}} x^{s-1} dx \\
 \subsection{莫大佬公式的证明}
 当$z \to 0$时，多对数函数的级数定义就是它的渐近展开式，但当$x \to 0$时，$\Li{s}(e^x)$的展开式十分重要，却不是那么容易求得。Zonglin Mo 给出了下面这个神奇的证明
 \bea
-\Li{s}(e^x) &= \sum_{n=0}^\infty \frac{e^{nx}}{n^s}\\
-&= \sum_{n=0}^\infty \sum_{m = 0}^\infty \frac{(nx)^m}{m! n^s} \\
-&= \sum_{m=0}^\infty \frac{x^m}{m!} \sum_{n=0}^\infty \frac{1}{n^{s-m}} \\
+\Li{s}(e^x) &= \sum_{n=1}^\infty \frac{e^{nx}}{n^s}\\
+&= \sum_{n=1}^\infty \sum_{m = 0}^\infty \frac{(nx)^m}{m! n^s} \\
+&= \sum_{m=0}^\infty \frac{x^m}{m!} \sum_{n=1}^\infty \frac{1}{n^{s-m}} \\
 &= \sum_{m=0}^\infty \frac{\zeta(s-m)}{m!} x^m
 \eea
 上面这个证明有无数个地方可以被数学系的纠出来打，但它就是对的，而且最后结果收敛性比一开始的出发点还要强得多！\par
