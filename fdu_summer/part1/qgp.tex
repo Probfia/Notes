@@ -121,6 +121,61 @@ I_3 = \frac{1}{2} \lambda_3,\quad Y = \frac{1}{\sqrt{3}} \lambda_8
 \cpicn{0.8}{wd}{夸克三种味的weight diagram.}
 \par
 但在历史上，发现一些重子和介子由3个或2个完全相同的夸克组成，例如$\Delta^{++} = (uuu)$。这违背了泡利不相容原理。为了解决这一问题，只能给夸克额外增加一个称为色的自由度，色有三种，分别为红，绿，蓝三色（及其反色）。
+\par
+引入色后，为了构造强相互作用的理论，类比电到电荷的过程，将色推广到色荷，最终可以写出量子色动力学的拉氏量
+\beq
+\mathcal{L}_{\mathrm{QCD}}=\overline{\psi}_{i}\left(i \gamma^{\mu}\left(D_{\mu}\right)_{i j}-m \delta_{i j}\right) \psi_{j}-\frac{1}{4} G_{\mu \nu}^{a} G_{a}^{\mu \nu}
+\eeq
+量子色动力学有几个基本特性，其中一个是色荷禁闭，即我们没法观察到非色中性物质的存在。色荷禁闭的特征尺度大致随能标增大而增大，也就是说，在高能标下会发生去禁闭的现象。这一现象可以由熵与稳定的关系表征。在低温下，$S/T^3 \sim O(1)$；而在高温下，$S/T^3 \sim O(N^2)$，这说明高温下存在额外自由度，这就是由去禁闭的色荷贡献的。
+\par
+在$(\rho,T)$平面上作出QCD物质的存在状态，可以得到所谓的QCD相图如\cref{qcdpd}。
+\cpicn{0.9}{qcdpd}{QCD相图示意}
+可以看到，为了实现去禁闭，可以通过高温和高压两种手段实现，高温可以通过重离子碰撞实现，也是早期宇宙对应的情形；而高压情形则存在于致密天体中。
+
+\section{Relativistic quantum mechanics and field theory}
+\subsection{相对论性量子力学}
+回忆非相对论性量子力学基本方程-薛定谔方程的建立：首先我们有色散关系
+\beq
+E = \frac{\vec{p}^2}{2m}
+\eeq
+此后，将可观测量分别用算符代替，$E \to i \frac{\partial}{\partial t}$，$\vec{p} \to -i \vec{\nabla}$，两边作用波函数$\psi$，就得到了薛定谔方程
+\beq
+-\frac{1}{2m} \vec{\nabla}^2 \psi = i \frac{\partial \psi}{\partial t}
+\eeq
+薛定谔方程显然不是相对论协变的，为了得到一个相对论性的量子力学方程，最简单的考虑是利用相对论色散关系
+\beq
+E^2 = \vec{p}^2 + m^2
+\eeq
+利用之前的替换原则就得到
+\beq
+-\frac{\partial^2 \psi}{\partial t^2} = - \vec{\nabla}^2 \psi + m^2 \psi
+\eeq
+这称为KG方程（克莱因-高登方程），但它存在一些问题，首先态矢本身不足以确定系统的动力学演化，必须加入其一阶导数；其次，$|\psi|^2$非正定，使得概率诠释失效。
+\par
+为了解决这些问题，狄拉克提出，让$E = \vec{\alpha} \cdot \vec{p} + \beta m$，且上式作平方时能够恢复到相对论色散关系，即
+\beq
+E^2 = \alpha^i p_i \alpha^j p_j + (\alpha^i \beta + \beta \alpha^i)p_i + \beta^2 m^2 \equiv p_i p_j \delta^{ij} + m^2
+\eeq
+于是有
+\bea
+\{ \alpha^i,\alpha^j \} &= 2\delta^{ij} \\
+\{\alpha^i,\beta\} &= 0 \\
+\beta^2 &= 1
+\eea
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
 
