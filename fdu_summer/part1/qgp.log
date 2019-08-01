@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.7.19)  30 JUL 2019 23:00
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.7.19)  1 AUG 2019 09:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -658,87 +658,87 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 ) (./qgp.aux)
 \openout1 = `qgp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 53.
+LaTeX Info: Redefining \selectfont on input line 54.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
 \symlegacymaths=\mathgroup5
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 53.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 53.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 53.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 53.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 53.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 53.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 53.
-LaTeX Font Info:    Redeclaring math accent \check on input line 53.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 53.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 53.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 53.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 53.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 53.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 54.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 54.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 54.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 54.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 54.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 54.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 54.
+LaTeX Font Info:    Redeclaring math accent \check on input line 54.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 54.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 54.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 54.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 54.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 53.
+(Font)              `operators' in the math version `normal' on input line 54.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 53.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 54.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 53.
+(Font)              `operators' in the math version `bold' on input line 54.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 53.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 54.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 53.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 53.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 53.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 53.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 53.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 54.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/bx/n on input line 53.
+(Font)                  TU/lmr/m/n --> TU/lmr/bx/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/bx/it on input line 53.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/bx/it on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 53.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 53.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 54.
 \AtBeginShipoutBox=\box61
-Package hyperref Info: Link coloring ON on input line 53.
+Package hyperref Info: Link coloring ON on input line 54.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -748,54 +748,78 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count298
 )
-LaTeX Info: Redefining \ref on input line 53.
-LaTeX Info: Redefining \pageref on input line 53.
-LaTeX Info: Redefining \nameref on input line 53.
+LaTeX Info: Redefining \ref on input line 54.
+LaTeX Info: Redefining \pageref on input line 54.
+LaTeX Info: Redefining \nameref on input line 54.
 
 (./qgp.out) (./qgp.out)
 \@outlinefile=\write3
 \openout3 = `qgp.out'.
 
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 55.
 
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 56.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) (./qgp.toc)
+)
+
+Package hyperref Warning: old toc file detected, not used; run LaTeX again.
+
 \tf@toc=\write4
 \openout4 = `qgp.toc'.
-
 
 [1
 
 ] [2]
+
+LaTeX Warning: Reference `wd' on page 1 undefined on input line 121.
+
 File: wd.png Graphic file (type bmp)
 <wd.png>
 
-Overfull \hbox (9.39948pt too wide) in paragraph at lines 121--121
+Overfull \hbox (9.39948pt too wide) in paragraph at lines 122--122
  [] 
  []
 
 [3]
+
+LaTeX Warning: Reference `qcdpd' on page 1 undefined on input line 132.
+
 File: qcdpd.png Graphic file (type bmp)
 <qcdpd.png>
- [4] [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 180.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 180.
+[4] [5] [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
+ [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
  (./qgp.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 180.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 180.
-Package rerunfilecheck Info: File `qgp.out' has not changed.
-(rerunfilecheck)             Checksum: 5D45C24D60A3A0BE68DE0CE58C2CCF8C.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 180.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 222.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
+
+
+Package rerunfilecheck Warning: File `qgp.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `qgp.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E
+(rerunfilecheck)             After:  5D45C24D60A3A0BE68DE0CE58C2CCF8C.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 222.
  ) 
 Here is how much of TeX's memory you used:
- 25771 strings out of 492916
- 533970 string characters out of 6133345
- 620722 words of memory out of 5000000
- 29625 multiletter control sequences out of 15000+600000
+ 25767 strings out of 492916
+ 533932 string characters out of 6133345
+ 619722 words of memory out of 5000000
+ 29623 multiletter control sequences out of 15000+600000
  538173 words of font info for 66 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,13n,73p,413b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on qgp.pdf (6 pages).
+Output written on qgp.pdf (7 pages).

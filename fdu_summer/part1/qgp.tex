@@ -29,6 +29,7 @@
 \newcommand{\op}{\hat{\mathcal{O}}}
 \newcommand{\unit}[1]{\mathrm{\ #1}}
 \newcommand{\tr}{\mathrm{tr \ }}
+\newcommand{\mt}[4]{\begin{pmatrix}#1 & #2 \\ #3 & #4 \end{pmatrix}}
 
 %\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
 \newcommand{\cpic}[2]{
@@ -126,7 +127,7 @@ I_3 = \frac{1}{2} \lambda_3,\quad Y = \frac{1}{\sqrt{3}} \lambda_8
 \beq
 \mathcal{L}_{\mathrm{QCD}}=\overline{\psi}_{i}\left(i \gamma^{\mu}\left(D_{\mu}\right)_{i j}-m \delta_{i j}\right) \psi_{j}-\frac{1}{4} G_{\mu \nu}^{a} G_{a}^{\mu \nu}
 \eeq
-量子色动力学有几个基本特性，其中一个是色荷禁闭，即我们没法观察到非色中性物质的存在。色荷禁闭的特征尺度大致随能标增大而增大，也就是说，在高能标下会发生去禁闭的现象。这一现象可以由熵与稳定的关系表征。在低温下，$S/T^3 \sim O(1)$；而在高温下，$S/T^3 \sim O(N^2)$，这说明高温下存在额外自由度，这就是由去禁闭的色荷贡献的。
+量子色动力学有几个基本特性，其中一个是色荷禁闭，即我们没法观察到非色中性物质的存在。色荷禁闭的特征尺度大致随能标增大而增大，也就是说，在高能标下会发生去禁闭的现象。这一现象可以由熵与稳定的关系表征。在低温下，$S/T^3 \sim O(1)$；而在高温下，$S/T^3 \sim O(N_c^2)$，其中色荷数$N_c = 3$。这说明高温下存在额外自由度，这就是由去禁闭的色荷贡献的。
 \par
 在$(\rho,T)$平面上作出QCD物质的存在状态，可以得到所谓的QCD相图如\cref{qcdpd}。
 \cpicn{0.9}{qcdpd}{QCD相图示意}
@@ -162,8 +163,49 @@ E^2 = \alpha^i p_i \alpha^j p_j + (\alpha^i \beta + \beta \alpha^i)p_i + \beta^2
 \{\alpha^i,\beta\} &= 0 \\
 \beta^2 &= 1
 \eea
-
-
+狄拉克找到了一组解。首先选取$\beta = \begin{pmatrix} 1 & 0 \\ 0 &-1 \end{pmatrix}\equiv \gamma^0$，其中1为2阶单位阵；再在方程$E = \vec{\alpha} \cdot \vec{p} + \beta m$两边左乘$\beta$得到$\beta (E-m) + \beta \vec{\alpha} \cdot \vec{p}$，发现，$\vec{\alpha} = \beta \vec{\gamma} = \begin{pmatrix} \vec{\sigma} & 0 \\ 0 & \vec{\sigma} \end{pmatrix}$是满足条件的解。
+\par
+把能量和动量换成算符，就得到了狄拉克方程
+\beq
+(i\gamma^\mu \partial_\mu - m) \psi = 0
+\eeq
+其中$\gamma^0 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$，$\gamma^i = \begin{pmatrix} 0 & \sigma^i \\ - \sigma^i & 0 \end{pmatrix}$。
+\par
+代入试探解$\psi = \begin{pmatrix} u \\ v \end{pmatrix} e^{i(\vec{p} \cdot \vec{x} - Et)}$，得到
+\beq
+\begin{pmatrix}
+E-m & -\vec{\sigma} \cdot \vec{p} \\
+\vec{\sigma} \cdot \vec{p} & -E-m
+\end{pmatrix}
+\begin{pmatrix} u \\ v \end{pmatrix}
+=0
+\eeq
+非平凡的$u,v$要求前面矩阵的行列式为0，即
+\beq
+m^2 - E^2 + \left( \vec{p} \cdot \vec{\sigma}\right)^2 = m^2 - E^2 + \vec{p}^2 = 0
+\eeq
+有两个本征解
+\beq
+E = \pm \sqrt{m^2 + \vec{p}^2}
+\eeq
+为了研究正负号的意义，利用相对论协变性改在粒子静止的坐标系中研究。此时的本征方程变为
+\beq
+\mt{E-m}{0}{0}{-E-m} \begin{pmatrix} u \\ v \end{pmatrix} = 0
+\eeq
+正能量对应的本征矢为$u = (u,0)^T$，负能量对应的本征矢为$v = (0,v)^T$。\par
+定义角动量算符$\vec{L} = \vec{r} \times \vec{p}$，它与哈密顿量的对易关系为
+\bea
+[H,\vec{L}] &= [\vec{\alpha} \cdot \vec{p} + \beta m , \vec{r} \times \vec{p}] = [\vec{\alpha} \cdot \vec{p},\vec{r} \times \vec{p}] \\ &= \vec{\alpha} [\vec{p},\vec{r} \times \vec{p}] = \vec{\alpha} \cdot \left( [\vec{p} ,\vec{r}] \times \vec{p} + \vec{r} \times [\vec{p}, \vec{p}] \right) \\
+&= -i \vec{\alpha} \times \vec{p}
+\eea
+也即角动量非守恒量。
+\par
+定义自旋算符$\vec{\Sigma} = \mt{0}{\vec{\sigma}}{0}{\vec{\sigma}} = -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha}$，有
+\bea
+[H,\vec{\Sigma}] &= [\vec{\alpha} \cdot \vec{p} , -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha}]  = \left( \alpha_1 \alpha_2 \alpha_3 \alpha^l \alpha^i - \alpha^i \alpha_1 \alpha_2 \alpha_3 \alpha_l \right) \partial_i \\
+&=2i \vec{\alpha} \cdot \vec{p}
+\eea
+于是，量$\vec{L} + \frac{1}{2} \vec{\Sigma}$是一个守恒量，物理意义为自旋角动量加轨道角动量守恒；也表明，狄拉克方程描述的是自旋$1/2$粒子。此外，自旋与动量的点乘$\\vec{\Sigma} \cdot \vec{p} = -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha} \cdot \vec{p}$显然也与哈密顿量对易。定义$h = \vec{\Sigma}\cdot \vec{p} / | \vec{p} |$，其本征值为$\pm1$，物理意义对应右旋（自旋动量同向）与左旋（自旋动量反向）粒子。
 
 
 
