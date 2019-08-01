@@ -207,7 +207,31 @@ E = \pm \sqrt{m^2 + \vec{p}^2}
 \eea
 于是，量$\vec{L} + \frac{1}{2} \vec{\Sigma}$是一个守恒量，物理意义为自旋角动量加轨道角动量守恒；也表明，狄拉克方程描述的是自旋$1/2$粒子。此外，自旋与动量的点乘$\\vec{\Sigma} \cdot \vec{p} = -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha} \cdot \vec{p}$显然也与哈密顿量对易。可以算出，这个矩阵的本征值为$\pm |\vec{p}|$。定义螺旋度（helicity）算符$h = \vec{\Sigma}\cdot \vec{p} / | \vec{p} |$，其本征值为$\pm 1$，物理意义对应右旋（自旋动量同向）与左旋（自旋动量反向）粒子。4个本征态中，恰好有2个正粒子态，其本征值分别为$1$和$-1$；另外两个负粒子态的本征值也分别为$1$和$-1$，按之前的记号，它们分别记为$u_\uparrow$，$u_\downarrow$，$v_\uparrow$和$v_\downarrow$。螺旋度不是洛伦兹不变的。
 \par
-定义$\gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3 = \mt{0}{1}{1}{0}$。进一步定义左旋投影算符$P_L = \frac{1}{2} \left( 1 - \gamma^5 \right) = \frac{1}{2}\mt{1}{-1}{-1}{1}$和右旋投影算符$P_R = \frac{1}{2} \left( 1 - \gamma^5 \right) = \frac{1}{2} \mt{1}{1}{1}{1}$。
+定义$\gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3 = \mt{0}{1}{1}{0}$。进一步定义左旋投影算符$P_L = \frac{1}{2} \left( 1 - \gamma^5 \right) = \frac{1}{2}\mt{1}{-1}{-1}{1}$和右旋投影算符$P_R = \frac{1}{2} \left( 1 - \gamma^5 \right) = \frac{1}{2} \mt{1}{1}{1}{1}$。$\gamma^5$称为手征（charity ）算符，其本征态称为左手态和右手态。在零质量极限下，螺旋与手征重合（不知道为什么）。
+\subsection{场论}
+拉格朗日函数
+\beq
+\lag(\phi, \partial_\mu \phi)
+\eeq
+对应作用量$S[\phi] = \int d^4 x \lag$。最小作用量原理给出欧拉-拉格朗日方程为
+\beq
+\partial_\mu \frac{\partial \lag}{\partial \left( \partial_\mu \phi \right)} - \frac{\partial \lag}{\partial \phi} = 0
+\eeq
+\par
+把KG方程和狄拉克方程中的波函数重新诠释成一个经典场，把方程看成一个欧拉-拉格朗日方程，两种场对应的拉格朗日函数就是
+\beq
+\lag_{KG} = \frac{1}{2} \partial^2 \phi - \frac{1}{2} m^2 \phi^2
+\eeq
+\beq
+\lag_{Dirac} = \bar{\psi} \left(i \gamma^\mu \partial_\mu - m\right)\psi
+\eeq
+其中$\bar{\psi} = \psi^\dagger \gamma^0$为旋量的狄拉克共轭。
+\par
+KG场和狄拉克场都具有全局$U(1)$不变性，也即拉格朗日函数在变换$\phi \to e^{i \theta} \phi$下不变。$\theta$是一个常数。在狄拉克场中，为了将全局$U(1)$不变性推广到局域$U(1)$不变性，对拉格朗日函数必须做如下修改
+\beq
+\partial_\mu \to D_\mu = \partial_\mu + ieA_\mu
+\eeq
+其中$A_\mu$是一个规范场，在变换$A_\mu \to A_\mu + \partial_\mu \theta(x)$下不变。
 
 
 
