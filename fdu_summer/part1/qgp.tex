@@ -200,12 +200,14 @@ E = \pm \sqrt{m^2 + \vec{p}^2}
 \eea
 也即角动量非守恒量。
 \par
-定义自旋算符$\vec{\Sigma} = \mt{0}{\vec{\sigma}}{0}{\vec{\sigma}} = -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha}$，有
+定义自旋算符$\vec{\Sigma} = \mt{\vec{\sigma}}{0}{0}{\vec{\sigma}} = -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha}$，有
 \bea
 [H,\vec{\Sigma}] &= [\vec{\alpha} \cdot \vec{p} , -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha}]  = \left( \alpha_1 \alpha_2 \alpha_3 \alpha^l \alpha^i - \alpha^i \alpha_1 \alpha_2 \alpha_3 \alpha_l \right) \partial_i \\
 &=2i \vec{\alpha} \cdot \vec{p}
 \eea
-于是，量$\vec{L} + \frac{1}{2} \vec{\Sigma}$是一个守恒量，物理意义为自旋角动量加轨道角动量守恒；也表明，狄拉克方程描述的是自旋$1/2$粒子。此外，自旋与动量的点乘$\\vec{\Sigma} \cdot \vec{p} = -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha} \cdot \vec{p}$显然也与哈密顿量对易。定义$h = \vec{\Sigma}\cdot \vec{p} / | \vec{p} |$，其本征值为$\pm1$，物理意义对应右旋（自旋动量同向）与左旋（自旋动量反向）粒子。
+于是，量$\vec{L} + \frac{1}{2} \vec{\Sigma}$是一个守恒量，物理意义为自旋角动量加轨道角动量守恒；也表明，狄拉克方程描述的是自旋$1/2$粒子。此外，自旋与动量的点乘$\\vec{\Sigma} \cdot \vec{p} = -i \alpha_1 \alpha_2 \alpha_3 \vec{\alpha} \cdot \vec{p}$显然也与哈密顿量对易。可以算出，这个矩阵的本征值为$\pm |\vec{p}|$。定义螺旋度（helicity）算符$h = \vec{\Sigma}\cdot \vec{p} / | \vec{p} |$，其本征值为$\pm 1$，物理意义对应右旋（自旋动量同向）与左旋（自旋动量反向）粒子。4个本征态中，恰好有2个正粒子态，其本征值分别为$1$和$-1$；另外两个负粒子态的本征值也分别为$1$和$-1$，按之前的记号，它们分别记为$u_\uparrow$，$u_\downarrow$，$v_\uparrow$和$v_\downarrow$。螺旋度不是洛伦兹不变的。
+\par
+定义$\gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3 = \mt{0}{1}{1}{0}$。进一步定义左旋投影算符$P_L = \frac{1}{2} \left( 1 - \gamma^5 \right) = \frac{1}{2}\mt{1}{-1}{-1}{1}$和右旋投影算符$P_R = \frac{1}{2} \left( 1 - \gamma^5 \right) = \frac{1}{2} \mt{1}{1}{1}{1}$。
 
 
 
