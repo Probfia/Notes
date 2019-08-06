@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Physics of quark-gluon plasma and high-energy heavy-ion collisions}{2}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}Introduction}{2}{subsection.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.1}群论简介}{2}{subsubsection.1.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.2}夸克的味对称性与色荷}{3}{subsubsection.1.1.2}% 
+\contentsline {subsection}{\numberline {1.2}Relativistic quantum mechanics and field theory}{6}{subsection.1.2}% 
+\contentsline {subsubsection}{\numberline {1.2.1}相对论性量子力学}{6}{subsubsection.1.2.1}% 
+\contentsline {subsubsection}{\numberline {1.2.2}场论}{8}{subsubsection.1.2.2}% 
+\contentsline {subsubsection}{\numberline {1.2.3}诺特定理}{9}{subsubsection.1.2.3}% 
+\contentsline {subsection}{\numberline {1.3}QCD}{10}{subsection.1.3}% 
+\contentsline {subsection}{\numberline {1.4}QGP}{10}{subsection.1.4}% 
+\contentsline {subsection}{\numberline {1.5}More on QGP}{10}{subsection.1.5}% 
+\contentsline {section}{\numberline {2}Introduction to nuclear physics}{10}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Introduction}{10}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Nuclear Models}{10}{subsection.2.2}% 
+\contentsline {subsubsection}{\numberline {2.2.1}液滴模型}{10}{subsubsection.2.2.1}% 
