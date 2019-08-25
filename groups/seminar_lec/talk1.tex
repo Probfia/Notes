@@ -1,0 +1,278 @@
+\documentclass[CJK]{beamer}
+\input{macros.tex}
+
+
+\newcommand{\field}{\mathscr{F}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\diag}{\mathrm{diag \ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\tr}{\mathrm{tr\ }}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{Group Theory\\ Talk 1-Introduction and Discrete Groups}
+  \author{}
+  \date{}
+
+
+\begin{document}
+
+\begin{frame}
+ 
+\begin{center}
+\begin{Large}
+\bch
+Group Theory
+
+{\vskip 0.3in}
+
+Talk 1-Introduction and Discrete Groups
+
+\ech
+\end{Large}
+\end{center}
+
+\vskip 0.2in
+
+
+\end{frame}
+
+\section{Book}
+\begin{frame}
+\frametitle{\bch 参考书目 \ech}
+\bch
+\emph{Group Theory in a Nutshell for Physicists} by Anthony Zee. （徐一鸿）
+\cpic{0.2}{book}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch A. Zee \ech}
+\bch
+为什么徐一鸿的英文姓是Zee？
+\cpic{0.3}{az.jpg}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 上海阿拉 \ech}
+\bch
+因为他是上海人。上海人就要说上海话。
+\cpic{0.06}{zikawei}
+\ech
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+\frametitle{\bch 对称性 \ech}
+\bch
+观察下面几组图形，不要思考，直观地给每组中图形的对称性排个序。
+\cpic{0.2}{sym1}
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 对称性 \ech}
+\bch
+
+\begin{center}
+\includegraphics[scale=0.2]{tri}
+\includegraphics[scale=0.2]{etri}
+\includegraphics[scale=0.2]{rtri}
+\end{center}
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 对称性 \ech}
+\bch
+
+\begin{center}
+\includegraphics[scale=0.15]{rtri}
+\includegraphics[scale=0.15]{pol4}
+\includegraphics[scale=0.15]{pol6}
+\includegraphics[scale=0.15]{pol24}
+\includegraphics[scale=0.15]{cir}
+\end{center}
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 衡量对称性 \ech}
+\bch
+直观告诉我们可以分出图形对称性的大小，如何定量地去衡量？
+\par
+设$T$是对图形的一个操作，例如镜面反射和旋转。称$T$是一个对称操作，若操作前后图形完全相同。
+\par
+定义操作的乘法$T_2 T_1$为先进行操作1，再进行操作2。显然，若$T_1$和$T_2$都是对称操作，则它们的乘积也是对称操作（封闭性）。
+\par
+记$I$为恒等操作（什么也不干），$R(\theta)$为逆时针旋转$\theta$角的操作，$r$为沿竖直的轴镜像反射的操作，则对三角形组，
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 三角形的对称群 \ech}
+\bch
+记$I$为恒等操作（什么也不干），$R(\theta)$为逆时针旋转$\theta$角的操作，$r$为沿竖直的轴镜像反射的操作，则对三角形组，它们各自的所有对称操作组成的集合为
+\begin{center}
+\includegraphics[scale=0.2]{tri}
+\includegraphics[scale=0.2]{etri}
+\includegraphics[scale=0.2]{rtri}
+\end{center}
+$$S_1 = \{I\},\ S_2 = \{I,r\},\ S_3 =\{I,r,R(120^\circ),R(240^\circ)\}$$
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 正多边形的对称群 \ech}
+\bch
+
+\begin{center}
+\includegraphics[scale=0.15]{rtri}
+\includegraphics[scale=0.15]{pol4}
+\includegraphics[scale=0.15]{pol6}
+\includegraphics[scale=0.15]{pol24}
+\includegraphics[scale=0.15]{cir}
+\end{center}
+正多边形各自的所有对称操作组成的集合为
+$$D_3 = \{I,r,R(120^\circ),R(240^\circ)\},\ D_4 = \{I,r,R(90^\circ),R(180^\circ),R(270^\circ)\},$$
+$$D_6 = \{I,r,R(60^\circ),R(120^\circ),R(180^\circ),R(240^\circ),R(300^\circ)\},$$
+$$D_{24} = \{I,r,R(n\cdot 15^\circ)\},\ D_\infty = \{I,r,R(\theta) \ for \ \theta \in [0^\circ, 360^\circ)\}$$
+
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 对称群 \ech}
+\bch
+群是一个对”乘法“封闭的集合$G$，并且
+\begin{itemize}
+\item 存在单位元$I \in G$，使得对任意其他元素$g \in G$都有$gI = Ig = g$。
+\item 存在逆元，对任意元素$g \in G$，都存在一个元素$g^{-1}\in g$使得$g^{-1} g = gg^{-1} = I$。
+\item 结合律成立，即$g_1 ( g_2 g_3) = (g_1 g_2) g_3$，乘法可以保持顺序任意加括号。
+\end{itemize}
+试验证刚才讨论的对称操作组成的集合满足上面三个要求，因此这些集合称为是图形对应的对称群。 
+\par
+经验总结：对称性越“大”，对称群的元素就越多。
+
+\ech
+\end{frame}
+
+\section{Groups}
+\begin{frame}
+\frametitle{\bch 阿贝尔群 \ech}
+\bch
+群中的乘法一般是不可交换的，即$gh \not= hg$。若$gh = hg$对任意元素都成立，则成这个群是可交换群或阿贝尔群。
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 群的其他实例 \ech}
+\bch
+三维空间旋转群$SO(3)$非阿贝尔，但$SO(2)$是阿贝尔群。
+\par
+方程$z^N = 1$在复数域的所有根构成阿贝尔群$Z_N$。
+\par
+$U(1) = \{ e^{i \theta},\ \theta \in \reals\}$是$Z_N$的连续极限。
+\par
+所有的$n$阶方阵构成非阿贝尔群。
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 子群 \ech}
+\bch
+若（从集合角度）$H\subset G$，且$H$也构成群，则称$H$是$G$的子群。\par
+例如$SO(2) \subset SO(3)$。
+
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 直积 \ech}
+\bch
+两集合$F$和$G$的笛卡尔积定义为$F\otimes G = \{ (f,g) | f\in F, g \in G\}$。
+若$F$和$G$构成群，则可以定义$F\otimes G$上的乘法
+$$ (f_1,g_1) (f_2,g_2) = (f_1 f_2,g_1,g_2)$$
+这显然使得$F\otimes G$构成群，称为$F$和$G$的直积。
+\par
+显然有$F,G \subset F \otimes G$。
+
+
+\ech
+\end{frame}
+
+
+
+\section{Discrete Groups}
+\begin{frame}
+\frametitle{\bch 离散群 \ech}
+\bch
+元素有限的群称为有限群，元素可数的群称为离散群。\par
+循环群，拉格朗日定理，乘法表，表示论，同态和同构，不变子群和派生子群，商群......看黑板，懒得打字了。
+
+
+\ech
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
