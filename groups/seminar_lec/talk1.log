@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.19)  26 AUG 2019 09:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.19)  26 AUG 2019 19:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -879,84 +879,84 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 (./talk1.aux)
 \openout1 = `talk1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1024,7 +1024,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box73
-Package hyperref Info: Link coloring OFF on input line 43.
+Package hyperref Info: Link coloring OFF on input line 44.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1034,66 +1034,66 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count178
 )
-LaTeX Info: Redefining \ref on input line 43.
-LaTeX Info: Redefining \pageref on input line 43.
-LaTeX Info: Redefining \nameref on input line 43.
+LaTeX Info: Redefining \ref on input line 44.
+LaTeX Info: Redefining \pageref on input line 44.
+LaTeX Info: Redefining \nameref on input line 44.
 
 (./talk1.out) (./talk1.out)
 \@outlinefile=\write7
 \openout7 = `talk1.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 43.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 44.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 43.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 44.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 43.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 43.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 43.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 43.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 44.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 43.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 43.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 43.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 44.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 43.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 43.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 43.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 44.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 43.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 43.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 44.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 43.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 44.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 43.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 43.
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 43.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 43.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 43.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 44.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 43.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 43.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 44.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 44.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
 (Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 4
-3.
+4.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 
-43.
+44.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 43.
+ut line 44.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/translator/translator-basic-dicti
 onary-English.dict
@@ -1137,7 +1137,7 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-LaTeX Font Info:    Try loading font information for C70+gbsn on input line 72.
+LaTeX Font Info:    Try loading font information for C70+gbsn on input line 73.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/c70gbsn.fd
@@ -1146,10 +1146,10 @@ File: c70gbsn.fd 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/c70gbsn.fdx
 File: c70gbsn.fdx 2015/04/18 4.8.4
 )
-<book.png, id=116, 677.53125pt x 879.285pt>
+<book.png, id=131, 677.53125pt x 879.285pt>
 File: book.png Graphic file (type png)
 <use book.png>
-Package pdftex.def Info: book.png  used on input line 72.
+Package pdftex.def Info: book.png  used on input line 73.
 (pdftex.def)             Requested size: 135.50385pt x 175.85388pt.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -1158,7 +1158,7 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-Overfull \vbox (4.30269pt too high) detected at line 72
+Overfull \vbox (4.30269pt too high) detected at line 73
  []
 
 [2
@@ -1170,10 +1170,10 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<az.jpg, id=179, 557.08125pt x 554.07pt>
+<az.jpg, id=200, 557.08125pt x 554.07pt>
 File: az.jpg Graphic file (type jpg)
 <use az.jpg>
-Package pdftex.def Info: az.jpg  used on input line 80.
+Package pdftex.def Info: az.jpg  used on input line 81.
 (pdftex.def)             Requested size: 167.12566pt x 166.22227pt.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -1191,10 +1191,10 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<zikawei.jpeg, id=235, 4047.12pt x 3035.34pt>
+<zikawei.jpeg, id=260, 4047.12pt x 3035.34pt>
 File: zikawei.jpeg Graphic file (type jpg)
 <use zikawei.jpeg>
-Package pdftex.def Info: zikawei.jpeg  used on input line 88.
+Package pdftex.def Info: zikawei.jpeg  used on input line 89.
 (pdftex.def)             Requested size: 242.81673pt x 182.11253pt.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -1212,13 +1212,13 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<sym1.jpeg, id=300, 1586.92876pt x 510.90875pt>
+<sym1.jpeg, id=331, 1586.92876pt x 510.90875pt>
 File: sym1.jpeg Graphic file (type jpg)
 <use sym1.jpeg>
-Package pdftex.def Info: sym1.jpeg  used on input line 98.
+Package pdftex.def Info: sym1.jpeg  used on input line 99.
 (pdftex.def)             Requested size: 317.38013pt x 102.17993pt.
 
-Overfull \hbox (10.09026pt too wide) in paragraph at lines 98--98
+Overfull \hbox (10.09026pt too wide) in paragraph at lines 99--99
  [] 
  []
 
@@ -1237,20 +1237,20 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<tri.png, id=356, 337.26pt x 433.62pt>
+<tri.png, id=391, 337.26pt x 433.62pt>
 File: tri.png Graphic file (type png)
 <use tri.png>
-Package pdftex.def Info: tri.png  used on input line 111.
+Package pdftex.def Info: tri.png  used on input line 112.
 (pdftex.def)             Requested size: 67.45079pt x 86.72246pt.
-<etri.png, id=357, 294.09875pt x 433.62pt>
+<etri.png, id=392, 294.09875pt x 433.62pt>
 File: etri.png Graphic file (type png)
 <use etri.png>
-Package pdftex.def Info: etri.png  used on input line 111.
+Package pdftex.def Info: etri.png  used on input line 112.
 (pdftex.def)             Requested size: 58.8187pt x 86.72246pt.
-<rtri.png, id=358, 361.35pt x 314.17375pt>
+<rtri.png, id=393, 361.35pt x 314.17375pt>
 File: rtri.png Graphic file (type png)
 <use rtri.png>
-Package pdftex.def Info: rtri.png  used on input line 111.
+Package pdftex.def Info: rtri.png  used on input line 112.
 (pdftex.def)             Requested size: 72.2687pt x 62.83363pt.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -1270,27 +1270,27 @@ File: UTF8.chr 2015/04/18 4.8.4
 )
 File: rtri.png Graphic file (type png)
 <use rtri.png>
-Package pdftex.def Info: rtri.png  used on input line 126.
+Package pdftex.def Info: rtri.png  used on input line 127.
 (pdftex.def)             Requested size: 54.20015pt x 47.12402pt.
-<pol4.png, id=403, 361.35pt x 360.34625pt>
+<pol4.png, id=444, 361.35pt x 360.34625pt>
 File: pol4.png Graphic file (type png)
 <use pol4.png>
-Package pdftex.def Info: pol4.png  used on input line 126.
+Package pdftex.def Info: pol4.png  used on input line 127.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
-<pol6.png, id=404, 361.35pt x 314.17375pt>
+<pol6.png, id=445, 361.35pt x 314.17375pt>
 File: pol6.png Graphic file (type png)
 <use pol6.png>
-Package pdftex.def Info: pol6.png  used on input line 126.
+Package pdftex.def Info: pol6.png  used on input line 127.
 (pdftex.def)             Requested size: 54.20015pt x 47.12402pt.
-<pol24.png, id=405, 361.35pt x 360.34625pt>
+<pol24.png, id=446, 361.35pt x 360.34625pt>
 File: pol24.png Graphic file (type png)
 <use pol24.png>
-Package pdftex.def Info: pol24.png  used on input line 126.
+Package pdftex.def Info: pol24.png  used on input line 127.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
-<cir.png, id=406, 361.35pt x 360.34625pt>
+<cir.png, id=447, 361.35pt x 360.34625pt>
 File: cir.png Graphic file (type png)
 <use cir.png>
-Package pdftex.def Info: cir.png  used on input line 126.
+Package pdftex.def Info: cir.png  used on input line 127.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -1309,18 +1309,18 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 139.
+LaTeX Font Info:    Try loading font information for U+msa on input line 140.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 139.
+LaTeX Font Info:    Try loading font information for U+msb on input line 140.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 139.
+line 140.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
@@ -1341,15 +1341,15 @@ File: UTF8.chr 2015/04/18 4.8.4
 )
 File: tri.png Graphic file (type png)
 <use tri.png>
-Package pdftex.def Info: tri.png  used on input line 153.
+Package pdftex.def Info: tri.png  used on input line 154.
 (pdftex.def)             Requested size: 67.45079pt x 86.72246pt.
 File: etri.png Graphic file (type png)
 <use etri.png>
-Package pdftex.def Info: etri.png  used on input line 153.
+Package pdftex.def Info: etri.png  used on input line 154.
 (pdftex.def)             Requested size: 58.8187pt x 86.72246pt.
 File: rtri.png Graphic file (type png)
 <use rtri.png>
-Package pdftex.def Info: rtri.png  used on input line 153.
+Package pdftex.def Info: rtri.png  used on input line 154.
 (pdftex.def)             Requested size: 72.2687pt x 62.83363pt.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -1368,26 +1368,26 @@ File: UTF8.chr 2015/04/18 4.8.4
 )
 File: rtri.png Graphic file (type png)
 <use rtri.png>
-Package pdftex.def Info: rtri.png  used on input line 173.
+Package pdftex.def Info: rtri.png  used on input line 174.
 (pdftex.def)             Requested size: 54.20015pt x 47.12402pt.
 File: pol4.png Graphic file (type png)
 <use pol4.png>
-Package pdftex.def Info: pol4.png  used on input line 173.
+Package pdftex.def Info: pol4.png  used on input line 174.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
 File: pol6.png Graphic file (type png)
 <use pol6.png>
-Package pdftex.def Info: pol6.png  used on input line 173.
+Package pdftex.def Info: pol6.png  used on input line 174.
 (pdftex.def)             Requested size: 54.20015pt x 47.12402pt.
 File: pol24.png Graphic file (type png)
 <use pol24.png>
-Package pdftex.def Info: pol24.png  used on input line 173.
+Package pdftex.def Info: pol24.png  used on input line 174.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
 File: cir.png Graphic file (type png)
 <use cir.png>
-Package pdftex.def Info: cir.png  used on input line 173.
+Package pdftex.def Info: cir.png  used on input line 174.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
 
-Overfull \hbox (15.28583pt too wide) detected at line 173
+Overfull \hbox (15.28583pt too wide) detected at line 174
 \OT1/mathkerncmss/m/sl/10.95 D[] \OT1/cmss/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OT
 1/mathkerncmss/m/sl/10.95 I\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 r
 \OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (120[])
@@ -1493,6 +1493,76 @@ File: UTF8.chr 2015/04/18 4.8.4
 )
 [16
 
+] (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+[17
+
+] (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+[18
+
+] (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+[19
+
+] (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+[20
+
+] (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+[21
+
 ]
 \tf@nav=\write8
 \openout8 = `talk1.nav'.
@@ -1503,93 +1573,98 @@ File: UTF8.chr 2015/04/18 4.8.4
 \tf@snm=\write10
 \openout10 = `talk1.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 277.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 277.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 348.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 348.
  (./talk1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 277.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 277.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 348.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 348.
 Package rerunfilecheck Info: File `talk1.out' has not changed.
 (rerunfilecheck)             Checksum: 73616A400ABDBA15ED12F951A329B8E9;177.
  ) 
 Here is how much of TeX's memory you used:
- 24146 strings out of 492616
- 476418 string characters out of 6129481
- 553297 words of memory out of 5000000
- 27208 multiletter control sequences out of 15000+600000
- 34518 words of font info for 123 fonts, out of 8000000 for 9000
+ 24310 strings out of 492616
+ 480883 string characters out of 6129481
+ 560383 words of memory out of 5000000
+ 27305 multiletter control sequences out of 15000+600000
+ 38267 words of font info for 136 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,19n,78p,790b,944s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,19n,78p,790b,945s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></
-usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></u
-sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr
-/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr
-/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
-cal/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu30.pfb></usr/local/te
-xlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu4e.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu4f.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/arphic/gbsnu/gbsnu50.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/arphic/gbsnu/gbsnu51.pfb></usr/local/texlive/2019/texmf-dist/fo
-nts/type1/arphic/gbsnu/gbsnu52.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
-pe1/arphic/gbsnu/gbsnu53.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/ar
-phic/gbsnu/gbsnu54.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/g
-bsnu/gbsnu55.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/g
-bsnu56.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu57
-.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu59.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5b.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5c.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5e.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5f.pfb></usr/local/texlive/2019/
-texmf-dist/fonts/type1/arphic/gbsnu/gbsnu60.pfb></usr/local/texlive/2019/texmf-
-dist/fonts/type1/arphic/gbsnu/gbsnu61.pfb></usr/local/texlive/2019/texmf-dist/f
-onts/type1/arphic/gbsnu/gbsnu62.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
-ype1/arphic/gbsnu/gbsnu63.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/a
-rphic/gbsnu/gbsnu64.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/
-gbsnu/gbsnu65.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/
-gbsnu66.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6
-7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu68.pfb>
-</usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6b.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6c.pfb></usr/local/
-texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6d.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6e.pfb></usr/local/texlive/2019
-/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu71.pfb></usr/local/texlive/2019/texmf
--dist/fonts/type1/arphic/gbsnu/gbsnu73.pfb></usr/local/texlive/2019/texmf-dist/
-fonts/type1/arphic/gbsnu/gbsnu74.pfb></usr/local/texlive/2019/texmf-dist/fonts/
-type1/arphic/gbsnu/gbsnu75.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
-arphic/gbsnu/gbsnu76.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic
-/gbsnu/gbsnu77.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu
-/gbsnu79.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu
-7a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7b.pfb
-></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7d.pfb></usr
-/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7e.pfb></usr/local
-/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7f.pfb></usr/local/texli
-ve/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu80.pfb></usr/local/texlive/201
-9/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu81.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/arphic/gbsnu/gbsnu82.pfb></usr/local/texlive/2019/texmf-dist
-/fonts/type1/arphic/gbsnu/gbsnu88.pfb></usr/local/texlive/2019/texmf-dist/fonts
-/type1/arphic/gbsnu/gbsnu89.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
-/arphic/gbsnu/gbsnu8b.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphi
-c/gbsnu/gbsnu8d.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsn
-u/gbsnu8f.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsn
-u90.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu91.pf
-b></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu94.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu95.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu96.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu97.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu98.pfb></usr/local/texlive/2019/tex
-mf-dist/fonts/type1/arphic/gbsnu/gbsnu9a.pfb></usr/local/texlive/2019/texmf-dis
-t/fonts/type1/arphic/gbsnu/gbsnu9e.pfb></usr/local/texlive/2019/texmf-dist/font
-s/type1/arphic/gbsnu/gbsnuff.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
-1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2019/texmf-dist/fonts/
-type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on talk1.pdf (16 pages, 4114130 bytes).
+/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></us
+r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr
+/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu30.pfb></usr/local/texl
+ive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu4e.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu4f.pfb></usr/local/texlive/2019/tex
+mf-dist/fonts/type1/arphic/gbsnu/gbsnu50.pfb></usr/local/texlive/2019/texmf-dis
+t/fonts/type1/arphic/gbsnu/gbsnu51.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/arphic/gbsnu/gbsnu52.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
+1/arphic/gbsnu/gbsnu53.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arph
+ic/gbsnu/gbsnu54.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbs
+nu/gbsnu55.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbs
+nu56.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu57.p
+fb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu59.pfb></u
+sr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5b.pfb></usr/loc
+al/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5c.pfb></usr/local/tex
+live/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5d.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5e.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/arphic/gbsnu/gbsnu5f.pfb></usr/local/texlive/2019/texmf-di
+st/fonts/type1/arphic/gbsnu/gbsnu60.pfb></usr/local/texlive/2019/texmf-dist/fon
+ts/type1/arphic/gbsnu/gbsnu61.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
+e1/arphic/gbsnu/gbsnu62.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arp
+hic/gbsnu/gbsnu63.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gb
+snu/gbsnu64.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gb
+snu65.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu66.
+pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu67.pfb></
+usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu68.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6b.pfb></usr/local/te
+xlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6c.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6d.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/arphic/gbsnu/gbsnu6e.pfb></usr/local/texlive/2019/texmf-d
+ist/fonts/type1/arphic/gbsnu/gbsnu71.pfb></usr/local/texlive/2019/texmf-dist/fo
+nts/type1/arphic/gbsnu/gbsnu73.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
+pe1/arphic/gbsnu/gbsnu74.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/ar
+phic/gbsnu/gbsnu75.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/g
+bsnu/gbsnu76.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/g
+bsnu77.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu78
+.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu79.pfb><
+/usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7a.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7b.pfb></usr/local/t
+exlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7d.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7e.pfb></usr/local/texlive/2019/
+texmf-dist/fonts/type1/arphic/gbsnu/gbsnu7f.pfb></usr/local/texlive/2019/texmf-
+dist/fonts/type1/arphic/gbsnu/gbsnu80.pfb></usr/local/texlive/2019/texmf-dist/f
+onts/type1/arphic/gbsnu/gbsnu81.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
+ype1/arphic/gbsnu/gbsnu82.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/a
+rphic/gbsnu/gbsnu83.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/
+gbsnu/gbsnu88.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/
+gbsnu89.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu8
+b.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu8d.pfb>
+</usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu8e.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu8f.pfb></usr/local/
+texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu90.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu91.pfb></usr/local/texlive/2019
+/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu94.pfb></usr/local/texlive/2019/texmf
+-dist/fonts/type1/arphic/gbsnu/gbsnu95.pfb></usr/local/texlive/2019/texmf-dist/
+fonts/type1/arphic/gbsnu/gbsnu96.pfb></usr/local/texlive/2019/texmf-dist/fonts/
+type1/arphic/gbsnu/gbsnu97.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
+arphic/gbsnu/gbsnu98.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic
+/gbsnu/gbsnu9a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu
+/gbsnu9e.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu
+ff.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msam10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb>
+Output written on talk1.pdf (21 pages, 4168307 bytes).
 PDF statistics:
- 1154 PDF objects out of 1200 (max. 8388607)
- 958 compressed objects within 10 object streams
- 37 named destinations out of 1000 (max. 500000)
- 366 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1518 PDF objects out of 1728 (max. 8388607)
+ 1300 compressed objects within 13 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 382 words of extra memory for PDF output out of 10000 (max. 10000000)
 

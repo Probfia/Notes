@@ -14,6 +14,7 @@
 \newcommand{\su}{\mathfrak{su}}
 \newcommand{\so}{\mathfrak{so}}
 \newcommand{\tr}{\mathrm{tr\ }}
+\newcommand{\card}{\mathrm{card \ }}
 
 \newtheorem{thm}{定理}[section]
 \newtheorem{axm}{公理}[section]
@@ -235,14 +236,84 @@ $$ (f_1,g_1) (f_2,g_2) = (f_1 f_2,g_1g_2)$$
 \ech
 \end{frame}
 
+\begin{frame}
+\frametitle{\bch 同态和同构 \ech}
+\bch
+称群$G$和$H$同态，若存在映射$f: G \to H$使得对任意元素有$f(g_1 g_2) = f(g_1) f(g_2)$。映射$f$称为同态映射。
+\par
+例如一个群总和自己的某个子群同态。
+\par
+若$f$是双射（单且满），则称$G$和$H$同构。例如$SU(2) \simeq U(1)$。
+
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 不变子群 \ech}
+\bch
+设$F$是一个群，$g$是某个可以与$F$中元素做乘法的元素，记$gF = \{ gf | f \in F\},\ Fg = \{ fg | f \in F\}$。
+\par
+称$G$的子群$H$是一个不变子群（规范子群），若对任意$g \in G$，有$g^{-1} H g = H$。例如$Z_2$是$Z_4$的一个不变子群。
+\par
+试说明一个群总有两个平凡不变子群$\{I\}$和$G$本身。若群$G$没有非平凡不变子群，则称$G$是简单的。
+
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 衡量非阿贝尔性：导群 \ech}
+\bch
+定义群$G$的导群（换位子群，derived subgroup）为$D[G] = \{ \langle a,b \rangle \equiv (ba)^{-1} (ab) | a,b \in G \}$。\par
+试说明：
+\begin{itemize}
+\item 导群的确是一个子群（我也不会证）。
+\item 导群的大小衡量了群的非阿贝尔性。阿贝尔群$A$的派生子群$D[A] = \{I\}$。
+\item 导群是不变子群（证明$g^{-1} \langle a,b \rangle g = \langle g^{-1} a g , g^{-1} b g \rangle$）。
+\end{itemize}
+
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 余集 \ech}
+\bch
+设$H$是$G$的一个不变子群，对选定的元素$g \in G$，称$gH$为$H$的一个左余集（试说明左余集一般不构成群）。
+\par
+定义左余集见的乘法$(g_a H) (g_b H) \equiv \{ g_a h_i g_b h_j | h_i,h_j \in H\}$。试证明代表元的表达式一定在另一个左余集中。
+
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 左余集间的乘法 \ech}
+\bch
+证明：{\blue 
+$$ g_a h_i g_b h_j = g_a g_b g_b^{-1} h_i g_b h_j = g_a g_b (g_b^{-1} h_i g_b ) h_j$$
+由于$G$封闭，存在一个元素$g_c = g_a g_b$；又因为$H$是不变子群，$g_b^{-1} h_i g_b$依然是$H$的元素，记作$h_k$。再利用$H$的封闭性，$h_k h_j$依然在$H$中，记作$h_l$。故$g_a h_i g_b h_j = g_c h_l$。 }
+\par \ \\
+由此可以看出$(g_a H) (g_b H) = (g_a g_b) H$，因此$H$的所有左余集构成一个群，称为商群$Q = G/H$。
+
+
+\ech
+\end{frame}
+
+
+
 
 
 \section{Discrete Groups}
 \begin{frame}
 \frametitle{\bch 离散群 \ech}
 \bch
-元素有限的群称为有限群，元素可数的群称为离散群。\par
-循环群，拉格朗日定理，乘法表，表示论，同态和同构，不变子群和派生子群，商群......看黑板，懒得打字了。
+元素有限的群称为有限群，元素可数的群称为离散群。$G$中元素的个数记为$\card G$\par
+循环群，拉格朗日定理，乘法表，表示论......看黑板，懒得打字了。
 
 
 \ech
