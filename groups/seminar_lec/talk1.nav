@@ -47,13 +47,22 @@
 \headcommand {\beamer@framepages {19}{19}}
 \headcommand {\slideentry {3}{0}{9}{20/20}{}{0}}
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\beamer@sectionpages {12}{20}}
-\headcommand {\beamer@subsectionpages {12}{20}}
-\headcommand {\sectionentry {4}{Discrete Groups}{21}{Discrete Groups}{0}}
-\headcommand {\slideentry {4}{0}{1}{21/21}{}{0}}
+\headcommand {\slideentry {3}{0}{10}{21/21}{}{0}}
 \headcommand {\beamer@framepages {21}{21}}
-\headcommand {\beamer@partpages {1}{21}}
-\headcommand {\beamer@subsectionpages {21}{21}}
-\headcommand {\beamer@sectionpages {21}{21}}
-\headcommand {\beamer@documentpages {21}}
-\headcommand {\gdef \inserttotalframenumber {21}}
+\headcommand {\beamer@sectionpages {12}{21}}
+\headcommand {\beamer@subsectionpages {12}{21}}
+\headcommand {\sectionentry {4}{Discrete Groups}{22}{Discrete Groups}{0}}
+\headcommand {\slideentry {4}{0}{1}{22/22}{}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\beamer@sectionpages {22}{22}}
+\headcommand {\beamer@subsectionpages {22}{22}}
+\headcommand {\sectionentry {5}{Rings and Fields}{23}{Rings and Fields}{0}}
+\headcommand {\slideentry {5}{0}{1}{23/23}{}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\slideentry {5}{0}{2}{24/24}{}{0}}
+\headcommand {\beamer@framepages {24}{24}}
+\headcommand {\beamer@partpages {1}{24}}
+\headcommand {\beamer@subsectionpages {23}{24}}
+\headcommand {\beamer@sectionpages {23}{24}}
+\headcommand {\beamer@documentpages {24}}
+\headcommand {\gdef \inserttotalframenumber {24}}

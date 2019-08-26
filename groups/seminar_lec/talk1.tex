@@ -167,7 +167,8 @@ $$S_1 = \{I\},\ S_2 = \{I,r\},\ S_3 =\{I,r,R(120^\circ),R(240^\circ)\}$$
 正多边形各自的所有对称操作组成的集合为
 $$D_3 = \{I,r,R(120^\circ),R(240^\circ)\},\ D_4 = \{I,r,R(90^\circ),R(180^\circ),R(270^\circ)\},$$
 $$D_6 = \{I,r,R(60^\circ),R(120^\circ),R(180^\circ),R(240^\circ),R(300^\circ)\},$$
-$$D_{24} = \{I,r,R(n\cdot 15^\circ)\},\ D_\infty = \{I,r,R(\theta) \ for \ \theta \in [0^\circ, 360^\circ)\}$$
+$$D_{24} = \{I,r,R(n\cdot 15^\circ) \ for \ n=1,2,\cdots,23\},$$
+$$D_\infty = \{I,r,R(\theta) \ for \ \theta \in [0^\circ, 360^\circ)\}$$
 
 
 \ech
@@ -176,10 +177,10 @@ $$D_{24} = \{I,r,R(n\cdot 15^\circ)\},\ D_\infty = \{I,r,R(\theta) \ for \ \thet
 \begin{frame}
 \frametitle{\bch 对称群 \ech}
 \bch
-群是一个对”乘法“封闭的集合$G$，并且
+群是一个对“乘法”封闭的集合$G$，并且
 \begin{itemize}
 \item 存在单位元$I \in G$，使得对任意其他元素$g \in G$都有$gI = Ig = g$。
-\item 存在逆元，对任意元素$g \in G$，都存在一个元素$g^{-1}\in g$使得$g^{-1} g = gg^{-1} = I$。
+\item 存在逆元，对任意元素$g \in G$，都存在一个元素$g^{-1}\in G$使得$g^{-1} g = gg^{-1} = I$。
 \item 结合律成立，即$g_1 ( g_2 g_3) = (g_1 g_2) g_3$，乘法可以保持顺序任意加括号。
 \end{itemize}
 试验证刚才讨论的对称操作组成的集合满足上面三个要求，因此这些集合称为是图形对应的对称群。 
@@ -207,10 +208,23 @@ $$D_{24} = \{I,r,R(n\cdot 15^\circ)\},\ D_\infty = \{I,r,R(\theta) \ for \ \thet
 \par
 $U(1) = \{ e^{i \theta},\ \theta \in \reals\}$是$Z_N$的连续极限。
 \par
-所有的$n$阶方阵构成非阿贝尔群。
+所有的$n$阶方阵不构成群（不一定有逆元）；所有$n$阶不可逆方阵不构成群（没有单位元）；所有$n$阶可逆方阵构成群。
 
 \ech
 \end{frame}
+
+\begin{frame}
+\frametitle{\bch 四元数群 \ech}
+\bch
+考虑集合$Q = \{ 1,-1,i,j.k,-i,-j,-k\}$，定义元素间的乘法如下
+$$ i^2 = j^2 = k^2 = -1;$$
+$$ ij = k,\ jk = i,\ ki = j;$$
+$$ji = -k,\ kj = -i,\ ik = -j.$$
+这使得$Q$构成一个非阿贝尔群，称为（哈密顿）四元数群。
+
+\ech
+\end{frame}
+
 
 \begin{frame}
 \frametitle{\bch 子群 \ech}
@@ -255,7 +269,7 @@ $$ (f_1,g_1) (f_2,g_2) = (f_1 f_2,g_1g_2)$$
 \bch
 设$F$是一个群，$g$是某个可以与$F$中元素做乘法的元素，记$gF = \{ gf | f \in F\},\ Fg = \{ fg | f \in F\}$。
 \par
-称$G$的子群$H$是一个不变子群（规范子群），若对任意$g \in G$，有$g^{-1} H g = H$。例如$Z_2$是$Z_4$的一个不变子群。
+称$G$的子群$H$是一个不变子群（规范子群），若对任意$g \in G/H$，有$g^{-1} H g = H$。例如$Z_2$是$Z_4$的一个不变子群。
 \par
 试说明一个群总有两个平凡不变子群$\{I\}$和$G$本身。若群$G$没有非平凡不变子群，则称$G$是简单的。
 
@@ -274,7 +288,7 @@ $$ (f_1,g_1) (f_2,g_2) = (f_1 f_2,g_1g_2)$$
 \item 导群的大小衡量了群的非阿贝尔性。阿贝尔群$A$的派生子群$D[A] = \{I\}$。
 \item 导群是不变子群（证明$g^{-1} \langle a,b \rangle g = \langle g^{-1} a g , g^{-1} b g \rangle$）。
 \end{itemize}
-
+试计算四元素群的导群，并验证它是不变子群。
 
 \ech
 \end{frame}
@@ -325,8 +339,38 @@ $$ g_a h_i g_b h_j = g_a g_b g_b^{-1} h_i g_b h_j = g_a g_b (g_b^{-1} h_i g_b ) 
 
 
 
+\section{Rings and Fields}
+\begin{frame}
+\frametitle{\bch 半群和环 \ech}
+\bch
+将群的定义中对逆元存在的要求删去，集合连同乘法构成的代数结构称为半群。
+\par
+设$R$是一个集合，其上定义有两种运算：乘法$\times$和加法$+$，若$R$对乘法构成半群，对加法构成阿贝尔群，则称$R(\times,+)$为一个环。
+\par
+环中的乘法单位元记为1，加法单位元记为0，$a$的加法逆元记为$-a$。加法和乘法不是孤立对，例如利用环的定义可以证明对任意元素$a$，$0 \times a = a \times 0 = 0$。
+\par
+（你在说什么......）
 
 
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 域 \ech}
+\bch
+将环的定义中对乘法构成半群的要求改为群（但对有限个元素可以不存在逆元），则$F(\times,+)$构成域。$a$的乘法逆元记为$\frac{1}{a}$。\par
+例子：
+\begin{itemize}
+\item 全体自然数连同自然乘法和加法不构成环，全体整数连同自然乘法和加法构成环；
+\item 全体有理数连同自然乘法和加法构成域；
+\item 全体$n$阶方阵连同矩阵乘法和加法构成环；
+\item 全体次数$<n$的多项式构成连同多项式乘法和加法构成环，称为多项式环，全体次数$<n$的分式构成域，称为分数域。
+\end{itemize}
+更多关于环和域的性质参见抽象代数的教材，这两个代数结构虽然和群紧密相连，但不属于群论的讨论内容。
+
+
+\ech
+\end{frame}
 
 
 
