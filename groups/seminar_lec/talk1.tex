@@ -190,6 +190,26 @@ $$D_\infty = \{I,r,R(\theta) \ for \ \theta \in [0^\circ, 360^\circ)\}$$
 \ech
 \end{frame}
 
+\begin{frame}
+\frametitle{\bch Why Symmetry \ech}
+\bch
+我们看到群论是研究对称性的工具。但为什么要研究对称性？
+\par
+对称性越大的理论，往往越“对”：
+\begin{itemize}
+\item 牛顿力学：三维旋转对称性 $\Rightarrow$ 相对论：时空（3+1）维对称性。
+\par
+群论语言：$SO(3) \to SO(3,1)$
+\item 核物理的同位旋：质子中子对称性 $\Rightarrow$ 三种夸克对称性。
+\par
+群论语言：$SU(2) \to SU(3)$
+\item 粒子物理标准模型：$SU(3) \times SU(2) \times U(1)$。
+\item 凝聚态物理学：晶体结构带来的离散对称性$\Rightarrow$对波函数的约束，例如Bloch定理。石墨烯：$D_6$对称性。
+\end{itemize}
+
+\ech
+\end{frame}
+
 \section{Groups}
 \begin{frame}
 \frametitle{\bch 阿贝尔群 \ech}
@@ -257,7 +277,9 @@ $$ (f_1,g_1) (f_2,g_2) = (f_1 f_2,g_1g_2)$$
 \par
 例如一个群总和自己的某个子群同态。
 \par
-若$f$是双射（单且满），则称$G$和$H$同构。例如$SU(2) \simeq U(1)$。
+若$f$是双射（单且满），则称$G$和$H$同构。例如$SO(2) \simeq U(1)$。
+\par
+同构的意义在于，若两个群同构，只需要研究一个就可以知道另一个群的性质。
 
 
 \ech
@@ -347,7 +369,7 @@ $$ g_a h_i g_b h_j = g_a g_b g_b^{-1} h_i g_b h_j = g_a g_b (g_b^{-1} h_i g_b ) 
 \par
 设$R$是一个集合，其上定义有两种运算：乘法$\times$和加法$+$，若$R$对乘法构成半群，对加法构成阿贝尔群，则称$R(\times,+)$为一个环。
 \par
-环中的乘法单位元记为1，加法单位元记为0，$a$的加法逆元记为$-a$。加法和乘法不是孤立对，例如利用环的定义可以证明对任意元素$a$，$0 \times a = a \times 0 = 0$。
+环中的乘法单位元记为1，加法单位元记为0，$a$的加法逆元记为$-a$。加法和乘法不是孤立的，例如利用环的定义可以证明对任意元素$a$，$0 \times a = a \times 0 = 0$。
 \par
 （你在说什么......）
 
