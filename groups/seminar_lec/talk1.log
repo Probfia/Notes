@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.19)  28 AUG 2019 14:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.19)  28 AUG 2019 21:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1162,7 +1162,7 @@ File: c70gbsn.fd 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/c70gbsn.fdx
 File: c70gbsn.fdx 2015/04/18 4.8.4
 )
-<book.png, id=155, 677.53125pt x 879.285pt>
+<book.png, id=164, 677.53125pt x 879.285pt>
 File: book.png Graphic file (type png)
 <use book.png>
 Package pdftex.def Info: book.png  used on input line 80.
@@ -1186,7 +1186,7 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<az.jpg, id=229, 557.08125pt x 554.07pt>
+<az.jpg, id=241, 557.08125pt x 554.07pt>
 File: az.jpg Graphic file (type jpg)
 <use az.jpg>
 Package pdftex.def Info: az.jpg  used on input line 88.
@@ -1207,7 +1207,7 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<zikawei.jpeg, id=295, 4047.12pt x 3035.34pt>
+<zikawei.jpeg, id=310, 4047.12pt x 3035.34pt>
 File: zikawei.jpeg Graphic file (type jpg)
 <use zikawei.jpeg>
 Package pdftex.def Info: zikawei.jpeg  used on input line 96.
@@ -1228,7 +1228,7 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<sym1.jpeg, id=372, 1586.92876pt x 510.90875pt>
+<sym1.jpeg, id=390, 1586.92876pt x 510.90875pt>
 File: sym1.jpeg Graphic file (type jpg)
 <use sym1.jpeg>
 Package pdftex.def Info: sym1.jpeg  used on input line 106.
@@ -1253,17 +1253,17 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<tri.png, id=438, 337.26pt x 433.62pt>
+<tri.png, id=460, 337.26pt x 433.62pt>
 File: tri.png Graphic file (type png)
 <use tri.png>
 Package pdftex.def Info: tri.png  used on input line 119.
 (pdftex.def)             Requested size: 67.45079pt x 86.72246pt.
-<etri.png, id=439, 294.09875pt x 433.62pt>
+<etri.png, id=461, 294.09875pt x 433.62pt>
 File: etri.png Graphic file (type png)
 <use etri.png>
 Package pdftex.def Info: etri.png  used on input line 119.
 (pdftex.def)             Requested size: 58.8187pt x 86.72246pt.
-<rtri.png, id=440, 361.35pt x 314.17375pt>
+<rtri.png, id=462, 361.35pt x 314.17375pt>
 File: rtri.png Graphic file (type png)
 <use rtri.png>
 Package pdftex.def Info: rtri.png  used on input line 119.
@@ -1288,22 +1288,22 @@ File: rtri.png Graphic file (type png)
 <use rtri.png>
 Package pdftex.def Info: rtri.png  used on input line 134.
 (pdftex.def)             Requested size: 54.20015pt x 47.12402pt.
-<pol4.png, id=497, 361.35pt x 360.34625pt>
+<pol4.png, id=521, 361.35pt x 360.34625pt>
 File: pol4.png Graphic file (type png)
 <use pol4.png>
 Package pdftex.def Info: pol4.png  used on input line 134.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
-<pol6.png, id=498, 361.35pt x 314.17375pt>
+<pol6.png, id=522, 361.35pt x 314.17375pt>
 File: pol6.png Graphic file (type png)
 <use pol6.png>
 Package pdftex.def Info: pol6.png  used on input line 134.
 (pdftex.def)             Requested size: 54.20015pt x 47.12402pt.
-<pol24.png, id=499, 361.35pt x 360.34625pt>
+<pol24.png, id=523, 361.35pt x 360.34625pt>
 File: pol24.png Graphic file (type png)
 <use pol24.png>
 Package pdftex.def Info: pol24.png  used on input line 134.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
-<cir.png, id=500, 361.35pt x 360.34625pt>
+<cir.png, id=524, 361.35pt x 360.34625pt>
 File: cir.png Graphic file (type png)
 <use cir.png>
 Package pdftex.def Info: cir.png  used on input line 134.
@@ -1387,7 +1387,7 @@ File: cir.png Graphic file (type png)
 Package pdftex.def Info: cir.png  used on input line 182.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
 
-Overfull \hbox (15.28583pt too wide) detected at line 182
+Overfull \hbox (54.99028pt too wide) detected at line 182
 \OT1/mathkerncmss/m/sl/10.95 D[] \OT1/cmss/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OT
 1/mathkerncmss/m/sl/10.95 I\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 r
 \OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (120[])
@@ -1397,8 +1397,9 @@ T1/cmss/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OT1/mathkerncmss/m/sl/10.95 I\OML/cmm
 /m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 r\OML/cmm/m/it/10.95 ; \OT1/mathkern
 cmss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (90[])\OML/cmm/m/it/10.95 ; \OT1/mathkernc
 mss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (180[])\OML/cmm/m/it/10.95 ; \OT1/mathkernc
-mss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (270[])\OMS/cmsy/m/n/10.95 g\OML/cmm/m/it/1
-0.95 ;
+mss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (270[])\OML/cmm/m/it/10.95 ; \OT1/mathkernc
+mss/m/sl/10.95 rR\OT1/cmss/m/n/10.95 ([] )\OMS/cmsy/m/n/10.95 g\OML/cmm/m/it/10
+.95 ;
  []
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -1443,7 +1444,7 @@ File: UTF8.enc 2015/04/18 4.8.4
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-<zx.jpg, id=910, 205.76875pt x 301.125pt>
+<zx.jpg, id=953, 205.76875pt x 301.125pt>
 File: zx.jpg Graphic file (type jpg)
 <use zx.jpg>
 Package pdftex.def Info: zx.jpg  used on input line 235.
@@ -1640,6 +1641,48 @@ File: UTF8.chr 2015/04/18 4.8.4
 )
 [26
 
+] (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+[27
+
+] (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+[28
+
+] (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
+File: UTF8.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
+File: UTF8.chr 2015/04/18 4.8.4
+)
+[29
+
 ]
 \tf@nav=\write8
 \openout8 = `talk1.nav'.
@@ -1650,106 +1693,108 @@ File: UTF8.chr 2015/04/18 4.8.4
 \tf@snm=\write10
 \openout10 = `talk1.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 438.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 438.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 482.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 482.
  (./talk1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 438.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 438.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 482.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 482.
 Package rerunfilecheck Info: File `talk1.out' has not changed.
 (rerunfilecheck)             Checksum: F34E23C6514B3768B6E68860A3ABF139;232.
  ) 
 Here is how much of TeX's memory you used:
- 24625 strings out of 492616
- 487480 string characters out of 6129481
- 570767 words of memory out of 5000000
- 27535 multiletter control sequences out of 15000+600000
- 46791 words of font info for 167 fonts, out of 8000000 for 9000
+ 24691 strings out of 492616
+ 489741 string characters out of 6129481
+ 575289 words of memory out of 5000000
+ 27566 multiletter control sequences out of 15000+600000
+ 51482 words of font info for 184 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,19n,78p,790b,953s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr
-/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
-cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/
-texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu30.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu4e.pfb></usr/local/texlive/2019
-/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu4f.pfb></usr/local/texlive/2019/texmf
--dist/fonts/type1/arphic/gbsnu/gbsnu50.pfb></usr/local/texlive/2019/texmf-dist/
-fonts/type1/arphic/gbsnu/gbsnu51.pfb></usr/local/texlive/2019/texmf-dist/fonts/
-type1/arphic/gbsnu/gbsnu52.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
-arphic/gbsnu/gbsnu53.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic
-/gbsnu/gbsnu54.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu
-/gbsnu55.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu
-56.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu57.pfb
-></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu58.pfb></usr
-/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu59.pfb></usr/local
-/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5b.pfb></usr/local/texli
-ve/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5c.pfb></usr/local/texlive/201
-9/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5d.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/arphic/gbsnu/gbsnu5e.pfb></usr/local/texlive/2019/texmf-dist
-/fonts/type1/arphic/gbsnu/gbsnu5f.pfb></usr/local/texlive/2019/texmf-dist/fonts
-/type1/arphic/gbsnu/gbsnu60.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
-/arphic/gbsnu/gbsnu61.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphi
-c/gbsnu/gbsnu62.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsn
-u/gbsnu63.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsn
-u64.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu65.pf
-b></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu66.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu67.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu68.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6a.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6b.pfb></usr/local/texlive/2019/tex
-mf-dist/fonts/type1/arphic/gbsnu/gbsnu6c.pfb></usr/local/texlive/2019/texmf-dis
-t/fonts/type1/arphic/gbsnu/gbsnu6d.pfb></usr/local/texlive/2019/texmf-dist/font
-s/type1/arphic/gbsnu/gbsnu6e.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
-1/arphic/gbsnu/gbsnu70.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arph
-ic/gbsnu/gbsnu71.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbs
-nu/gbsnu72.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbs
-nu73.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu74.p
-fb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu75.pfb></u
-sr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu76.pfb></usr/loc
-al/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu77.pfb></usr/local/tex
-live/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu78.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu79.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/arphic/gbsnu/gbsnu7a.pfb></usr/local/texlive/2019/texmf-di
-st/fonts/type1/arphic/gbsnu/gbsnu7b.pfb></usr/local/texlive/2019/texmf-dist/fon
-ts/type1/arphic/gbsnu/gbsnu7c.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
-e1/arphic/gbsnu/gbsnu7d.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arp
-hic/gbsnu/gbsnu7e.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gb
-snu/gbsnu7f.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gb
-snu80.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu81.
-pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu82.pfb></
-usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu83.pfb></usr/lo
-cal/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu86.pfb></usr/local/te
-xlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu88.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu89.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/arphic/gbsnu/gbsnu8a.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/arphic/gbsnu/gbsnu8b.pfb></usr/local/texlive/2019/texmf-dist/fo
-nts/type1/arphic/gbsnu/gbsnu8c.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
-pe1/arphic/gbsnu/gbsnu8d.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/ar
-phic/gbsnu/gbsnu8e.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/g
-bsnu/gbsnu8f.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/g
-bsnu90.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu91
-.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu94.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu95.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu96.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu97.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu98.pfb></usr/local/texlive/2019/
-texmf-dist/fonts/type1/arphic/gbsnu/gbsnu9a.pfb></usr/local/texlive/2019/texmf-
-dist/fonts/type1/arphic/gbsnu/gbsnu9e.pfb></usr/local/texlive/2019/texmf-dist/f
-onts/type1/arphic/gbsnu/gbsnuff.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
-ype1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2019/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on talk1.pdf (26 pages, 4278403 bytes).
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr
+/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
+al/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
+/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/t
+exlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu30.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu4e.pfb></usr/local/texlive/2019/
+texmf-dist/fonts/type1/arphic/gbsnu/gbsnu4f.pfb></usr/local/texlive/2019/texmf-
+dist/fonts/type1/arphic/gbsnu/gbsnu50.pfb></usr/local/texlive/2019/texmf-dist/f
+onts/type1/arphic/gbsnu/gbsnu51.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
+ype1/arphic/gbsnu/gbsnu52.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/a
+rphic/gbsnu/gbsnu53.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/
+gbsnu/gbsnu54.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/
+gbsnu55.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5
+6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu57.pfb>
+</usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu58.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu59.pfb></usr/local/
+texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5b.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5c.pfb></usr/local/texlive/2019
+/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu5d.pfb></usr/local/texlive/2019/texmf
+-dist/fonts/type1/arphic/gbsnu/gbsnu5e.pfb></usr/local/texlive/2019/texmf-dist/
+fonts/type1/arphic/gbsnu/gbsnu5f.pfb></usr/local/texlive/2019/texmf-dist/fonts/
+type1/arphic/gbsnu/gbsnu60.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
+arphic/gbsnu/gbsnu61.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic
+/gbsnu/gbsnu62.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu
+/gbsnu63.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu
+64.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu65.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu66.pfb></usr
+/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu67.pfb></usr/local
+/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu68.pfb></usr/local/texli
+ve/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6a.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu6b.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/arphic/gbsnu/gbsnu6c.pfb></usr/local/texlive/2019/texmf-dist
+/fonts/type1/arphic/gbsnu/gbsnu6d.pfb></usr/local/texlive/2019/texmf-dist/fonts
+/type1/arphic/gbsnu/gbsnu6e.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
+/arphic/gbsnu/gbsnu70.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphi
+c/gbsnu/gbsnu71.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsn
+u/gbsnu72.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsn
+u73.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu74.pf
+b></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu75.pfb></us
+r/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu76.pfb></usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu77.pfb></usr/local/texl
+ive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu78.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu79.pfb></usr/local/texlive/2019/tex
+mf-dist/fonts/type1/arphic/gbsnu/gbsnu7a.pfb></usr/local/texlive/2019/texmf-dis
+t/fonts/type1/arphic/gbsnu/gbsnu7b.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/arphic/gbsnu/gbsnu7c.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
+1/arphic/gbsnu/gbsnu7d.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arph
+ic/gbsnu/gbsnu7e.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbs
+nu/gbsnu7f.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbs
+nu80.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu81.p
+fb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu82.pfb></u
+sr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu83.pfb></usr/loc
+al/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu86.pfb></usr/local/tex
+live/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu88.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu89.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/arphic/gbsnu/gbsnu8a.pfb></usr/local/texlive/2019/texmf-di
+st/fonts/type1/arphic/gbsnu/gbsnu8b.pfb></usr/local/texlive/2019/texmf-dist/fon
+ts/type1/arphic/gbsnu/gbsnu8c.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
+e1/arphic/gbsnu/gbsnu8d.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arp
+hic/gbsnu/gbsnu8e.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gb
+snu/gbsnu8f.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gb
+snu90.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu91.
+pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu94.pfb></
+usr/local/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu95.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu96.pfb></usr/local/te
+xlive/2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu97.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/arphic/gbsnu/gbsnu98.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/arphic/gbsnu/gbsnu9a.pfb></usr/local/texlive/2019/texmf-d
+ist/fonts/type1/arphic/gbsnu/gbsnu9e.pfb></usr/local/texlive/2019/texmf-dist/fo
+nts/type1/arphic/gbsnu/gbsnuff.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
+pe1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on talk1.pdf (29 pages, 4307354 bytes).
 PDF statistics:
- 1988 PDF objects out of 2073 (max. 8388607)
- 1736 compressed objects within 18 object streams
- 58 named destinations out of 1000 (max. 500000)
+ 2257 PDF objects out of 2487 (max. 8388607)
+ 1995 compressed objects within 20 object streams
+ 64 named destinations out of 1000 (max. 500000)
  427 words of extra memory for PDF output out of 10000 (max. 10000000)
 

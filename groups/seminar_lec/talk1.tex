@@ -172,10 +172,10 @@ $$S_1 = \{I\},\ S_2 = \{I,r\},\ S_3 =\{I,r,R(120^\circ),R(240^\circ)\}$$
 \includegraphics[scale=0.15]{cir}
 \end{center}
 正多边形各自的所有对称操作组成的集合为
-$$D_3 = \{I,r,R(120^\circ),R(240^\circ)\},\ D_4 = \{I,r,R(90^\circ),R(180^\circ),R(270^\circ)\},$$
-$$D_6 = \{I,r,R(60^\circ),R(120^\circ),R(180^\circ),R(240^\circ),R(300^\circ)\},$$
-$$D_{24} = \{I,r,R(n\cdot 15^\circ) \ \mathrm{for} \ n=1,2,\cdots,23\},$$
-$$O(2) \equiv D_\infty = \{I,r,R(\theta) \ \mathrm{for} \ \theta \in (0^\circ, 360^\circ)\}$$
+$$D_3 = \{I,r,R(120^\circ),R(240^\circ)\},\ D_4 = \{I,r,R(90^\circ),R(180^\circ),R(270^\circ),rR(\cdots)\},$$
+$$D_6 = \{I,r,R(60^\circ),R(120^\circ),R(180^\circ),R(240^\circ),R(300^\circ),rR(\cdots)\},$$
+$$D_{24} = \{I,r,R(n\cdot 15^\circ) \ \mathrm{for} \ n=1,2,\cdots,23\ ,rR(\cdots)\},$$
+$$O(2) \equiv D_\infty = \{I,r,R(\theta) \ \mathrm{for} \ \theta \in (0^\circ, 360^\circ)\ ,rR(\cdots)\}$$
 
 
 \ech
@@ -365,6 +365,23 @@ $$ g_a h_i g_b h_j = g_a g_b g_b^{-1} h_i g_b h_j = g_a g_b (g_b^{-1} h_i g_b ) 
 \end{frame}
 
 
+\begin{frame}
+\frametitle{\bch 商群 \ech}
+\bch
+动动手，计算以下商群
+\begin{itemize}
+\item 计算$F\otimes G/G$。
+\item  计算$Q/Z_2$。
+\item 证明$Z_2 = \{1,-1\}$是$Z_4 = \{1,i,-1,-i\}$的一个不变子群，并计算$Z_4/Z_2$。
+\item 计算$Z_{2N}/Z_2$。
+\item 计算上例的连续极限$U(1)/Z_2$，认识对群除以$Z_2$的作用。
+\end{itemize}
+
+
+\ech
+\end{frame}
+
+
 
 
 
@@ -378,6 +395,33 @@ $$ g_a h_i g_b h_j = g_a g_b g_b^{-1} h_i g_b h_j = g_a g_b (g_b^{-1} h_i g_b ) 
 
 \ech
 \end{frame}
+
+\begin{frame}
+\frametitle{\bch $D_n$的更多性质 \ech}
+\bch
+二面体群$D_n$是正$n$边形的对称群。
+$$
+D_n = \{I, r, R\left(\frac{2k\pi}{n}\right) \ \mathrm{for}\ k=1,2,\cdots,n-1 \ ,rR(\cdots)\}
+$$
+证明以下关系
+$$R(\theta)^{-1} r R(\theta) = r R(2\theta),$$
+$$rR(\theta) r = R(2\pi - \theta),$$
+$$\langle r , R(\theta) \rangle = R(2\theta)$$
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $D_n$的子群 \ech}
+\bch
+由刚刚证明的关系可以得到$D_n$的导群
+$$D[D_n] = \{I,R\left(\frac{4k\pi}{n}\right) \ \mathrm{for}\ k=1,2,\cdots\}$$
+\par
+$D_n$显然还有一个循环子群，生成元是$g = R\left(\frac{2\pi}{n}\right)$。
+
+\ech
+\end{frame}
+
 
 
 
