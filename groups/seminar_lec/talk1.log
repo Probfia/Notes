@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.19)  28 AUG 2019 21:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.7.19)  30 AUG 2019 08:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1387,7 +1387,7 @@ File: cir.png Graphic file (type png)
 Package pdftex.def Info: cir.png  used on input line 182.
 (pdftex.def)             Requested size: 54.20015pt x 54.04959pt.
 
-Overfull \hbox (54.99028pt too wide) detected at line 182
+Overfull \hbox (34.75238pt too wide) detected at line 182
 \OT1/mathkerncmss/m/sl/10.95 D[] \OT1/cmss/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OT
 1/mathkerncmss/m/sl/10.95 I\OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 r
 \OML/cmm/m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (120[])
@@ -1397,9 +1397,8 @@ T1/cmss/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OT1/mathkerncmss/m/sl/10.95 I\OML/cmm
 /m/it/10.95 ; \OT1/mathkerncmss/m/sl/10.95 r\OML/cmm/m/it/10.95 ; \OT1/mathkern
 cmss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (90[])\OML/cmm/m/it/10.95 ; \OT1/mathkernc
 mss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (180[])\OML/cmm/m/it/10.95 ; \OT1/mathkernc
-mss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (270[])\OML/cmm/m/it/10.95 ; \OT1/mathkernc
-mss/m/sl/10.95 rR\OT1/cmss/m/n/10.95 ([] )\OMS/cmsy/m/n/10.95 g\OML/cmm/m/it/10
-.95 ;
+mss/m/sl/10.95 R\OT1/cmss/m/n/10.95 (270[])\OML/cmm/m/it/10.95 ; [] \OMS/cmsy/m
+/n/10.95 g\OML/cmm/m/it/10.95 ;
  []
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -1704,7 +1703,7 @@ Package rerunfilecheck Info: File `talk1.out' has not changed.
 Here is how much of TeX's memory you used:
  24691 strings out of 492616
  489741 string characters out of 6129481
- 575289 words of memory out of 5000000
+ 575268 words of memory out of 5000000
  27566 multiletter control sequences out of 15000+600000
  51482 words of font info for 184 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1791,7 +1790,7 @@ ist/fonts/type1/arphic/gbsnu/gbsnu9e.pfb></usr/local/texlive/2019/texmf-dist/fo
 nts/type1/arphic/gbsnu/gbsnuff.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
 pe1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2019/texmf-dist/font
 s/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on talk1.pdf (29 pages, 4307354 bytes).
+Output written on talk1.pdf (29 pages, 4307419 bytes).
 PDF statistics:
  2257 PDF objects out of 2487 (max. 8388607)
  1995 compressed objects within 20 object streams

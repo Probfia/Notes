@@ -155,7 +155,7 @@ gaoh26@mail2.sysu.edu.cn
 \includegraphics[scale=0.2]{etri}
 \includegraphics[scale=0.2]{rtri}
 \end{center}
-$$S_1 = \{I\},\ S_2 = \{I,r\},\ S_3 =\{I,r,R(120^\circ),R(240^\circ)\}$$
+$$S_1 = \{I\},\ S_2 = \{I,r\},\ S_3 =\{I,r,R(120^\circ),R(240^\circ),\cdots\}$$
 
 \ech
 \end{frame}
@@ -172,10 +172,10 @@ $$S_1 = \{I\},\ S_2 = \{I,r\},\ S_3 =\{I,r,R(120^\circ),R(240^\circ)\}$$
 \includegraphics[scale=0.15]{cir}
 \end{center}
 正多边形各自的所有对称操作组成的集合为
-$$D_3 = \{I,r,R(120^\circ),R(240^\circ)\},\ D_4 = \{I,r,R(90^\circ),R(180^\circ),R(270^\circ),rR(\cdots)\},$$
-$$D_6 = \{I,r,R(60^\circ),R(120^\circ),R(180^\circ),R(240^\circ),R(300^\circ),rR(\cdots)\},$$
-$$D_{24} = \{I,r,R(n\cdot 15^\circ) \ \mathrm{for} \ n=1,2,\cdots,23\ ,rR(\cdots)\},$$
-$$O(2) \equiv D_\infty = \{I,r,R(\theta) \ \mathrm{for} \ \theta \in (0^\circ, 360^\circ)\ ,rR(\cdots)\}$$
+$$D_3 = \{I,r,R(120^\circ),R(240^\circ)\},\ D_4 = \{I,r,R(90^\circ),R(180^\circ),R(270^\circ),\cdots \},$$
+$$D_6 = \{I,r,R(60^\circ),R(120^\circ),R(180^\circ),R(240^\circ),R(300^\circ),\cdots\},$$
+$$D_{24} = \{I,r,R(n\cdot 15^\circ) \ \mathrm{for} \ n=1,2,\cdots,23\ ,\cdots\},$$
+$$O(2) \equiv D_\infty = \{I,r,R(\theta) \ \mathrm{for} \ \theta \in (0^\circ, 360^\circ)\ ,\cdots\}$$
 
 
 \ech
@@ -435,7 +435,7 @@ $D_n$显然还有一个循环子群，生成元是$g = R\left(\frac{2\pi}{n}\rig
 \bch
 将群的定义中对逆元存在的要求删去，集合连同乘法构成的代数结构称为半群。
 \par
-设$R$是一个集合，其上定义有两种运算：乘法$\times$和加法$+$，若$R$对乘法构成半群，对加法构成阿贝尔群，则称$R(\times,+)$为一个环。
+设$R$是一个集合，其上定义有两种运算：乘法$\times$和加法$+$，若$R$对乘法构成半群，对加法构成阿贝尔群，并且加法和乘法以分配律相联系，则称$R(\times,+)$为一个环。
 \par
 环中的乘法单位元记为1，加法单位元记为0，$a$的加法逆元记为$-a$。加法和乘法不是孤立的，例如利用环的定义可以证明对任意元素$a$，$0 \times a = a \times 0 = 0$。
 \par
@@ -454,7 +454,7 @@ $D_n$显然还有一个循环子群，生成元是$g = R\left(\frac{2\pi}{n}\rig
 \item 全体自然数连同自然乘法和加法不构成环，全体整数连同自然乘法和加法构成环；
 \item 全体有理数连同自然乘法和加法构成域；
 \item 全体$n$阶方阵连同矩阵乘法和加法构成环；
-\item 全体次数$<n$的多项式构成连同多项式乘法和加法构成环，称为多项式环，全体次数$<n$的分式构成域，称为分数域。
+\item 全体实系数的多项式构成连同多项式乘法和加法构成环，称为多项式环，全体实系数分式构成域，称为分数域。
 \end{itemize}
 更多关于环和域的性质参见抽象代数的教材，这两个代数结构虽然和群紧密相连，但不属于群论的讨论内容。
 
