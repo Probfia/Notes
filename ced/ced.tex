@@ -1,0 +1,365 @@
+\documentclass[a4paper,11pt]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,
+            linkcolor=blue,
+		 urlcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+\usepackage{float}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[H]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\newtheorem{eg}{例}[section]
+\newtheorem{ans}{解答}[section]
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+\newcommand{\red}{\color{red}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\del}{\vec{\nabla}}
+\newcommand{\epv}{\epsilon_0}
+\newcommand{\pfrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\emptyline}{\vspace{0.7cm} \\}
+\newcommand{\dist}{\left| \vec{x} - \vec{x}' \right|}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\res}{\mathrm{res\ }}
+
+
+\title{Classical Electrodynamic}
+\author{Probfia}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+
+\section{无边界的经典电磁场}
+\subsection{麦克斯韦方程}
+真空中与源耦合的麦克斯韦方程具有如下形式
+\bea \label{maxeq}
+\del \cdot \vec{E} &= \frac{\rho}{\epv} \\
+\del \times \vec{E} &= -\pfrac{\vec{B}}{t} \\
+\del \cdot \vec{B} &= 0 \\ 
+\del \times \vec{B} &= \pfrac{\vec{E}}{t}+ \mu_0 \vec{j}
+\eea
+为了简化上面的方程，引入势函数$\phi$和$\vec{A}$使得
+\bea
+\vec{E} &= -\del \phi - \pfrac{\vec{A}}{t} \\
+\vec{B} & = \del \times \vec{A}
+\eea
+这使得麦克斯韦方程中的$\del \times \vec{E}$和$\del \cdot \vec{B}$式自动满足。势函数的选取依然存在不定性，可以验证，若$(\phi,\vec A)$给出的物理场是$( \vec E , \vec B )$，对任意的标量场$\lambda (\vec{x},t)$，$(\phi -\partial_t \lambda, \vec A - \del \lambda )$。这种不变性称为势函数的规范不变性。规范给出对势函数的一个具体限制，我们常用洛伦兹规范$\partial_t \phi + \del \cdot \vec A = 0$。
+\par
+把势函数和规范要求带入麦克斯韦方程的剩下两式就得到
+\bea \label{maxpot}
+\frac{\partial^2 \phi}{\partial t^2} - \nabla^2 \phi &= \frac{\rho }{\epv} \\
+\frac{\partial^2 \vec A}{\partial t^2} - \nabla^2 \vec A &= \mu_0 \vec j 
+\eea
+推导第二式需要将原等式右边的$\vec E$用势函数表示，并用洛伦兹规范条件与左边的$\del \cdot ( \del \cdot \vec A)$抵消。
+\par
+当源$(\rho, \vec j )$不存在时，势函数$\phi$和$\vec A$的各个分量满足自由空间中的波动方程。
+\subsection{格林函数}
+当空间中存在源$(\rho,\vec{j})$时，容易看出$\phi \sim \rho$，$A_i \sim j_i$。方程形式的类似性告诉我们为了具体讨论源对势函数的影响，只用讨论$\phi$对$\rho$的影响。
+\par
+由于电磁场的叠加原理，我们只需要考虑点源的影响。考虑方程
+\beq
+\frac{\partial^2 \phi}{\partial t^2} - \nabla^2 \phi = \delta(t-t_0,\vec{x}-\vec{x}_0)
+\eeq
+两边乘$e^{-i\omega t + i \vec{k} \cdot \vec{x}} dt d^3 \vec{x}$做积分，得到傅立叶空间中的方程为
+\beq
+(\vec{k}^2 - \omega^2 ) \phi = e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0}
+\eeq
+傅立叶逆变换为
+\beq
+\phi = \int \frac{d\omega}{2\pi} \int \frac{d^3 \vec{k}}{(2\pi)^3} \frac{1}{\vec{k}^2-\omega^2} e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0} e^{i\omega t - i \vec{k} \cdot \vec{x}}
+\eeq
+这个积分可以这样进行，首先，由于傅立叶空间中$\vec{x}$是一个给定的量，记$\vec{x}-\vec{x}_0$的长度为$r$，$\vec{x}-\vec{x}_0$与$\vec{k}$的夹角为$\theta$（随$\vec{k}$变化而变化，从而被对$d^3 \vec{k}$的积分积掉。第二个积分因此可以改到在球坐标下进行。球坐标下的体积元$d^3 \vec{k} = k^2 \sin \theta dk d\theta d\phi$，因此有
+\beq
+\phi = \int \frac{d\omega}{2\pi} e^{i\omega ( t - t_0)} \int_{\phi = 0}^{2\pi} d\phi\int \frac{k^2 dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} \int_{\theta = 0}^\pi e^{ikr\cos \theta } \sin \theta d\theta 
+\eeq
+最后两个个角向积分很容易进行
+\bea
+\int_{\theta = 0}^\pi e^{ikr \cos \theta} \sin \theta d\theta &= -\int_{\theta = 0}^{\pi} e^{ikr \cos \theta} d(\cos \theta) \\
+&= \int_{x = -1}^1 e^{ikrx}dx = \left. \frac{e^{ikrx}}{ikr} \right|_{-1}^1 = 2\frac{\sin kr}{kr}
+\eea
+现在可以进行对$k$的积分，首先为了利用复变函数积分技巧，有
+\beq
+\frac{2}{r} \int \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2}\sin kr = \frac{2}{r} \mathrm{Im} \int \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} e^{ikr} 
+\eeq
+由于$r>0$，在上半复平面积分可以让$e^{ikr}$在上半围道消失，但极点$k = \pm \omega$出现在围道上，为了解决这个困境，考虑
+\beq
+\int \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} e^{ikr}  = \lim_{\epsilon \to 0} \int \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2 + i \epsilon} e^{ikr} 
+\eeq
+这时被积函数的极点就出现在$k = \pm \sqrt{\omega^2 - i\epsilon} \simeq \pm \omega \mp i\frac{\epsilon}{2\omega}$，极点$-\omega + i \frac{\epsilon}{2\omega} $出现在上半复平面，对积分有贡献。由于
+\beq
+\frac{k}{k^2 - \omega^2} e^{ikr} = \frac{1}{k-(-\omega)} \frac{k}{k-\omega}e^{ikr}
+\eeq
+该点的留数为$\frac{1}{2(2\pi)^3} e^{-i\omega r}$，积分的最终结果因此为$\frac{1}{(2\pi)^2 r} \cos \omega r$。\par
+最后进行对$\omega$的积分，有
+\bea
+\phi &= 2\pi \int_{\omega = -\infty}^\infty \frac{d\omega}{2\pi} e^{i\omega (t-t_0) }\frac{ \cos \omega r }{(2\pi)^2r} \\
+& = \frac{1}{(2\pi)^2 r}  \int_{\omega = -\infty}^\infty d\omega \cos \omega(t-t_0) \cos \omega r \\
+&= \frac{1}{2(2\pi)^2 r} \int_{\omega = -\infty}^\infty d\omega \left[ \cos \omega(t-t_0 -r) + \cos \omega(t-t_0 + r)\right] \\
+&= \frac{1}{4 \pi r} \left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]
+\eea
+这就是势函数对电源的响应，也即源对势的格林函数。
+\subsection{推迟势}
+根据格林函数的公式，对一般的源$\epv \rho(\vec{x},t)$有
+\bea
+\phi(\vec{x},t) &=\frac{1}{4\pi \epv}  \int dt'd^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t') \left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]\\
+&= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \left[\rho(\vec{x}',t-|\vec{x}-\vec{x}'|) + \rho(\vec{x},t+|\vec{x}'-\vec{x}'|) \right]
+\eea
+这里发现，势函数$\phi$可以分解为推迟势
+\beq
+\phi_{ret} (\vec{x},t) = \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t-|\vec{x}-\vec{x}'|) 
+\eeq
+和超前势
+\beq
+\phi_{adv} (\vec{x},t) = \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t+|\vec{x}-\vec{x}'| )
+\eeq
+可以验证，推迟势和超前势都各自满足有源的势函数波动方程，但超前势却面临严重的因果律问题（未来时间对现在世界的影响），因此，我们以后将只考虑推迟势。势对源的响应因此概括为
+\bea \label{retp}
+\phi(\vec x,t) &= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t-|\vec{x}-\vec{x}'|)  \\
+\vec A (\vec x,t) &= \frac{\mu_0 }{4\pi } \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \vec j (\vec{x}',t-|\vec{x}-\vec{x}'|) 
+\eea
+如果要放回所有的光速$c$，则是
+\bea
+\phi(\vec x,t) &= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t-\frac{1}{c}|\vec{x}-\vec{x}'|)  \\
+\vec A (\vec x,t) &= \frac{\mu_0 }{4\pi } \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \vec j (\vec{x}',t-\frac{1}{c}|\vec{x}-\vec{x}'|) 
+\eea
+推迟势的物理意义在于否定了超距作用：一个位于$\vec{x}'$点的电子必须经过$\sim \frac{1}{c} \left| \vec{x}' - \vec{x} \right|$的时间后才能感受到位于$\vec{x}$处的电子发生的变化，信息以光速传递。此外可以看出，$\phi \sim \frac{1}{r}$，即势在无穷远处消散。这都是符合我们的物理直觉的。
+\subsection{规范场的作用量}
+
+\section{静场}
+\subsection{拉普拉斯方程}
+假设电荷分布和电流分布都不显含时间$t$，则从\cref{retp}可以看出，势函数同样不显含时间。这样不随时间演化的场称为静场。此时\cref{maxpot}简化为
+\bea
+\nabla^2 \phi &= - \frac{\rho}{\epv}\\
+\nabla^2 \vec A &= - \mu_0 \vec j
+\eea
+即势函数的各个分量都分别满足柏松方程。同样的，由于它们相仿的形式，我们暂且将目光局限在决定$\phi$的方程上。在无界空间中，$\phi$的解可以直接套用推迟势公式\cref{retp}，此时$\rho$无时间依赖
+\beq
+\phi(\vec{x}) = \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{\rho(\vec{x}')}{\left|\vec{x} - \vec{x}'\right|}
+\eeq
+但实际问题中，空间中存在着各种介质和导体，因此，电势$\phi$需要满足一些有限空间的边界条件。
+\par
+边界条件分为两类，第一类边界条件给出边界上$\phi$取值的直接限制
+\beq
+\phi \big|_{S} = f(\vec{x})
+\eeq
+第二类边界条件给出$\phi$梯度的法向分量，即电场垂直于边界面分量的限制
+\beq
+\del \phi \cdot \vec{n} \big|_S= f(\vec{x})
+\eeq
+静场问题归结于在边界条件下解泊松方程的问题。好的一点在于，若给定电荷分布$\rho(\vec{x})$，我们总能做变换$\psi = \phi - \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{\rho(\vec{x}')}{\left|\vec{x} - \vec{x}'\right|}$。此时，$\psi$满足拉普拉斯方程
+\beq
+\nabla^2 \psi = 0
+\eeq
+而$\psi$的第一类（第二类）边界条件相当于原来$\phi$的边界条件减去对于自由解在边界上（的法向分量）的取值。也就是说，我们总能靠减去自由解的方法把泊松方程问题转化为拉普拉斯方程问题。
+
+\subsection{分离变量解}
+\subsubsection{直角区域分离变量}
+在直角区域内，一个函数可以按正余弦函数展开。对于有界空间，电势表达为一系列傅立叶级数形式；而对无界空间，电势表达为傅立叶积分。我们分别举一个有界和无界的例子表明直角区域静电问题的解法。\begin{eg}
+在正方形区域$0<x,y<L$中，除顶边$0<x<L, y=L$的电势为$V(x)$外，其余三边接地。求该正方形区域内的电势分布。
+\end{eg}
+\begin{ans}
+设电势$\phi( x,y) = X(x) Y(y)$，带入拉普拉斯方程有
+\beq
+\frac{1}{X} \frac{d^2 X}{d x^2} = - \frac{1}{Y} \frac{d^2 Y}{dy^2} = -k^2
+\eeq
+右边取$-k^2$可以让$X(x)$取震荡形式从而满足两边的零边界条件，从而有分离变量解
+\begin{equation}
+X_n = a_n \sin \frac{n\pi x}{L}, n=0,1,2,\cdots
+\end{equation}
+
+\begin{equation}
+Y_n = b_n \sinh \frac{n\pi y}{L}, n=0,1,2,\cdots
+\end{equation}
+于是写出
+\begin{equation}
+\phi(x,y) = \sum_{n=1}^\infty c_n \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}
+\end{equation}
+将上式代入边界条件$u(x,L) =V(x)$，得到
+\begin{equation}
+\sum_{n=1}^\infty c_n \sin \frac{n\pi x}{L} \sinh n\pi = V(x)
+\end{equation}
+上式两边同乘$\sin \cfrac{m\pi x}{L}$并对$x$从0到$L$积分（利用函数集$\{ \sin \cfrac{n \pi x}{L}\}$的正交性，相当于求$V$的傅里叶正弦展开系数），得到
+\beq
+\frac{L}{2}  c_n \sinh n \pi=  \int_{x=0}^L V(x) \sin \frac{n \pi x}{L} dx
+\eeq
+于是
+\beq
+\phi(x,y) = \frac{2}{L} \sum_{n=1}^\infty \frac{1}{\sinh n \pi}  \left( \int_{x=0}^L V(x) \sin \frac{n \pi x}{L} dx \right)
+\sin \frac{n\pi x}{L} \sinh \frac{n\pi y }{L}
+\eeq
+当$V(x)=V$为一常数时
+\begin{equation}
+c_n = \frac{4V}{n\pi \sinh n \pi} \end{equation}
+故正方形区域内的电势分布为
+\begin{equation}
+\phi(x,y) = 4V\sum_{n=1}^{\infty} \frac{1}{n\pi \sinh n \pi}  \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}
+\end{equation}
+\end{ans}
+\par
+下面一个例子说明无界空间中的分离变量。
+\begin{eg}
+在三维空间中的$xy$平面上有一个无限大平板，其上的电势给定为$V(x,y)$。求全空间的电势分布和板两侧的电荷分布。
+\end{eg}
+\begin{ans}
+根据对称性，先分离$z$变量。设$\phi(x,y,z) = \psi(x,y) Z(z)$，有
+\beq
+\frac{1}{\psi} \nabla^2 \psi  = - \frac{1}{Z} \frac{d^2 Z}{dz^2} =- k^2
+\eeq
+右边选择$-k^2$是因为$Z(z)$必然在足够远处按指数形式$\sim e^{-k|z|}$消散而不能持续震荡。因此
+\beq
+\frac{d^2 Z}{dz^2} - k^2 Z = 0
+\eeq
+根据$z$的正负选取合适的解
+\beq
+Z(z) \sim \begin{cases} e^{-kz} &,z>0; \\ e^{kz} &,z<0 \end{cases}
+\eeq
+进一步分离变量，设$\psi(x,y) = X(x)Y(y)$，有
+\bea
+\frac{d^2 X}{dx^2} + k_1^2 X &= 0 \\
+\frac{d^2 Y}{dy^2} + k_2^2 Y &= 0
+\eea
+其中$k_1^2 + k_2^2 = k^2$。$xy$平面的无界性给出模式$(k_1,k_2)$的连续谱，$X\sim e^{ik_1 x}$，$Y \sim e^{ik_2 y}$。解形式上为各个模式的线性组合
+\beq
+\phi(x,y,z) = \int \frac{dk_1 dk_2}{(2\pi)^2} c(k_1,k_2) e^{i(k_1 x + k_2 y)} e^{-\sqrt{k_1^2 + k_2^2} |z|}
+\eeq
+为了确定系数$c(k_1,k_2)$，令$z=0$有
+\beq
+V(x,y) = \int \frac{dk_1 dk_2}{(2\pi)^2} c(k_1,k_2) e^{i(k_1 x + k_2 y)}
+\eeq
+可以看出$V(x,y)$就是$c(k_1,k_2)$的傅立叶逆变换，于是
+\beq
+c(k_1,k_2) = \int dx dy V(x,y) e^{-i(k_1 x + k_2 y)}
+\eeq
+由电磁学的高斯定理知道表面面电荷分布$\sigma = \epv \vec{E} \cdot \vec{n}$，于是需要知道电场的$z$分量
+\beq
+E_z = - \pfrac{\phi}{z} =\sgn(z) \int \frac{dk_1 dk_2}{(2\pi)^2}\frac{c(k_1,k_2)}{\sqrt{k_1^2 + k_2^2}} e^{i(k_1 x + k_2 y)} e^{-\sqrt{k_1^2 + k_2^2} |z|}
+\eeq
+符号函数的出现是因为对$z$的绝对值求导。于是面电荷分布
+\bea
+\sigma_\pm &= \left. \epv\sgn(z) \int \frac{dk_1 dk_2}{(2\pi)^2}\frac{c(k_1,k_2)}{\sqrt{k_1^2 + k_2^2}} e^{i(k_1 x + k_2 y)} e^{-\sqrt{k_1^2 + k_2^2} |z|} \vec{e}_z \cdot (\pm \vec{e}_z) \right|_{z=0} \\ &= \epv \int \frac{dk_1 dk_2}{(2\pi)^2}\frac{c(k_1,k_2)}{\sqrt{k_1^2 + k_2^2}} e^{i(k_1 x + k_2 y)}
+\eea
+正负号的出现是因为上下表面的法向量方向不同，这个正负号于$\sgn(z)$抵消。我们发现上下表面带等量同种电荷，这其实从对称性可以很容易看出。\par
+下面去特例对结果进行讨论。当$V(x,y) = V$为一常数时，有
+\beq
+c(k_1,k_2) = \int dx dy V e^{-i(k_1 x + k_2 y)} = (2\pi)^2 \delta(k_1) \delta(k_2)
+\eeq
+于是
+\bea
+\phi(x,y,z) &= \int \frac{dk_1 dk_2}{(2\pi)^2} (2\pi)^2 V \delta(k_1) \delta(k_2) e^{i(k_1 x + k_2 y)} e^{-\sqrt{k_1^2 + k_2^2} |z|} \\ 
+&= V
+\eea
+即全空间的电势为一个常数，这乍看不符合直觉，但显然$\phi = V$是$\nabla^2 \phi = 0$符合给定边界条件的一个解，而且唯一性定理保证了它就是唯一的解。\par
+再例如$V(x,y) = \frac{1}{1+x^2}$。有
+\beq
+c(k_1,k_2) = \int dx dy \frac{1}{1+x^2} e^{-i(k_1 x + k_2 y)} = 2\pi \delta(k_2) \int dx \frac{1}{1+x^2} e^{-ik_1 x}
+\eeq
+积分可以用复变函数的方法进行，注意到被积函数$f(z) = \frac{1}{1+z^2} e^{-ik_1 z}$下有两个极点$\res f(i) = \frac{e^{-k_1}}{2i}$，$\res f(-i) = - \frac{e^{k_1}}{2i}$。当$k_1 > 0$，积分在上半围道进行，结果为$\pi e^{-k_1}$；当$k_1 < 0 $，积分在下半围道进行，这时在实轴上$x$从正无穷走向负无穷，因此需要在$2\pi i \res f(-i)$上再添一个符号才是原积分的结果，为$\pi e^{k_1}$。两种情况积分可以统一表示成$\pi e^{-|k_1|}$。故
+\beq
+c(k_1,k_2) = 2\pi^2 \delta(k_2) e^{-|k_1|}
+\eeq
+于是全空间电势分布
+\bea
+\phi(x,y,z) &= \int \frac{dk_1 dk_2}{(2\pi)^2} 2\pi^2 \delta(k_2) e^{-|k_1|} e^{i(k_1 x + k_2 y)} e^{-\sqrt{k_1^2 + k_2^2} |z|} \\ 
+&= \int_{k_1 = -\infty}^\infty dk_1 \frac{1}{2} e^{-|k_1|} e^{ik_1 x} e^{-|k_1| |z|} \\
+&= \mathrm{Re}\ \int_{k_1 = 0}^\infty dk_1 e^{-k_1(1+|z|-ix)}  \\ 
+&= \mathrm{Re}\ \frac{1}{1+z-ix} = \frac{1+|z|}{(1+|z|)^2 + x^2}
+\eea
+电场分布
+\beq
+\vec{E} = -\pfrac{\phi}{x}\vec{e}_x - \pfrac{\phi}{z} \vec{e}_z  = \sgn z\left ( \frac{2 x (z+1)}{\left(x^2+(z+1)^2\right)^2}\vec{e}_x +\left[\frac{2 (z+1)^2}{\left(x^2+(z+1)^2\right)^2}-\frac{1}{x^2+(z+1)^2}\right] \vec{e}_z \right)
+\eeq
+表面电荷分布
+\beq
+\sigma(x,y) = \left. \epv \vec{E} \cdot \vec{e}_z \right|_{z=0} = \epv \frac{2-x^2}{x^4}
+\eeq
+
+\end{ans}
+
+\subsubsection{扇形区域分离变量}
+采用柱坐标在扇形或圆形区域分离变量时，解的形式依赖于$z$轴依赖是否存在。当电势不依赖于$z$时，可以假设$\phi(r,\theta) = R(r) \Theta(\theta)$，进而有
+\beq
+\Theta \frac{1}{r} \frac{d}{dr} \left( r \frac{dR}{dr}\right) + R \frac{1}{r^2} \frac{d^2 \Theta}{d theta^2} = 0
+\eeq
+进一步整理得到
+\beq
+\frac{r}{R} \frac{d}{dr} \left( r \frac{dR}{dr} \right) = - \frac{1}{\Theta} \frac{d^2 \Theta}{d \theta^2} = \nu^2
+\eeq
+角向方程的解写成
+\beq
+\Theta(\theta) = c_\nu \cos \nu \theta + s_\nu \sin \nu \theta
+\eeq
+其中$\nu$的取值与边界条件有关，当形区域为圆形区域时，需要添加自然周期性边界条件（PBC）$\Theta(\theta + 2\pi) = \Theta(\theta)$，这要求$\nu$只能取整数。
+\par
+径向方程整理为
+\beq
+r^2 \frac{d^2 R}{dr^2} + r \frac{dR}{dr} - \nu^2 R = 0
+\eeq
+这个方程可以简单求解如下：假设$R \sim r^p$，有
+\beq
+p(p-1) + p - \nu^2 = 0
+\eeq
+当$\nu \not= 0$时，解为$R \sim r^\nu + r^{-\nu}$；当$\nu=0$，由于二阶常微分线性方程总有两个线性无关解，$R \sim \mathrm{const.}$不足以构成完备解，但容易验证，$R \sim \ln r$也满足$\nu=0$时的方程。
+\par
+于是，无$z$依赖时，扇形区域分离变量的形式解写成
+\beq
+\phi(r,\theta) = a_0 + b_0 \ln r + \sum_{\nu} \left(a_\nu r^\nu + b_\nu \frac{1}{r^\nu} \right) \left( c_\nu \cos \nu \theta + s_\nu \sin \nu \theta \right)
+\eeq
+\subsubsection{锥形区域分离变量}
+\subsubsection{电势格林函数}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
