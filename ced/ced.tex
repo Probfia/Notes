@@ -220,11 +220,13 @@ Y_n = b_n \sinh \frac{n\pi y}{L}, n=0,1,2,\cdots
 \eeq
 当$V(x)=V$为一常数时
 \begin{equation}
-c_n = \frac{4V}{n\pi \sinh n \pi} \end{equation}
+c_n = \frac{2V[1-(-1)^n]}{n\pi \sinh n \pi} \end{equation}
 故正方形区域内的电势分布为
 \begin{equation}
 \phi(x,y) = 4V\sum_{n=1}^{\infty} \frac{1}{n\pi \sinh n \pi}  \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}
 \end{equation}
+取$n=1000$的截断作出的图像如\cref{es2}。
+\cpicn{0.4}{es2}{本例题中方形区域内的电势分布}
 \end{ans}
 \par
 下面一个例子说明无界空间中的分离变量。
@@ -303,13 +305,34 @@ c(k_1,k_2) = 2\pi^2 \delta(k_2) e^{-|k_1|}
 \beq
 \sigma(x,y) = \left. \epv \vec{E} \cdot \vec{e}_z \right|_{z=0} = \epv \frac{2-x^2}{x^4}
 \eeq
+\par
+容易计算的情形是$V(x,y) = V(\sqrt{x^2 + y^2}) \equiv V(r)$的情形。给定$\vec{k} = (k_1,k_2)$，记$\theta$为$\vec{k}$和$\vec{r}$之间的夹角。容易想到，现在$c(k_1,k_2)$也只依赖于$\vec{k}$的模长$k$。在极坐标下积分，有
+\bea
+c(k) &= \int_{r=0}^\infty rdr \int_{\theta = 0}^{2\pi} V(r) e^{-ikr\cos \theta} d\theta \\
+&= 2\pi \int_{r=0}^\infty rdr V(r) J_0(kr)
+\eea
+其中引入了贝塞尔函数$J_0$及其积分表达式$J_0(x) = \frac{1}{2\pi}\int_{-\pi}^\pi  e^{ix\cos \theta} d\theta$。\par
+全空间的电场于是为
+\bea
+\phi(r,z) &= \int_{k=0}^\infty \frac{kdk}{(2\pi)^2} \int_{\varphi=0}^{2\pi} d\varphi \left(2\pi \int_{r'=0}^\infty r'dr' V(r') J_0(kr) \right) e^{ikr\cos \varphi} e^{-kz} \\
+&= \int_{k=0}^\infty kdk e^{-kz} J_0 (kr)  \int_{r'=0}^\infty r' dr' V(r') J_0(kr')
+\eea
+此处必须知道$V(r)$的具体表达式，否则无法继续再化简。例如当$V(r) = e^{-\frac{r^2}{2a^2}}$，后一个积分等于$a^2 e^{-\frac{1}{2} a^2 k^2}$，再带入积分就得到
+\beq
+\phi(r,z) = a^2 \int_{k=0}^\infty kdk e^{-kz-\frac{1}{2} a^2 k^2} J_0 (kr)
+\eeq
+这里还是化简不了，不过我们依然是得到了一个积分表达式。可以用这个表达式进行数值计算观察势的行为。结果如\cref{2_2p1}。
+\cpicn{0.3}{2_2p1}{本例中电势随$(r,z)$的分布}
+可以看到，在$r$方向，电势大致呈高斯型，特别是在$r=0$处电势的导数为0，体现出原有电势分布的对称性；而在$z$方向，电势大致是按$\sim e^{-z/a}$下降的，这点可以从$z=0$处电势的导数非零看出。
+
+
 
 \end{ans}
 
 \subsubsection{扇形区域分离变量}
 采用柱坐标在扇形或圆形区域分离变量时，解的形式依赖于$z$轴依赖是否存在。当电势不依赖于$z$时，可以假设$\phi(r,\theta) = R(r) \Theta(\theta)$，进而有
 \beq
-\Theta \frac{1}{r} \frac{d}{dr} \left( r \frac{dR}{dr}\right) + R \frac{1}{r^2} \frac{d^2 \Theta}{d theta^2} = 0
+\Theta \frac{1}{r} \frac{d}{dr} \left( r \frac{dR}{dr}\right) + R \frac{1}{r^2} \frac{d^2 \Theta}{d \theta^2} = 0
 \eeq
 进一步整理得到
 \beq
@@ -319,7 +342,8 @@ c(k_1,k_2) = 2\pi^2 \delta(k_2) e^{-|k_1|}
 \beq
 \Theta(\theta) = c_\nu \cos \nu \theta + s_\nu \sin \nu \theta
 \eeq
-其中$\nu$的取值与边界条件有关，当形区域为圆形区域时，需要添加自然周期性边界条件（PBC）$\Theta(\theta + 2\pi) = \Theta(\theta)$，这要求$\nu$只能取整数。
+当$\nu=0$时，由于二阶常微分线性方程总有两个线性无关解，$\Theta = c_0$不足以构成完备解，但容易验证，$\Theta = c_0 + s_0 \theta$也满足$\nu=0$时的方程。
+$\nu$的取值与边界条件有关，当形区域为圆形区域时，需要添加自然周期性边界条件（PBC）$\Theta(\theta + 2\pi) = \Theta(\theta)$，这要求$\nu$只能取整数，且$s_0=0$。
 \par
 径向方程整理为
 \beq
@@ -333,10 +357,84 @@ p(p-1) + p - \nu^2 = 0
 \par
 于是，无$z$依赖时，扇形区域分离变量的形式解写成
 \beq
-\phi(r,\theta) = a_0 + b_0 \ln r + \sum_{\nu} \left(a_\nu r^\nu + b_\nu \frac{1}{r^\nu} \right) \left( c_\nu \cos \nu \theta + s_\nu \sin \nu \theta \right)
+\phi(r,\theta) = (a_0 + b_0 \ln r)(c_0 + s_0 \theta) + \sum_{\nu} \left(a_\nu r^\nu + b_\nu \frac{1}{r^\nu} \right) \left( c_\nu \cos \nu \theta + s_\nu \sin \nu \theta \right)
 \eeq
+当考虑的空间区域包括原点时，电势在原点不发散要求$b$项全部为0；剔除原点时，所有项都可能对最终表达式做贡献。
+\begin{eg}
+空间内有一半径为$a$的无限长圆柱面，其轴与$z$轴重合。圆柱面上的电势$V(\theta)$给定且只依赖于极角。求全空间的电势分布。
+\end{eg}
+\begin{ans}
+按之前的讨论，在$r<a$范围内，解按
+\beq
+\phi(r,\theta) = \sum_{m=0}^\infty \left( \frac{r}{a} \right)^m \left( c_m \cos m \theta + s_m \sin m \theta \right)
+\eeq
+展开。令$r=a$得到
+\beq
+V(\theta) = \sum_{m=0}^\infty  \left( c_m \cos m \theta + s_m \sin m \theta \right)
+\eeq
+于是
+\bea
+c_m &= \frac{1}{\pi} \int_{\theta=0}^{2\pi} V(\theta) \cos m \theta d\theta \\
+s_m &= \frac{1}{\pi} \int_{\theta=0}^{2\pi} V(\theta) \sin m \theta d\theta
+\eea
+圆柱面以外的解只需要将$\frac{r}{a}$替换为$\frac{a}{r}$。
+\par
+例如，当$V(\theta) = V_0 \sin 2\theta$时，展开系数只有$s_2 = V_0$非零，故解为
+\beq
+\phi(r,\theta) = V_0 \min \{ \left( \frac{r}{a}\right)^2 ,\left( \frac{a}{r} \right)^2\}  \sin 2\theta
+\eeq
+对应的图像如$\cref{2_3p1}$。
+\cpicn{0.12}{2_3p1}{$V(\theta) = V_0 \sin 2\theta$时全空间的电势分布}
+\end{ans}
+\par
+下面一个例子说明扇形区域下的解法。
+\begin{eg}
+空间中一扇形区域边界为两个半无限大接地金属板，其张角为$\beta$。求扇形区域内电势分布和金属板上电荷分布的通解，并讨论$\beta \to 0$，$\beta = \pi$和$\beta \to 2\pi$的行为。
+\end{eg}
+\begin{ans}
+由于原点包括在内，形式上的分离变量解为
+\beq
+\phi(r,\theta) = a_0 + \sum_\nu (a_\nu \cos \nu \theta + b_\nu \sin \nu \theta) r^\nu
+\eeq
+边界条件为
+\bea
+\phi(r,\theta=0) &= 0 \\
+\phi(r,\theta=\beta) &= 0
+\eea
+可知$a_\nu = 0$，$\nu = n\pi \theta /\beta$。于是通解为
+\beq
+\phi(r,\theta) = a_0 + \sum_{n=1}^\infty b_n r^{\frac{n\pi }{\beta}} \sin \frac{n\pi \theta}{\beta}
+\eeq
+取一阶近似得到
+\beq
+\phi(r,\theta) \simeq a_0 + a_1 r^\frac{\pi }{\beta} \sin \frac{\pi \theta}{\beta}
+\eeq
+于是电场为
+\bea
+\vec{E} &\simeq -\pfrac{\phi}{r} \vec{e}_r - \frac{1}{r} \pfrac{\phi}{\theta} \vec{e}_\theta \\
+&=-\frac{\pi }{\beta}a_1 r^{\frac{\pi }{\beta}-1} \sin \frac{\pi  \theta}{\beta} \vec{e}_r-\frac{\pi }{\beta} a_1 r^{\frac{\pi }{\beta}-1} \cos \frac{\pi \theta }{\beta} \vec{e}_\theta
+\eea
+电场大小$E \sim r^{\frac{\pi }{\beta}-1}$，板上的面电荷密度为
+\beq
+\sigma = \epv \vec{E} \cdot \vec{e}_\theta  = -\frac{\pi }{\beta} a_1 r^{\frac{\pi }{\beta}-1}\sim r^{\frac{\pi}{\beta} - 1}
+\eeq
+\par
+当$\theta \to 0$，图像上对应一个带狭缝的无限长金属棒。狭缝上的电荷分布$\sigma \sim r^\infty$，即在原点处，狭缝边缘几乎没有电荷，跟容易想出这是由于该处电荷间的强烈排斥导致的。
+\par
+当$\theta = \pi$，图像上对应一个无限大金属板。此时的电场分布为
+\beq
+\vec{E} \simeq - a_1 \sin \theta \vec{e}_r - a_1 \cos \theta \vec{e}_\theta = -a_1 \vec{e}_y
+\eeq
+对应一个匀强电场。从电磁学知识我们已经知道，一个无限大带电金属板对应的电场就是一个匀强电场，于是系数$a_1=-E$。再看面电荷分布，有
+\beq
+\sigma = - \epv a_1 =\epv E
+\eeq
+与熟知的结果$E = \frac{\sigma}{\epv}$一致。
+\par
+当$\theta \to 2\pi$，图像上对应一个二维劈尖，面电荷分布和电场大小$\sigma \sim E\sim \frac{1}{\sqrt{r}}$，即在尖端处，电场和面电荷都非常大，之后随远离尖端而衰减，符合尖端放电的物理事实。
+\end{ans}
 \subsubsection{锥形区域分离变量}
-\subsubsection{电势格林函数}
+\subsubsection{电荷格林函数}
 
 
 

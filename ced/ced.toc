@@ -7,6 +7,6 @@
 \contentsline {subsection}{\numberline {2.1}拉普拉斯方程}{5}{subsection.2.1}% 
 \contentsline {subsection}{\numberline {2.2}分离变量解}{6}{subsection.2.2}% 
 \contentsline {subsubsection}{\numberline {2.2.1}直角区域分离变量}{6}{subsubsection.2.2.1}% 
-\contentsline {subsubsection}{\numberline {2.2.2}扇形区域分离变量}{9}{subsubsection.2.2.2}% 
-\contentsline {subsubsection}{\numberline {2.2.3}锥形区域分离变量}{10}{subsubsection.2.2.3}% 
-\contentsline {subsubsection}{\numberline {2.2.4}电势格林函数}{10}{subsubsection.2.2.4}% 
+\contentsline {subsubsection}{\numberline {2.2.2}扇形区域分离变量}{11}{subsubsection.2.2.2}% 
+\contentsline {subsubsection}{\numberline {2.2.3}锥形区域分离变量}{14}{subsubsection.2.2.3}% 
+\contentsline {subsubsection}{\numberline {2.2.4}电荷格林函数}{14}{subsubsection.2.2.4}% 
