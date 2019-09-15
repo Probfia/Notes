@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.7.19)  14 SEP 2019 23:33
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.7.19)  15 SEP 2019 10:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -779,40 +779,41 @@ e 97.
 File: es2.png Graphic file (type bmp)
 <es2.png>
  [7] [8]
-Overfull \hbox (65.7391pt too wide) detected at line 303
+Overfull \hbox (65.7391pt too wide) detected at line 308
 [][] \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 ^^@[][] ^^@ [][] \OT1/cmr/m/n/10.
 95 = []\OML/cmm/m/it/10.95 z []
  []
 
-[9]
+[9] [10]
 File: 2_2p1.png Graphic file (type bmp)
 <2_2p1.png>
- [10] [11]
+
+Overfull \hbox (16.75203pt too wide) detected at line 363
+[][][]
+ []
+
+[11] [12] [13]
 Missing character: There is no 图 in font [lmroman10-regular]:mapping=tex-text;!
 File: 2_3p1.png Graphic file (type bmp)
 <2_3p1.png>
- [12] [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 463.
  [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 463.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 504.
+ [15]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 504.
  (./ced.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 463.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 463.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 504.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 504.
 Package rerunfilecheck Info: File `ced.out' has not changed.
 (rerunfilecheck)             Checksum: A4205152CDDC8BAE314EBF8B7B767C1B.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 463.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 504.
  ) 
 Here is how much of TeX's memory you used:
- 25877 strings out of 492916
- 538119 string characters out of 6133345
+ 25924 strings out of 492916
+ 540277 string characters out of 6133345
  621722 words of memory out of 5000000
- 29728 multiletter control sequences out of 15000+600000
- 538173 words of font info for 66 fonts, out of 8000000 for 9000
+ 29768 multiletter control sequences out of 15000+600000
+ 539882 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,9n,73p,384b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,9n,73p,384b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ced.pdf (14 pages).
+Output written on ced.pdf (15 pages).

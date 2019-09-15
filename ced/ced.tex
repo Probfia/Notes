@@ -101,7 +101,7 @@
 \eeq
 这个积分可以这样进行，首先，由于傅立叶空间中$\vec{x}$是一个给定的量，记$\vec{x}-\vec{x}_0$的长度为$r$，$\vec{x}-\vec{x}_0$与$\vec{k}$的夹角为$\theta$（随$\vec{k}$变化而变化，从而被对$d^3 \vec{k}$的积分积掉。第二个积分因此可以改到在球坐标下进行。球坐标下的体积元$d^3 \vec{k} = k^2 \sin \theta dk d\theta d\phi$，因此有
 \beq
-\phi = \int \frac{d\omega}{2\pi} e^{i\omega ( t - t_0)} \int_{\phi = 0}^{2\pi} d\phi\int \frac{k^2 dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} \int_{\theta = 0}^\pi e^{ikr\cos \theta } \sin \theta d\theta 
+\phi = \int \frac{d\omega}{2\pi} e^{i\omega ( t - t_0)}  d\phi\int_{k=0}^\infty \frac{k^2 dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} \int_{\theta = 0}^\pi e^{ikr\cos \theta } \sin \theta d\theta \int_{\phi = 0}^{2\pi}
 \eeq
 最后两个个角向积分很容易进行
 \bea
@@ -110,7 +110,7 @@
 \eea
 现在可以进行对$k$的积分，首先为了利用复变函数积分技巧，有
 \beq
-\frac{2}{r} \int \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2}\sin kr = \frac{2}{r} \mathrm{Im} \int \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} e^{ikr} 
+\frac{2}{r} \int_{k=0}^\infty \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2}\sin kr = \frac{1}{r} \mathrm{Im} \int_{k=-\infty}^\infty \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} e^{ikr} 
 \eeq
 由于$r>0$，在上半复平面积分可以让$e^{ikr}$在上半围道消失，但极点$k = \pm \omega$出现在围道上，为了解决这个困境，考虑
 \beq
@@ -120,20 +120,20 @@
 \beq
 \frac{k}{k^2 - \omega^2} e^{ikr} = \frac{1}{k-(-\omega)} \frac{k}{k-\omega}e^{ikr}
 \eeq
-该点的留数为$\frac{1}{2(2\pi)^3} e^{-i\omega r}$，积分的最终结果因此为$\frac{1}{(2\pi)^2 r} \cos \omega r$。\par
+该点的留数为$\frac{1}{2(2\pi)^3} e^{-i\omega r}$，积分的最终结果因此为$\frac{1}{2(2\pi)^2 r} \cos \omega r$。\par
 最后进行对$\omega$的积分，有
 \bea
-\phi &= 2\pi \int_{\omega = -\infty}^\infty \frac{d\omega}{2\pi} e^{i\omega (t-t_0) }\frac{ \cos \omega r }{(2\pi)^2r} \\
-& = \frac{1}{(2\pi)^2 r}  \int_{\omega = -\infty}^\infty d\omega \cos \omega(t-t_0) \cos \omega r \\
-&= \frac{1}{2(2\pi)^2 r} \int_{\omega = -\infty}^\infty d\omega \left[ \cos \omega(t-t_0 -r) + \cos \omega(t-t_0 + r)\right] \\
-&= \frac{1}{4 \pi r} \left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]
+\phi &= 2\pi \int_{\omega = -\infty}^\infty \frac{d\omega}{2\pi} e^{i\omega (t-t_0) }\frac{ \cos \omega r }{2(2\pi)^2r} \\
+& = \frac{1}{2(2\pi)^2 r}  \int_{\omega = -\infty}^\infty d\omega \cos \omega(t-t_0) \cos \omega r \\
+&= \frac{1}{4(2\pi)^2 r} \int_{\omega = -\infty}^\infty d\omega \left[ \cos \omega(t-t_0 -r) + \cos \omega(t-t_0 + r)\right] \\
+&= \frac{1}{4 \pi r} \frac{1}{2}\left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]
 \eea
 这就是势函数对电源的响应，也即源对势的格林函数。
 \subsection{推迟势}
 根据格林函数的公式，对一般的源$\epv \rho(\vec{x},t)$有
 \bea
-\phi(\vec{x},t) &=\frac{1}{4\pi \epv}  \int dt'd^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t') \left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]\\
-&= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \left[\rho(\vec{x}',t-|\vec{x}-\vec{x}'|) + \rho(\vec{x},t+|\vec{x}'-\vec{x}'|) \right]
+\phi(\vec{x},t) &=\frac{1}{4\pi \epv}  \int dt'd^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t') \frac{1}{2}\left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]\\
+&= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|}\frac{1}{2} \left[\rho(\vec{x}',t-|\vec{x}-\vec{x}'|) + \rho(\vec{x},t+|\vec{x}'-\vec{x}'|) \right]
 \eea
 这里发现，势函数$\phi$可以分解为推迟势
 \beq
@@ -143,7 +143,12 @@
 \beq
 \phi_{adv} (\vec{x},t) = \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t+|\vec{x}-\vec{x}'| )
 \eeq
-可以验证，推迟势和超前势都各自满足有源的势函数波动方程，但超前势却面临严重的因果律问题（未来时间对现在世界的影响），因此，我们以后将只考虑推迟势。势对源的响应因此概括为
+的组合
+\beq
+\phi = \frac{1}{2}(\phi_{ret} + \phi_{adv})
+\eeq
+\par
+可以验证，推迟势和超前势都各自满足有源的势函数波动方程\footnote{文中这种组合出现的原因是上一节算格林函数时，加$i \epsilon$的方法有些任意性。}，但超前势却面临严重的因果律问题（未来时间对现在世界的影响），因此，我们以后将只考虑推迟势。势对源的响应因此概括为
 \bea \label{retp}
 \phi(\vec x,t) &= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t-|\vec{x}-\vec{x}'|)  \\
 \vec A (\vec x,t) &= \frac{\mu_0 }{4\pi } \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \vec j (\vec{x}',t-|\vec{x}-\vec{x}'|) 
@@ -173,7 +178,7 @@
 \beq
 \phi \big|_{S} = f(\vec{x})
 \eeq
-第二类边界条件给出$\phi$梯度的法向分量，即电场垂直于边界面分量的限制
+第二类边界条件给出$\phi$梯度的法向分量，即电场垂直于边界面分量的限制，也就相当于面电荷分布的限制。
 \beq
 \del \phi \cdot \vec{n} \big|_S= f(\vec{x})
 \eeq
@@ -314,16 +319,52 @@ c(k) &= \int_{r=0}^\infty rdr \int_{\theta = 0}^{2\pi} V(r) e^{-ikr\cos \theta} 
 其中引入了贝塞尔函数$J_0$及其积分表达式$J_0(x) = \frac{1}{2\pi}\int_{-\pi}^\pi  e^{ix\cos \theta} d\theta$。\par
 全空间的电场于是为
 \bea
-\phi(r,z) &= \int_{k=0}^\infty \frac{kdk}{(2\pi)^2} \int_{\varphi=0}^{2\pi} d\varphi \left(2\pi \int_{r'=0}^\infty r'dr' V(r') J_0(kr) \right) e^{ikr\cos \varphi} e^{-kz} \\
-&= \int_{k=0}^\infty kdk e^{-kz} J_0 (kr)  \int_{r'=0}^\infty r' dr' V(r') J_0(kr')
+\phi(r,z) &= \int_{k=0}^\infty \frac{kdk}{(2\pi)^2} \int_{\varphi=0}^{2\pi} d\varphi \left(2\pi \int_{r'=0}^\infty r'dr' V(r') J_0(kr) \right) e^{ikr\cos \varphi} e^{-k|z|} \\
+&= \int_{k=0}^\infty kdk e^{-k|z|} J_0 (kr)  \int_{r'=0}^\infty r' dr' V(r') J_0(kr')
 \eea
-此处必须知道$V(r)$的具体表达式，否则无法继续再化简。例如当$V(r) = e^{-\frac{r^2}{2a^2}}$，后一个积分等于$a^2 e^{-\frac{1}{2} a^2 k^2}$，再带入积分就得到
+此处必须知道$V(r)$的具体表达式，否则无法继续再化简。例如当$V(r) = e^{-\frac{r^2}{2a^2}}$，后一个积分可以这样计算：回忆第一类贝塞尔函数的级数定义
 \beq
-\phi(r,z) = a^2 \int_{k=0}^\infty kdk e^{-kz-\frac{1}{2} a^2 k^2} J_0 (kr)
+J_\nu (x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! (m+\nu)!} \left( \frac{x}{2} \right)^{2m + \nu}
+\eeq
+于是有
+\bea
+\int_{x=0}^\infty x e^{-\frac{x^2}{2}} J_0(\alpha x) dx &= \int_{x=0}^\infty x e^{-\frac{x^2}{2}} \sum_{m=0}^\infty \frac{(-1)^m}{(m!)^2} \left( \frac{\alpha x}{2} \right)^{2m} dx\\
+&=\sum_{m=0}^\infty \frac{(-1)^m}{(m!)^2} \left( \frac{\alpha^2}{2} \right)^{m} \int_{x=0}^\infty x e^{-\frac{x^2}{2}} \left( \frac{x^2}{2}\right)^m \\
+&(u = \frac{x^2}{2})\\
+&=\sum_{m=0}^\infty \frac{(-1)^m}{(m!)^2} \left( \frac{\alpha^2}{2} \right)^{m}  \int_{u=0}^\infty e^{-u} u^m du \\
+&= \sum_{m=0}^\infty \frac{(-1)^m}{(m!)^2} \left( \frac{\alpha^2}{2} \right)^{m} m!\\
+&= \sum_{m=0}^\infty \frac{(-1)^m}{m!} \left( \frac{\alpha^2}{2} \right)^{m} = e^{-\frac{\alpha^2}{2}}
+\eea
+再作代换$x \to \frac{r}{a}$，$\alpha \to ak$，就得到
+\beq
+\int_{r=0}^\infty e^{-\frac{r^2}{2a^2}} J_0(kr) rdr = a^2 e^{-{a^2k^2}{2}}
+\eeq
+再带入积分就得到
+\beq
+\phi(r,z) = a^2 \int_{k=0}^\infty kdk e^{-k|z|-\frac{1}{2} a^2 k^2} J_0 (kr)
 \eeq
 这里还是化简不了，不过我们依然是得到了一个积分表达式。可以用这个表达式进行数值计算观察势的行为。结果如\cref{2_2p1}。
-\cpicn{0.3}{2_2p1}{本例中电势随$(r,z)$的分布}
+\cpicn{0.25}{2_2p1}{本例中电势随$(r,z)$的分布}
 可以看到，在$r$方向，电势大致呈高斯型，特别是在$r=0$处电势的导数为0，体现出原有电势分布的对称性；而在$z$方向，电势大致是按$\sim e^{-z/a}$下降的，这点可以从$z=0$处电势的导数非零看出。
+\par
+也可以将积分表达式展开成双级数，有
+\bea
+\phi(r,z) &= a^2 \int_{k=0}^\infty kdk e^{-k|z|-\frac{1}{2} a^2 k^2} J_0 (kr) \\
+&=a^2 \int_{k=0}^\infty k e^{-k|z|-\frac{1}{2} a^2 k^2} \sum_{m=0}^\infty \frac{(-1)^m}{(m!)^2} \left( \frac{kr}{2} \right)^{2m} dk \\
+&=a^2 \sum_{m=0}^\infty \frac{(-1)^m}{(m!)^2} \left( \frac{r^2}{2} \right)^{m}  \int_{k=0}^\infty k e^{-k|z|-\frac{1}{2} a^2 k^2} \left( \frac{k^2}{2} \right)^{m} dk \\
+&(u=\frac{k^2}{2})\\
+&=a^2 \sum_{m=0}^\infty \frac{(-1)^m}{(m!)^2} \left( \frac{r^2}{2} \right)^{m}  \int_{u=0}^\infty e^{-\sqrt{2u}|z|-a^2u} u^m du \\
+&= a^2 \sum_{m=0}^\infty \frac{(-1)^m}{(m!)^2} \left( \frac{r^2}{2} \right)^{m}  \int_{u=0}^\infty e^{-a^2u} \sum_{n=0}^\infty \frac{1}{n!} (-\sqrt{2u}|z|)^n u^m du \\
+&= a^2 \sum_{m=0}^\infty \sum_{n=0}^\infty \frac{(-1)^{m+n}}{(m!)^2} \left( \frac{r^2}{2} \right)^{m} \frac{1}{n!} (\sqrt{2}|z|)^n \int_{u=0}^\infty e^{-a^2u} u^{\frac{n}{2}+m} du\\
+&(v = a^2 u)\\
+&= a^2 \sum_{m=0}^\infty \sum_{n=0}^\infty \frac{(-1)^{m+n}}{(m!)^2} \left( \frac{r^2}{2} \right)^{m} \frac{1}{n!} (\sqrt{2}|z|)^n \left(\frac{1}{a^2}\right)^{\frac{n}{2} + m +1} \int_{v=0}^\infty e^{-v} v^{\frac{n}{2}+m} dv\\
+&= \sum_{m=0}^\infty \sum_{n=0}^\infty \frac{(-1)^{m+n}}{(m!)^2} \left( \frac{r^2}{2a^2} \right)^{m} \frac{1}{n!} \left(\sqrt{2}\frac{|z|}{a}\right)^n \int_{v=0}^\infty e^{-v} v^{\frac{n}{2}+m} dv\\
+&=\sum_{m=0}^\infty \sum_{n=0}^\infty \frac{(-1)^{m+n}\left(m+ \frac{n}{2}\right)!}{(m!)^2 n!} \left( \frac{r^2}{2a^2} \right)^{m}  \left(\sqrt{2}\frac{|z|}{a}\right)^n 
+\eea
+非常之壮观。最低一阶近似为
+\beq
+\phi \simeq 1 - \frac{r^2}{2a^2} - \sqrt{\frac{\pi}{2}} \frac{|z|}{a},\ r,|z| \ll a
+\eeq
 
 
 
