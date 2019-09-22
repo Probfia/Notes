@@ -74,7 +74,7 @@
 \vec{E} &= -\del \phi - \pfrac{\vec{A}}{t} \\
 \vec{B} & = \del \times \vec{A}
 \eea
-这使得麦克斯韦方程中的$\del \times \vec{E}$和$\del \cdot \vec{B}$式自动满足。势函数的选取依然存在不定性，可以验证，若$(\phi,\vec A)$给出的物理场是$( \vec E , \vec B )$，对任意的标量场$\lambda (\vec{x},t)$，$(\phi -\partial_t \lambda, \vec A - \del \lambda )$。这种不变性称为势函数的规范不变性。规范给出对势函数的一个具体限制，我们常用洛伦兹规范$\partial_t \phi + \del \cdot \vec A = 0$。
+这使得麦克斯韦方程中的$\del \times \vec{E}$和$\del \cdot \vec{B}$式自动满足。势函数的选取依然存在不定性，可以验证，若$(\phi,\vec A)$给出的物理场是$( \vec E , \vec B )$，对任意的标量场$\lambda (\vec{x},t)$，$(\phi -\partial_t \lambda, \vec A - \del \lambda )$也给出同样的物理场。这种不变性称为势函数的规范不变性，它事实上反应了我们定义出的规范场的冗余自由度。规范给出对势函数的一个具体限制从而去掉冗余自由度，我们常用洛伦兹规范$\partial_t \phi + \del \cdot \vec A = 0$。
 \par
 把势函数和规范要求带入麦克斯韦方程的剩下两式就得到
 \bea \label{maxpot}
@@ -101,7 +101,7 @@
 \eeq
 这个积分可以这样进行，首先，由于傅立叶空间中$\vec{x}$是一个给定的量，记$\vec{x}-\vec{x}_0$的长度为$r$，$\vec{x}-\vec{x}_0$与$\vec{k}$的夹角为$\theta$（随$\vec{k}$变化而变化，从而被对$d^3 \vec{k}$的积分积掉。第二个积分因此可以改到在球坐标下进行。球坐标下的体积元$d^3 \vec{k} = k^2 \sin \theta dk d\theta d\phi$，因此有
 \beq
-\phi = \int \frac{d\omega}{2\pi} e^{i\omega ( t - t_0)}  d\phi\int_{k=0}^\infty \frac{k^2 dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} \int_{\theta = 0}^\pi e^{ikr\cos \theta } \sin \theta d\theta \int_{\phi = 0}^{2\pi}
+\phi = \int \frac{d\omega}{2\pi} e^{i\omega ( t - t_0)}  \int_{k=0}^\infty \frac{k^2 dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} \int_{\theta = 0}^\pi e^{ikr\cos \theta } \sin \theta d\theta \int_{\phi = 0}^{2\pi}d\phi
 \eeq
 最后两个个角向积分很容易进行
 \bea
@@ -128,11 +128,11 @@
 &= \frac{1}{4(2\pi)^2 r} \int_{\omega = -\infty}^\infty d\omega \left[ \cos \omega(t-t_0 -r) + \cos \omega(t-t_0 + r)\right] \\
 &= \frac{1}{4 \pi r} \frac{1}{2}\left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]
 \eea
-这就是势函数对电源的响应，也即源对势的格林函数。
+其中利用了等式$\int_{-\infty}^\infty e^{ikx} dk = \int_{-\infty}^\infty \cos kx dk = 2\pi \delta(x)$。这就是势函数对电源的响应，也即源对势的格林函数。
 \subsection{推迟势}
 根据格林函数的公式，对一般的源$\epv \rho(\vec{x},t)$有
 \bea
-\phi(\vec{x},t) &=\frac{1}{4\pi \epv}  \int dt'd^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t') \frac{1}{2}\left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]\\
+\phi(\vec{x},t) &=\frac{1}{4\pi \epv}  \int dt'd^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t') \frac{1}{2}\left[\delta (t-t'-r) + \delta (t-t'+r) \right]\\
 &= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|}\frac{1}{2} \left[\rho(\vec{x}',t-|\vec{x}-\vec{x}'|) + \rho(\vec{x},t+|\vec{x}'-\vec{x}'|) \right]
 \eea
 这里发现，势函数$\phi$可以分解为推迟势
@@ -148,7 +148,7 @@
 \phi = \frac{1}{2}(\phi_{ret} + \phi_{adv})
 \eeq
 \par
-可以验证，推迟势和超前势都各自满足有源的势函数波动方程\footnote{文中这种组合出现的原因是上一节算格林函数时，加$i \epsilon$的方法有些任意性。}，但超前势却面临严重的因果律问题（未来时间对现在世界的影响），因此，我们以后将只考虑推迟势。势对源的响应因此概括为
+可以验证，推迟势和超前势都各自满足有源的势函数波动方程，它们之间任意的归一线性组合$\phi = \alpha \phi_{ret} + (1-\alpha) \phi_{adv}$也满足有源的势函数波动方程\footnote{文中这种特定组合出现的原因是上一节算格林函数时，加$i \epsilon$的方法有些任意性，比如你也可以把两个极点全部推到上面。}，但超前势却面临严重的因果律问题（未来时间对现在世界的影响），因此，我们以后将只考虑推迟势。势对源的响应因此概括为
 \bea \label{retp}
 \phi(\vec x,t) &= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t-|\vec{x}-\vec{x}'|)  \\
 \vec A (\vec x,t) &= \frac{\mu_0 }{4\pi } \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \vec j (\vec{x}',t-|\vec{x}-\vec{x}'|) 
@@ -337,7 +337,7 @@ J_\nu (x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! (m+\nu)!} \left( \frac{x}{2} \rig
 \eea
 再作代换$x \to \frac{r}{a}$，$\alpha \to ak$，就得到
 \beq
-\int_{r=0}^\infty e^{-\frac{r^2}{2a^2}} J_0(kr) rdr = a^2 e^{-{a^2k^2}{2}}
+\int_{r=0}^\infty e^{-\frac{r^2}{2a^2}} J_0(kr) rdr = a^2 e^{-\frac{a^2k^2}{2}}
 \eeq
 再带入积分就得到
 \beq
@@ -402,6 +402,16 @@ p(p-1) + p - \nu^2 = 0
 \eeq
 当考虑的空间区域包括原点时，电势在原点不发散要求$b$项全部为0；剔除原点时，所有项都可能对最终表达式做贡献。
 \begin{eg}
+空间中两个半无限大金属板张成一个二面角$\beta$，下板接地，上板固定电势为$V$，两板间的接触线绝缘。求二面角内的电势分布。
+\end{eg}
+\begin{ans}
+显然，在通解中取出
+\beq
+\phi(r,\theta) = \frac{\theta}{\beta} V
+\eeq
+就满足边界条件和拉普拉斯方程。
+\end{ans}
+\begin{eg}
 空间内有一半径为$a$的无限长圆柱面，其轴与$z$轴重合。圆柱面上的电势$V(\theta)$给定且只依赖于极角。求全空间的电势分布。
 \end{eg}
 \begin{ans}
@@ -426,6 +436,22 @@ s_m &= \frac{1}{\pi} \int_{\theta=0}^{2\pi} V(\theta) \sin m \theta d\theta
 \eeq
 对应的图像如$\cref{2_3p1}$。
 \cpicn{0.12}{2_3p1}{$V(\theta) = V_0 \sin 2\theta$时全空间的电势分布}
+\par
+再例如$V(\theta) = \begin{cases}
+V_0 &, 0<\theta \leq \pi \\
+0 &, \pi <\theta \leq 2\pi
+\end{cases}$
+可以很容易算出
+\bea
+c_0 &= \frac{V_0}{2}\\
+c_n&=0,\ n \geq 1 \\
+s_n &= V_0\frac{1 - (-1)^n}{n\pi}
+\eea
+于是
+\beq
+\phi(r,\theta) = \frac{V_0}{2}+V_0 \sum_{n=1}^\infty  \frac{1 - (-1)^n}{n\pi} \min \{ \left(\frac{r}{a}\right)^n , \left(\frac{a}{r} \right)^n \} \sin n \theta
+\eeq
+
 \end{ans}
 \par
 下面一个例子说明扇形区域下的解法。
@@ -439,10 +465,10 @@ s_m &= \frac{1}{\pi} \int_{\theta=0}^{2\pi} V(\theta) \sin m \theta d\theta
 \eeq
 边界条件为
 \bea
-\phi(r,\theta=0) &= 0 \\
-\phi(r,\theta=\beta) &= 0
+\phi(r,\theta=0) &= a_0 \\
+\phi(r,\theta=\beta) &= a_0
 \eea
-可知$a_\nu = 0$，$\nu = n\pi \theta /\beta$。于是通解为
+可知$a_\nu = 0,\ \nu>0$，$\nu = n\pi \theta /\beta$。于是通解为
 \beq
 \phi(r,\theta) = a_0 + \sum_{n=1}^\infty b_n r^{\frac{n\pi }{\beta}} \sin \frac{n\pi \theta}{\beta}
 \eeq
@@ -460,7 +486,7 @@ s_m &= \frac{1}{\pi} \int_{\theta=0}^{2\pi} V(\theta) \sin m \theta d\theta
 \sigma = \epv \vec{E} \cdot \vec{e}_\theta  = -\frac{\pi }{\beta} a_1 r^{\frac{\pi }{\beta}-1}\sim r^{\frac{\pi}{\beta} - 1}
 \eeq
 \par
-当$\theta \to 0$，图像上对应一个带狭缝的无限长金属棒。狭缝上的电荷分布$\sigma \sim r^\infty$，即在原点处，狭缝边缘几乎没有电荷，跟容易想出这是由于该处电荷间的强烈排斥导致的。
+当$\beta = \epsilon \to 0$，图像上对应一个带狭缝的无限长金属棒。狭缝上的电荷分布$\sigma \sim r^{1/\epsilon}$，即在原点处，狭缝边缘几乎没有电荷，跟容易想出这是由于该处电荷间的强烈排斥导致的。
 \par
 当$\theta = \pi$，图像上对应一个无限大金属板。此时的电场分布为
 \beq
@@ -474,14 +500,250 @@ s_m &= \frac{1}{\pi} \int_{\theta=0}^{2\pi} V(\theta) \sin m \theta d\theta
 \par
 当$\theta \to 2\pi$，图像上对应一个二维劈尖，面电荷分布和电场大小$\sigma \sim E\sim \frac{1}{\sqrt{r}}$，即在尖端处，电场和面电荷都非常大，之后随远离尖端而衰减，符合尖端放电的物理事实。
 \end{ans}
-\subsubsection{锥形区域分离变量}
-\subsubsection{电荷格林函数}
+下面一个例子包括原点。
+\begin{eg}
+在$xz$平面上有一个无限大金属板，在原点处有一个无限长半圆柱状的突起，圆柱的半径为$a$。给出区域内空间电势分布的通解，并讨论一阶近似下的解。
+\end{eg}
+\begin{ans}
+除去原点下，极坐标下的通解可以写成
+\beq
+\phi(r,\theta) = a_0 + \sum_{\nu} \left(a_\nu r^\nu + b_\nu \frac{1}{r^\nu} \right) \left( c_\nu \cos \nu \theta + s_\nu \sin \nu \theta \right)
+\eeq
+其中正比于$\theta$的第一项由于周期性差被舍去。边界条件为
+\bea
+\phi(r,\theta = 0) &= a_0\\
+\phi(r=a,\theta)&=a_0\\
+\phi(r,\theta = \pi) &= a_0
+\eea
+第二个边界条件给出
+\beq
+\sum_\nu \left(a_\nu a^\nu + b_\nu \frac{1}{a^\nu} \right) \left( c_\nu \cos \nu \theta + s_\nu \sin \nu \theta \right) = 0
+\eeq
+只能有
+\beq
+b_\nu = - a_\nu a^{2\nu}
+\eeq
+才能使得上式对所有$\theta$成立。第一个边界条件给出
+\beq
+\sum_\nu \left(a_\nu r^\nu + b_\nu \frac{1}{r^\nu} \right) c_\nu = 0
+\eeq
+只能取$c_\nu =0$。第三个边界条件给出
+\beq
+\sum_{\nu} \left(a_\nu r^\nu + b_\nu \frac{1}{r^\nu} \right) s_\nu \sin \nu \pi = 0
+\eeq
+只能取$\nu = n$。于是通解为
+\beq
+\phi(r,\theta) = a_0 + \sum_{n=1}^\infty a_n \left(r^n - \frac{a^{2n}}{r^n}\right) \sin n \theta
+\eeq
+当$a=0$时恢复到上一例的解。一阶近似
+\beq
+\phi(r,\theta) \simeq a_0 + a_1 \left(r-\frac{a^2}{r}\right) \sin \theta
+\eeq
+对应图像如\cref{2_3p2}，可以看到，在远处，电势分布几乎上一个匀强电场。
+\cpicn{0.3}{2_3p2}{该例中的电势分布，取$a_1 = -1$}
+电场
+\bea
+\vec{E} &= -\pfrac{\phi}{r} \vec{e}_r - \frac{1}{r} \pfrac{\phi}{\theta} \vec{e}_\theta \\
+&= -a_1\left( 1 + \frac{a^2}{r^2} \right) \sin \theta \vec{e}_r - a_1 \left(1 - \frac{a^2}{r^2}\right)\cos \theta \vec{e}_\theta \\
+&= -a_1 \vec{e}_y -a_1 \frac{a^2}{r^2} (\sin \theta \vec{e}_r-\cos \theta \vec{e}_\theta)
+\eea
+在远处，第二项消失，对应无限大平板的电场$E\vec{e}_y$，于是有$a_1 = -E$。第二项$\sim a^2$，描述了柱状突起对外电场的响应。
+\par
+面电荷分布为
+\bea
+\sigma(r,\theta = 0) = \sigma(r,\theta = \pi) &= \epv \vec{E}\cdot \vec{e}_\theta \big|_{\theta = 0} = \epv E\left(1 - \frac{a^2}{r^2}\right) \\
+\sigma(r=a,\theta) &= \epv \vec{E} \cdot \vec{e}_r \big|_{r=a} = \epv E\sin \theta
+\eea
+\par
+
+
+\end{ans}
+\subsubsection{球形区域分离变量}
+首先讨论简单的情况：假设空间具有绕$z$轴的选择不变性而使得电势不依赖于经度角$\varphi$，拉普拉斯方程的分离变量就相对简单
+\beq
+\frac{1}{r^2} \pfrac{}{r} (r^2 \pfrac{\phi}{r}) + \frac{1}{r^2\sin \theta} \frac{\partial^2 \phi}{\partial \theta^2} = 0
+\eeq
+分离变量的结果应该耳熟能详了
+\beq
+\phi(r,\theta) = \sum_{\ell = 0}^\infty \left(a_\ell r^\ell + b_\ell \frac{1}{r^{\ell + 1}}\right) P_\ell (\cos \theta)
+\eeq
+其中$P_\ell$为勒让德多项式
+\beq
+P_\ell (x) = \frac{1}{2^\ell \ell!} \frac{d^\ell}{dx^\ell}(x^2 - 1)^\ell
+\eeq
+勒让德多项式在区间$(-1,1)$上按
+\beq
+\int_{-1}^1 x P_n(x) P_m(x) dx = \frac{2}{2n + 1} \delta_{mn}
+\eeq
+正交归一化。此外，勒让德多项式还有著名的母函数公式
+\beq
+\sum_{\ell=0}^\infty  P_\ell(x) r^\ell  = \frac{1}{\sqrt{r^2 +1 -2rx}}, r<1
+\eeq
+\begin{eg}
+空间中存在一个半径为$a$的球壳，其上的电势给定，为$V(\theta)$，其中$\theta$为纬度角。使讨论全空间的电势分布。
+\end{eg}
+\begin{ans}
+当$r<a$时，分离变量通解为
+\beq
+\phi(r,\theta) = \sum_{\ell = 0}^\infty a_\ell \left(\frac{r}{a}\right)^\ell P_\ell (\cos \theta)
+\eeq
+有
+\beq
+V(\theta) = \sum_{\ell=0}^\infty a_\ell P_\ell (\cos \theta)
+\eeq
+两边乘以$P_m(\cos \theta) \sin \theta d \theta$积分，利用正交归一性有
+\beq
+a_\ell \ =\frac{2\ell + 1}{2} \int_{\theta = 0}^\pi V(\theta) P_\ell(\cos \theta) \sin \theta d\theta
+\eeq
+$r>a$的情形只需要将$(\frac{r}{a})^\ell$换成$(\frac{a}{r})^{\ell+1}$。
+\par
+讨论一阶近似的结果是有益的。这时有
+\beq
+\phi(r,\theta) = 
+\begin{cases}
+a_0 + a_1 \frac{r}{a} \cos \theta &, r<a \\
+a_0 + a_1 \frac{a^2}{r^2} \cos \theta &, r>a
+\end{cases}
+\eeq
+球外的电场为
+\bea
+\vec{E} &= -\pfrac{\phi}{r} \vec{e}_r - \frac{1}{r} \pfrac{\phi}{\theta} \vec{e}_\theta \\
+&= \frac{2a_1 a^2}{r^3} \cos \theta \vec{e}_r + \frac{a_1 a^2}{r^3} \sin \theta \vec{e}_\theta
+\eea
+在电磁学中我们已经学过$z$轴上的偶极子$\vec{p} = p\vec{e}_z$在远处产生的电场为$\vec{E} = \frac{1}{4\pi \epv} \left( \frac{2p\cos \theta}{r^3} \vec{e}_r + \frac{p\cos \theta}{r^3} \vec{e}_\theta \right) $。从而我们可以看出，展开系数$a_1$对应球壳的偶极矩
+\beq
+p = 4\pi \epv a_1 a^2
+\eeq
+这个关系也可以先得到球面的面电荷密度再积分得到。球内的极化强度，即球体内的平均偶极矩为
+\beq
+P = \frac{p}{\frac{4\pi}{3}a^3} = 3\epv a_1
+\eeq
+而球内的电场为
+\beq
+\vec{E} = -\del \left(a_0 + a_1 \frac{r}{a} \cos \theta \right) = -\del \left(a_0 + a_1 \frac{z}{a} \right) = -\frac{a_1}{a} \vec{e}_z
+\eeq
+于是我们得到一阶近似的情况下，球内的电场与极化强度的关系
+\beq
+\vec{E} = - \frac{\vec P}{3\epv}
+\eeq
+\par
+\end{ans}
+\begin{eg}
+将一个半径为$a$的接地金属球放入匀强电场$\vec E$中，求空间的电势分布，并求金属球的等效偶极矩。
+\end{eg}
+\begin{ans}
+取球心为原点，电场方向沿$z$轴正向。在球内，电场和电势恒为零；在金属球表面，电场的法向分量为零；在远处，电势$\phi \to - Er\cos \theta$。边界条件为
+\beq
+\begin{cases}
+\pfrac{\phi}{r}\big|_{r=a} = 0 \\
+\phi \big|_{r=a} = 0 \\
+\phi(r\gg a,\theta) \to - Er\cos \theta
+\end{cases}
+\eeq
+设$u = \phi + Er\cos \theta$，代入得$u$的边界条件为
+\beq
+\begin{cases}
+\pfrac{u}{r}\big|_{r=a} = E \cos \theta \\
+u\big|_{r=a} = Ea \cos \theta \\
+u(r\gg a,\theta) \to 0
+\end{cases}
+\eeq
+$u$必然有分离变量形式解
+\beq
+u(r,\theta) = \sum_{\ell = 0}^\infty a_\ell \left(\frac{a}{r}\right)^{\ell+1} P_\ell (\cos \theta)
+\eeq
+代入第二个边界条件可知
+\beq
+a_0 + a_1 \cos \theta + \sum_{\ell \geq 2}^\infty a_\ell  P_\ell (\cos \theta) =  Ea \cos \theta
+\eeq
+只能有
+\beq
+a_1 = Ea
+\eeq
+其余$a_\ell$为零。
+于是
+$u(r,\theta) = E \frac{a^3}{r^2} \cos \theta $，球外电势分布为
+\beq
+\phi(r,\theta) = -E\left( r - \frac{a^3}{r^2}\right) \cos \theta
+\eeq
+由偶极子电势公式$\phi = \frac{1}{4\pi \epv} \frac{p\cos \theta}{r^2}$，等效偶极子为
+\beq
+\vec p = -4\pi \epv a^3 \vec E
+\eeq
+体积平均为
+\beq
+\vec P = - 3 \epv \vec E
+\eeq
+我们发现，极化偶极子与外电场成正比，且反向。这是我们讨论物质极化的一个重要模型。
+\end{ans}
+
+\par
+当空间不再沿$z$轴旋转对称时，电势的分离变量解只能按球谐函数展开成如下形式
+\beq
+\phi(r,\theta,\varphi) =\sum_{l=0}^\infty \sum_{m=-l}^{l} \left( a_{lm} r^l + b_{lm} \frac{1}{r^{l+1}}\right) Y_{lm}(\theta,\varphi)
+\eeq
+其中球谐函数的定义是
+\beq
+Y_{lm}(\theta,\varphi) = \sqrt{ \frac{2l+1}{4\pi} \frac{(l-m)!}{(l+m)!}} P_l^m(\cos \theta) e^{im\varphi}
+\eeq
+而连带勒让德函数又定义为
+\beq
+P_l^m (x) = (-1)^m (1-x^2)^{\frac{m}{2}} \frac{d^m}{dx^m} P_l(x)
+\eeq
+球谐函数的正交归一化为
+\beq
+\int_{\varphi = 0}^{2\pi} \int_{\theta = 0}^\pi Y_{lm}(\theta,\varphi) Y_{l'm'}*(\theta,\varphi) \sin \theta d\theta d \varphi = \delta_{ll'} \delta{mm'}
+\eeq
+即在单位球面上对面积的积分正交归一。
+\begin{eg}
+如上例，但此时球壳上的电势$V=V(\theta,\varphi)$，并取前2阶近似讨论解的行为。
+\end{eg}
+\begin{ans}
+当$r<a$时，形式上写出解为
+\beq
+\phi(r,\theta,\varphi) =\sum_{l=0}^\infty \sum_{m=-l}^{l} a_{lm} \left( \frac{r}{a} \right)^lY_{lm}(\theta,\varphi)
+\eeq
+有
+\beq
+V(\theta,\varphi) = \phi(r=a,\theta,\varphi) = \sum_{l=0}^\infty \sum_{m=-l}^{l} a_{lm} Y_{lm}(\theta,\varphi)
+\eeq
+两边乘以$\sin \theta d\theta d \varphi$对整个球面积分，利用正交归一性得到
+\beq
+a_{lm} = \int \sin \theta d \theta d \varphi V(\theta,\varphi) Y_{lm}(\theta,\varphi)
+\eeq
+球面外的解只需要将$\left(\frac{r}{a}\right)^l$替换成$\left( \frac{a}{r}\right)^{l+1}$。
+ 
+ 
+\end{ans}
+
+
+\subsection{电像法与格林函数}
+
+
+\section{介质}
+\subsection{电介质的基本图像}
+\beq
+\vec{P} = \vec P ( \vec E,\vec B)
+\eeq
+偶极子势
+\beq
+\phi(\vec r) = \frac{1}{4\pi \epv} \frac{\vec p \cdot \vec r}{r^3}
+\eeq
+给定电荷分布$\rho(\vec x)$和偶极分布$\vec P (\vec x)$，空间中的电势
+\beq
+\phi(\vec x) =  \frac{1}{4\pi \epv}  \int \left(\frac{\rho(\vec{x}')}{|\vec x - \vec{x}'|} + \frac{\vec P \cdot (\vec{x} - \vec{x}'}{|\vec x - \vec{x}'|^3} \right) d^3 \vec{x}'
+\eeq
+\subsection{磁介质的基本图像}
+\subsection{介质中的边值问题}
+
+
+
+\section{动场}
 
 
 
 
-
-
+	
 
 
 

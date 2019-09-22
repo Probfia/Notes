@@ -7,6 +7,11 @@
 \contentsline {subsection}{\numberline {2.1}拉普拉斯方程}{5}{subsection.2.1}% 
 \contentsline {subsection}{\numberline {2.2}分离变量解}{6}{subsection.2.2}% 
 \contentsline {subsubsection}{\numberline {2.2.1}直角区域分离变量}{6}{subsubsection.2.2.1}% 
-\contentsline {subsubsection}{\numberline {2.2.2}扇形区域分离变量}{12}{subsubsection.2.2.2}% 
-\contentsline {subsubsection}{\numberline {2.2.3}锥形区域分离变量}{15}{subsubsection.2.2.3}% 
-\contentsline {subsubsection}{\numberline {2.2.4}电荷格林函数}{15}{subsubsection.2.2.4}% 
+\contentsline {subsubsection}{\numberline {2.2.2}扇形区域分离变量}{13}{subsubsection.2.2.2}% 
+\contentsline {subsubsection}{\numberline {2.2.3}球形区域分离变量}{19}{subsubsection.2.2.3}% 
+\contentsline {subsection}{\numberline {2.3}电像法与格林函数}{23}{subsection.2.3}% 
+\contentsline {section}{\numberline {3}介质}{23}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}电介质的基本图像}{23}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}磁介质的基本图像}{23}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}介质中的边值问题}{23}{subsection.3.3}% 
+\contentsline {section}{\numberline {4}动场}{23}{section.4}% 

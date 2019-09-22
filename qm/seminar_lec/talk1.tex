@@ -1,0 +1,670 @@
+\documentclass[CJK]{beamer}
+\usepackage{cleveref}
+
+\input{macros.tex}
+
+\newcommand{\field}{\mathscr{F}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\diag}{\mathrm{diag \ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\tr}{\mathrm{tr\ }}
+\newcommand{\card}{\mathrm{card \ }}
+\newcommand{\unit}[1]{\mathrm{\ #1}}
+\def\secpage#1#2{\begin{frame}\bch\bcenter{\bf \Huge #1} \skipline \tbox{#2}\ecenter\ech\end{frame}}
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+\crefname{figure}{图}{图}
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{Applications of Quantum Mechanics\\ Chapter 2-Band Structure}
+  \author{}
+  \date{}
+
+
+\begin{document}
+
+\begin{frame}
+\frametitle{\bch 欢迎您，走进 \ech}
+\bch
+凝聚态物理学的殿堂
+\cpic{0.55}{whopper}
+\ech
+\end{frame}
+
+
+\begin{frame}
+ 
+\begin{center}
+\begin{Large}
+\bch
+{\bf Applications of Quantum Mechanics}
+
+{\vskip 0.3in}
+
+Chapter 2-Band Structure
+
+\ech
+\end{Large}
+\end{center}
+
+\vskip 0.2in
+\begin{center}
+Han Gao
+\vskip 0.1in
+gaoh26@mail2.sysu.edu.cn
+\vskip 0.2in
+Zonglin Mo
+\vskip 0.1in
+mozlin@mail2.sysu.edu.cn
+\vskip 0.2in
+
+\end{center}
+
+
+\end{frame}
+
+\section{Condensed Matter}
+\begin{frame}
+\frametitle{\bch 凝聚态物理学的研究对象 \ech}
+\bch
+以下是一位著名凝聚态物理学专家近年发表的一些文章标题：
+\emph{
+\begin{itemize}
+\item Field-Free Deterministic Magnetization Switching with Ultralow Current Density in Epitaxial ${\rm Au/Fe_4N}$ Bilayer Films
+\item Performance of Inverted Quantum Dot Light-Emitting Diodes Enhanced by Using Phosphorescent Molecules as Exciton Harvesters
+\item Influence of electron transport layer thickness on optical properties of organic light emitting diodes
+\item High efficiency electrophosphorescent organic light-emitting diodes with double light-emitting layers
+\end{itemize}
+}
+阅读上面的标题，你认为凝聚态物理学的研究对象和方法是什么？
+\ech
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{\bch 凝聚态物理学 \ech}
+\bch
+凝聚态物理学主要研究固体材料的导电、导热、光学性质。
+\par
+凝聚态物理学的研究方法和大多数物理分支一样，也是理论和\begin{LARGE} {\bf 实验 } \end{LARGE}。
+\begin{figure}[h!]
+\includegraphics[scale=0.028]{theory}
+\includegraphics[scale=0.028]{expe}
+\caption{凝聚态物理理论探究（左）和实验（右）}
+\end{figure}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 无处不在的凝聚态 \ech}
+\bch
+\cpic{0.035}{nanchang}
+绚丽多彩的{\bf 南昌}之星摩天轮（上左）的霓虹灯，凝聚态物理学研究物质的光学性质。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 无处不在的凝聚态 \ech}
+\bch
+\cpic{0.05}{chengdu}
+{\bf 成都}双流机场机坪上的A350客机，飞机的研发制造需要寻找轻盈耐腐蚀的材料，凝聚态物理学研究材料的表面性质。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 无处不在的凝聚态 \ech}
+\bch
+\cpic{0.05}{shanghai}
+从{\bf 上海}外滩看陆家嘴的灯光，凝聚态物理学研究材料的光学和电学性质，从而使得灯火更加灿烂。
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 格点 Lattice \ech}
+\bch
+由于固体的微观周期性，原子生活在格点上，而电子在以格点划分的区域间运动。\par
+场论中也常常用到Lattice化的方法，进行公式推导和第一性原理计算。场论和凝聚态的研究手段常有互相借鉴。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 周期性边界条件 \ech}
+\bch
+\begin{itemize}
+\item 实际的固体很大，使得边界对固体性质的影响很小。为了削弱边界的影响以降低研究难度，我们常常假设边界性周期条件（PBC）：
+\item {\bf 设$N$为某个方向上的格点总数，要求标号$n$和$n+N$描述同一个格点。}
+\item 图像上看，我们把一个一维的原子链首尾相接弯成了一个原子环，从而消灭了边界。
+\end{itemize}
+\cpic{0.19}{pbc}
+有时也直接假设晶格有无限个来消除边界。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 表面 \ech}
+\bch
+固体的边界称为表面。\par
+一般涉及表面的研究相当困难，这一部分的研究称为{\bf 表面物理}。上海市复旦大学有著名的{\bf 应用表面物理国家重点实验室}，前面提到的凝聚态物理学专家博士期间曾在这个实验室做了许多重要工作。
+\begin{figure}[h!]
+\includegraphics[scale=0.021]{fudan}
+\includegraphics[scale=0.12]{surface}
+\end{figure}
+\ech
+\end{frame}
+
+
+\section{1D Models}
+
+\secpage{一维固体模型}{离散平移对称性}
+
+\begin{frame}
+\frametitle{\bch 一维束缚电子模型 \ech}
+\bch
+假设电子被束缚在一维格点中，格点以$0,1,\cdots,n$标记，并有周期性边界条件。电子在第$n$格点的态记作$|n\rangle$。
+\par
+考虑哈密顿量
+$$
+H = E_0 \sum_n |n \rangle \langle n | - t \sum_n \left( |n+1 \rangle \langle n | + |n\rangle \langle n+1 \rangle \right)
+$$
+第一项描述了电子在格点上的能量，第二项描述了电子在格点间可能的迁移。忽略了电子间的相互作用。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 本征方程 \ech}
+\bch
+一般电子的波函数按$|n\rangle$为基展开。
+$$
+| \psi \rangle = \psi_m |m \rangle
+$$
+哈密顿量对应的本征方程$H |\psi \rangle = E | \psi \rangle$。
+\par
+试证明，分量满足的薛定谔方程为
+$$
+E_0 \psi_n - t (\psi_{n-1} + \psi_{n+1} ) = E\psi_n
+$$
+怎么求解这个方程呢？
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 离散傅立叶变换 \ech}
+\bch
+上式难以求解的原因是混合项的存在，或者最根本的来说是哈密顿量中存在非对角项。
+\par
+我们知道，对一个算符作傅立叶变换常常可以将其成功对角化。而傅立叶变换的本质就是将函数按$e^{ikx}$为基展开。
+\par
+记格点间的间距（晶格常数）为$a$，总格点数为$N$，原子链总长度$L = Na$，格点上的数列$\psi_n$展开为
+$$
+\psi_n = \sum_k \psi_k e^{ikan}
+$$
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 离散傅立叶变换 \ech}
+\bch
+求证：
+\begin{itemize}
+\item 由于PBC的限制，$k$只能取离散的值$k = \frac{2\pi \ell}{aN}$，其中$\ell$为整数，由于$e^{ikan}$的周期性可以限制$\ell = -\frac{N}{2}, \cdots ,\frac{N}{2}-1$，即$-\frac{\pi}{a} \leq k < \frac{\pi}{a}$。这一$k$的范围称为{\bf 布里渊区}。
+\item 基底$e^{ikan}$按$$\sum_k (e^{ikam})^* e^{ikan} = \delta_{mn},\ \sum_n (e^{ik'a n})^* e^{ikan} = \frac{1}{N} \delta_{kk'}$$正交归一化。
+\item 若$\psi_n$的离散傅立叶变换为$\psi_k$，则$\psi_{n+d}$的离散傅立叶变换为$e^{ikd} \psi_k$。
+\end{itemize}
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 在动量空间中求解 \ech}
+\bch
+将本征方程
+$$
+E_0 \psi_n - t (\psi_{n-1} + \psi_{n+1} ) = E\psi_n
+$$
+两边作离散傅立叶变换得到
+$$
+(E_0 -2t\cos ak)\psi_k = E \psi_k
+$$
+我们瞬间找到了能量本征态
+$$
+E(k) = E_0 - 2t \cos ka, \ -\frac{\pi}{a} \leq k < \frac{\pi}{a}
+$$
+凝聚态物理中称$E(k)$函数为色散曲线。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 结果讨论 \ech}
+\bch
+\begin{itemize}
+\item 由于布里渊区的限制，加上自旋简并度，所以的能量本征态共有$2N$个。
+\item 在低动量模式下，$E(k) \simeq E_0 -2t + ta^2 k^2$，等价于一个质量$m^* = \frac{\hbar^2}{2ta^2}$的无约束自由粒子。
+\item 能带宽度有限，为$E_{max} - E_{min} = 4t$。也就是说，大动量模式运动的电子受到了晶格的约束。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 导体 \ech}
+\bch
+格点是一个个原子，原子可以贡献出自己的价电子。由于共有$2N$个能量本征态，当每个原子贡献一个电子时，能带中存在空隙。
+\cpic{0.2}{half}
+外加电场时，电子可以占据正向方向的$k$从而在电场作用下定向运动，为导体。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 绝缘体 \ech}
+\bch
+当每个原子贡献两个电子时，能带全部被占满，不存在空隙。
+\cpic{0.2}{full}
+外加电场时，能带的占据不能发生改变，正动量模式和负动量模式的电子数依然相等，不存在电流，为绝缘体。
+\par
+我们看到，导体于绝缘体的界限和泡利不相容原理密切相关。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 准自由电子模型 \ech}
+\bch
+现在进一步精细化我们的模型，假设电子可以在格点之间运动，哈密顿量为
+$$
+H = \frac{p^2}{2m} + V(x)
+$$
+其中$V(x)$是以格点为周期的势$V(x+a) = V(x)$。
+\ech
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{\bch 微扰论计算 \ech}
+\bch
+假设哈密顿量
+$$
+H = \frac{p^2}{2m} + V(x)
+$$
+中的周期势$V(x)$可以看成小量，于是可以用自由电子解$|k\rangle = \frac{1}{\sqrt{L}}e^{ikx}$作微扰展开，应用简并微扰论得到色散曲线
+。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 半离散傅立叶变换 \ech}
+\bch
+根据势的周期性，可以将势写成
+$$
+V(x) = \sum_n V_n e^{i\frac{2\pi n x}{a}}
+$$
+使得$V(x+a) = V(x)$自然满足。
+求证：
+\begin{itemize}
+\item 展开系数$V_n = \frac{1}{a} \int_{x=0}^a dx V(x) e^{-i\frac{2\pi n x}{a}}$。
+\item $V_{-n} = V_n^*$
+\item 记$|k\rangle = \frac{1}{\sqrt{L}}e^{ikx}$，$\langle k' | V | k \rangle \equiv \frac{1}{L} \int_{x=0}^L V(x) e^{i(k'-k)x} dx$，则$\langle k | V | k \rangle$为$V(x)$在整个$0<x<L$上的平均值$V_0$。
+\item 矩阵元$\langle -k | V | k \rangle$非零当且仅当$k =\frac{\pi n}{a}$，为$V_n$。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 布里渊区 \ech}
+\bch
+显然$|k\rangle$和$|-k \rangle$是哈密顿量的两个简并本征态。微扰矩阵为
+$$
+\begin{pmatrix}
+\langle k | V | k \rangle & \langle -k | V | k \rangle \\
+\langle k | V | -k \rangle & \langle -k | V | -k \rangle
+\end{pmatrix}
+$$
+在$k \ll \frac{\pi}{a}$时，微扰矩阵为对角阵，退化到非简并微扰的情况，色散曲线$E(k) = \frac{\hbar^2 k^2}{2m} + V_0$，与自由电子无异。
+\par
+在$k \simeq \frac{\pi}{a}$时，微扰矩阵对角元出现，为$V_1$，色散曲线为
+$$
+E(k) = \frac{\hbar^2 k^2}{2m} + V_0 \pm |V_1|
+$$
+$|k| < \frac{\pi}{a}$的区域称为布里渊区，可以看到，在布里渊区处，色散曲线跃变，称为能隙。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 能隙 \ech}
+\bch
+对更高的动量模式继续计算，在第$n$布里渊区边界的能隙为$2|V_n|$。最后的色散曲线如下。
+\cpic{0.35}{energy_gap}
+这种分裂的色散曲线称为能带结构。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 微扰论真的有效吗 \ech}
+\bch
+一会说$k \ll \frac{\pi}{a}$，一会说$V \ll \frac{\hbar^2 k^2}{2m}$来做微扰，这微扰真的能做？
+\par
+室温下，电子动能$k_B T \sim 0.025 \unit{eV}$，电子的德布罗伊波长$\lambda \sim \frac{\hbar} { \sqrt{m k_B T}} \sim 10 \unit{nm}$，晶体的格矢$a\sim 1\unit{nm}$。因此，晶体内电子的典型行为确实更像自由电子。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 一维Bloch定理 \ech}
+\bch
+假设$\psi (x) $是周期势$V(x+a) = V(x)$对应薛定谔方程
+$$
+-\frac{\hbar^2}{2m} \frac{d^2 \psi}{dx^2} + V(x) \psi = E \psi
+$$
+的解，那么，$\psi (x)$一定可以写成
+$$
+\psi_k(x) = e^{ikx} u_k(x)
+$$
+其中$k$是布里渊区$-\frac{\pi}{a} < k < \frac{\pi}{a}$某个值，$u_k(x)$是以$a$为周期的某个函数。
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 证明方法1：直觉 \ech}
+\bch
+秉着“{\bf 结果随意，路径搞笑}”的原则：\par
+由于体系的周期性，物理场$P(x) = \psi^*(x) \psi(x)$必然满足$P(x+a) = P(x)$，因此$\psi(x+a)$只能与$\psi(x)$相差一个相位因子$e^{i\theta}$；平移两个格点肯定相差$e^{2i\theta}$。因此可以写成$\psi(x+a) = e^{ika} \psi(x)$。
+\par
+可以看到$k$和$k + \frac{2\pi n}{a}$的作用是相同的，于是限制$k$在布里渊区内。
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 证明方法2：平移算符 \ech}
+\bch
+定义平移算符$T_l$满足$T_l f(x) = f(x+l)$，证明
+\begin{itemize}
+\item 平移算符是幺正算符；
+\item $T_a T_b = T_b T_a = T_{a+b}$；
+\item 对自由粒子$H = \frac{p^2}{2m}$，$[H,T_l]=0$对任意$l$；
+\item 对一般的势场中的粒子$H = \frac{p^2}{2m} + V(x)$，$[H,T_l] \not= 0$；
+\item 对周期势场$V(x+a) = V(x)$中的粒子，$[H,T_{na}] = 0$。
+\end{itemize}
+对自由粒子，任意平移算符与哈密顿量的对易性事实使得能量完全由动量表征；而对周期势，格点上的平移算符与哈密顿量的对易性让我们把能量用某个类似于动量的量表示。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 证明方法2：平移算符 \ech}
+\bch
+证明：
+\begin{itemize}
+\item 若$[A,B]=0$，$\{|a_i\rangle\}$是$A$的一组本征态构成的单位正交基，则矩阵$\langle a_j | B | a_i \rangle$为对角阵；
+\item $B | a_k \rangle = \langle a_k | B | a_k \rangle | a_k \rangle$；
+\item 幺正算符的本征值一定可以写成$e^{i\theta}$；
+\item 若$T_a$的本征值是$e^{i\theta}$，则$T_{b}$的本征值一定是$e^{ib\theta/a}$，于是可以将$T_l$的本征值写成$e^{ikl}$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 证明方法2：平移算符 \ech}
+\bch
+由于$[H,T_{na}]=0$，设$\psi(x)$为$H$的一个本征函数，$\psi(x)$也一定是$T_a$的一个本征函数，于是有
+$$
+\psi(x+a) = T_a \psi(x) = \psi(x) e^{ika}
+$$
+$k$的取值精确到$\frac{2\pi}{a}$的整数倍，于是限制$k$在布里渊区$-\frac{\pi}{a} < k < \frac{\pi}{a}$内。
+\par
+当$a \to 0$，结果恢复到连续平移对称性的结果。
+\par
+布里渊区中的$\hbar k$称为晶体动量。超过第一布里渊区的动量需要映回第一布里渊区。直观上看，$T_{x}$和$T_{x+a}$无法区分，因此，讨论$|k| > \frac{\pi}{a}$没有意义。
+\ech
+\end{frame}
+
+\section{3D Crystals}
+\secpage{三维空间中的晶体}{由基张成的格点}
+\begin{frame}
+\frametitle{\bch 警告 \ech}
+\bch
+{\LARGE \centering 以下内容极度恶心}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 布拉伐格点 \ech}
+\bch
+给定一组三维空间的基底$\{\vec{a}_1 ,\vec{a}_2,\vec{a}_3\}$，定义布拉伐格为所有点$$\vec r = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3$$
+的集合$\Lambda$。
+\par
+基底$\vec{a}_i$的选取不唯一
+\cpic{0.5}{bases}
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 元胞 \ech}
+\bch
+
+\cpic{0.45}{bases}
+元胞是沿布拉伐矢平移能够紧密充满整个空间的小空间区域。试在上图中画出三种可能的元胞。
+\par
+每个元胞内仅包含且最少包含一个布拉伐格点。
+\par
+所有可能的元胞的体积都相同，为
+$$
+V = | \vec{a}_1 \cdot (\vec{a}_2 \times \vec{a}_3) |
+$$
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch WS元胞 \ech}
+\bch
+给定一个布拉伐格，向它周围的相邻格点作连线，所有连线的中垂面包围最小的部分构成特殊的元胞，称为Wigner-Seitz元胞。
+\cpic{0.6}{wscell}
+WS元胞的形状只依赖于格点的空间排列，不依赖于基底的选取。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 来来来，大家都认识认识 \ech}
+\bch
+从左到右\par
+布拉伐-Auguste Bravais，1811-1863，法国人
+\par
+Eugene Wigner，1902-1995，匈牙利人
+\par
+Frederick Seitz，1911-2008，美国人
+\begin{figure}
+\includegraphics[scale=0.21]{bravais}
+\includegraphics[scale=0.2]{wigner}
+\includegraphics[scale=0.21]{seitz}
+\end{figure}
+
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 倒格 \ech}
+\bch
+给定由$\vec{a}_i$为基的布拉伐格$\Lambda$，找到另一组$\vec{b}_i$使得
+$$
+\vec{a}_i \cdot \vec{b}_j = 2\pi \delta_{ij}
+$$
+格点的集合
+$$
+\Lambda^{*}=\left\{\mathbf{k}=\sum n_{i} \mathbf{b}_{i}, n_{i} \in \mathbf{Z}\right\}
+$$称为倒格。
+\par
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 倒矢 \ech}
+\bch
+试证明：
+\begin{itemize}
+\item 三维空间中的倒格的基底可以取成$\vec{b}_i = \frac{2\pi}{V} \frac{1}{2} \epsilon_{ijk} \vec{a}_j \times \vec{a}_k$；
+\item 三个倒矢$\vec{b}_i$张成的体积为$\frac{(2\pi)^3}{V}$，其中$V$为元胞的体积；
+\item 对任意布拉伐矢$\vec r$和倒矢$\vec q$，有$e^{i\vec q \cdot \vec r } =1$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 三维布里渊区 \ech}
+\bch
+倒格的WS元胞称为布里渊区。
+\cpic{0.4}{brillouin}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 课堂小练习 \ech}
+\bch
+画出下面的格矢构成的格点，画出它们的WS元胞；求它们的倒矢，画出前两个布里渊区。
+\begin{itemize}
+\item $\vec{a}_1$，$\vec{a}_2$长度均为$a$，夹角为$60^\circ$；
+\item $\vec{a}_1$，$\vec{a}_2$长度均为$a$，夹角为$45^\circ$；
+\item $\vec{a}_1$，$\vec{a}_2$长度分别为$a$，$3a$，夹角为$60^\circ$。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 格点周期函数 \ech}
+\bch
+称函数$f(\vec x)$具有格点周期性，若对所有布拉伐矢$\vec r \in \Lambda$，都有
+$$
+f(\vec x + \vec r) = f(\vec x)
+$$
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 格点周期函数的傅立叶变换 \ech}
+\bch
+将空间按元胞划分，$f(\vec x)$的傅立叶变换
+$$
+\begin{aligned}
+f(\vec k) &= \int d^3 \vec x f(\vec x) e^{-i\vec k \cdot \vec x} \\
+&= \sum_{\vec r \in \Lambda} \int_{PC} d^3 \vec x e^{-i\vec k \cdot (\vec x + \vec r)} f(\vec x + \vec r) \\
+&= \sum_{\vec r \in \Lambda} e^{-i\vec k \cdot \vec r} \int_{PC} d^3 \vec x e^{-i\vec k \cdot \vec x} f(\vec x)
+\end{aligned}
+$$
+其中$PC$代表对单个元胞。可以看到，周期函数整体的傅立叶变换相当于对单个元胞作局部傅立叶变换再乘上因子$\varDelta (\vec k) = \sum_{\vec r \in \Lambda} e^{-i\vec k \cdot \vec r}
+$。
+求证：$$\varDelta(\vec k) = V^* \sum_{\vec q \in \Lambda^*} \delta(\vec k - \vec q)$$
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 格点周期函数的傅立叶逆变换 \ech}
+\bch
+记在单个元胞内的傅立叶积分
+$$
+S(\vec k ) = \int_{PC} d^3 \vec x f(\vec x) e^{-i \vec k \cdot \vec x}
+$$
+求证，$f(\vec k)$的傅立叶逆变换为
+$$
+f(\vec x) \equiv \int \frac{d^3 k}{(2\pi)^3} f(\vec k) e^{i\vec k \cdot \vec x} = \frac{V^*}{(2\pi)^3} \sum_{\vec q \in \Lambda^*} S(\vec q)e^{i\vec q \cdot \vec x}
+$$
+\ech
+\end{frame}
+
+\section{3D Band Structure}
+\secpage{晶体能带结构}{周期势作为微扰}
+
+
+\begin{frame}
+\frametitle{\bch 三维Bloch定理 \ech}
+\bch
+若势函数$V(\vec x)$为格点周期函数，$\psi(\vec x)$是对应薛定谔方程的解，则一定有
+$$
+\psi(\vec x) = e^{i\vec k \cdot \vec r} u_{\vec k} (\vec x)
+$$
+其中$u_{\vec k} (\vec x)$是一个格点周期函数。$\vec k$称作晶体动量，决定电子能量；可以根据需要将晶体动量限制在第一布里渊区，并将高动量模式的电子映回第一布里渊区。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 证明 \ech}
+\bch
+和一维的一样，不讲了。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 准自由电子模型 \ech}
+\bch
+哈密顿量$H = \frac{\vec p^2}{2m} + V(\vec x)$，将周期势$V(\vec x)$作为微扰，按平面波解$| \vec k \rangle \sim e^{i \vec k \cdot \vec x}$展开，微扰矩阵元为$\langle \vec{k}' | V | \vec{k} \rangle$。根据三维格点傅立叶变换，求证：
+\par
+$\langle \vec{k}' | V | \vec{k} \rangle$非零当且仅当$\vec k - \vec{k}' = \vec q \in V^*$，其中$V^*$为倒格。
+\par
+解释：以动量$\vec k$运动的电子可以且只可以被晶格散射到相差一个倒矢$\vec q$的动量$\vec k + \vec q$。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 能带结构 \ech}
+\bch
+于是如1维情况一样：
+\begin{itemize}
+\item 低动量模式：不用作简并微扰，$E(\vec k) \sim \vec{k}^2$。
+\item 布里渊区边界：当无微扰的能谱$E(\vec k + \vec q) = E(\vec k)$时微扰矩阵元出现，需要作简并微扰，此时$\vec k = - \frac{1}{2} \vec q + \vec{k}_\perp$，正好对应第一布里渊区的边界。能隙$2|V_{\vec q} |$出现。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 三维束缚模型 \ech}
+\bch
+跟一维一样的，懒得讲了。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 没学懂 \ech}
+\bch
+\cpic{0.3}{not_understand}
+凝聚态物理学太难了。
+\ech
+\end{frame}
+
+
+
+\end{document}
