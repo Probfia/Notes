@@ -1,4 +1,4 @@
 \beamer@sectionintoc {1}{Condensed Matter}{3}{0}{1}
 \beamer@sectionintoc {2}{1D Models}{11}{0}{2}
-\beamer@sectionintoc {3}{3D Crystals}{31}{0}{3}
-\beamer@sectionintoc {4}{3D Band Structure}{44}{0}{4}
+\beamer@sectionintoc {3}{3D Crystals}{33}{0}{3}
+\beamer@sectionintoc {4}{3D Band Structure}{48}{0}{4}

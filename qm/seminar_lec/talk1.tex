@@ -368,11 +368,27 @@ $|k| < \frac{\pi}{a}$的区域称为布里渊区，可以看到，在布里渊�
 \end{frame}
 
 \begin{frame}
+\frametitle{\bch 课堂小练习 \ech}
+\bch
+计算下列周期势的第一能隙：
+\begin{itemize}
+\item $V(x) = \sum_{n=-N/2}^{N/2-1} V_0 \delta(x - na)$；
+\item $V(x) = V_0 \cos \frac{2\pi x}{a}$；
+\item $V(x) = \begin{cases} -V_0 &,-\frac{a}{4} + na < x < \frac{a}{4} + na; \\ 0 &,else. \end{cases}$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
 \frametitle{\bch 微扰论真的有效吗 \ech}
 \bch
 一会说$k \ll \frac{\pi}{a}$，一会说$V \ll \frac{\hbar^2 k^2}{2m}$来做微扰，这微扰真的能做？
 \par
 室温下，电子动能$k_B T \sim 0.025 \unit{eV}$，电子的德布罗伊波长$\lambda \sim \frac{\hbar} { \sqrt{m k_B T}} \sim 10 \unit{nm}$，晶体的格矢$a\sim 1\unit{nm}$。因此，晶体内电子的典型行为确实更像自由电子。
+\par
+但另一方面，从高中化学选修3知道，离子键键能一般在$\sim 1000 \unit{kJ/mol}$或$\sim 10 \unit{eV}$量级，电子的势能比键能可能约小$1-2$个量级，这里看来，做微扰又是有点危险的。
+\par
+不过鉴于我们并不会严格求解方程，所以大家就还是心照不宣地做微扰。
 \ech
 \end{frame}
 
@@ -443,6 +459,18 @@ $k$的取值精确到$\frac{2\pi}{a}$的整数倍，于是限制$k$在布里渊�
 当$a \to 0$，结果恢复到连续平移对称性的结果。
 \par
 布里渊区中的$\hbar k$称为晶体动量。超过第一布里渊区的动量需要映回第一布里渊区。直观上看，$T_{x}$和$T_{x+a}$无法区分，因此，讨论$|k| > \frac{\pi}{a}$没有意义。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch Bloch方程 \ech}
+\bch
+将$\psi = e^{ikx}u_k(x)$带入薛定谔方程得到
+$$
+- \frac{\hbar^2}{2m} u_k''  - \frac{i\hbar k}{m} u_k'  + V(x) u_k = \left[E- \frac{\hbar^2 k^2}{2m}\right]u_k
+$$
+称为Bloch方程。\par
+在Mathematica的MathieuC帮助文档Applications部分中有对周期势严格求解Bloch方程得到能带的例子。
 \ech
 \end{frame}
 
@@ -562,6 +590,39 @@ $$称为倒格。
 \end{frame}
 
 
+
+
+\begin{frame}
+\frametitle{\bch 三维格点上的离散傅立叶变换 \ech}
+\bch
+设函数$f(\vec x)$仅生活在布拉伐格$\vec{x} = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3$上，$f(n_1,n_2,n_3)$的傅立叶分解为
+$$f(n_1,n_2,n_3) = \sum_{\vec k} f_{\vec k} e^{i\vec k \cdot \vec x}$$
+PBC要求$f(\vec x) = f(\vec x + N_1 \vec{a}_1) = f(\vec x + N_2 \vec{a}_2) = f(\vec x + N_3 \vec{a}_3)$，其中$N_1,\ N_2,\ N_3$分别是沿三个布拉伐矢方向上的所有晶格数。
+\par
+证明，PBC要求
+$$
+\vec k = \frac{\ell_1}{N_1} \vec{b}_1 + \frac{\ell_2}{N_2} \vec{b}_2 + \frac{\ell_3}{N_3} \vec{b}_3
+$$
+其中$\vec{b}_i$是三个倒矢，$\ell_i= -\frac{N_i}{2},\cdots,\frac{N_i}{2} - 1$为整数。
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 三维格点上的离散傅立叶变换 \ech}
+\bch
+证明：
+\begin{itemize}
+\item 基底$e^{i\vec k \cdot \vec x}$按
+$$
+\sum_{\vec{k}} (e^{i\vec k \cdot \vec x})^* e^{i\vec k \cdot \vec y} = \delta_{\vec x \vec y},\ \sum_{\vec x \in \Lambda} (e^{i\vec{k}'\cdot \vec x})^* e^{i \vec k \cdot \vec x} = \frac{1}{N_1 N_2 N_3} \delta_{\vec k \vec{k}'}
+$$
+正交归一化；
+\item 若$f(\vec x)$的离散傅立叶变换为$f_{\vec k}$，则$f(\vec x + \vec d)$的离散傅立叶变换为$e^{i\vec k \cdot \vec d} f_{\vec k}$。 
+\end{itemize}
+\ech
+\end{frame}
+
 \begin{frame}
 \frametitle{\bch 格点周期函数 \ech}
 \bch
@@ -569,6 +630,7 @@ $$称为倒格。
 $$
 f(\vec x + \vec r) = f(\vec x)
 $$
+现在$f$不仅仅生活在格点上。
 
 \ech
 \end{frame}
@@ -577,7 +639,7 @@ $$
 \begin{frame}
 \frametitle{\bch 格点周期函数的傅立叶变换 \ech}
 \bch
-将空间按元胞划分，$f(\vec x)$的傅立叶变换
+将空间按元胞划分，格点周期函数$f(\vec x)$的傅立叶变换
 $$
 \begin{aligned}
 f(\vec k) &= \int d^3 \vec x f(\vec x) e^{-i\vec k \cdot \vec x} \\
@@ -624,6 +686,7 @@ $$
 \frametitle{\bch 证明 \ech}
 \bch
 和一维的一样，不讲了。
+\cpic{0.6}{self}
 \ech
 \end{frame}
 
@@ -644,16 +707,16 @@ $\langle \vec{k}' | V | \vec{k} \rangle$非零当且仅当$\vec k - \vec{k}' = \
 于是如1维情况一样：
 \begin{itemize}
 \item 低动量模式：不用作简并微扰，$E(\vec k) \sim \vec{k}^2$。
-\item 布里渊区边界：当无微扰的能谱$E(\vec k + \vec q) = E(\vec k)$时微扰矩阵元出现，需要作简并微扰，此时$\vec k = - \frac{1}{2} \vec q + \vec{k}_\perp$，正好对应第一布里渊区的边界。能隙$2|V_{\vec q} |$出现。
+\item 布里渊区边界：当无微扰的能谱$E(\vec k + \vec q) = E(\vec k)$时微扰矩阵元出现，需要作简并微扰，此时$\vec{q}^2 + 2\vec k \cdot \vec q = 0$，$\vec k = - \frac{1}{2} \vec q + \vec{k}_\perp$，正好对应某个布里渊区的边界。能隙$2|V_{\vec q} |$出现。
 \end{itemize}
 \ech
 \end{frame}
-
 
 \begin{frame}
 \frametitle{\bch 三维束缚模型 \ech}
 \bch
 跟一维一样的，懒得讲了。
+\cpic{0.6}{self}
 \ech
 \end{frame}
 
