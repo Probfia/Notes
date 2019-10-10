@@ -1,0 +1,503 @@
+\documentclass[CJK]{beamer}
+\input{macros.tex}
+
+
+\newcommand{\field}{\mathscr{F}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\diag}{\mathrm{diag \ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\tr}{\mathrm{tr\ }}
+\newcommand{\card}{\mathrm{card \ }}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{Group Theory\\ Talk 7 - Group Theory in a Quantum World}
+  \author{}
+  \date{}
+
+
+\begin{document}
+
+\begin{frame}
+ 
+\begin{center}
+\begin{Large}
+\bch
+{\bf Group Theory}
+
+{\vskip 0.3in}
+
+Talk 7 - Group Theory in a Quantum World
+
+\ech
+\end{Large}
+\end{center}
+
+\vskip 0.2in
+\begin{center}
+Han Gao
+\vskip 0.1in
+gaoh26@mail2.sysu.edu.cn
+\vskip 0.2in
+{\tiny \url{https://github.com/Probfia/Notes/blob/master/groups/seminar_lec_2/talk.pdf} }\\
+\end{center}
+
+
+\end{frame}
+
+\section{Review and Overview}
+\begin{frame}
+\frametitle{\bch 这章特别水 \ech}
+\bch
+所以秉着“人人都拿公益时”的理念，莫宗霖同学给我们先对前一章作一个回顾：
+\begin{itemize}
+\item 群的表示：定义，可约与不可约；
+\item 方特征标表等式$N(C) = N(R)$，$\sum_c n_c \chi^* (c) \chi(c) = N(G)$；
+\item 实表示与复表示；
+\item \dots
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 大览 \ech}
+\bch
+\begin{itemize}
+\item 群表示论与量子力学
+\item 物理中的对称性：作用量
+\end{itemize}
+\ech
+\end{frame}
+
+
+
+\section{Quantum Mechanics and Representation}
+\begin{frame}
+
+\frametitle{\bch 薛定谔方程 \ech}
+\bch
+量子力学薛定谔方程
+$$
+H \psi = E \psi
+$$
+哈密顿量$H$是一个线性算符，$\psi$是一个能量为$E$的本征态。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 简并 \ech}
+\bch
+单个能量$E$可能对应一系列本征态$\psi^\alpha$。
+$$
+H \psi^\alpha = E \psi^\alpha ,\ \alpha = 1,2,\cdots , d
+$$
+这种情况称为$d$重简并。
+\par
+你能举一些简并的例子么？
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 简并的来源 \ech}
+\bch
+从刚才举出来的例子中总结一下，量子力学中，简并的来源是什么？
+\par
+Spoiler: Symmetry.
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 简并的来源 \ech}
+\bch
+设有一系列幺正变换$\hat T$，称哈密顿量在变换$\hat T$下不变，如果
+$$
+\hat{T}^\dagger H \hat T = H
+$$
+证明：
+\begin{itemize}
+\item 上面的等式等价于$[H,T] = 0$；
+\item 所有的$T$构成群；
+\item 若$\psi$是$H$能量为$E$的本征态，则$\hat T \psi$也是。
+\end{itemize}
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 糟糕的记号 \ech}
+\bch
+上面最后一个记号其实有问题：$T$其实并不能直接作用在态上，因为$T$是对物理空间里的矢量的某种操作（e.g. $SO(3)$旋转；镜面反射$x \to -x$等），而不是希尔伯特空间里的算符。
+\par
+不过我们还是暂且这样写。它的意思是，如果我们把空间中的矢量按一定规则变化，对应的态按照这个规则会怎么变。
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 简并态构成子空间 \ech}
+\bch
+假设我们已经找到了$d$和能量$E$本征态$\psi_a,\ a = 1,2,\cdots,d$，并且它们是正交归一的$\langle \psi_a | \psi_b \rangle = \delta_{ab}$。
+\par
+线性组合
+$$
+\psi = c^a \psi_a
+$$
+也是一个能量为$E$的本征态。因此说简并的本征态生活在由$\psi_a$张成的线性空间$\langle \psi_a \rangle$中。
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 简并态构成子空间 \ech}
+\bch
+因为$\hat T \psi_a \in \langle \psi_a \rangle$，可以按基展开，形式上写成
+$$
+\hat T \psi_a = D(T)_a^b \psi_b
+$$
+其中$D(T)$在给定操作$T$时，就是一个普通的系数（或者，$d$阶方阵）。
+\par
+$D$建立了空间对称变换和希尔伯特空间中态矢变换间的对应关系。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 你看出来我在说什么了么 \ech}
+\bch
+$T$是空间对称群的元素，$D(T)$是（希尔伯特空间中的）矩阵。
+\par
+这不就是群表示论么？
+\par
+证明：$D(T_1 T_2) = D(T_1) D(T_2)$，等式右边理解为矩阵乘法。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 简并度告诉我们对称性的信息 \ech}
+\bch
+$D$就是对称群$G = \{ T \}$的一个$d$维不可约表示。
+\par
+因此，假如我们从实验中得到了一个$d$重简并度，我们知道带来这个简并度的对称群至少有一个$d$维不可约表示。
+\bea
+d &=& \text{简并度（来源于实验） }\\ &=&\text{ 对称群的一个不可约表示维数（理论的追求）}
+\eea
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 总结一下 \ech}
+\bch
+\begin{itemize}
+\item 物理空间中的对称群$G$中的元素$T$可以映射到一个希尔伯特空间中的线性算符$D(T)$；
+\item 在这个希尔伯特空间中可以找一组正交基；
+\item 哈密顿算符在这种正交基下的矩阵表示是一个分块纯量阵$H = \diag( E_{(1)} I_{d(1)},E_{(2)} I_{d(2)},\cdots,E_{(s)} I_{d(s)})$，自然地分出了简并态；
+\item 每一个分块对应群$G$的一个不可约表示$D^{(r)}$，哈密顿算符在子空间中是纯量阵，与舒尔引理对应。
+\end{itemize}
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 回到现实 \ech}
+\bch
+
+\cpic{0.4}{think}
+给定一个量子体系，只给你一个测量能量的装置，你能得到关于一个量子体系简并度的任何信息么？
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 不可能 \ech}
+\bch
+当然不行。
+\par
+比如说，对氢原子，假如你不去测量$1s$电子的自旋，你永远不会知道基态其实是2重简并的。
+\par
+因此，需要更多的信息才能确定简并度。
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 实验很重要 \ech}
+\bch
+只有做其他实验才能知道简并度的其他信息。
+\begin{itemize}
+\item 8种重子具有几乎相同的质量；
+\item 怎么区分8种重子？电荷数和奇异数；
+\item 质量=能量，$d=8$；
+\item 强相互作用至少有一个8维不可约表示；
+\item 8个盖尔曼矩阵，对应8种传递色相互作用的胶子。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 实验真的很重要吗？ \ech}
+\bch
+\begin{itemize}
+\item
+理论爱好者：不需要实验，我就坐在那里想，我就知道这个世界（至少）是$SO(3)$的；我还可以拿这个算出很多符合实验的结果；然后我还可以把对称群推到$SO(10),SU(20),SU(\infty) \cdots$。
+\item
+但这真的是完全想出来的么？如果我们去问一个刚出生的婴儿这个世界是不是$SO(3)$对称的，他会怎么回答？你又怎么知道把对称群推大就能够奏效呢？
+\item
+哲学问题：我们真的有与生俱来的知识么？人是否是自身经验的总和？
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch  \ech}
+\bch
+STOP
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 宇称Parity对称性\ech}
+\bch
+一维粒子
+$$
+H = -\frac{1}{2m} \frac{d^2}{dx^2} + V(x)
+$$
+如果$V(x) = V(-x)$，哈密顿量在宇称变换$r : x \to -x$下不变。物理空间的一个对称群$Z_2 = \{I ,r\}$。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 宇称对称性的后果\ech}
+\bch
+我们知道$Z_2$有两个1维不可约表示
+\begin{itemize}
+\item 平凡表示：$I \to 1,\ r \to 1$，使得态（波函数）必须满足$\psi(-x) \equiv \hat r \psi(x) = D(r) \psi(x) = \psi(x)$；
+\item 自身表示：$I \to 1,\ r \to -1$，使得态（波函数）必须满足$\psi(-x) \equiv \hat r \psi(x) = D(r) \psi(x) = -\psi(x)$。
+\end{itemize}
+群表示论直接告诉我们，当空间具有宇称对称性时，波函数只能是严格奇函数或偶函数。（qm作业第2题）
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 周期平移对称性\ech}
+\bch
+一维粒子
+$$
+H = -\frac{1}{2m} \frac{d^2}{dx^2} + V(x)
+$$
+如果$V(x) = V(x+a)$，哈密顿量在平移变换$T : x \to x+a$下不变。物理空间的一个对称群$G = \{ \cdots T^{-1} , I, T , T^2 \cdots\}$。
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 阿贝尔群\ech}
+\bch
+虽然对称群$G$很大，甚至是无限的；但显然$G$是一个阿贝尔群，而阿贝尔群只能有一维表示。
+\par
+（复习：
+\par
+方特征标表等式$N(C) = N(R)$和$\sum_r d_r^2 = N(G)$；阿贝尔群每个元素各成一类，$N(C) = N(G)$，只能所有$d_r = 1$。）
+\\  \ \\
+\par
+于是可以设$D(T) = \xi$为一个任意复数，则有$\psi(x+a) \equiv \hat T \psi(x) = D(T) \psi(x) = \xi \psi(x)$。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 归一化条件 \ech}
+\bch
+$$1 = \int |\psi(x+a) |^2 dx  |\xi|^2 \int |\psi(x)|^2 dx = |\xi|^2$$
+于是只能有$\xi \in U(1)$。将其写成$\xi = e^{ika}$，于是得到Bloch定理
+$$
+\psi(x+a) = e^{ika} \psi(x)
+$$
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 布里渊区 \ech}
+\bch
+因为$e^{ika} = e^{i(ka + 2\pi)} = e^{i(k + \frac{2\pi}{a} )}$，$k$的取值精确到周期$\frac{2\pi}{a}$，通常限制$$-\frac{\pi}{a} < k < \frac{\pi}{a}$$
+这一限制就是布里渊区。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 更多的表示论 \ech}
+\bch
+我们已经看到表示论在量子力学中的强大作用。
+\par
+之后的章节中将讨论更广泛的对称群，例如：
+\begin{itemize}
+\item 空间$SO(3)$对称性的量子力学效应：它自然地引出自旋的概念；
+\item 狄拉克方程中的4个$\gamma$矩阵其实就是洛伦兹群（狭义相对论的对称群）的一个表示论。
+\end{itemize}
+\par
+不过这些东西我们今天都不讲。
+\ech
+\end{frame}
+
+\section{Symmetry and Action}
+\begin{frame}
+\frametitle{\bch 运动方程与作用量 \ech}
+\bch
+我们好几年没有用过的
+$$F = ma$$
+和我们半年没有用过的
+$$
+S[q] = \int dt L(q,\dot{q}) ,\ L(q,\dot{q}) = \frac{1}{2}m\dot{q}^2 - V(q),\ \delta S = 0
+$$
+是等价的。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 对称性 \ech}
+\bch
+我们说一个理论具有对称性，如果
+\begin{itemize}
+\item 在对称操作下，运动方程左右两边按相同的方式变换；
+\item 或：在对称操作下，作用量（或者，很多时候可以严格到拉氏量）不变。
+\end{itemize}
+这两种定义是等价的，但显然后一种定义更加好用：你只需要傻算就行了。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 例子：中心简谐势场 \ech}
+\bch
+三维空间中势场$V(\vec x ) = \frac{1}{2}k \vec x^2$对应的运动方程为
+$$
+m \frac{d^2 \vec x}{dt^2} = k \vec x
+$$
+拉氏量为
+$$
+L = \frac{1}{2} m \dot{\vec x}^2 - \frac{1}{2}k \vec x^2
+$$
+作旋转变换$\vec x \to R \vec x,\ R \in SO(3)$，试从两种角度证明中心简谐势场具有$SO(3)$对称性。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 场论作用量 \ech}
+\bch
+$\phi$场依赖于$D$个自变量$x_\mu$，作用量
+$$S[\phi] = \int d^D x \mathcal{L} (\phi,\partial_\mu \phi)$$
+$\delta S = 0$当$$\partial_\mu \frac{\partial \mathcal{L}}{\partial (\partial_\mu \phi)} - \frac{\partial \mathcal{L}}{\partial \phi} = 0$$
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 例子 \ech}
+\bch
+QED拉氏量
+$$
+\mathcal{L}_{QED} = \bar{\psi} ( i \slashed{D} - m) \psi - \frac{1}{4} F^{\mu \nu} F_{\mu \nu}$$
+其中$\bar{\psi} = \psi^\dagger \gamma^0$，$\slashed D = \gamma^\mu ( \partial_\mu - iq A_\mu)$,$F_{\mu \nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$。
+\par
+试求$\psi$的运动方程：不包含$\psi^\dagger$的导数项，对$\psi^\dagger$变分就得到
+$$
+\partial_\mu \frac{\partial \mathcal{L}_{QED} }{\partial (\partial_\mu \psi^\dagger)} = 0 = \frac{\partial \mathcal{L}_{QED}}{\partial \psi^\dagger}$$
+$$
+\gamma^0 (i \slashed{D} - m) \psi = 0
+$$
+或
+$$
+(\slashed{D} + im) \psi =0
+$$
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 我今天已经速成QED了？ \ech}
+\bch
+{\Huge \centering tql}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 场论对称性与守恒流 \ech}
+\bch
+例如，复自由标量场
+$$
+\mathcal{L} = \partial_\mu \psi \partial^\mu \psi^* - M^2 \psi \psi^*
+$$
+和刚才提到的$QED$拉氏量在$U(1)$变换$\psi \to e^{i\lambda} \psi$下是对称的。
+\par
+每个对称性带来一个守恒流，$U(1)$对称性带来的守恒流是概率流守恒；二次量子化后可以重新诠释为正粒子数-反粒子数守恒。
+\ech
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
