@@ -2,7 +2,6 @@
 \contentsline {subsection}{\numberline {1.1}麦克斯韦方程}{2}{subsection.1.1}% 
 \contentsline {subsection}{\numberline {1.2}格林函数}{2}{subsection.1.2}% 
 \contentsline {subsection}{\numberline {1.3}推迟势}{4}{subsection.1.3}% 
-\contentsline {subsection}{\numberline {1.4}规范场的作用量}{5}{subsection.1.4}% 
 \contentsline {section}{\numberline {2}静场}{5}{section.2}% 
 \contentsline {subsection}{\numberline {2.1}拉普拉斯方程}{5}{subsection.2.1}% 
 \contentsline {subsection}{\numberline {2.2}分离变量解}{6}{subsection.2.2}% 
@@ -10,8 +9,11 @@
 \contentsline {subsubsection}{\numberline {2.2.2}扇形区域分离变量}{13}{subsubsection.2.2.2}% 
 \contentsline {subsubsection}{\numberline {2.2.3}球形区域分离变量}{19}{subsubsection.2.2.3}% 
 \contentsline {subsection}{\numberline {2.3}电像法与格林函数}{23}{subsection.2.3}% 
-\contentsline {section}{\numberline {3}介质}{23}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}电介质的基本图像}{23}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}磁介质的基本图像}{23}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}介质中的边值问题}{23}{subsection.3.3}% 
-\contentsline {section}{\numberline {4}动场}{23}{section.4}% 
+\contentsline {subsection}{\numberline {2.4}多极展开}{24}{subsection.2.4}% 
+\contentsline {section}{\numberline {3}介质}{27}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}电介质的基本图像}{27}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}磁介质的基本图像}{28}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}欧姆定律}{29}{subsection.3.3}% 
+\contentsline {subsection}{\numberline {3.4}介质中的边值问题}{30}{subsection.3.4}% 
+\contentsline {section}{\numberline {4}动场}{31}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}自由无界空间中的场}{31}{subsection.4.1}% 

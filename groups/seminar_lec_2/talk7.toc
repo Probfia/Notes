@@ -1,3 +1,4 @@
 \beamer@sectionintoc {1}{Review and Overview}{2}{0}{1}
 \beamer@sectionintoc {2}{Quantum Mechanics and Representation}{4}{0}{2}
-\beamer@sectionintoc {3}{Symmetry and Action}{26}{0}{3}
+\beamer@sectionintoc {3}{Harmonic Motions}{26}{0}{3}
+\beamer@sectionintoc {4}{Symmetry and Action}{27}{0}{4}

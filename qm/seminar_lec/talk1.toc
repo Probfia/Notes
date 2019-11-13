@@ -1,5 +1,0 @@
-\beamer@sectionintoc {1}{Condensed Matter}{3}{0}{1}
-\beamer@sectionintoc {2}{1D Models}{11}{0}{2}
-\beamer@sectionintoc {3}{3D Crystals}{36}{0}{3}
-\beamer@sectionintoc {4}{3D Band Structure}{51}{0}{4}
-\beamer@sectionintoc {5}{Summary}{57}{0}{5}

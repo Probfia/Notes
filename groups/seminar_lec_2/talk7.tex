@@ -77,7 +77,7 @@ gaoh26@mail2.sysu.edu.cn
 所以秉着“人人都拿公益时”的理念，莫宗霖同学给我们先对前一章作一个回顾：
 \begin{itemize}
 \item 群的表示：定义，可约与不可约；
-\item 方特征标表等式$N(C) = N(R)$，$\sum_c n_c \chi^* (c) \chi(c) = N(G)$；
+\item 方特征标表等式$N(C) = N(R)$，$\sum_c n_c \chi^{(r)*} (c) \chi^{(s)}(c) = N(G)\delta^{rs}$，$\sum_r d_r^2 = N(G)$；
 \item 实表示与复表示；
 \item \dots
 \end{itemize}
@@ -153,7 +153,7 @@ $$
 \bch
 上面最后一个记号其实有问题：$T$其实并不能直接作用在态上，因为$T$是对物理空间里的矢量的某种操作（e.g. $SO(3)$旋转；镜面反射$x \to -x$等），而不是希尔伯特空间里的算符。
 \par
-不过我们还是暂且这样写。它的意思是，如果我们把空间中的矢量按一定规则变化，对应的态按照这个规则会怎么变。
+不过我们还是暂且这样写。它的意思是，如果我们把空间中的矢量按一定规则变化，对应的量子态按照这个规则会怎么变。
 
 \ech
 \end{frame}
@@ -181,7 +181,7 @@ $$
 $$
 其中$D(T)$在给定操作$T$时，就是一个普通的系数（或者，$d$阶方阵）。
 \par
-$D$建立了空间对称变换和希尔伯特空间中态矢变换间的对应关系。
+$D$建立了空间对称变换和希尔伯特空间中态矢变换间的对应关系：按$T$的规则改变空间 = 按$D(T)$做希尔伯特空间中的态矢变换。
 \ech
 \end{frame}
 
@@ -203,7 +203,8 @@ $D$就是对称群$G = \{ T \}$的一个$d$维不可约表示。
 \par
 因此，假如我们从实验中得到了一个$d$重简并度，我们知道带来这个简并度的对称群至少有一个$d$维不可约表示。
 \bea
-d &=& \text{简并度（来源于实验） }\\ &=&\text{ 对称群的一个不可约表示维数（理论的追求）}
+d &=& \text{简并度（来源于实验） }\\ &=&\text{ 对称群的一个不可约表示维数（唯象描述）}\\
+&\Rightarrow& \text{世界的对称群（理论的追求）}
 \eea
 \ech
 \end{frame}
@@ -264,7 +265,8 @@ d &=& \text{简并度（来源于实验） }\\ &=&\text{ 对称群的一个不�
 \bch
 \begin{itemize}
 \item
-理论爱好者：不需要实验，我就坐在那里想，我就知道这个世界（至少）是$SO(3)$的；我还可以拿这个算出很多符合实验的结果；然后我还可以把对称群推到$SO(10),SU(20),SU(\infty) \cdots$。
+理论爱好者：不需要实验，我就坐在那里想，我就知道这个世界（至少）是$SO(3)$的；我还可以拿这个算出很多符合实验的结果；然后我还可以把对称群推到$SO(10),U(10)
+\times SU(20)\times SU(30),\prod_{n=1}^{\infty} SU_n(\infty) \cdots$。
 \item
 但这真的是完全想出来的么？如果我们去问一个刚出生的婴儿这个世界是不是$SO(3)$对称的，他会怎么回答？你又怎么知道把对称群推大就能够奏效呢？
 \item
@@ -275,8 +277,9 @@ d &=& \text{简并度（来源于实验） }\\ &=&\text{ 对称群的一个不�
 
 \begin{frame}
 \frametitle{\bch  \ech}
-\bch
+\bch{\LARGE
 STOP
+}
 \ech
 \end{frame}
 
@@ -336,7 +339,7 @@ $$
 \frametitle{\bch 归一化条件 \ech}
 \bch
 $$1 = \int |\psi(x+a) |^2 dx  |\xi|^2 \int |\psi(x)|^2 dx = |\xi|^2$$
-于是只能有$\xi \in U(1)$。将其写成$\xi = e^{ika}$，于是得到Bloch定理
+于是只能有$\xi \in U(1)$。又因为表示的定义要求$D(T^k) = D(T)^k = \xi^k$，只能写成$\xi = e^{ika}$，于是得到Bloch定理
 $$
 \psi(x+a) = e^{ika} \psi(x)
 $$
@@ -358,11 +361,23 @@ $$
 \par
 之后的章节中将讨论更广泛的对称群，例如：
 \begin{itemize}
-\item 空间$SO(3)$对称性的量子力学效应：它自然地引出自旋的概念；
-\item 狄拉克方程中的4个$\gamma$矩阵其实就是洛伦兹群（狭义相对论的对称群）的一个表示论。
+\item 空间$SO(3)$对称性的量子力学效应：它自然地引出自旋的概念（李代数）；
+\item 狄拉克方程中的4个$\gamma$矩阵其实就是洛伦兹群$SO(1,3)$（狭义相对论的对称群）的一个表示论（Clifford 代数）；
+\item $SO(1,3)$的不可约表示分解$16 = 1 \oplus 6 \oplus 9$，6对应6个电磁场张量$F_{\mu \nu}$；9对应9个爱因斯坦张量$G_{\mu \nu}$。
 \end{itemize}
 \par
 不过这些东西我们今天都不讲。
+\ech
+\end{frame}
+
+\section{Harmonic Motions}
+\begin{frame}
+\frametitle{\bch 经典谐振子的对称性 \ech}
+\bch
+根据振子体系的对称性可以直接找到同本征频率的简正坐标。
+\par
+dbq，我不想讲。
+\cpic{0.6}{self}
 \ech
 \end{frame}
 
@@ -408,8 +423,17 @@ $$
 \end{frame}
 
 \begin{frame}
+\frametitle{\bch 娱乐为主 \ech}
+\bch
+{\LARGE 以下内容纯属娱乐用。}
+
+\ech
+\end{frame}
+
+\begin{frame}
 \frametitle{\bch 场论作用量 \ech}
 \bch
+一个物理理论（几乎）总可以用场论语言写出来，在场论语言下很容易进行对称性验证，量子化等操作。
 $\phi$场依赖于$D$个自变量$x_\mu$，作用量
 $$S[\phi] = \int d^D x \mathcal{L} (\phi,\partial_\mu \phi)$$
 $\delta S = 0$当$$\partial_\mu \frac{\partial \mathcal{L}}{\partial (\partial_\mu \phi)} - \frac{\partial \mathcal{L}}{\partial \phi} = 0$$
@@ -435,6 +459,7 @@ $$
 $$
 (i\slashed{D} - m) \psi =0
 $$
+这就是（电磁场中的）狄拉克方程。
 
 \ech
 \end{frame}
@@ -449,23 +474,27 @@ $$
 \begin{frame}
 \frametitle{\bch 场论对称性与守恒流 \ech}
 \bch
-例如，复自由标量场
+把刚才的QED拉氏量
 $$
-\mathcal{L} = \partial_\mu \psi \partial^\mu \psi^* - M^2 \psi \psi^*
+\mathcal{L}_{QED} = \bar{\psi} ( i \slashed{D} - m) \psi - \frac{1}{4} F^{\mu \nu} F_{\mu \nu}$$
+分解成自由狄拉克场、电磁场和相互作用三部分
 $$
-和刚才提到的$QED$拉氏量在$U(1)$变换$\psi \to e^{i\lambda} \psi$下是对称的。
-\par
-每个对称性带来一个守恒流，$U(1)$对称性带来的守恒流是概率流守恒；二次量子化后可以重新诠释为正粒子数-反粒子数守恒。
+\mathcal{L}_{Dirac} = \bar{\psi} ( i \slashed{\partial} - m) \psi 
+$$
+$$
+\mathcal{L}_{EM} = - \frac{1}{4} F^{\mu \nu} F_{\mu \nu}
+$$
+$$
+\mathcal{L}_{int} = q \bar{\psi} \slashed{A} \psi
+$$
+验证
+\begin{itemize}
+\item 狄拉克场是全局$U(1)$不变的：$\psi \to \psi e^{i \alpha}$；
+\item 电磁场是规范不变的：$A_\mu \to A_\mu - \frac{1}{q} \partial_\mu \lambda$；
+\item QED是定域$U(1)$不变的：$\psi \to \psi e^{i \lambda(x)},\ A_\mu \to A_\mu - \frac{1}{q} \partial_\mu \lambda(x)$。
+\end{itemize}
 \ech
 \end{frame}
-
-
-
-
-
-
-
-
 
 
 

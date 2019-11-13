@@ -74,7 +74,7 @@
 \vec{E} &= -\del \phi - \pfrac{\vec{A}}{t} \\
 \vec{B} & = \del \times \vec{A}
 \eea
-这使得麦克斯韦方程中的$\del \times \vec{E}$和$\del \cdot \vec{B}$式自动满足。势函数的选取依然存在不定性，可以验证，若$(\phi,\vec A)$给出的物理场是$( \vec E , \vec B )$，对任意的标量场$\lambda (\vec{x},t)$，$(\phi -\partial_t \lambda, \vec A - \del \lambda )$也给出同样的物理场。这种不变性称为势函数的规范不变性，它事实上反应了我们定义出的规范场的冗余自由度。规范给出对势函数的一个具体限制从而去掉冗余自由度，我们常用洛伦兹规范$\partial_t \phi + \del \cdot \vec A = 0$。
+这使得麦克斯韦方程中的$\del \times \vec{E}$和$\del \cdot \vec{B}$式自动满足。势函数的选取依然存在不定性，可以验证，若$(\phi,\vec A)$给出的物理场是$( \vec E , \vec B )$，对任意的标量场$\lambda (\vec{x},t)$，$(\phi -\partial_t \lambda, \vec A - \del \lambda )$也给出同样的物理场。这种不变性称为势函数的规范不变性，它事实上反应了我们定义出的规范场的冗余自由度。规范给出对势函数的一个具体限制从而去掉冗余自由度，我们常用洛伦兹规范$\partial_t \phi + \del \cdot \vec A = 0$。对静场，洛伦兹规范退化到库伦规范$\del \cdot \vec A = 0$。
 \par
 把势函数和规范要求带入麦克斯韦方程的剩下两式就得到
 \bea \label{maxpot}
@@ -159,7 +159,6 @@
 \vec A (\vec x,t) &= \frac{\mu_0 }{4\pi } \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \vec j (\vec{x}',t-\frac{1}{c}|\vec{x}-\vec{x}'|) 
 \eea
 推迟势的物理意义在于否定了超距作用：一个位于$\vec{x}'$点的电子必须经过$\sim \frac{1}{c} \left| \vec{x}' - \vec{x} \right|$的时间后才能感受到位于$\vec{x}$处的电子发生的变化，信息以光速传递。此外可以看出，$\phi \sim \frac{1}{r}$，即势在无穷远处消散。这都是符合我们的物理直觉的。
-\subsection{规范场的作用量}
 
 \section{静场}
 \subsection{拉普拉斯方程}
@@ -718,10 +717,189 @@ a_{lm} = \int \sin \theta d \theta d \varphi V(\theta,\varphi) Y_{lm}(\theta,\va
 
 
 \subsection{电像法与格林函数}
+电像法可以用来求解点电荷与对称性边界的问题。\par
+格林函数的起点为积分公式
+\bea
+\int_V d^3 \vec{x} (u \nabla^2 v -v \nabla^2 u) &= \int_V d^3 \vec{x} \del \cdot( u \del v -v \del u) \\
+&= \int_{\partial V} dS \vec n \cdot ( u \del v -v \del u) = \int_{\partial V} dS ( u \pfrac{v}{n} -v \pfrac{u}{n})
+\eea
+接下来考虑边界问题
+\beq
+\nabla^2 u = -\frac{\rho(\vec x)}{\epsilon_0}
+\eeq
+\beq
+\begin{cases}
+u\big|_{S} = V(\vec x) ;\\
+\text{或} \\
+\pfrac{u}{n}\big|_{S} = \frac{\sigma(\vec{x})}{\epsilon_0}
+\end{cases}
+\eeq
+我们考虑同样边界的点源问题
+\beq
+\nabla^2 G = -\delta(\vec x - \vec{x}')
+\eeq
+\beq
+\begin{cases}
+G\big|_{S} = 0 ;\\
+\text{或} \\
+\pfrac{G}{n}\big|_{S} = 0
+\end{cases}
+\eeq
+这一解记作$G(\vec x; \vec{x}')$，显然有$G(\vec x; \vec{x}') = G(\vec{x}'; \vec{x}) $。假如$G$已经由其他方法求得，就可以代入一开始的积分公式。左边项
+\bea
+\int_V d^3 \vec{x} (u \nabla^2 G -G \nabla^2 u)  &= \int_V d^3 \vec{x} (-u\delta(\vec x - \vec{x}') + G \frac{\rho(\vec x)} {\epsilon_0}) \\
+&= -u(\vec{x}') + \int_V d^3 \vec{x} G(\vec x; \vec{x}') \frac{\rho(\vec x)} {\epsilon_0}\\
+\eea
+\par
+对第一类边界条件，右边项
+\beq
+\int_{\partial V} dS ( u \pfrac{G}{n} -G \pfrac{u}{n}) = \int_{\partial V} dS V(\vec x)  \pfrac{G}{n} 
+\eeq
+于是
+\beq
+u(\vec{x}') = \int_V d^3 \vec{x} G(\vec x; \vec{x}') \frac{\rho(\vec x)} {\epsilon_0} - \int_{\partial V} dS  \pfrac{G}{n} V(\vec x) 
+\eeq
+习惯上用$\vec{x}$表示场点；$\vec{x}'$表示源点，交换得到
+\beq
+u(\vec{x}) = \int_V d^3 \vec{x}' G(\vec x; \vec{x}') \frac{\rho(\vec{x}')} {\epsilon_0} - \int_{\partial V} dS' \pfrac{G(\vec x; \vec{x}')}{n'} V(\vec x')  
+\eeq
+对第二类边界条件，右边项
+\beq
+\int_{\partial V} dS ( u \pfrac{G}{n} -G \pfrac{u}{n}) = -\int_{\partial V} dS  \frac{\sigma(\vec{x})}{\epsilon_0}G(\vec x; \vec{x}' )
+\eeq
+于是
+\beq
+u(\vec{x}') = \int_V d^3 \vec{x} G(\vec x; \vec{x}') \frac{\rho(\vec x)} {\epsilon_0} + \int_{\partial V} dS \frac{\sigma(\vec{x})} {\epsilon_0}G(\vec x; \vec{x}' )
+\eeq
+或
+\beq
+u(\vec{x}) = \int_V d^3 \vec{x}' G(\vec x; \vec{x}') \frac{\rho(\vec{x}')} {\epsilon_0} - \int_{\partial V} dS' \frac{\sigma(\vec{x}')}{\epsilon_0} G(\vec x; \vec{x}' )
+\eeq
+\par
+特别地，当空间中无自由电荷，而给定空间中某一表明上的电势分布$V(\vec x)$时，可以得到
+\beq
+u(\vec{x}) = - \int_{S} dS' \pfrac{G(\vec x; \vec{x}')}{n'} V(\vec x')  
+\eeq
+当$V(\vec x ) = \delta ( \vec x- \vec x ')$时，得到的空间电势分布称为电势格林函数$G_V$，有
+\beq
+G_V(\vec{x};\vec{x}') = -\pfrac{G(\vec x; \vec{x}')}{n'}
+\eeq
+
+\subsection{多极展开}
+多极展开研究电荷远处的电势。我们从自由空间静场解
+\beq
+\phi(\vec{x}) = \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{\rho(\vec{x}')}{\left|\vec{x} - \vec{x}'\right|}
+\eeq
+出发，假定电荷分布在一个原点附近$\sim a$的范围内，我们考虑$|\vec x| \gg a$的电势。记
+\beq
+r = \left|\vec{x} - \vec{x}'\right| = \sqrt{(x_k - x_k') (x_k - x_k')}
+\eeq
+我们计算$\frac{1}{r}$ 按$x_i'$的展开系数。首先有
+\beq
+\pfrac{r}{x_i'} = \frac{-2\delta_{ik}(x_k - x_k')}{2\sqrt{(x_k - x_k') (x_k - x_k')}}  = \frac{x_i' - x_i}{r}
+\eeq
+于是
+\beq
+\pfrac{}{x_i'}\left( \frac{1}{r}\right) = -\frac{1}{r^2} \pfrac{r}{x_i'} = \frac{x_i - x_i'}{r^3} \sim O(\frac{1}{r^2})
+\eeq
+\bea
+\frac{\partial^2}{\partial x_i' \partial x_j'} \left( \frac{1}{r}\right) &= \pfrac{}{x_j'} \pfrac{}{x_i'}\left( \frac{1}{r}\right) \\
+&= \pfrac{}{x_j'} \left(\frac{x_i - x_i'}{r^3}\right) \\
+&= \frac{-\delta_{ij}}{r^3} + (x_i - x_i')\left( - \frac{3}{r^4}\right) \pfrac{r}{x_j'} \\
+&= \frac{-\delta_{ij}}{r^3} + (x_i - x_i')\left( - \frac{3}{r^4}\right) \frac{x_j' - x_j}{r} \\
+&= \frac{-\delta_{ij}}{r^3} + \frac{3(x_i - x_i')(x_j - x_j')}{r^5}\sim O(\frac{1}{r^3})
+\eea
+于是$\frac{1}{r}$展开到$\sim \frac{1}{r^3}$项就是
+\bea
+\frac{1}{r} &\simeq \frac{1}{r}\big|_{\vec{x}'=0} + \pfrac{r}{x_i'}\big|_{\vec{x}'=0} + \frac{1}{2} \frac{\partial^2}{\partial x_i' \partial x_j'} \left( \frac{1}{r}\right)\big|_{\vec{x}'=0} x_i' x_j' \\
+&= \frac{1}{r} + \frac{x_i x_i'}{r^3} + \frac{1}{2} \frac{3x_i x_j - \delta_{ij} r^2}{r^5}x_i' x_j'
+\eea
+其中重新引入了记号$r = \sqrt{|\vec{x}'|}$。在远处的电势
+\bea
+\phi(\vec{x}) &=   \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{\rho(\vec{x}')}{\left|\vec{x} - \vec{x}'\right|}\\ &\simeq \frac{1}{4\pi \epv} \int d^3 \vec{x}' \left(\frac{1}{r} + \frac{x_i x_i'}{r^3} +  \frac{1}{2}\frac{3x_i x_j - \delta_{ij} r^2}{r^5}x_i' x_j'\right) \rho(\vec{x}') \\
+&= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \left(\frac{1}{r} + \frac{x_i x_i'}{r^3} + \frac{1}{2} \frac{3x_i' x_j' - \delta_{ij} r'^2 }{r^5}x_i x_j\right) \rho(\vec{x}')
+\eea
+最后一个等号将$\delta_{ij}$重新分配到了$\sim \vec{x}'$项上，很容易验证它们之间是相等的。定义
+\beq
+Q =  \int d^3 \vec{x}' \rho(\vec{x}') 
+\eeq
+\beq
+p_i = \int d^3 \vec{x}' \rho(\vec{x}') x_i'
+\eeq
+\beq
+D_{ij} =\int d^3 \vec{x}' \rho(\vec{x}') (3x_i' x_j' - \delta_{ij} r'^2 )
+\eeq
+分别为零极、偶极和四极矩，就有
+\beq
+\phi(\vec{x}') \simeq \frac{1}{4\pi \epv} \left( \frac{Q}{r} + \frac{p_i x_i}{r^2} +\frac{1}{2}  \frac{D_{ij} x_i x_j}{r^3}\right)
+\eeq
+四级矩$D_{ij}$显然是一个对称无迹张量，一个对称无迹张量的独立分量数为5（$SO(3)$群的分解$9 = 5\oplus 3 \oplus 1$）。各独立分量为
+\beq
+D_{xx} = \int (2x^2 - y^2 - z^2 ) \rho(\vec{x}) d^3 \vec{x} 
+\eeq
+\beq
+D_{yy} = \int (2y^2 - x^2 - z^2 ) \rho(\vec{x}) d^3 \vec{x} 
+\eeq
+\beq
+D_{xy} = \int3xy \rho(\vec{x}) d^3 \vec{x} 
+\eeq
+\beq
+D_{yz} = \int  3yz \rho(\vec{x})d^3 \vec{x}
+\eeq
+\beq
+D_{zx} = \int  3zx \rho(\vec{x})d^3 \vec{x}
+\eeq
+其他分量$D_{zz} = - D_{xx} - D_{yy};\ D_{yx} = D_{xy}, \ D_{zy} = D_{yz}, \ D_{xz} = D_{zx}$。
+\begin{eg}
+估算一个均匀带电的半径为$a$的圆盘在远处产生的电势和这个圆盘的电容。
+\end{eg}
+\begin{ans}
+设圆盘上的面电荷密度为$\sigma$，空间电荷分布$\rho(\vec x) = \sigma \delta(z)$。零极矩就是总电荷$Q =\sigma \pi a^2$，偶极矩显然可以根据对称性判断为$0$。四级矩
+\beq
+D_{xx} = \int ( 2x^2 - y^2 ) \sigma dxdy = \int_{\theta=0}^{2\pi} d\theta \int_{r=0}^a (2r^2 \cos^2 \theta - r^2 \sin^2 \theta) rdr = \frac{\sigma \pi a^4}{4}
+\eeq
+\beq
+D_{yy} =  \int ( 2y^2 - x^2 ) \sigma dxdy = D_{xx} = \frac{\sigma \pi a^4}{4}
+\eeq
+\beq
+D_{zz} = -D_{xx} - D_{yy} = - \frac{\sigma \pi a^4}{2}
+\eeq
+非对角项$D_{xy}$根据对称性判断为$0$；$D_{zy}$和$D_{zx}$由于$\rho(\vec x) \propto \delta(z)$的限制只能为$0$。于是远场电势
+\beq
+\phi(\vec x) \simeq \frac{1}{4\pi \epv} \left( \frac{Q}{r} + \frac{\sigma \pi a^4}{8r^5} (x^2 + y^2 - 2z^2)\right)
+\eeq
+或者用球坐标表示为
+\beq
+\phi(r,\theta) \simeq \frac{Q}{4\pi \epv} \left( \frac{1}{r} + \frac{a^2}{8r^3} (\sin^2 \theta - 2\cos^2 \theta)\right)
+\eeq
+电容可以这样估计：圆盘边缘的电势为
+\beq
+\phi(r=a,\theta = \frac{\pi}{2}) \sim \frac{Q}{4\pi \epv} \frac{9}{8a}
+\eeq
+电容为
+\beq
+C = \frac{Q}{\phi(r=a,\theta = \frac{\pi}{2})} \sim \frac{32a\pi \epv}{9}
+\eeq
+可以想象，因为多极展开只适用于$r\gg a$的情况，因此上式对电容的估计是十分粗糙的。
+\end{ans}
+\par
+虽然磁场和电场很大程度上是对偶的，上面的讨论一般都可以直接套用到磁场上。但需要注意的是，对于磁场，由于不存在磁荷，磁矢势的多极展开是从偶极项开始的，磁矩$\vec m$产生的磁矢势为
+\beq
+\vec A = \frac{\mu_0}{4\pi} \frac{\vec m \times \vec x}{x^3}
+\eeq
+
+
+
+
+
+
+
+
 
 
 \section{介质}
 \subsection{电介质的基本图像}
+在外场下，一个实际的物质会发生极化，产生出偶极矩。
 \beq
 \vec{P} = \vec P ( \vec E,\vec B)
 \eeq
@@ -731,19 +909,147 @@ a_{lm} = \int \sin \theta d \theta d \varphi V(\theta,\varphi) Y_{lm}(\theta,\va
 \eeq
 给定电荷分布$\rho(\vec x)$和偶极分布$\vec P (\vec x)$，空间中的电势
 \beq
-\phi(\vec x) =  \frac{1}{4\pi \epv}  \int \left(\frac{\rho(\vec{x}')}{|\vec x - \vec{x}'|} + \frac{\vec P \cdot (\vec{x} - \vec{x}'}{|\vec x - \vec{x}'|^3} \right) d^3 \vec{x}'
+\phi(\vec x) =  \frac{1}{4\pi \epv}  \int \left(\frac{\rho(\vec{x}')}{|\vec x - \vec{x}'|} + \frac{\vec P(\vec{x}') \cdot (\vec{x} - \vec{x}')}{|\vec x - \vec{x}'|^3} \right) d^3 \vec{x}'
 \eeq
+注意到
+\beq
+\frac{\vec x  - \vec{x}'}{|\vec x - \vec{x}'|^3} = \del' \left( \frac{1}{|\vec x - \vec{x}'|}\right)
+\eeq
+于是
+\bea
+\int d^3 \vec{x}' P(\vec{x}') \frac{\vec x  - \vec{x}'}{|\vec x - \vec{x}'|^3} &= \int d^3 \vec{x}' P(\vec{x}')\cdot \del' \left( \frac{1}{|\vec x - \vec{x}'|}\right) \\
+&= \int d^3 \vec{x}' \left[ \del' \cdot \left( \frac{1}{|\vec x - \vec{x}'|P(\vec{x}')}\right)  - \frac{1}{|\vec x - \vec{x}'|} \del' P(\vec{x}')\right]\\
+&=\oint d\vec S \frac{1}{|\vec x - \vec{x}'|}P(\vec{x}')- \int d^3 \vec{x}' \frac{1}{|\vec x - \vec{x}'|} \del' P(\vec{x}')
+\eea
+也就是说，极化矢量$\vec P$的作用等价于一个分布在介质的面电荷密度$\sigma_b = \vec P \cdot \vec n$以及分布在介质当中的体电荷密度$\rho_b = -\del \cdot \vec P$。这从图像上来讲是清楚的：比如一块均匀极化的长方体介质，其内部的正负电荷略微分离，把介质分成一层一层的离散小片，某一层向下一层分量出的正电荷总能和下一层剩余的负电荷抵消，从而在介质内部无净极化电荷；唯独表明层向外贡献的正电荷不能再被抵消，存在表面电荷。
+\par
+在外场不强的情况下，一般假设极化是均匀且线性的
+\beq
+\vec P = (\epsilon - \epv) \vec E
+\eeq
+这时，所有静电场规律只需要将原来的$\epv$换成$\epsilon$。
 \subsection{磁介质的基本图像}
-\subsection{介质中的边值问题}
+磁介质的基本图像和电介质稍有差别。磁矩$\vec m$产生的矢势近似为
+\beq
+\vec A = \frac{\mu_0}{4\pi} \frac{\vec m \times \vec x}{x^3}
+\eeq
+于是对于一个磁矩分布$\vec M$，有
+\beq
+\vec A (\vec x) = \int d^3 \vec{x}' \frac{\mu_0}{4\pi} \frac{\vec M(\vec{x}') \times ( \vec x - \vec{x}')}{|\vec x - \vec{x}'|^3}
+\eeq
+我们按同样的套路整理右边项：为了清楚起见，把叉乘写成指标的形式
+\beq
+A_i (\vec x) =\epsilon_{ijk}  \int d^3 \vec{x}' \frac{\mu_0}{4\pi} \frac{M_j (\vec{x}') ( \vec x - \vec{x}')_k}{|\vec x - \vec{x}'|^3}
+\eeq
+同样利用
+\beq
+\frac{\vec x  - \vec{x}'}{|\vec x - \vec{x}'|^3} = \del' \left( \frac{1}{|\vec x - \vec{x}'|}\right)
+\eeq
+有
+\bea
+A_i (\vec x) &=\epsilon_{ijk}  \int d^3 \vec{x}' \frac{\mu_0}{4\pi} M_j (\vec{x}') \partial'_k\left( \frac{1}{|\vec x - \vec{x}'|}\right) \\
+&= \frac{\mu_0}{4\pi}  \epsilon_{ijk}  \int d^3 \vec{x}'  \partial'_k \left(M_j (\vec{x}')\frac{1}{|\vec x - \vec{x}'|}\right)- \frac{\mu_0}{4\pi}  \epsilon_{ijk}  \int d^3 \vec{x}' \left( \partial'_k M_j (\vec{x}')\right)\frac{1}{|\vec x - \vec{x}'|}\\
+&=  \frac{\mu_0}{4\pi}  \epsilon_{ijk}  \oint dS_k'  M_j (\vec{x}')\frac{1}{|\vec x - \vec{x}'|}+ \frac{\mu_0}{4\pi}  \epsilon_{ijk}  \int d^3 \vec{x}' \left( \partial'_j M_k (\vec{x}')\right)\frac{1}{|\vec x - \vec{x}'|}\\
+&=  \frac{\mu_0}{4\pi} \oint dS'  \epsilon_{ijk}  M_j n_k (\vec{x}')\frac{1}{|\vec x - \vec{x}'|}+ \frac{\mu_0}{4\pi}  \int d^3 \vec{x}' \left( \epsilon_{ijk}  \partial'_j M_k (\vec{x}')\right)\frac{1}{|\vec x - \vec{x}'|}\\
+ \eea
+ 再把指标语言换成矢量语言就清楚了
+ \beq
+ \vec A (\vec x) = \frac{\mu_0}{4\pi} \oint dS' ( \vec M \times \vec n )\frac{1}{|\vec x - \vec{x}'|} + \frac{\mu_0}{4\pi} \int d^3 \vec{x}' (\del' \times \vec M) \frac{1}{|\vec x - \vec{x}'|}
+ \eeq
+ 立即看出，等效的面电流密度和体电流密度分别为
+ \beq
+ \vec K_{\vec M} = \vec M \times \vec n
+ \eeq
+ \beq
+ \vec{j}_{\vec M} = \del \times \vec M
+ \eeq
+ 面电流密度这项的图像特别清楚：由于$\vec M$可以看出介质中许多小电流圈的分别，在均匀极化的情况下，介质内部的这些电流圈在相切处的电流方向相反，全部抵消；仅仅在表面产生如\cref{mag_pol}的面电流。
+ \cpicn{0.2}{mag_pol}{磁极化的表面效应}
+ \par
+ 在外场不强的情况下，一般假设磁化是均匀且线性的
+ \beq
+ \vec M = \left( \frac{1}{\mu_0} - \frac{1}{\mu} \right) \vec B
+ \eeq
+ 这时，所有的静磁场规律只要将原来的$\mu_0$换成$\mu$。
+ \subsection{欧姆定律}
+ 上面都考虑的是理想的介质：在外场下，电子会稍微偏离原子核，但仍然被束缚在原所在位置（原子核）附近（对应量子力学的Stark效应）。而对于一些不太理想的介质，电子可能被剥离原子而在介质中自由运动。在外场不强的情况下，我们可以假设这部分电子产生的电流正比于外场
+ \beq
+ \vec j = \sigma \vec E
+ \eeq
+ \subsection{介质中的边值问题}
+ 我们先考虑介质中的麦克斯韦方程。出发点依然是真空中的麦克斯韦方程。注意到，麦克斯韦方程右边的源项是空间中所有的电荷（电流），也即是自由电荷（人为添加的电荷）和束缚电荷（介质对外场的相应）之和。
+ \bea
+ \rho_t &= \rho_f + \rho_b  = \rho_f - \del \cdot \vec P\\
+\vec{j}_t &= \vec{j}_f + \vec{j}_b = \vec{j}_f + \del \times \vec{M}
+\eea
+此时麦克斯韦方程组中的含源方程变为
+\bea
+\del \cdot \vec E &= \frac{1}{\epv}(\rho_f - \del \cdot \vec P) \\
+\del \times \vec B &= \mu_0 ( \vec{j}_f + \del \times \vec{M})
+\eea
+移项就得到
+\bea
+\del \cdot \left(\vec P  + \epv \vec E \right) &= \rho_f \\
+\del \times \left( \frac{1}{\mu_0} \vec B- \vec M\right) &= \vec{j}_f
+\eea
+定义电位移矢量$\vec D$和磁场强度$\vec H$
+\bea
+\vec D &= \epv \vec E + \vec P \\
+\vec H &= \frac{1}{\mu_0} \vec B - \vec M
+\eea
+在线性极化的情况下
+\bea
+\vec D &= \epsilon \vec E\\
+\vec H &= \frac{1}{\mu} \vec B
+\eea
+此时麦克斯韦方程组化为
+\bea
+\del \cdot \vec D &= \rho_f \\
+\del \times \vec E &= - \frac{\partial B}{\partial t} \\
+\del \cdot \vec B &= 0 \\
+\del \times \vec H &= \vec{j}_f
+\eea
+
 
 
 
 \section{动场}
-
-
-
-
-	
+\subsection{自由无界空间中的场}
+如果空间中没有自由电荷，且介质是线性的，把麦克斯韦方程按
+\bea
+\partial_0 \equiv \frac{\partial}{\partial_t} &\to i\omega \\
+\del &\to -i\vec k
+\eea
+傅立叶变换，一组用于确定自由无界空间中的场的方程就是
+\bea
+\vec k \cdot \vec D &= 0 \\
+\vec k \times \vec E &= \omega \vec B \\
+\vec k \cdot \vec B &= 0 \\
+\vec k \times \vec H &= -\omega \vec D + \vec{j} \\
+D_i &= \epsilon_{ij} E_j \\
+B_i &= \mu_{ij} H_j \\
+j_i &= \sigma_{ij} E_j
+\eea
+上面一共有17个方程（5个矢量方程和2个标量方程），却只有15个未知量，因此这组方程事实上是过定的。另外我们发现，因为不存在源，这组方程是齐次的。对过定的线性齐次方程，有非零解（不是所有场都等于0）的条件就是方程非满秩。
+\par
+换句话说，我们不能从上面的方程解出场本身，但可以解出系数之间的约束关系。我们现在来着手做这件事：把后三个方程代入前4个，全部采用指标语言\footnote{$\epsilon_{ij}$代表介电常数张量，而$\epsilon_{ijk}$代表全反称符号。根据指标个数判断符号意义应该不至于产生混淆。}，有
+\bea
+\epsilon_{ij}k_i E_j &= 0 \\
+\epsilon_{ijk}k_j E_k &= \omega \mu_{ij} H_j \\
+\mu_{ij} k_i H_j &=0\\
+\epsilon_{ijk} k_j H_k &=-\omega \epsilon_{ij} E_j + \sigma_{ij} E_j
+\eea
+第2和第4两式做内积得到
+\beq
+\epsilon_{ijk}\epsilon_{ilm} k_j k_l E_k H_m = \omega \mu_{im}(-\omega \epsilon_{ik} + \sigma_{ik}) H_m E_k
+\eeq
+抽掉$E_k H_m$得到
+\beq
+(\delta_{jl} \delta_{km} - \delta_{jm} \delta_{kl}) k_j k_l  = \omega \mu_{im}(-\omega \epsilon_{ik} + \sigma_{ik}) 
+\eeq
+\beq
+\vec{k}^2 \delta_{km} - k_m k_k = -\omega^2 \epsilon_{ik} \mu_{im} + \omega \sigma_{ik}	\mu_{im}
+\eeq
 
 
 
