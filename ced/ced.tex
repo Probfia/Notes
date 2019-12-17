@@ -89,19 +89,19 @@
 \par
 由于电磁场的叠加原理，我们只需要考虑点源的影响。考虑方程
 \beq
-\frac{\partial^2 \phi}{\partial t^2} - \nabla^2 \phi = \delta(t-t_0,\vec{x}-\vec{x}_0)
+\frac{\partial^2 G}{\partial t^2} - \nabla^2 G= \delta(t-t_0,\vec{x}-\vec{x}_0)
 \eeq
 两边乘$e^{-i\omega t + i \vec{k} \cdot \vec{x}} dt d^3 \vec{x}$做积分，得到傅立叶空间中的方程为
 \beq
-(\vec{k}^2 - \omega^2 ) \phi = e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0}
+(\vec{k}^2 - \omega^2 ) G= e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0}
 \eeq
 傅立叶逆变换为
 \beq
-\phi = \int \frac{d\omega}{2\pi} \int \frac{d^3 \vec{k}}{(2\pi)^3} \frac{1}{\vec{k}^2-\omega^2} e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0} e^{i\omega t - i \vec{k} \cdot \vec{x}}
+G = \int \frac{d\omega}{2\pi} \int \frac{d^3 \vec{k}}{(2\pi)^3} \frac{1}{\vec{k}^2-\omega^2} e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0} e^{i\omega t - i \vec{k} \cdot \vec{x}}
 \eeq
 这个积分可以这样进行，首先，由于傅立叶空间中$\vec{x}$是一个给定的量，记$\vec{x}-\vec{x}_0$的长度为$r$，$\vec{x}-\vec{x}_0$与$\vec{k}$的夹角为$\theta$（随$\vec{k}$变化而变化，从而被对$d^3 \vec{k}$的积分积掉。第二个积分因此可以改到在球坐标下进行。球坐标下的体积元$d^3 \vec{k} = k^2 \sin \theta dk d\theta d\phi$，因此有
 \beq
-\phi = \int \frac{d\omega}{2\pi} e^{i\omega ( t - t_0)}  \int_{k=0}^\infty \frac{k^2 dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} \int_{\theta = 0}^\pi e^{ikr\cos \theta } \sin \theta d\theta \int_{\phi = 0}^{2\pi}d\phi
+G = \int \frac{d\omega}{2\pi} e^{i\omega ( t - t_0)}  \int_{k=0}^\infty \frac{k^2 dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} \int_{\theta = 0}^\pi e^{ikr\cos \theta } \sin \theta d\theta \int_{\phi = 0}^{2\pi}d\phi
 \eeq
 最后两个个角向积分很容易进行
 \bea
@@ -116,14 +116,14 @@
 \beq
 \int \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2} e^{ikr}  = \lim_{\epsilon \to 0} \int \frac{k dk}{(2\pi)^3} \frac{1}{k^2 - \omega^2 + i \epsilon} e^{ikr} 
 \eeq
-这时被积函数的极点就出现在$k = \pm \sqrt{\omega^2 - i\epsilon} \simeq \pm \omega \mp i\frac{\epsilon}{2\omega}$，极点$-\omega + i \frac{\epsilon}{2\omega} $出现在上半复平面，对积分有贡献。由于
+这时被积函数的极点就出现在$k = \pm \sqrt{\omega^2 - i\epsilon} \simeq \pm \omega \mp i\frac{\epsilon}{2\omega}$，极点$-\omega + i \frac{\epsilon}{2\omega} $出现在上半复平面，对积分有贡献。当然抬极点的方法不是唯一的，结果也会有差异。这里只是一种可能的途径，得到的结果称为费曼传播子，记作$G_F$。由于
 \beq
 \frac{k}{k^2 - \omega^2} e^{ikr} = \frac{1}{k-(-\omega)} \frac{k}{k-\omega}e^{ikr}
 \eeq
 该点的留数为$\frac{1}{2(2\pi)^3} e^{-i\omega r}$，积分的最终结果因此为$\frac{1}{2(2\pi)^2 r} \cos \omega r$。\par
 最后进行对$\omega$的积分，有
 \bea
-\phi &= 2\pi \int_{\omega = -\infty}^\infty \frac{d\omega}{2\pi} e^{i\omega (t-t_0) }\frac{ \cos \omega r }{2(2\pi)^2r} \\
+G_F &= 2\pi \int_{\omega = -\infty}^\infty \frac{d\omega}{2\pi} e^{i\omega (t-t_0) }\frac{ \cos \omega r }{2(2\pi)^2r} \\
 & = \frac{1}{2(2\pi)^2 r}  \int_{\omega = -\infty}^\infty d\omega \cos \omega(t-t_0) \cos \omega r \\
 &= \frac{1}{4(2\pi)^2 r} \int_{\omega = -\infty}^\infty d\omega \left[ \cos \omega(t-t_0 -r) + \cos \omega(t-t_0 + r)\right] \\
 &= \frac{1}{4 \pi r} \frac{1}{2}\left[\delta (t-t_0-r) + \delta (t-t_0+r) \right]
@@ -132,10 +132,10 @@
 \subsection{推迟势}
 根据格林函数的公式，对一般的源$\epv \rho(\vec{x},t)$有
 \bea
-\phi(\vec{x},t) &=\frac{1}{4\pi \epv}  \int dt'd^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t') \frac{1}{2}\left[\delta (t-t'-r) + \delta (t-t'+r) \right]\\
+\phi_F(\vec{x},t) &=\frac{1}{4\pi \epv}  \int dt'd^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t') \frac{1}{2}\left[\delta (t-t'-r) + \delta (t-t'+r) \right]\\
 &= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|}\frac{1}{2} \left[\rho(\vec{x}',t-|\vec{x}-\vec{x}'|) + \rho(\vec{x},t+|\vec{x}'-\vec{x}'|) \right]
 \eea
-这里发现，势函数$\phi$可以分解为推迟势
+这里发现，（费曼）势函数$\phi$可以分解为推迟势
 \beq
 \phi_{ret} (\vec{x},t) = \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t-|\vec{x}-\vec{x}'|) 
 \eeq
@@ -145,10 +145,10 @@
 \eeq
 的组合
 \beq
-\phi = \frac{1}{2}(\phi_{ret} + \phi_{adv})
+\phi_F = \frac{1}{2}(\phi_{ret} + \phi_{adv})
 \eeq
 \par
-可以验证，推迟势和超前势都各自满足有源的势函数波动方程，它们之间任意的归一线性组合$\phi = \alpha \phi_{ret} + (1-\alpha) \phi_{adv}$也满足有源的势函数波动方程\footnote{文中这种特定组合出现的原因是上一节算格林函数时，加$i \epsilon$的方法有些任意性，比如你也可以把两个极点全部推到上面。}，但超前势却面临严重的因果律问题（未来时间对现在世界的影响），因此，我们以后将只考虑推迟势。势对源的响应因此概括为
+可以验证，推迟势和超前势都各自满足有源的势函数波动方程，它们之间任意的归一线性组合$\phi = \alpha \phi_{ret} + (1-\alpha) \phi_{adv}$也满足有源的势函数波动方程，但超前势却面临严重的因果律问题（未来时间对现在世界的影响），因此，我们以后将只考虑推迟势。势对源的响应因此概括为
 \bea \label{retp}
 \phi(\vec x,t) &= \frac{1}{4\pi \epv} \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \rho(\vec{x}',t-|\vec{x}-\vec{x}'|)  \\
 \vec A (\vec x,t) &= \frac{\mu_0 }{4\pi } \int d^3 \vec{x}' \frac{1}{|\vec{x}-\vec{x}'|} \vec j (\vec{x}',t-|\vec{x}-\vec{x}'|) 
@@ -1026,41 +1026,256 @@ A_i (\vec x) &=\epsilon_{ijk}  \int d^3 \vec{x}' \frac{\mu_0}{4\pi} M_j (\vec{x}
 \vec k \times \vec E &= \omega \vec B \\
 \vec k \cdot \vec B &= 0 \\
 \vec k \times \vec H &= -\omega \vec D + \vec{j} \\
-D_i &= \epsilon_{ij} E_j \\
-B_i &= \mu_{ij} H_j \\
-j_i &= \sigma_{ij} E_j
+\vec D &= \epsilon \vec E \\
+\vec B &= \mu \vec H \\
+\vec j &= \sigma \vec E
 \eea
-上面一共有17个方程（5个矢量方程和2个标量方程），却只有15个未知量，因此这组方程事实上是过定的。另外我们发现，因为不存在源，这组方程是齐次的。对过定的线性齐次方程，有非零解（不是所有场都等于0）的条件就是方程非满秩。
+
+\subsection{波导和谐振腔}
+对有界的空间，我们可以想象，场的本质模式变成离散情形。通常我们要处理的是理想导体作为边界的电磁场问题，在这里，导体表面处必须满足电场的切向分量等于0，且散度定理$\del \cdot \vec E=0$成立。也就是法向电场的法向导数$\pfrac{E_n}{n}=0$成立。
+\subsubsection{谐振腔}
+在一个完全由理想导体包围的区域内，电场$\vec E$满足波动方程
+\beq
+\nabla^2 \vec E = \frac{1}{c^2} \pfrac{^2}{ t^2} \vec E
+\eeq
+我们依然按$\vec E \sim e^{-i\omega t}$先将时间分离变量得到
+\beq
+\nabla^2 \vec E = - \frac{\omega^2}{c^2} \vec E = -k^2 \vec E
+\eeq
+这就是一个空间中的亥姆霍兹方程：之前考虑的静电问题就是$k=0$时候的情况。对给定的边界条件求解这个亥姆霍兹方程就可以得到$k$的各个（离散的）可能取值，从而得到封闭空间中的电磁波震荡的本征模式。
+\begin{eg}
+对一个长宽高分别为$l$,$w$,$h$的长方体导体盒，求内部电磁震荡的本征模式。
+\end{eg}
+\begin{ans}
+在$x=0$和$x=l$平面上的边界条件为
+\beq
+E_y = E_z = 0
+\eeq
+\beq
+\pfrac{E_x}{x} = 0
+\eeq
+在$y=0$和$y=w$平面上的边界条件为
+\beq
+E_x = E_z = 0
+\eeq
+\beq
+\pfrac{E_y}{y} = 0
+\eeq
+在$z=0$和$z=h$平面上的边界条件为
+\beq
+E_x = E_y = 0
+\eeq
+\beq
+\pfrac{E_z}{z} = 0
+\eeq
+从而我们有以下分离变量形式的解
+\beq
+E_x \sim \cos \frac{m\pi x}{l} \sin \frac{n\pi y}{w} \sin \frac{p\pi z}{h}
+\eeq
+\beq
+E_y \sim \sin \frac{m \pi x}{l} \cos \frac{n \pi y}{w} \sin \frac{p \pi z}{h}
+\eeq
+\beq
+E_z \sim \sin \frac{m \pi x}{l} \sin \frac{n\pi y}{w} \cos \frac{p \pi z}{h}
+\eeq
+对给定的模式$(m,n,p)$，电场的空间分量为
+\beq
+\vec E = A \cos \frac{m\pi x}{l} \sin \frac{n\pi y}{w} \sin \frac{p\pi z}{h} \vec{e}_x + B \sin \frac{m \pi x}{l} \cos \frac{n \pi y}{w} \sin \frac{p \pi z}{h} \vec{e}_y + C  \sin \frac{m \pi x}{l} \sin \frac{n\pi y}{w} \cos \frac{p \pi z}{h}\vec{e}_z
+\eeq
+附加约束条件$\del \cdot \vec E=0$表现为
+\beq
+-\left(A \frac{m\pi}{l} + B \frac{n\pi}{w} + C \frac{p\pi}{h}\right)\sin \frac{m\pi x}{l} \sin \frac{n\pi y}{w} \sin \frac{p\pi z}{h}=0
+\eeq
+这表示，三个振幅$(A,B,C)$之间只有两个是独立的。另外该模式的
+\beq
+k= \pi \sqrt{\left(\frac{m}{l}\right)^2+\left(\frac{n}{w}\right)^2 + \left(\frac{p}{h}\right)^2}
+\eeq
+相当于给出了电磁波频率的限制
+\beq
+\omega_{mnp} = c\pi\sqrt{\left(\frac{m}{l}\right)^2+\left(\frac{n}{w}\right)^2 + \left(\frac{p}{h}\right)^2}
+\eeq
+为一系列离散的值，并且最低的（假如$l$是$l,w,h$中最大的）频率为
+\beq
+\omega_{100} = \frac{\pi c}{l}
+\eeq
+低于这个频率的电磁波都不能在这个盒子里存活。相当于说波长大于$2l$的波都不能在这个盒子里存活，这是符合我们的物理直觉的。
+
+\end{ans}
+\begin{eg}
+讨论一个半径为$a$，高为$h$的圆柱形导体壳内允许的电磁震荡模式。
+\end{eg}
+\begin{ans}
+$r=a$处的边界条件为
+\beq
+\frac{1}{r}\pfrac{(rE_r)}{r} = 0
+\eeq
+\beq
+E_z = E_\theta = 0
+\eeq
+$z=0,h$处的边界条件为
+\beq
+\pfrac{E_z}{z} = 0
+\eeq
+\beq
+E_r = E_\theta = 0
+\eeq
+先讨论$z$方向的边界条件给出的限制比较简单：这只是告诉我们
+\beq
+E_z \sim \cos \frac{n\pi z}{h}
+\eeq
+\beq
+E_r \sim E_\theta \sim \sin \frac{n\pi z}{h}
+\eeq
+记$k_T^2 = k^2 - \left(\frac{n\pi}{h}\right)^2$，问题进一步化简为求极坐标下的亥姆霍兹方程
+\beq
+\nabla^2 \vec E = - k_T^2 \vec E
+\eeq
+它具有分量变量形式解
+\beq
+\vec E \sim J_m(k_T r) \left(c\cos m\theta + s \sin m \theta\right)
+\eeq
+$r=a$处的边界条件对$E_\theta$和$E_z$的限制比较简单：
+\beq
+E_\theta \sim E_z \sim J_m(\frac{\mu_{m,n}r}{a})\left(c \cos m\theta + s \sin m \theta\right)
+\eeq
+其中$\mu_{m,n}$是第$m$阶贝塞尔函数$J_m(x)$的第$n$个零点。
 \par
-换句话说，我们不能从上面的方程解出场本身，但可以解出系数之间的约束关系。我们现在来着手做这件事：把后三个方程代入前4个，全部采用指标语言\footnote{$\epsilon_{ij}$代表介电常数张量，而$\epsilon_{ijk}$代表全反称符号。根据指标个数判断符号意义应该不至于产生混淆。}，有
-\bea
-\epsilon_{ij}k_i E_j &= 0 \\
-\epsilon_{ijk}k_j E_k &= \omega \mu_{ij} H_j \\
-\mu_{ij} k_i H_j &=0\\
-\epsilon_{ijk} k_j H_k &=-\omega \epsilon_{ij} E_j + \sigma_{ij} E_j
+比如我们可以在此限制$E_r=0$，于是得到对给定的波模
+\beq
+\vec E = J_m(\frac{\mu_{m,n}r}{a})\left(c \cos m\theta + s \sin m \theta\right)(A \cos \frac{n\pi z}{h} \vec{e}_z + B\sin \frac{n\pi z}{h} \vec{e}_\theta)
+\eeq
+本征频率\beq
+\omega_{mn p} = c\sqrt{\left( \frac{\mu_{m,n}}{a}\right)^2+\left( \frac{n\pi}{h}\right)^2}
+\eeq
+\end{ans}
+
+\subsubsection{波导}
+波导与谐振腔的不同之处在于，波导在某个方向（常取作$z$方向）是无界的，也就是说，在这个方向上的模式是连续的，我们可以按$\vec E \sim \vec E(x,y) e^{i(kz - \omega t)}$把时间上的传播模式和$z$轴上的传播模式先分离变量，从而将问题化为一个二维的亥姆霍兹方程求解问题
+\beq
+\nabla^2 \vec E = - k_T^2 \vec E
+\eeq
+其中$k_T^2 = \left(\frac{\omega}{c}\right)^2 - k^2$是波矢的横向分量。在横向的约束依然使得电磁波在波导内不一定是横波。我们引入一些习惯记号：
+\begin{enumerate}
+\item ${\rm TEM}$波：电场$\vec E$和磁场$\vec B$都和波的整体传播方向$\vec k = k \vec{e}_z$垂直：在无界空间中的电磁波总是${\rm TEM}$波；
+\item ${\rm TE}$波：只有电场$\vec E$和波的整体传播方向$\vec k = k \vec{e}_z$垂直，相当于要求$E_z=0$；
+\item ${\rm TM}$波：只有磁场$\vec H$和波的整体传播方向$\vec k = k \vec{e}_z$垂直，相当于要求$B_z=0$；
+\end{enumerate}
+在自由无界空间中，电磁波总是${\rm TEM}$的，而在有限空间里这一结论不再成立。我们按照横纵两个方向对电场、磁场和梯度算符作分解
+\beq
+\vec E = \vec{E}_T + E_z \vec{e}_z
+\eeq
+\beq
+\vec B = \vec{B}_T + B_z \vec{e}_z
+\eeq
+\beq
+\del = \del_T + \pfrac{}{z}\vec{e}_z = \del_T +ik\vec{e}_z
+\eeq
+麦克斯韦方程的散度项给出要求
+\beq
+\del_T \cdot \vec{E}_T +ikE_z = 0
+\eeq
+\beq
+\del_T \cdot \vec{B}_T + ikB_z = 0
+\eeq
+旋度项
+\beq
+\del_T \times \vec{E}_T +ik\vec{E}_T \times \vec{e}_z + \del_T E_z \times \vec{e}_z = i\omega (\vec{B}_T + B_z \vec{e}_z)
+\eeq
+这相当于要求
+\bea\label{wge}
+\del_T \times \vec{E}_T&=i\omega B_z \\
+ik\vec{E}_T \times \vec{e}_z + \del_T E_z \times \vec{e}_z&= i\omega \vec{B}_T
 \eea
-第2和第4两式做内积得到
+另外还有
 \beq
-\epsilon_{ijk}\epsilon_{ilm} k_j k_l E_k H_m = \omega \mu_{im}(-\omega \epsilon_{ik} + \sigma_{ik}) H_m E_k
+\del_T \times \vec{B}_T +ik\vec{B}_T \times \vec{e}_z+ \del_T B_z \times \vec{e}_z =-\frac{1}{c^2} i\omega \vec{E}_T
 \eeq
-抽掉$E_k H_m$得到
+同样给出限制
+\bea\label{wgb}
+\del_T \times \vec{B}_T &= -i\frac{\omega}{c^2} E_z \\
+ik\vec{B}_T \times \vec{e}_z + \del_T B_z \times \vec{e}_z&= -i\frac{\omega}{c^2} \vec{E}_T
+\eea
+现在我们可以预想，空间在$xy$方向上的有限性会使得$k_T$只能去按两个指标${mn}$表示的离散值，从而使得对$z$方向的波矢有限制
 \beq
-(\delta_{jl} \delta_{km} - \delta_{jm} \delta_{kl}) k_j k_l  = \omega \mu_{im}(-\omega \epsilon_{ik} + \sigma_{ik}) 
+k^2 = \left(\frac{\omega}{c}\right)^2 - k_{T,mn}^2
+\eeq
+另一方面，$k^2>0$使得在波导中传播的电磁波有最小频率
+\beq
+\omega_{c} = c\max\{k_{T,10},k_{T,01}\}
+\eeq
+
+
+\subsection{辐射}
+上面都讨论的是自由空间中场的传播，但事实上我们更感兴趣的是由源激发的场。回忆我们一开始的推迟势公式，简单起见，我们暂时使用$c=1$的单位制。
+\beq
+\phi_{ret}( \vec x, t) = \frac{1}{4\pi \epv}\int d^3 \vec{x}'\ \frac{\rho(\vec x', t - |\vec x - \vec{x}'|)}{|\vec x - \vec{x}'}
 \eeq
 \beq
-\vec{k}^2 \delta_{km} - k_m k_k = -\omega^2 \epsilon_{ik} \mu_{im} + \omega \sigma_{ik}	\mu_{im}
+\vec A_{ret}( \vec x, t) = \frac{\mu_0}{4\pi}\int d^3 \vec{x}'\ \frac{\vec j(\vec x', t - |\vec x - \vec{x}'|)}{|\vec x - \vec{x}'}
+\eeq
+\subsubsection{多极展开}
+我们在静场的多极展开那里讨论过$|\vec x| \gg | \vec x'|$时$\frac{1}{|\vec x - \vec{x}'|}$的展开式。
+\beq
+\frac{1}{|\vec x - \vec{x}'|} =\frac{1}{r} + \frac{\vec x\cdot \vec x' }{r^3} + O(\frac{1}{r^3})
+ \eeq
+另外还有一个展开式
+\beq
+|\vec x - \vec{x}'| \simeq r - \frac{\vec x \cdot \vec x'}{r}+ O(\frac{1}{r})
+\eeq
+电流（和电荷）同样可以继续展开
+\bea
+\vec j ( \vec x', t - |\vec x - \vec{x}'| ) &\simeq \vec j(\vec x', t - r + \frac{\vec x \cdot \vec x'}{r}) \\
+&= \vec j (\vec x', t - r) + \dot{\vec j} (\vec x', t - r) \frac{\vec x \cdot \vec x'}{r} + O(\frac{1}{r})
+\eea
+于是
+\beq
+\vec A (\vec x) \simeq \frac{\mu_0}{4\pi r} \int  d^3 \vec x'\ \left( \vec j (\vec x', t - r) + \dot{\vec j} (\vec x', t - r) \frac{\vec x \cdot \vec x'}{r} \right) \left(1 + \frac{\vec x\cdot \vec x' }{r^2} \right)
+\eeq
+我们可以将上式按$\frac{1}{r}$各阶展开：
+\begin{itemize}
+\item $\sim \frac{1}{r}$阶
+\beq
+\vec A^{(1)}  = \frac{\mu_0}{4\pi r} \int d^3 \vec x'\ \vec j (\vec x', t - r)
+\eeq
+积分号内的等式这样变形：用指标语言
+\beq
+\partial'_j (x'_i j_j) = j_i + x'_i \partial'_j j_j = j_i - x'_i \dot \rho = j_i - \dot{p}_i
+\eeq
+简单认为全导数项积分消失，就得到了
+\beq
+\vec A^{(1)}  = A^{ED} = \frac{\mu_0}{4\pi r} \int d^3 \vec x'\ \vec \dot{p} (\vec x', t - r)
+\eeq
+也就是说，矢势的最低阶贡献是时变电偶极矩产生的。
+\item $\sim \frac{1}{r^2}$阶
+\beq
+\vec A^{(2)} = \frac{\mu_0}{4\pi r^2} \int d^3 \vec x'\ \dot{\vec j} ( \vec x',t - r) (\vec x \cdot \vec x')
+\eeq
+我们同样可以把积分号内的$\dot{j}_i x_j$变形，利用
+\beq
+\partial'_k (x'_j x'_i \dot{j}_k) = -x'_i x'_j \ddot \rho + x'_j \dot{j}_i + x'_i \dot{j}_j
+\eeq
+有
+\beq
+ x_j   \int d^3 \vec x'\ \dot{j}_i x'_j = \frac{1}{2} x_j  \int d^3 \vec x'\ \dot j_i x'_j  + \frac{1}{2} x_j \int d^3 \vec x'\ (\ddot{\rho} x_i' x_j'  - \dot j_j x'_i)
+\eeq
+磁矩的定义是
+\beq
+m_j = \frac{1}{2} \int d^3 \vec x' \ \epsilon_{jkl} x_k j_l
+\eeq
+于是我们把该阶矢势分解成了两项：
+电四极辐射：
+\beq
+\vec A^{EQ} = \frac{\mu_0}{24\pi r^2} \int d^3\ddot{\hat D} (\vec x', t-r) \cdot \vec x
+\eeq
+磁偶极辐射：
+\beq
+\vec A^{MD} = \frac{\mu_0}{4\pi r^2} \int d^3 \dot{\vec m}  (\vec x', t-r) \times \vec x
 \eeq
 
 
+\end{itemize}
 
-
-
-
-
-
-
-
-
+\subsubsection{电偶极辐射}
 
 
 

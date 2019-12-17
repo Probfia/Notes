@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{Vectors}{2}{0}{1}
+\beamer@sectionintoc {2}{Coor Repre}{13}{0}{2}
+\beamer@sectionintoc {3}{Curves and Vectors, Examples}{20}{0}{3}
+\beamer@sectionintoc {4}{More about Tensors}{25}{0}{4}
+\beamer@sectionintoc {5}{Fields}{31}{0}{5}
+\beamer@sectionintoc {6}{Changing Basis}{41}{0}{6}
+\beamer@sectionintoc {7}{homework}{46}{0}{7}

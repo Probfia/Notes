@@ -1,0 +1,848 @@
+\documentclass[aspectratio=1610,14pt,matheuler]{beamer}
+\batchmode
+%\input{macros.tex}
+\usepackage{xeCJK}
+\setCJKmainfont{STKaiti}
+\usepackage{beamerthemesplit}
+\usetheme{CambridgeUS}
+\useoutertheme{smoothbars}
+\usecolortheme{beaver}
+
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{eufrak}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage{tcolorbox}
+
+%\def\bch{\begin{CJK}{UTF8}{gbsn}}
+%\def\ech{\end{CJK}}
+\newcommand{\bch}{}
+\newcommand{\ech}{}
+\def\bcenter{\begin{center}}
+\def\ecenter{\end{center}}
+\def\skipline{{\vskip0.1in}}
+\def\skiplines{{\vskip0.2in}}
+\def\tbox#1{\begin{tcolorbox}#1\end{tcolorbox}}
+
+\newcommand{\field}{\mathscr{F}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\diag}{\mathrm{diag \ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\card}{\mathrm{card \ }}
+\newcommand{\mani}{\mathcal{M}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
+\def\secpage#1#2{\begin{frame}\bch\bcenter{\bf \Huge #1} \skipline \tbox{#2}\ecenter\ech\end{frame}}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+\newcommand{\red}[1]{{\color{red} #1}}
+\def\green#1{{\color[rgb]{0.1,0.7,0.2}#1}}
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{Relativistic Quantum Mechanics: Dirac Eq (III)}
+\substitle{Spin, $g$-factor and $\gamma$ Matrix Trace Techniques.}
+  \date{\today}
+
+
+\begin{document}
+
+\begin{frame}
+ 
+\titlepage
+\begin{center}
+\tableofcontents
+\end{center}
+
+\end{frame}
+
+\section{Spin, Helicity and Chirality}
+\secpage{自旋角动量}{$$\vec J = \vec L + \frac{1}{2} \vec \varSigma$$}
+
+\begin{frame}{复习：狄拉克方程和旋量 }
+\frametitle{\bch 复习：狄拉克方程和旋量 \ech}
+\bch
+\begin{itemize}
+\item 回忆：我们把KG方程的二次算符$H^2=\vec p^2 + m^2$强行拆成两个一次算符$H=\vec \alpha \cdot \vec p + \beta m$得到了狄拉克方程，因此它首先具有我们希望的相对论色散关系。
+\item 狄拉克表象下的
+$$
+\vec \alpha = \mat{0 & \vec \sigma \\ \vec \sigma & 0},\ \beta = \mat{1 & 0 \\ 0 & -1}
+$$
+\item
+狄拉克方程的波函数是一个4分量的列向量$\psi$，称为旋量。其中的两个自由度描述正能量解，对应正粒子；另外两个自由度描述负能量解，对应反粒子。
+\item
+我们还被告知，正能量解包含的2个自由度描述了一个自旋$1/2$粒子，但为什么呢？这是我们这节课要回答的问题。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 守恒量 \ech}
+\bch
+\begin{itemize}
+\item 哈密顿量
+$$
+H = \vec \alpha \cdot \vec p + \beta m
+$$
+同时包括了外部时空坐标的算符（$\vec p$，连续谱）和内部旋量空间的算符（$\vec \alpha,\ \beta$，离散谱）。
+\item 我们知道，量子力学中与哈密顿量对易的可观测量算符是守恒量。例如，对薛定谔的$H = \frac{\vec p^2}{2m}$，轨道角动量$\vec L = \vec x \times \vec p$守恒，$[\vec  L, H ] =0$。
+\item 在狄拉克的$H$中，$\vec L$还守恒吗？\includegraphics[scale=0.12]{speechless}
+
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $[\vec L,H] \not= 0$ \ech}
+\bch
+\begin{itemize}
+\item 我们开始了：
+$$
+[L_i,H] = [\epsilon_{ijk} x_j p_k,\alpha_l p_l + \beta m] = \epsilon_{ijk}[x_j p_k,p_l]\alpha_l
+$$
+对易子可以用基本对易关系化简
+$$
+[x_j p_k,p_l]  = x_j[p_l,p_k]+[x_j,p_l]p_k = i\delta_{jl}p_k
+$$
+于是
+$
+[L_i,H] = i \epsilon_{ijk} \delta_{jl}p_k \alpha_l =  i \epsilon_{ijk} \alpha_j p_k
+$
+$$
+[\vec L,H] = i \vec \alpha \times \vec p \not= 0
+$$
+\cpic{0.2}{oops}
+\item 讨论：轨道角动量算符不守恒来自外部坐标空间的算符非对易性。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 自旋角动量算符 \ech}
+\bch
+\begin{itemize}
+\item
+定义自旋角动量算符
+$$\vec \varSigma = \mat{\vec \sigma & 0 \\ 0 & \vec \sigma} = \gamma^5 \vec \alpha$$
+其中$\gamma^5 = \mat{0 & 1 \\ 1 &0}$是狄拉克表象下的$\gamma^5$。
+\item
+先证明：
+$$[\varSigma_i,\alpha_j] = 2i\epsilon_{ijk} \alpha_k$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $[\vec \varSigma, H ] \not= 0$ \ech}
+\bch
+\begin{itemize}
+\item
+$[\varSigma_i,\alpha_j] = \mat{\sigma_i & 0 \\ 0  & \sigma_i} \mat{0 & \sigma_j \\ \sigma_j &0}- \mat{0 & \sigma_j \\ \sigma_j &0} \mat{\sigma_i & 0 \\ 0 & \sigma_i} = \mat{0 & \sigma_i \sigma_j \\ \sigma_i \sigma_j &0}-\mat{0 & \sigma_j \sigma_i \\ \sigma_j \sigma_i & 0} = \mat{0 & [\sigma_i,\sigma_j] \\ [\sigma_i,\sigma_j] & 0}$
+\item 利用泡利矩阵的著名对易关系$[\sigma_i,\sigma_j] = 2i \epsilon_{ijk} \sigma_k$就有
+$$[\varSigma_i,\alpha_j] = 2i\epsilon_{ijk} \mat{0 &\sigma_k \\ \sigma_k &0 } = 2i\epsilon_{ijk} \alpha_k$$
+\item
+于是
+$
+[\varSigma_i ,H] = [\varSigma_i,\alpha_j p_j + \beta m]=  [\varSigma_i,\alpha_j]p_j = 2i\epsilon_{ijk} p_j \alpha_k
+$
+$$
+[\vec \varSigma, H] = 2i \vec p \times \vec \alpha \not= 0
+$$
+\item 自旋角动量也不守恒，来源于内部旋量空间算符的非对易性。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $[\vec J, H ] = 0$ \ech}
+\bch
+\begin{itemize}
+\item
+我们有$[\vec L , H] = i \vec \alpha \times \vec p$和$[\vec \varSigma, H] = 2i\vec p \times \vec \alpha$。
+\item
+于是$$[\vec L + \frac{1}{2} \vec \varSigma,H] = 0$$
+\item
+定义总角动量算符
+{\color{blue}
+$$ \vec J = \vec L + \frac{1}{2} \vec \varSigma$$}
+则$$[\vec J,H]=0$$
+\item 总角动量算符守恒！并且可以看出，狄拉克方程描述了自旋$1/2$粒子。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 螺旋度也是守恒量 \ech}
+\bch
+\begin{itemize}
+\item
+因为$[\vec \varSigma, H] = 2i\vec p \times \vec \alpha$，$[\vec p,H]=0$（对自由粒子）。
+\item
+于是$[\vec \varSigma\cdot \vec p,H] = 0$，即自旋（的两倍）在动量方向的投影为一个守恒量。
+\item
+定义螺旋度算符
+{\color{blue}
+$$ h = \frac{\vec \varSigma \cdot \vec p}{|\vec p|}$$}
+则$$[h,H]=0$$
+\item $h$的本征值为$\pm 1$，分别为右手粒子和左手粒子。
+\cpic{0.2}{helicity}
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 课堂小练习：Chirality and Helicity \ech}
+\bch
+\begin{itemize}
+\item
+设质量为$m$的粒子沿$z$轴匀速运动，$\vec p = p \vec e_z$，显式写出狄拉克的哈密顿量$H=\vec \alpha \cdot \vec p + \beta m$和螺旋度算符$h$。
+\item
+用{\color{red}Mathematica}算出这个哈密顿量的本征值和本征矢为
+$$
++E:\mat{E+m \\ 0 \\-p \\ 0},\ \mat{0 \\ E+m \\0 \\-p};\quad -E: \mat{m-E\\0\\-p\\0},\ \mat{0\\m-E\\0 \\p}
+$$
+验证上面这4个本征矢是$h$的本征矢并计算对应的本征值。
+\item 证明：对一般的狄拉克哈密顿量，手性算符$\gamma_5=\mat{0&1\\1&0}$与$H$仅当$m=0$时对易。
+\item 计算$\gamma_5$对上面四个$H$本征矢的作用，证明：{\color{blue} 仅当$m=0$时，$h$的本征矢和$\gamma_5$的本征矢重合。}
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch Chirality and Helicity \ech}
+\bch
+\begin{itemize}
+\item
+$h$和哈密顿量对易，因此一个自由粒子的螺旋度是不变的；但对有质量粒子$\gamma_5$和哈密顿量不对易，因此{\color{blue}一个有质量自由粒子的手性会不断震荡。}
+\item
+$\gamma_5$只依赖于内部旋量空间，因此空间洛伦兹变换不会改变手性；但对{\color{blue}有质量粒子$h$非洛伦兹不变}，因为我总可以找到一个比粒子快的坐标系使得动量反向（自旋不变，从而$h$变号）。
+\item {\color{blue}对无质量粒子，手性和螺旋度重合}，这样，粒子的手性也不震荡了；螺旋度也洛伦兹不变了。
+\item 总结：
+\begin{tabular}{l|l|l}
+
+ & 有质量粒子 & 无质量粒子 \\ \hline
+$\gamma_5$本征态：手性 & \red{不守恒}但\green{洛伦兹不变} & \green{守恒且洛伦兹不变} \\ \hline
+$h$本征态：螺旋度 & \green{守恒}但\red{非洛伦兹不变} & \green{守恒且洛伦兹不变}\\
+\end{tabular}
+\end{itemize}
+\ech
+\end{frame}
+
+
+\section{EM fields, $g$-factor, LL and Anomalous Transport}
+\secpage{电磁场中的粒子：朗道能级，$g$因子和QCD反常运输}{$$E = \sqrt{m^2 + p_z^2 + 2neB}$$}
+\begin{frame}
+\frametitle{\bch 引入电磁场 \ech}
+\bch
+\begin{itemize}
+\item
+引入电磁场的最小耦合标准手续是$\vec p \to \vec p - q \vec A$，相当于把导数变成协变导数。
+\item
+引入电磁场后，狄拉克的哈密顿量是
+$$
+H = \vec \alpha \cdot (\vec p - q \vec A) + \beta m + q\phi
+$$
+注意这里的$\vec p$都是算符$-i\vec \nabla$。
+\item
+设旋量波函数$\psi = \mat{u \\ v}$，我们关注前两个代表正粒子的分量$u$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 电磁场中的定态狄拉克方程 \ech}
+\bch
+\begin{itemize}
+\item
+代入狄拉克表象下的$\alpha$和$\beta$，有
+$$
+\mat{m + q\phi & -\vec \sigma \cdot( i\vec \nabla + q\vec A) \\ -\vec \sigma \cdot( i\vec \nabla + q\vec A) & -m + q\phi} \mat{u \\ v} = E\mat{u \\v}
+$$
+\item
+耦合的方程组
+$$
+\begin{cases}
+(m + q\phi - E) u - \vec \sigma \cdot( i\vec \nabla + q\vec A) v = 0\\
+-\vec \sigma \cdot( i\vec \nabla + q\vec A) u + (-m - E + q\phi)v = 0
+\end{cases}
+$$
+\item 因为我们只关注正能量解$u$，因此我们可以从第2式中解出$$v = \frac{-\vec \sigma \cdot( i\vec \nabla + q\vec A)}{m+E - q\phi}u$$
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 电磁场中的定态狄拉克方程 \ech}
+\bch
+\begin{itemize}
+\item
+代入第一式就得到
+$$
+[(E - q\phi)^2-m^2]u = \left[\vec \sigma \cdot( i\vec \nabla + q\vec A)\right]^2 u
+$$
+处理右边项的时候要特别小心：因为这是个算符。
+\item
+$\left[\vec \sigma \cdot( i\vec \nabla + q\vec A)\right]^2 u = \sigma_i (i\partial_i + qA_i) \sigma_j (i\partial_j + qA_j) u = \sigma_i \sigma_j (i\partial_i + qA_i)(i\partial_ju + qA_j u) = (\delta_{ij} + i \epsilon_{ijk}\sigma_k) ({\color{cyan}-\partial_i \partial_j u} +{\color{orange} iq(\partial_i A_j) u }+ {\color{cyan} iqA_j \partial_i u + iqA_i \partial_j u + q^2 A_i A_j u})$
+
+\item {\color{cyan}青色}的项是全对称的，$\epsilon_{ijk}$对它们的作用为0，因此
+$$
+\left[\vec \sigma \cdot( i\vec \nabla + q\vec A)\right]^2 u = (-\nabla^2 + 2iq \vec A \cdot \vec \nabla + q^2 \vec A^2)u - q (\vec \nabla \times \vec A)\cdot \vec \sigma u$$
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 磁场的直接作用 \ech}
+\bch
+\begin{itemize}
+\item
+因为$\vec B = \vec \nabla \times \vec A$，我们发现，狄拉克方程中，磁场直接出现在方程里
+$$
+[(E - q\phi)^2-m^2]u = (-\nabla^2 + 2iq \vec A \cdot \vec \nabla + q^2 \vec A^2)u -{\color{red} q \vec B \cdot \vec \sigma u}$$
+
+\item 这是狄拉克方程中独有的性质：在KG方程和薛定谔方程中这一项都不会自然出现（必须人为引入），而且我们发现，这一项于$\vec \sigma$相关，因此事实上描述了自旋和磁场的耦合。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 匀强磁场 \ech}
+\bch
+\begin{itemize}
+\item
+假设我们只有匀强磁场$\vec B = B \vec e_z$，选取$\vec A = Bx \vec e_y$，那么我们的方程化为
+$$
+(E^2 - m^2) u = (-\nabla^2 + 2iq Bx \partial_y + (qBx)^2)u - q B \sigma_3 u
+$$
+\item
+方程不显含$y,z$，我们依然按套路$u \sim e^{ip_y y + ip_z z}$分量变量，有
+$$
+(E^2 - m^2) u = (- \frac{d^2}{dx^2} + p_y^2 + p_z^2  - 2q Bp_y x + (qBx)^2)u - q B \sigma_3 u
+$$
+或
+$$
+(E^2 - m^2 -p_z^2 + qB \sigma_3 )u = \left(- \frac{d^2}{dx^2} +(qBx - p_y)^2\right) u
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 分离上下旋 \ech}
+\bch
+\begin{itemize}
+\item
+我们还依稀记得$u$是一个2分量的旋量，进一步分解$u = \mat{u_+\\u_-}$，发现这个方程是自然解耦的
+$$
+\begin{cases}
+(E^2 - m^2 -p_z^2 + qB)u_+ = \left(- \frac{d^2}{dx^2} +(qBx - p_y)^2\right) u_+ \\
+(E^2 - m^2 -p_z^2 - qB)u_- = \left(- \frac{d^2}{dx^2} +(qBx - p_y)^2\right) u_-
+\end{cases}
+$$
+\item 合写成
+$$
+(E^2 - m^2 -p_z^2 \pm qB)u_\pm = \left(- \frac{d^2}{dx^2} +(qBx - p_y)^2\right) u_\pm
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 对比谐振子 \ech}
+\bch
+\begin{itemize}
+\item
+继续以前的套路，我们对比谐振子方程
+$$
+Eu = \left(- \frac{1}{2m} \frac{d^2}{dx^2} + \frac{1}{2} m\omega^2 x^2\right)u \Rightarrow E= \left(n+\frac{1}{2}\right) \omega
+$$
+和方程
+$$
+(E^2 - m^2 -p_z^2 \pm qB)u_\pm = \left(- \frac{d^2}{dx^2} +(qBx - p_y)^2\right) u_\pm
+$$
+的系数，简单变形：
+$
+\frac{E^2 - m^2 -p_z^2 \pm qB}{2m} u_\pm = \left(- \frac{1}{2m} \frac{d^2}{dx^2} +\frac{1}{2} m\left(\frac{qB}{m}\right)^2\left(x - \frac{p_y}{qB}\right)^2\right) u_\pm
+$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 朗道能级 \ech}
+\bch
+\begin{itemize}
+\item
+于是我们发现，磁场中的狄拉克粒子相当于一个频率为$\omega = \frac{qB}{m}$，中心位于$x_B = \frac{p_y}{qB}$的谐振子。能级为
+$$
+\frac{E^2 - m^2 -p_z^2 \pm qB}{2m} = \left(n+ \frac{1}{2}\right) \frac{qB}{m}
+$$
+解出
+$$
+E^{(\pm)}_n(p_z) = \sqrt{m^2 + p_z^2 + (2n+1)qB \mp qB}
+$$
+\item
+讨论：朗道能级依赖于3个量$n,p_z,m_s$，而在KG方程那里我们得到过$E_n(p_z) = \sqrt{m^2 + p_z^2 + (2n+1)qB}$，{\color{blue}狄拉克方程的区别在于出现了自旋与磁场相互作用的附加能量}。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 电子$g$因子 \ech}
+\bch
+\begin{itemize}
+\item
+上旋粒子的最低能量为$$E^{(+)}_0(p_z) = \sqrt{m^2 + p_z^2} \simeq m+ \frac{p_z^2}{2m}$$
+\item
+下旋粒子的最低能量为$$E^{(-)}_0(p_z) = \sqrt{m^2 + p_z^2 + 2qB} \simeq m+ \frac{p_z^2}{2m} + \frac{qB}{m}$$
+\item
+上下自旋的磁矩分别为$\mu_z = g \mu_B m_s = \pm \frac{g}{2} \frac{q}{2m}$，能量差为$\Delta E = \vec B \cdot \Delta \vec \mu = g \frac{qB}{2m}$，和狄拉克方程朗道能级的结果对比就得到了狄拉克粒子的朗德因子$$g=2$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 理论的美 \ech}
+\bch
+\begin{itemize}
+\item
+我们只是把KG方程的二阶导数拆成了两个一阶算符的积得到了狄拉克方程，就自然地得到了自旋$1/2$和电子$g$因子，而这些在非相对论量子力学中都只能是实验测得的参数。
+\item
+QED的耦合常数不是一个常数，而有重整化带来的修正，这又可以得到电子的反常磁矩$g = 2\left(1 + \frac{\alpha}{2\pi} + O(\alpha^2)\right)$。
+\item
+根据场论里的自旋-统计定理又可以知道自旋$1/2$粒子只能是费米子，而这在非相对论性量子力学中又只能是一个实验事实。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 特定自旋粒子朗道能级的简并度 \ech}
+\bch
+\begin{itemize}
+\item
+假设我们的空间有限，在$x$，$y$方向的长度分别是$L_x,L_y$，那么，$p_y$只能取离散值$p_y = \frac{n\pi}{L_y}$。
+\item
+谐振子中心为$x_c = \frac{p_y}{qB} = \frac{n\pi}{qB L_y}$，它同样不能超过盒子，于是有
+$$
+\frac{n\pi}{qB L_y} < L_x
+$$
+\item
+于是我们得到对特定自旋粒子，朗道能级的简并度
+$$
+g^{(\pm)}(n) = \frac{qBA}{\pi}
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 朗道能级的简并度 \ech}
+\bch
+\begin{itemize}
+\item
+我们发现，上下旋粒子的朗道能级都可以写成
+$$
+E = \sqrt{m^2 +p_z^2 + 2nqB}
+$$
+但{\color{blue} $n=0$的朗道能级（最低朗道能级，LLL）只有自旋向上的粒子占据，而高朗道能级可以被两种自旋的粒子占据}。
+\item
+LLL只容纳自旋向上粒子的事实非常重要！
+\item
+简并度是（不考虑其他量子数）能量相同的所有态的数目，于是我们发现朗道能级的简并度准确地应该写成
+$$
+g(n) = 
+\begin{cases}
+\frac{qBA}{\pi}, n = 0 \\
+2g(0), n \geq 1
+\end{cases}
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch QGP的LLL近似 \ech}
+\bch
+\begin{itemize}
+\item 重离子非对心碰撞形成的夸克-胶子等离子体（QGP）拥有极强的磁场$eB \sim 10^{19} \mathsf{\ Gs}$。
+\cpic{0.4}{mag_field}
+\item 
+有限温度和强磁场下的QGP，高朗道能级的粒子数都被玻尔兹曼因子$\sim e^{-\beta \sqrt{2neB}}$压低，因此，我们认为所有粒子都在LLL。这带来了{\color{blue}量子反常运输}现象。
+\item 我们这里讨论{\color{blue}手征磁效应}和{\color{blue}手征分离效应}两种量子反常运输。
+
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch CME和CSE \ech}
+\bch
+{\small 量子反常运输源于LLL只容许自旋向上的正粒子和自旋向下的反粒子。}
+\cpic{0.22}{anom_trans}
+\ech
+\end{frame} 
+\begin{frame}
+
+\frametitle{\bch 手征磁效应（CME） \ech}
+\bch
+\begin{itemize}
+\item
+LLL上的这群正粒子都自旋向上，负粒子因为带电相反，都自旋向下（保证低能量）。
+\item
+假设我们有一堆左手粒子和右手粒子，但右手粒子因为某些原因更多。因为LLL只容纳自旋向上的正粒子，右手正粒子全部往上跑；因为LLL只容纳自旋向下的负粒子，右手负粒子都往下跑，因此，我们有一个平行于外磁场方向的电流。
+\item
+估计电流的大小：正比于电量$e$，正比于LLL简并度$\sim eB$，正比于多出来的右手粒子数，以轴化学势$\mu_A$表征：{\color{blue}
+$$
+\vec j_V \sim e^2  \mu_A \vec B
+$$
+}
+\item
+这就是手征磁效应的电流。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 手征分离效应（CSE） \ech}
+\bch
+\begin{itemize}
+\item
+CME中，正负粒子一样多，而RH粒子多于LH粒子，产生一个电流$j_V \sim \mu_A$。
+\item
+对偶效应：LH粒子和RH粒子一样多，但正粒子多于负粒子，对偶地，它将产生一个手性流$j_A\sim \mu_V$。
+\item
+原因：在LLL下，正的RH粒子往上跑，正的LH粒子往下跑。等效于有一个向上运输的正螺旋（$h$）流。
+\item
+估计手征流的大小：正比于电量$e$，正比于LLL简并度$\sim eB$，正比于多出来的正粒子数，以粒子化学势$\mu_V$表征：{\color{blue}
+$$
+\vec j_A \sim e^2  \mu_V \vec B
+$$
+}
+\item
+这就是手征分离效应的流。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 手征磁波（CMW） \ech}
+\bch
+\begin{itemize}
+\item 我们看到，多出来的正电荷带来手性的向上流动；而多出来的手性又带来电荷的向上流动。
+\item $j_A \sim \mu_V$，$j_V \sim \mu_A$，{\color{blue}两者交替激发形成手征磁波。}
+\item 在强磁场极限下，CMW以光速传播（D. E. Kharzeev, H.-U. Yee, \emph{PRD}, 2010, {\color{olive}\url{https://arxiv.org/abs/1012.6026v2}}）
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 其他QCD反常运输 \ech}
+\bch
+\cpic{0.21}{at}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $\mu_V$和$\mu_A$的来源 \ech}
+\bch
+\begin{itemize}
+\item 我们看到，QGP反常运输现象与手性不平衡和电荷不平衡密切相关；但为什么会凭空多出右手粒子/正粒子？
+\item QCD真空拓扑涨落，$SU(3)$群独特的拓扑结构。
+\cpic{0.26}{mu_a}
+{\tiny For more on anomalous transport, see, e.g. D. E. Kharzeev, et al. {\color{olive}\url{http://arxiv.org/abs/arXiv:1511.04050}}, X.-G. Huang,{\color{olive} \url{https://arxiv.org/abs/1509.04073v3}}.}
+\end{itemize}
+\ech
+\end{frame}
+
+
+\section{$\gamma$ trace techniques}
+\secpage{$\gamma$矩阵求迹技巧}{以后会有用的}
+
+
+\begin{frame}
+\frametitle{\bch 矩阵求迹的一般性质 \ech}
+\bch
+迹内部的矩阵乘积可以{\color{blue}轮换}顺序
+$$
+\tr ABC = \tr CAB = \tr BCA
+$$
+$$
+\tr ABCD = \tr BCDA = \tr CDAB = \tr DABC
+$$
+但{\color{red}不成立
+$$
+\tr AB = \tr A \tr B
+$$
+和
+$$
+\tr ABC = \tr ACB
+$$
+等}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $\gamma^5$的一般性质 \ech}
+\bch
+\begin{itemize}
+\item 我们之后的讨论都不依赖于具体的表象，而只利用基本定义$$\{\gamma^\mu,\gamma^\nu\} = 2\eta^{\mu \nu}$$
+\item 定义$$\gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3$$
+\item 证明：\begin{enumerate}
+	\item $$(\gamma^5)^2 = 1$$
+	\item $$\{\gamma^\mu ,\gamma^5\} = 0$$
+	\item $$\tr \gamma^5 = 0$$
+	\end{enumerate}
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $(\gamma^5)^2 = 1$ \ech}
+\bch
+\begin{equation*}
+\begin{aligned}
+(\gamma^5)^2 &=- \gamma^0 \gamma^1 \gamma^2 \gamma^3\gamma^0 \gamma^1 \gamma^2 \gamma^3 \\
+&= - \gamma^0 \gamma^1 \gamma^2( \{\gamma^3,\gamma^0 \}-\gamma^0\gamma^3)\gamma^1 \gamma^2 \gamma^3 \\
+&=\gamma^0 \gamma^1 \gamma^2\gamma^0\gamma^3\gamma^1 \gamma^2 \gamma^3\\
+&= {\color{teal}\dots(\text{再移两次}) }\\
+&= \gamma^0\gamma^0\gamma^1 \gamma^2\gamma^3\gamma^1 \gamma^2 \gamma^3 \quad{\color{teal}(\gamma^0 \gamma^0 = \frac{1}{2}\{\gamma^0,\gamma^0\} = \frac{1}{2} 2\eta^{00} = 1)} \\
+&= \gamma^1\gamma^1\gamma^2\gamma^3\gamma^2\gamma^3 \quad{\color{teal}(\gamma^1 \gamma^1 = \frac{1}{2}\{\gamma^1,\gamma^1\} = \frac{1}{2} 2\eta^{11} = -1)}\\
+&= - \gamma^2\gamma^3\gamma^2\gamma^3	\\
+&= \gamma^2\gamma^2\gamma^3\gamma^3\\
+&= 1
+\end{aligned}
+\end{equation*}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 其他两个 \ech}
+\bch
+\begin{itemize}
+\item
+$$
+\{\gamma^\mu,\gamma^5\} = i\gamma^\mu \gamma^0 \gamma^1 \gamma^2 \gamma^3 - i\gamma^0 \gamma^1 \gamma^2 \gamma^3 \gamma^\mu 
+$$
+{\small 把第一项的第一个$\gamma^\mu$往后移到第二个$\gamma^\mu$前，要移$\mu$次，添符号$(-1)^\mu$；把第二项的第二个$\gamma^\mu$移到第一个$\gamma^\mu$后，添符号$(-1)^{3-\mu} = -(-1)^\mu$，于是}
+$$
+\{\gamma^\mu,\gamma^5\} = i(-1)^\mu(\gamma^0 \dots \gamma^\mu \gamma^\mu \dots \gamma^3 - \gamma^0 \dots \gamma^\mu \gamma^\mu \dots \gamma^3) = 0
+$$
+\item
+利用$(\gamma^0)^2 = 1$，$$\gamma^5 = \gamma^5 \gamma^0 \gamma^0 = - \gamma^0 \gamma^5 \gamma^0$$
+两边取迹得到
+$$
+\tr \gamma^5 = - \tr \gamma^0 \gamma^5 \gamma^0 = -\tr \gamma^5 \gamma^0 \gamma^0 = -\tr \gamma^5
+$$
+于是
+$$
+\tr \gamma^5 = 0$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 零迹定理 \ech}
+\bch
+\begin{itemize}
+\item
+定理：{\color{blue} 奇数个$\gamma^\mu$乘积的迹为0}。
+\item
+证明：
+利用$(\gamma^5)^2=1$
+$$\gamma^{\mu_1} \dots \gamma^{\mu_n} = \gamma^5\gamma^5 \gamma^{\mu_1} \dots \gamma^{\mu_n}$$
+因为$\gamma^5$和所有$\gamma^\mu$都对易，把第二个$\gamma^5$移到最后，填符号$(-1)^n$
+$$\gamma^{\mu_1} \dots \gamma^{\mu_n} = (-1)^n\gamma^5\gamma^{\mu_1} \dots \gamma^{\mu_n}\gamma^5$$
+两边取迹，在右边的迹中把最后一个$\gamma^5$轮换到第一个消掉，得到
+$$
+\tr \gamma^{\mu_1} \dots \gamma^{\mu_n} = (-1)^n \tr \gamma^{\mu_1} \dots \gamma^{\mu_n}
+$$
+$n$为奇数时给出
+$$
+\tr \gamma^{\mu_1} \dots \gamma^{\mu_n}=0
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 思考 \ech}
+\bch
+如何处理偶数个$\gamma$矩阵乘积的迹？
+\cpic{0.4}{dina}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 课堂小练习 \ech}
+\bch
+证明：$\tr \gamma^{\mu_1} \dots \gamma^{\mu_n} \gamma^5 = 0$，$n$为奇数
+\cpic{0.4}{eat}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch $\gamma$矩阵求迹公式列举 \ech}
+\bch
+记号：$\mu,\nu,\dots=0,1,2,3$，$i,j,\dots = 1,2,3$，$a,b,\dots = 1,2,3,5$；$d$为旋量空间的维数（最小且默认等于4）。
+\begin{enumerate}
+\item $\tr 1 = d (= 4)$;
+\item $\tr \gamma^\mu \gamma^\nu = d\eta^{\mu \nu}$;
+\item $\tr \gamma^a = 0$;
+\item $\tr \gamma^\mu \gamma^\nu \gamma^5 = 0$;
+\item $\tr \gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma = d(\eta^{\mu \nu} \eta^{\rho \sigma} - \eta^{\mu \rho} \eta^{\nu \sigma} + \eta^{\mu \sigma} \eta^{\nu \rho})$.
+\end{enumerate}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 后两个公式的证明 \ech}
+\bch
+\begin{itemize}
+\item $$ \gamma^\mu \gamma^\nu \gamma^5 =(\{\gamma^\mu,\gamma^\nu\} - \gamma^\nu \gamma^\mu) \gamma^5 = 2\eta^{\mu \nu} \gamma^5 - \gamma^\nu \gamma^\mu \gamma^5$$
+两边取迹得到
+$$
+\tr \gamma^\mu \gamma^\nu \gamma^5 = 2\eta^{\mu \nu} \tr \gamma^5 - \tr \gamma^\nu \gamma^\mu \gamma^5 = -\tr \gamma^\mu \gamma^\nu \gamma^5
+$$
+即$\tr \gamma^\mu \gamma^\nu \gamma^5 =0$
+\item $\tr \gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma = \tr (2\eta^{\mu \nu} - \gamma^\nu \gamma^\mu) \gamma^\rho \gamma^\sigma = 2\eta^{\mu \nu}  \tr \gamma^\rho \gamma^\sigma  - \tr  \gamma^\nu \gamma^\mu \gamma^\rho \gamma^\sigma = 2d\eta^{\mu \nu}\eta^{\rho \sigma} - \tr \gamma^\nu ( 2\eta^{\mu \rho} - \gamma^\rho \gamma^\mu) \gamma^\sigma = 2d\eta^{\mu \nu}\eta^{\rho \sigma}  - 2d \eta^{\mu \rho}\eta^{\nu \sigma} + \tr \gamma^\nu\gamma^\rho \gamma^\mu\gamma^\sigma = 2d\eta^{\mu \nu}\eta^{\rho \sigma}  - 2d \eta^{\mu \rho}\eta^{\nu \sigma}+ \tr \gamma^\nu\gamma^\rho (2\eta^{\sigma \mu} - \gamma^\sigma \gamma^\mu) = 2d(\eta^{\mu \nu}\eta^{\rho \sigma }- \eta^{\mu \rho}\eta^{\nu \sigma} + \eta^{\sigma \mu}\eta^{\nu \rho}) - \tr \gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma$
+于是
+$$\tr \gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma = d(\eta^{\mu \nu} \eta^{\rho \sigma} - \eta^{\mu \rho} \eta^{\nu \sigma} + \eta^{\mu \sigma} \eta^{\nu \rho})$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch Feynman $\slash$ 符号 \ech}
+\bch
+\begin{itemize}
+\item
+对任意4维矢量$a_\mu$，定义$\slashed{a} = a_\mu \gamma^\mu$。
+\item
+证明：$\slashed a \slashed b = ab - i a_\mu b_\nu \sigma^{\mu \nu}$，其中$\sigma^{\mu \nu} = \frac{i}{2}[\gamma^\mu ,\gamma^\nu]$，其中$ab = a_\mu b^\mu$是四维矢量的内积。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch slash内积的公式的证明 \ech}
+\bch
+我们有
+\begin{equation*}
+\begin{aligned}
+\slashed a \slashed b &= a_\mu \gamma^\mu b_\nu \gamma^\nu \\
+&= a_\mu b_\nu \frac{1}{2}(\{\gamma^\mu,\gamma^\nu\} + [\gamma^\mu,\gamma^\nu])\\
+&= a_\mu b_\nu \frac{1}{2} (2\eta^{\mu \nu} - 2i\sigma^{\mu \nu}) \\
+&= a_\mu b^\mu - ia_\mu b_\nu \sigma^{\mu \nu}
+\end{aligned}
+\end{equation*}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch Feynman $\slash$ 符号的迹 \ech}
+\bch
+利用之前求得的$\gamma$矩阵求迹公式和slash符号内积公式进一步证明
+\begin{enumerate}
+\item $\tr \slashed a = 0$;
+\item $\tr \slashed a \slashed b = d ab$;
+\item $\tr \slashed a \slashed b \slashed c \slashed d = d[(ab)(cd) - (ac)(bd) + (ad)(bc)]$;
+\item 奇数个Feynman slash乘积的迹为零。
+\end{enumerate}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 下标$\gamma$矩阵 \ech}
+\bch
+形式上定义$\gamma_\mu = \eta_{\mu \nu} \gamma^\nu$，证明
+\begin{enumerate}
+\item $\gamma_\mu \gamma^\nu = \delta_\mu^\nu -i \sigma_\mu^{\ \nu}$;
+\item $\gamma_\mu \gamma^\mu = 4$;
+\item $\slashed a = a^\mu \gamma_\mu$;
+\end{enumerate}
+第一个等式的证明：{\color{white} $\gamma_\mu \gamma^\nu = \eta_{\mu \rho} \gamma^\rho \gamma^\nu = \eta_{\mu \rho} \frac{1}{2} ( \{\gamma^\rho,\gamma^\nu\} + [\gamma^\rho,\gamma^\nu]) = \eta_{\mu \rho} \frac{1}{2} (2\eta^{\rho \nu} - 2i \sigma^{\rho \nu}) = \delta_\mu^\nu -i \sigma_\mu^{\ \nu}$}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 下标$\gamma$矩阵 \ech}
+\bch
+形式上定义$\gamma_\mu = \eta_{\mu \nu} \gamma^\nu$，证明
+\begin{enumerate}
+\item $\gamma_\mu \gamma^\nu = \delta_\mu^\nu -i \sigma_\mu^{\ \nu}$;
+\item $\gamma_\mu \gamma^\mu = 4$;
+\item $\slashed a = a^\mu \gamma_\mu$;
+\end{enumerate}
+第一个等式的证明：{ $\gamma_\mu \gamma^\nu = \eta_{\mu \rho} \gamma^\rho \gamma^\nu = \eta_{\mu \rho} \frac{1}{2} ( \{\gamma^\rho,\gamma^\nu\} + [\gamma^\rho,\gamma^\nu]) = \eta_{\mu \rho} \frac{1}{2} (2\eta^{\rho \nu} - 2i \sigma^{\rho \nu}) = \delta_\mu^\nu -i \sigma_\mu^{\ \nu}$}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch slash记号和$\gamma$矩阵的积 \ech}
+\bch
+证明：
+\begin{enumerate}
+\item $\gamma_\mu \slashed a \gamma^\mu = -2 \slashed a$;
+\item $\gamma_\mu \slashed a \slashed b \gamma^\mu = 4ab$;
+\item $\gamma_\mu \slashed a \slashed b \slashed c \gamma^\mu = -2 \slashed c \slashed b \slashed a$
+\end{enumerate}
+证明方法：反复移位。
+\ech
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

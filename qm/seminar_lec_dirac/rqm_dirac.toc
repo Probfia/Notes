@@ -1,0 +1,3 @@
+\beamer@sectionintoc {1}{Spin, Helicity and Chirality}{2}{0}{1}
+\beamer@sectionintoc {2}{EM fields, $g$-factor, LL and Anomalous Transport}{12}{0}{2}
+\beamer@sectionintoc {3}{$\gamma $ trace techniques}{32}{0}{3}

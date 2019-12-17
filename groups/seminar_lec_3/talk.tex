@@ -1,0 +1,661 @@
+\documentclass[CJK]{beamer}
+\input{macros.tex}
+
+
+\newcommand{\field}{\mathscr{F}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\diag}{\mathrm{diag \ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\tr}{\mathrm{tr\ }}
+\newcommand{\card}{\mathrm{card \ }}
+\newcommand{\mani}{\mathcal{M}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
+\def\secpage#1#2{\begin{frame}\bch\bcenter{\bf \Huge #1} \skipline \tbox{#2}\ecenter\ech\end{frame}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{Group Theory\\ -Spin, Compactness, Symplectic Groups and QFT}
+  \author{}
+  \date{}
+
+
+\begin{document}
+
+\begin{frame}
+ 
+\begin{center}
+\begin{Large}
+\bch
+{\bf Group Theory}
+
+{\vskip 0.3in}
+
+Spin, Compactness, Symplectic Groups and QFT
+
+\ech
+\end{Large}
+\end{center}
+
+
+\end{frame}
+
+\section{Spin}
+\begin{frame}
+\frametitle{\bch 电子波函数 \ech}
+\bch
+电子自旋是1/2意味着波函数$\varPsi$有两个分量，遵循变换：
+$$
+\varPsi \rightarrow e^{i \vec{\varphi} \cdot \vec{\sigma} / 2} \varPsi
+$$
+对于一个绕z轴$2\pi$的转动：
+$$
+\varPsi \rightarrow e^{i(2 \pi) \sigma_{3} / 2} \varPsi=\left(\begin{array}{cc}{e^{i \pi}} & {0} \\ {0} & {e^{-i \pi}}\end{array}\right) \varPsi=-\varPsi
+$$
+为什么一个$2\pi$的转动会使得波函数异号？
+\ech
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{\bch 自旋进动 \ech}
+\bch
+\begin{itemize}
+\item 考虑静止的满足薛定谔方程的电子，将其放置在不随时变化的外磁场$\vec{B}$下，其哈密顿量为：$H=\mu \vec{B} \cdot \frac{\vec{\sigma}}{2}$，代入薛定谔方程可以得到解：$\varPsi(t)=e^{-i \mu \vec{B} \cdot \frac{\vec{\sigma}}{2} t} \varPsi(0)$
+，假设磁场沿着3的方向，上式可化为：
+$$
+\varPsi(t)=\left(\begin{array}{cc}{e^{-i \frac{\mu B t}{2}}} & {0} \\ {0} & {e^{i \frac{\mu B t}{2}}}\end{array}\right) \varPsi(0)
+$$
+\item 自旋$\vec{S}=\varPsi^{\dagger} \frac{\vec{\sigma}}{2} \varPsi$，各个自旋分量的变化为：
+$$
+\begin{array}{l}{\vec{S}_{1}(t)=\cos \mu B t \vec{S}_{1}(0)-\sin \mu B t \vec{S}_{2}(0)} \\ {\vec{S}_{2}(t)=\sin \mu B t \vec{S}_{1}(0)+\cos \mu B t \vec{S}_{2}(0)} \\ {\vec{S}_{3}(t)=\vec{S}_{3}(0)}\end{array}
+$$
+\item 当$t=2 \pi(\mu B)^{-1}$时，上式有什么变化？
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 时间反演 \ech}
+\bch
+\begin{itemize}
+\item 考虑自由粒子的薛定谔方程$i \frac{\partial}{\partial t} \varPsi(t)=H \varPsi(t)$，假设在变换$t \rightarrow t^{\prime}=-t$下，方程依然满足上诉形式，即：
+$i \frac{\partial}{\partial t^{\prime}} \varPsi^{\prime}\left(t^{\prime}\right)=H \varPsi^{\prime}\left(t^{\prime}\right)$
+
+\item 假设$\varPsi^{\prime}\left(t^{\prime}\right)=T \varPsi(t)$，T是时间反演算符。代入上式化简并且$HT=TH$，可以得到：
+$$
+T^{-1}(-i) T=i
+$$
+
+\item 假设$T=UK$，且$K\varphi=\varphi^*K$,  $K^2=I$，代入上式化简得到：$U^{-1}iU=i$，成立的条件是$U$是幺正矩阵，所以$T$的反幺正性就体现在$K$上
+
+\item 可以验证对于自旋为0粒子的平面波解$\varPsi(t)=e^{i(\vec{p} \cdot \vec{x}-E t)}$，时间反演后 $\varPsi^{’}(t)=e^{-i(\vec{p} \cdot \vec{x}+E t)}$，空间朝着相反的方向，但是能量依然是正的。此时$T^{2}=UKUK=UU^*K^2=+1$
+
+
+
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 自旋的时间反演 \ech}
+\bch
+\begin{itemize}
+\item 时间反演算符作用在自旋$\vec{S}=\varPsi^{\dagger} \frac{\vec{\sigma}}{2} \varPsi$上，$\varPsi \rightarrow \varPsi^{’}=T\varPsi$，并且$T=UK$，作用后得到：$\vec{S'}=  \frac{1}{2} \varPsi^{\dagger} K U^{\dagger} \vec{\sigma} U K \varPsi$。显然时间反演后的自旋应该是$\vec{S’}=-\vec{S}$，因此满足：$K U^{\dagger} \vec{\sigma} U K =-\vec{\sigma} $
+
+\item 能够找到一组解$U=\eta \sigma_2$使得上式成立
+$$
+K U^{\dagger} \vec{\sigma} U K=\eta^{*} \eta K \sigma_{2} \vec{\sigma} \sigma_{2} K=K\left(\begin{array}{c}{-\sigma_{1}} \\ {+\sigma_{2}} \\ {-\sigma_{3}}\end{array}\right) K=-\vec{\sigma}
+$$
+
+\item 将这个解带进$T=UK$ ,得到连续作用两次的时间反演：
+$$
+T^{2}=\eta \sigma_{2} K \eta \sigma_{2} K=\eta \sigma_{2} \eta^{*} \sigma_{2}^{*} K K=-1
+$$
+两次时间反演后不会得到原来的状态，这意味着？
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch Kramer 简并 \ech}
+\bch
+\begin{itemize}
+\item Kramer简并：一个在电场中运动的电子，不管电场有多复杂，每一个能级都是二重简并的。
+\item 证明：电场在时间反演下不变，$HT=TH$，$\varPsi$和$T\varPsi$有相同的能量。
+假设两者表示同一个态。则$T\varPsi$正比于$\varPsi$，即$T\varPsi=e^{i\alpha}\varPsi$。
+$$
+T^{2} \varPsi=T(T \varPsi)=T e^{i \alpha} \varPsi=e^{-i \alpha} T \varPsi=e^{-i \alpha} e^{i \alpha} \varPsi=\varPsi
+$$
+与之前矛盾，所以$\varPsi$和$T\varPsi$代表不同的两个态
+
+\end{itemize}
+\ech
+\end{frame}
+
+
+
+
+\section{Compactness}
+\secpage{群流形的紧致性}{有限群的连续推广}
+\begin{frame}
+\frametitle{\bch 幺正定理 \ech}
+\bch
+\begin{itemize}
+\item 我们知道，对一个有限群，总有幺正定理成立：
+\item {\color{blue} 如果$D$是有限群$G$的一个表示，那么$D$和幺正表示$U$之间总相差一个相似变换
+$$
+\forall g \in G,\ D(g) = S^{-1} U(g) S
+$$
+}
+\item 其中，幺正表示的定义是
+$$
+\forall g \in G,\ U^\dagger(g) U(g) = I
+$$
+\item 对连续群是否有幺正定理成立呢？
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 紧致性 \ech}
+\bch
+\begin{itemize}
+\item 如果群流形上紧致的，那么，对连续群依然有幺正定理。
+\item {\color{blue} 称连续群$G$紧致，如果对整个群流形$\mani$的测度积分有限
+$$\int_\mani d\mu(g) < \infty$$}
+\item 粗略来讲就是群流形的体积有限。
+\item 因此对$SO(n)$和$SU(n)$都有幺正定理成立，而对洛伦兹群$SO(1,1)$（群元的表达式为$\varLambda (\varphi) = \begin{pmatrix} \cosh \varphi & \sinh \varphi \\ \sinh \varphi & \cosh \varphi \end{pmatrix}$）则不成立幺正定理。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\section{Symplectic Groups}
+\secpage{辛群}{正则变换是保辛变换}
+
+\begin{frame}
+\frametitle{\bch 哈密顿力学 \ech}
+\bch
+请一位同学来默写一下哈密顿正则方程。
+\cpic{0.2}{eat}
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 哈密顿力学就是辛流形上的几何 \ech}
+\bch
+哈密顿正则方程
+$$
+\dot{q}_a = \frac{\partial H}{\partial p_a} ,\ \dot{p}_b = - \frac{\partial H}{\partial q_b}
+$$
+引入记号$\xi = (q_1,\cdots,q_n,p_1,\cdots,p_n)^T$，上式可以合写成
+$$
+\dot{\xi} = J\frac{\partial H}{\partial \xi}
+$$
+其中$J$是一个$2n\times 2n$矩阵
+{\color{blue}
+$$
+J_{2n} = \begin{pmatrix} 0 & I_n \\ -I_n & 0 \end{pmatrix}
+$$
+}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 正则变换 \ech}
+\bch
+回忆理论力学：正则变换是保持辛流形上柏松括号
+$$
+[f,g] = \frac{\partial f}{\partial q_a} \frac{\partial g}{\partial p_a} - \frac{\partial f}{\partial p_a} \frac{\partial g}{\partial q_a} = J_{\alpha \beta} \partial_\alpha f \partial_\beta g
+$$
+不变（从而保持哈密顿正则方程形式不变）的相空间坐标变换$\xi_\alpha \to \zeta_\alpha (\xi_\beta)$。代入上式有
+\begin{equation*}
+\begin{aligned}
+&[ f, g ] = J_{\alpha \beta} \frac{\partial f}{\partial \xi_\alpha} \frac{\partial g}{\partial \xi_\beta} \\
+&\to J_{\alpha \beta} \frac{\partial f}{\partial \zeta_\rho} \frac{\partial \zeta_\rho}{\partial \xi_\alpha} \frac{\partial g}{\partial \zeta_\sigma} \frac{\partial \zeta_\sigma}{\partial \xi_\beta} \\
+&\equiv J_{\rho \sigma} \frac{\partial f}{\partial \zeta_\rho} \frac{\partial g}{\partial \zeta_\sigma}
+\end{aligned}
+\end{equation*}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 辛群 \ech}
+\bch
+上式相当于要求变换矩阵$R_{\beta \sigma} = \frac{\partial \zeta_\sigma}{\partial \xi_\beta}$满足
+$$
+R_{\alpha \rho} J_{\alpha \beta} R_{\beta \sigma} = J_{\rho \sigma}
+$$
+或
+$$
+R^T J R = J
+$$
+\begin{itemize}
+\item 回忆一下：$O(n)$是保持欧式度规$\delta_{ij}$不变的矩阵集合；$O(1,n-1)$是保持闵氏度规$\eta_{\mu \nu}$不变的矩阵集合。
+\item 相似地，{\color{blue} 所有保持辛流形上“度规”$J_{2n}$不变的矩阵集合构成辛群$Sp(2n)$}。
+\end{itemize}
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 辛几何 \ech}
+\bch
+
+\begin{itemize}
+\item 所以哈密顿力学就是辛流形上的几何。
+\item 辛几何的研究很困难，因为一般人吃不了那么辣。
+\end{itemize}
+\cpic{0.25}{hot}
+\ech
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{\bch 实辛群和复辛群 \ech}
+\bch
+\begin{itemize}
+\item 满足条件$R^T J R = J$的实矩阵$R$构成群$Sp(2n,\reals)$。
+\item 满足条件$C^T J C = J$的复矩阵$C$构成群$Sp(2n,\complexs)$（注意是$C^T$不是$C^\dagger$）。
+\item 上面的定义式自动包含了条件$\det R = 1$（$\det C = 1$）。证明思路：如果$z$是$R$的本征值，那么$1/z$也是。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 幺正辛群 \ech}
+\bch
+幺正的辛群称为幺正辛群$USp(2n)$。显然
+$$
+USp(2n) = U(2n) \cap Sp(2n,\complexs) = SU(2n) \cap Sp(2n,\complexs)
+$$
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 幺正辛群的代数 \ech}
+\bch
+\begin{itemize}
+\item
+按一般的套路：设$U = I + i\epsilon H \in USp(2n)$。证明：
+$$
+H = \begin{pmatrix} P & W^* \\ W & -P^T\end{pmatrix}
+$$
+其中$P^\dagger = P$为厄米阵，$W = W^T$为（复）对称阵。
+\item
+厄米阵的独立实分量为$n^2$，复对称阵的独立分量为$n(n+1)$，于是
+$$
+\dim USp(2n) = n(2n+1)
+$$
+\item 特别地我们注意到
+$$\dim USp(2) = 3 = \dim SU(2) = \dim SO(3)$$ $$\dim USp(4) = 10 = \dim SO(5)$$等。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 用泡利矩阵表示幺正辛代数 \ech}
+\bch
+\begin{itemize}
+\item
+设我们有一个$n$阶实反称阵$A$和3个$n$阶实对称阵$S_1,S_2,S_3$，$USp(2n)$的生成元就可以写成
+$$
+H = \begin{pmatrix} iA + S_3 & S_1 - iS_2 \\ S_1 + iS_2 & iA - S_3 \end{pmatrix}
+$$
+\item
+利用矩阵直积记号，上式也可以写成
+$$
+H = iA \otimes I + S_a \otimes \sigma_a
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $SU(2) \simeq USp(2)$ \ech}
+\bch
+\begin{itemize}
+\item
+刚才已经知道$SU(2)$和$USp(2)$是代数同维的。
+\item
+在$n=1$时，$A \equiv 0$，$S_a$就是一个数$s_a$，于是
+$$
+H = s_a \sigma_a
+$$
+\item
+于是任意的$USp(2)$群元就是$SU(2)$群元
+$$
+U = e^{i s_a \frac{\sigma_a}{2}}
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\section{QFT}
+\secpage{量子场论速成}{$$\hat \phi \sim \hat a + \hat a^\dagger$$}
+
+\begin{frame}
+\frametitle{\bch 课程中止 \ech}
+\bch
+因为大家没学过量子场论，我们的课程可能需要就此中止。
+\cpic{0.2}{sad}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 为了课程的延续 \ech}
+\bch
+为了让课程继续，Zee 一鸿决定带领大家一节速成QFT。
+\cpic{0.2}{happy}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 一维谐振子的正则量子化 \ech}
+\bch
+\begin{itemize}
+\item
+单位质量的谐振子哈密顿量为
+$$
+H = \frac{1}{2} p^2 + \frac{1}{2} \omega^2 q^2
+$$
+\item
+施加正则量子化条件$[\hat q, \hat p] = i$，定义产生湮灭算符
+$$
+\hat{a}^\dagger = \frac{1}{\sqrt{2\omega}} ( \omega \hat q - i \hat p),\ \hat{a} = \frac{1}{\sqrt{2\omega}} ( \omega \hat q + i \hat p)
+$$
+正则量子化条件等价为$[\hat a,\hat{a}^\dagger] = 1$。
+\item
+坐标算符用产生湮灭算符表示为
+$$
+\hat q = \frac{1}{\sqrt{2\omega}} ( \hat a + \hat{a}^\dagger)
+$$
+略去零点能，哈密顿算符用产生湮灭算符表示为
+$$
+\hat H = \omega \hat{a}^\dagger \hat{a}
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 海森堡绘景 \ech}
+\bch
+\begin{itemize}
+\item
+我们一般的非相对论量子力学都是在薛定谔绘景下描述的，这个绘景可以简单概括成{\color{blue} 算符不变态矢变}，态矢的含时演化方程就是薛定谔方程
+$$
+i \frac{\partial}{\partial t} |\varPsi \rangle=\hat H | \varPsi \rangle
+$$
+\item
+我们可以作幺正变换$|\varPsi \rangle \to |\varPsi, t\rangle = e^{i\hat H t} |\varPsi\rangle$，算符也要相应变换为$\hat O \to \hat O(t) = e^{-i \hat H t} \hat O e^{i \hat H t}$。这样变换后的绘景称为海森堡绘景，它可以简单概括成{\color{blue} 态矢不变算符变}。
+\item
+代人薛定谔方程验证：
+$$
+\frac{\partial }{\partial t} |\varPsi, t\rangle = 0 
+$$
+$$
+\frac{\partial }{\partial t} \hat O(t) = i [\hat H,\hat O]
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 海森堡绘景下的谐振子 \ech}
+\bch
+\begin{itemize}
+\item
+利用我们刚才得到的$\hat H = \omega \hat a^\dagger \hat a$，变换到海森堡绘景，利用运动方程$\frac{\partial }{\partial t} \hat O(t) = i [\hat H,\hat O]$得到
+$$
+\hat a(t) = \hat a e^{-i\omega t},\ \hat a^\dagger = \hat a^\dagger (t) e^{i\omega t}
+$$
+\item
+于是坐标算符的含时演化为
+$$
+\hat q(t) = \frac{1}{\sqrt{2\omega}} (\hat a e^{-i\omega t} + \hat a^\dagger e^{i \omega t})
+$$
+其中$\hat a \equiv \hat a(t=0)$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 从经典力学到经典场论 \ech}
+\bch
+\begin{itemize}
+\item
+假设我们有许多个用弹簧相连的单位质量振子，以$q_a(t)$表示每个振子的位移，体系的拉格朗日函数就是
+$$
+L = \sum_a \left( \frac{1}{2} \dot{q}_a^2 - \frac{1}{2}\omega^2 (q_{a+1} - q_a)^2\right)
+$$
+\item
+如果这些振子变得稠密，以至于整个体系变成连续的（想象：从一个一维无限振子链过渡到一根橡皮筋），那么，指标$a$应该用坐标$x$替换。其他东西也应该按规则替换
+$$
+\sum_a \to \int dx
+$$
+$$
+\dot q \to \frac{\partial q}{\partial t}
+$$
+$$
+q_{a+1} - q_a \to \frac{\partial q}{\partial x}
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 推广到高维 \ech}
+\bch
+\begin{itemize}
+\item
+于是一维橡皮筋的拉格朗日函数就是
+$$
+L =  \int dx\frac{1}{2} \left[ \left( \frac{\partial q}{\partial t}\right)^2 - \omega^2 \left( \frac{\partial q}{\partial x} \right)^2\right]
+$$
+积分号内的东西称为拉氏密度$\lag$。
+\item
+把$q$记作$\phi$，令$\omega = 1$，重新引入外势$\frac{1}{2}m^2 \phi^2$，就有
+$$
+\lag = \frac{1}{2} \left( \frac{\partial \phi}{\partial t}\right)^2 - \frac{1}{2} ( \vec \nabla \phi )^2 - \frac{1}{2}m^2 \phi^2
+$$
+\item
+上式可以写成更相对论协变的形式
+$$
+\lag = \frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{1}{2}m^2 \phi^2
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 经典场的运动方程和哈密顿量 \ech}
+\bch
+\begin{itemize}
+\item
+作用量原理给出经典场的欧拉-拉格朗日方程
+$$
+\partial_\mu \frac{\partial \lag}{\partial (\partial_\mu \phi)} - \frac{\partial \lag}{\partial \phi}
+$$
+\item
+场的广义动量定义为
+$$
+\pi = \frac{\partial \lag}{\partial \dot \phi}
+$$
+\item
+哈密顿密度
+$$
+\ham = \pi \dot \phi - \lag
+$$
+哈密顿量
+$$
+H = \int d^3 \vec{x} \ \ham
+$$
+
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch KG场的运动方程和哈密顿量 \ech}
+\bch
+请大家计算一下$\lag = \frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{1}{2}m^2 \phi^2$给出的运动方程和哈密顿密度。
+\cpic{0.2}{eat}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 场的傅立叶分解 \ech}
+\bch
+\begin{itemize}
+\item 对运动方程$(\partial^2 + m^2)\phi = 0$两边傅立叶变换得到色散关系$\omega_{\vec k} = \sqrt{ \vec k^2 + m^2} $。
+\item 哈密顿量$H = \frac{1}{2}\int d^3 \vec x \ \left( \pi^2 + (\vec \nabla \phi)^2 + m^2 \phi^2 \right)$可以利用傅立叶变换写成
+$$
+H = \frac{1}{2} \int \frac{d^3 \vec k }{(2\pi)^3} \ \left( |\pi_{\vec k} |^2 + \omega_{\vec{k}}^2 | \phi_{\vec k} |^2\right)
+$$
+\item 哈密顿量可以看成无穷个谐振子的和
+$$
+H_{\vec k} = \frac{1}{2} \left( |\pi_{\vec k} |^2 + \omega_{\vec{k}}^2 | \phi_{\vec k} |^2\right)
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 从经典场论到量子场论 \ech}
+\bch
+\begin{itemize}
+\item 上面做的工作都还是在经典场论的框架下进行的。
+\item 但我们已经把场分解成了无数个谐振子的和，而对单个以$\vec k$标记的谐振子，我们都可以定义正则对易关系，引入产生湮灭算符$\hat a_{\vec k}$和$\hat{a}_{\vec k}^\dagger$。这就完成了场的量子化。
+\item 总的哈密顿量用产生湮灭算符写出
+$$
+\hat H = \int \frac{d^3 \vec k}{(2\pi)^3} \omega_{\vec k} \hat{a}^\dagger_{\vec k} \hat{a}_{\vec k}
+$$
+\item 傅立叶变换回去，在海森堡绘景下得到场算符的含时演化
+$$
+\hat \phi (\vec x,t) = \int \frac{d^3 \vec k}{(2\pi)^3} \ \frac{1}{\sqrt{2\omega_{\vec k}}}\left( \hat{a}_{\vec k} e^{i\omega_{\vec k} t - i \vec k \cdot \vec x} + \hat{a}^\dagger_{\vec k} e^{-i\omega_{\vec k} t + i \vec k \cdot \vec x} \right)
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{\bch 从量子场到粒子 \ech}
+\bch
+\begin{itemize}
+\item 我们定义了一堆产生湮灭算符$\hat{a}_{\vec k}^\dagger$和$\hat{a}_{\vec k}$。\item 仿照量子谐振子，真空定义为使得所有模式$\vec k$都有$\hat a_{\vec k} | 0 \rangle = 0$的态。
+\item 动量$\vec p$粒子态定义为
+$$
+| \vec p \rangle = \hat{a}_{\vec p}^\dagger |0\rangle
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 真空涨落 \ech}
+\bch
+\begin{itemize}
+\item 场算符可以分解成产生算符和湮灭算符的和
+$$
+\hat \phi \sim \hat a + \hat a^\dagger
+$$
+\item 我们写出的拉氏量$\lag \sim \phi^2$，也就是$\lag$包含$\sim \hat a \hat a^\dagger + \hat a^\dagger \hat a$的项。
+\item 换句话说，KG场的真空会自己涨落出粒子然后经过一段时间后又湮灭掉。
+\end{itemize}
+\cpic{0.13}{scare}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 构造对称操作下不变的拉氏量 \ech}
+\bch
+\begin{itemize}
+\item 如果拉氏量在群元$g\in G$的对称操作下不变，则称这个拉氏量的对称群是$G$。
+\item 很多时候我们反过来，先猜一个对称群，然后再构造在这个对称群下不变的拉氏量。
+\item 比如我们想考虑$U(1)$对称的拉氏量，最简单的可以引入一个复标量场$\varPsi$，$U(1)$变化是$\varPsi \to e^{i\alpha} \varPsi$。
+\item 于是可以想到，最简单的拉氏量大概长这样
+$$
+\lag \sim \varPsi^\dagger \varPsi
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 复自由标量场 \ech}
+\bch
+\begin{itemize}
+\item 我们把复数引入进来相当于多引入自由度。因此我们需要两组产生湮灭算符。
+\item 自洽的定义方法是$\varPsi \sim \hat a + \hat b^\dagger$；$\varPsi^\dagger \sim \hat a^\dagger + \hat b$。
+\item 拉氏量$\lag \sim \varPsi^\dagger \varPsi \sim \hat a^\dagger \hat a + \hat a^\dagger \hat b^\dagger + \hat b \hat b^\dagger + \hat b\hat a$
+\item 复标量场真空包含的物理过程：
+\begin{itemize}
+\item 
+$\hat a^\dagger \hat a $：湮灭一个$a$粒子再产生（和反过来）；
+\item
+$ \hat a^\dagger \hat b^\dagger$：产生一个$a,b$粒子对；
+\item
+$ \hat b \hat b^\dagger$：产生一个$b$粒子再湮灭（和反过来）；
+\item
+$\hat b\hat a$：湮灭一个$a,b$粒子对。
+\end{itemize}
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch $SU(N)$场论 \ech}
+\bch
+\begin{itemize}
+\item $SU(N)$对称的拉氏量：最简单的构造方法是$\lag_0 \sim \varPsi^i \varPsi_i$，真空物理过程和$U(1)$没有太大差异：这是自由场。
+\item 次简单的定义方法：$\lag_1 \sim \varPsi_i \varPsi_j \eta^{ij}$，这是在$SU(N)$自由场下引入的可能的相互作用项。
+\item 同样的，$\varPsi \sim \hat a + \hat a^\dagger$；$\eta \sim \hat b + \hat b^\dagger$，$\lag \sim \hat a^\dagger \hat a^\dagger \hat b + \cdots$：对应的物理过程为湮灭一个$b$粒子并产生两个$a$粒子等等。
+\end{itemize}
+\ech
+\end{frame}
+
+
+
+
+\end{document}
+
+
+
+\end{document}

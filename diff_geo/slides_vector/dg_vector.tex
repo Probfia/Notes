@@ -1,0 +1,744 @@
+\documentclass[CJK]{beamer}
+\input{macros.tex}
+\usepackage{mathrsfs}
+
+\newcommand{\field}{\mathscr{F}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\diag}{\mathrm{diag \ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\tr}{\mathrm{tr\ }}
+\newcommand{\card}{\mathrm{card \ }}
+\newcommand{\mani}{\mathcal{M}}
+\newcommand{\surface}{\mathcal{S}}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{DiffGeo\\ Talk 2-Vectors and Tensors on a Manifold}
+  \author{}
+  \date{}
+
+
+\begin{document}
+
+\begin{frame}
+ 
+\begin{center}
+\begin{Large}
+\bch
+{\bf DiffGeo}
+
+{\vskip 0.3in}
+
+Talk 2-Vectors and Tensors on a Manifold
+
+\ech
+\end{Large}
+\end{center}
+
+
+\end{frame}
+
+\section{Vectors}
+\begin{frame}
+\frametitle{\bch 什么是流形 \ech}
+\bch
+\begin{itemize}
+\item
+一个被许多个小开集覆盖的拓扑空间。
+\item
+每个小开集上定义了局域坐标。
+\cpic{0.15}{ok}
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 什么是矢量 \ech}
+\bch
+我们先在流形上点点定义矢量。
+\cpic{0.2}{happy}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 标量场 \ech}
+\bch
+\begin{itemize}
+\item
+流形$\mani$上的{\bf \color{purple} 标量场}是映射
+$$
+f: \mani \to \reals
+$$
+即将流形上的点$p$映射到一个实数$f(p)$。
+\item
+流形$\mani$上所有标量场的集合记为$\field_\mani$。$\mani$上$r$阶连续（指它的分量形式$r$阶连续）的标量场组成的集合记作$C^r_\mani$。
+\item
+请举出标量场的一些物理或几何例子。
+\end{itemize}
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 流形上某一点的（切）矢量 \ech}
+\bch
+
+流形$\mani$上点$p$的（切）矢量是标量场到实数的映射
+$$
+X_p: \field_\mani \to \reals
+$$
+并且满足
+\begin{itemize}
+\item
+$X_p$是{\bf 线性映射}，即
+$$
+X_p(\alpha f + \beta g) = \alpha X_p(f) + \beta X_p(g)
+$$
+其中$\alpha,\beta \in \reals$。
+\item
+$X_p$满足{\bf 莱布尼兹律}{\color{blue}
+$$
+X_p(fg) = f(p) X_p(g) + g(p) X_p(f)
+$$}
+\end{itemize}
+使验证：$\reals^3$上的方向导数算符$$\partial_{\vec v} \equiv \vec v \cdot \vec \nabla $$是$\reals^3$流形上的一个矢量。
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 课堂小练习：切矢的性质 \ech}
+\bch
+利用切矢$X$的一般定义证明
+\begin{itemize}
+\item $X_p(1) = 0$；
+\item $X_p(c) = 0$，其中$c$为常数函数；
+\item $X_p(\alpha f) = \alpha X_p(f)$，其中$\alpha \in \reals$为常数。
+\end{itemize}
+\cpic{0.2}{sad}
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 切矢的运算 \ech}
+\bch
+我们定义$p$点处切矢的线性运算：
+\begin{itemize}
+\item 加法：$(X_p+Y_p)(f) = X_p(f) + Y_p(f)$；
+\item 零元：存在一个特殊的$0_p\in T_p\mani$使得对任意$f\in \field_\mani$有$0_p (f) = 0$
+\item 数乘：$(\alpha X_p)( f) = \alpha X_p(f)$。
+\end{itemize}
+在这样的定义下，我们稍后会说明，所有的$p$点处的切矢构成线性空间$T_p \mani$，且其维度$\dim T_p \mani = \dim \mani$。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 线性空间的对偶空间 \ech}
+\bch
+对一般的线性空间$V$，我们可以定义它的{\bf \color{purple}对偶空间}$V^*$，它的元素是$V$上的所有线性函数，步骤是
+\begin{itemize}
+\item 线性空间$V$上的线性函数定义为满足$f(\alpha u + \beta v)= \alpha f(u) + \beta f(v)$的函数；
+\item 定义线性函数间的加法和数乘为$(\alpha f + \beta g) (v) = \alpha f(v) + \beta g(v)$；
+\item 假设$V$有一组基底$\{e_1,\cdots,e_n\}$，定义线性函数$e^i$满足$e^i(e_j) = \delta^i_j$，证明所有的线性函数都可以用$e^i$线性表示；
+\item 于是$V^*$是一个和$V$同维的线性空间。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 切空间的对偶空间 \ech}
+\bch
+因为切空间$T_p\mani$是一个线性空间，所以就可以定义它的对偶空间$T_p^*\mani$（称为余切空间），它的元素记作$df_p: T_p \mani \to \reals$。
+\begin{itemize}
+\item 按定义，$df_p$应该满足$df_p(\alpha X_p + \beta Y_p) = \alpha df_p(X) + \beta df_p(Y)$。
+\item 因为$T_p^*\mani$也是一个有限维线性空间，所以只用找到一种合理的$df_p$定义即可。
+\item 试验证：定义{\color{blue}$$df_p(X_p) \equiv X_p(f)$$}满足$df_p$是线性，且$df_p$和$dg_p$线性可加的要求。
+\end{itemize}
+今后在不引起歧义的情况下，我们可能省略$X_p$和$df_p$中指代点$p$的下标。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 切空间上的张量 \ech}
+\bch
+有了切空间和余切空间的概念，我们就可以定义切空间上的张量。
+\begin{itemize}
+\item 对一般的线性空间$V$，若其对偶空间为$V^*$，其上的$(s,t)$型张量一般定义为一个$s+t$元多重线性函数（对每一个自变量呈线性）{\color{blue}
+$$
+T:\underbrace{V\times V\times \cdots \times V}_{s\text{ 个}} \times  \underbrace{V^* \times V^* \times \cdots \times V^*}_{t\text{ 个}} \to \reals
+$$}
+也就是一个接受$s$个矢量和$t$个对偶矢量的多重线性函数$T(v_1,\cdots,v_s;f_1,\cdots,f_t)$。
+\item 流形$\mani$上点$p$处的张量定义只用把上面的$V$换成$T_p\mani$，也就是多重线性函数$T(X_1,\cdots,X_s;df_1,\cdots,df_t)$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 度规张量 \ech}
+\bch
+流形$\mani$上的度规张量是切空间$T_p\mani$上的一个$(2,0)$型对称张量，它定义了$T_p \mani$上两个矢量的内积
+$$
+\langle X,Y\rangle \equiv g(X,Y)
+$$
+\begin{itemize}
+\item 度规按定义必须满足$g(X,Y) = g(Y,X)$；
+\item 根据线性空间上内积的一般定义，度规还必须是非退化的，也就是如果$\forall Y \in T_p\mani,\ g(X,Y) = 0$当且仅当$X=0$。
+\item 如果对任意$X\in T_p\mani$都有$g(X,X) > 0$，则称装备了这样正定度规的流形为{\bf \color{purple}黎曼流形}。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 切矢的对应余切矢 \ech}
+\bch
+假设流形$\mani$装备了度规$g$，那么对{\bf \color{red}给定的}$X\in T_p \mani$，映射
+$$
+g_X(Y) \equiv g(X,Y)
+$$
+是$T_p \mani \to \reals$的线性映射，因此按定义$g_X \in T_p^* \mani$。这称为切矢$X$自然对应的余切矢。
+\cpic{0.15}{eat}
+\ech
+\end{frame}
+
+\section{Coor Repre}
+\begin{frame}
+\frametitle{\bch 流形上的局部坐标 \ech}
+\bch
+回忆以下事实
+\begin{itemize}
+\item
+对于流形$\mani$上的一个小开集$O$（小恐龙的鳞片）上都定义了一个到$\reals^n$的一一映射$\psi$，称为局部坐标。
+\cpic{0.15}{dina}
+\item
+结构$(O,\psi)$称作图。
+\item
+两个图$(O_a,\psi_a)$和$(O_b,\psi_b)$可能有重叠部分，重叠部分的坐标变换为$\psi_b \circ \psi_a^{-1}: \reals^n \to \reals^n$。假如这个映射在流形上处处至少是$C^r$的，就说$\mani$是$C^r$流形。$C^\infty$流形称为光滑流形。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 标量场的坐标表象 \ech}
+\bch
+假如$p\in O$，开集$O$的局部坐标为$\psi$。则$\mani$上的标量场$f(p)$在$p$附近可以表现称一个$\reals^n \to \reals$的函数
+$$
+F \equiv f \circ \psi^{-1} :\reals^n \to \reals
+$$
+它就是一个我们熟悉的$n$元函数$F(x^1,\cdots,x^n)$，它将代表点的局部坐标映到一个实数。
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 切空间的基 \ech}
+\bch
+在定义了局域坐标的开集$O$中的一点$p$处，定义$n$个算符：
+$$
+\partial_\mu (f) \equiv \frac{\partial F}{\partial x^\mu}
+$$
+\begin{itemize}
+\item 证明上面的$n$个$\partial_\mu$满足线性和莱布尼兹律（提示：两个标量场乘积的坐标表示等于其坐标表示之积），从而它们是切矢。
+\item 所有的切矢$X$都可以用$\partial_\mu$唯一地线性表示{\color{blue} $$ X = X^\mu \partial_\mu$$}（很好理解，证明困难，所以不证）
+\item 从而这$n$个$X_\mu$张成$T_p \mani$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 余切空间的基 \ech}
+\bch
+\begin{itemize}
+\item 显然，第$\nu$个局部坐标$x^\mu$的坐标表象是它本身$F = x^\nu$。
+\item 按定义，$\partial_\mu (x^\nu) = \delta_\mu^\nu$。
+\item 这显然满足对偶空间基底的一般定义。
+\item 于是有$n$个特殊的余切矢$dx^\nu$满足$dx^\nu(\partial_\mu) \equiv \partial_\mu (x^\nu) = \delta_\mu^\nu$。
+\cpic{0.15}{ques}
+\item 任意余切矢$df\in T_p^* \mani $可以按$df = f_\nu dx^\nu$展开。
+\end{itemize}
+
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 切矢和余切矢的分量 \ech}
+\bch
+\begin{itemize}
+\item 对一般的切矢$X = X^\mu \partial_\mu$，有$dx^\nu (X) = dx^\nu (X^\mu \partial_\mu) = X^\mu dx^\nu ( \partial_\mu) = X^\nu$。于是余切矢基底$dx^\nu$作用在切矢的作用是取出切矢的第$\nu$分量。
+\item 同样的，对余切矢$df = f_\nu dx^\nu$，有$df(\partial_\mu) = f_\mu$。
+\item 对任意的$X\in T_p \mani$和$df\in T_p^* \mani$，有{\color{blue}$$df(X) = f_\mu X^\mu$$}
+\item 给定$p$所在图的局部坐标就相当于指定了切空间和余切空间的基底，从而给出切矢和余切矢的分量表示。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 张量的分量 \ech}
+\bch
+\begin{itemize}
+\item 一般的$(s,t)$型张量接受$s$个切矢和$t$个余切矢作为自变量。
+\item 在给定基的情况下，第$i$个切矢展开为$X_i = X_i^{\mu_i} \partial_{\mu_i}$，第$j$个余切矢展开为$df_j = f_{j\nu_j} dx^{\nu_j}$。
+\item 根据$T$的多重线性要求有$$
+T(X_1,\cdots,X_s;df^1,\cdots,df^t) $$
+$$
+=X_1^{\mu_1} \cdots X_s^{\mu_s} f_{1\nu_1} \cdots f_{t\nu_t} T(\partial_{\mu_1} ,\cdots,\partial_{\mu_s};dx^{\nu_1},\cdots,dx^{\nu_t})
+$$
+\item 记{\color{blue}$$T^{\nu_1\cdots \nu_t}_{\mu_1\cdots \mu_s} \equiv  T(\partial_{\mu_1} ,\cdots,\partial_{\mu_s};dx^{\nu_1},\cdots,dx^{\nu_t})$$}
+称为张量（在给定坐标下）的分量
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 度规张量的分量 \ech}
+\bch
+\begin{itemize}
+\item
+度规张量是一个$(2,0)$张量，所以它的分量是
+$$
+g_{\mu \nu} = g(\partial_\mu,\partial_\nu)
+$$
+\item
+两个切矢$X,Y$的内积
+$$
+\langle X,Y\rangle \equiv g(X,Y) = g_{\mu \nu} X^\mu Y^\nu
+$$
+\item 切矢$X$的自然对偶的分量
+$$(g_X)_\nu \equiv g_X(\partial_\nu) \equiv g(X,\partial_\nu) = g_{\mu \nu} X^\mu 
+$$
+将$(g_X)_\nu$就记作$X_\nu$不至于引起歧义，于是有著名的升降指标公式
+{\color{blue}
+$$
+X_\mu = g_{\mu \nu} X^\nu
+$$}
+\end{itemize}
+\ech
+\end{frame}
+
+\section{Curves and Vectors, Examples}
+\begin{frame}
+\frametitle{\bch 例子1：$3$维空间中的切矢和余切矢 \ech}
+\bch
+\begin{itemize}
+\item
+我们考虑$3$维欧氏空间$\reals^n$点$P(x,y,z)$处的切空间。
+\item
+根据定义，$P$处的切矢可以按$\partial_i$展开为$X = X\partial_x + Y\partial_y + Z \partial_z$。这就是$\vec{X} = (X,Y,Z)$矢量的方向导数算符（再乘以$\vec X$的长度）
+\item
+我们考虑$X$对标量场$f(x,y,z)$的作用。有
+$$
+X(f) = X\frac{\partial f}{\partial x} + Y \frac{\partial f}{\partial y} + Z \frac{\partial f}{\partial z}
+$$
+这就是求方向导数。另一方面也可以看出，$T_P \reals^3 = \reals^3$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 例子1：$3$维空间中的切矢和余切矢 \ech}
+\bch
+\begin{itemize}
+\item 另一方面，从余切矢的角度看，$f$定义出的余切矢的第$i$分量按定义为
+$$
+df(\partial_i) \equiv \partial_i f
+$$
+这可以看成$f$在$i$方向的增长速率乘以单位长度。
+\item 记号$df$的实际值取决于$X$的选择：$df(X) \equiv X(f) = \vec X \cdot \vec \nabla f$。也就是说，$f$在$P$处的增量取决于选定参考矢量$\vec X$的方向和大小。这和我们一般将$df$理解成线性阶增量的想法是一致的，增量当然依赖于参考矢量的大小和方向，这使得$df$不再代表一个无穷小量。
+\item 当然，无穷小量本身就是一个不严谨的概念。
+
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 例子2：2维正则曲面 \ech}
+\bch
+\begin{itemize}
+\item 我们在古典微分几何那里已经研究过正则曲面$\surface$，它由两个参数$(u,v)$表征，这就是这块正则曲面的局部坐标。给定$(u,v)$，它们就唯一确定了曲面上的点$p(u,v)$。
+\item 切向量按基展开为$X = X^u \partial_u + X^v \partial_v$。
+\item 余切矢按基展开为$df = f_u du + f_v dv$。
+\item $df(X) = f_u X^u + f_v X^v$就是标量函数$f$沿给定切向量$X$方向的线性阶增量。
+\item 这里还不怎么能看出和之前学过的曲面论的联系，因为我们没有利用度规去决定曲面的形状，也没有把曲面放在$\reals^3$中去研究。我们稍后再返回这个例子。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 切矢的另一种解释 \ech}
+\bch
+我们之前是利用了曲面$\surface$上的曲线定义了切向量。我们可以仿照曲面上曲线的定义定义流形$\mani$上的曲线：
+\begin{itemize}
+\item 定义流形上的曲线为$\reals$上一个开区间$(a,b)$到$\mani$上点的映射
+$$
+\gamma: (a,b) \to \mani
+$$
+\item 利用流形上某一点$p$附近的局部坐标映射，曲线可以表现为一个单变量向量函数
+$$
+C \equiv \psi \circ \gamma : (a,b) \to \reals^n
+$$
+\item 考虑一个标量场$f$，其坐标表象为$F\equiv f \circ \psi^{-1}$，$f(\gamma(t))$就是一个$(a,b) \to \reals$的普通单变量函数。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 切矢的另一种解释 \ech}
+\bch
+我们自然地会希望去研究$f(\gamma(t))$的导数：
+\begin{itemize}
+\item 考虑$f(\gamma(t))$的变化：显然有$f\circ \gamma = f \circ \psi^{-1} \circ \psi \circ \gamma = F\circ C$（请画图理解这个等式），也即$f(\gamma(t)) = F(C(t))$。
+\item 于是$f(\gamma(t))$的线性阶变化为
+$$
+\frac{\Delta f}{\Delta t} \big|_p \simeq\frac{dC^\mu }{dt} \partial_\mu F 
+$$
+这给出两个向量：$\frac{dC^\mu }{dt}$和$\partial_\mu F$，一个可以看成切矢的分量；另一个看成余切矢的分量。
+\end{itemize}
+\ech
+\end{frame}
+
+\section{More about Tensors}
+\begin{frame}
+\frametitle{\bch 张量 \ech}
+\bch
+像我们之前说的，张量的本质是一个多重线性映射，将几个矢量（和余切矢量）映射到一个数。
+\begin{itemize}
+\item 转动惯量张量$I(,)$接受两个角速度$\vec \omega$，返回刚体转动动能的两倍$T = \frac{1}{2} I (\vec \omega,\vec \omega)$。
+\item 电导率张量接受两个电场，返回热功率密度$h = \sigma(\vec E,\vec E)$。
+\end{itemize}
+当我们选取了空间的一组基底，张量就有了坐标表示，也就是我们熟悉的分量形式$T_{\mu \nu}$
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 标量和矢量作为特殊的张量 \ech}
+\bch
+既然张量是一个多重线性映射，那么把“多”改成“单”并不会有什么实质性的影响。
+\begin{itemize}
+\item 切矢$X$可以看成将余切矢映射到实数的函数$X:T_p^*\mani \to \reals$，具体形式是$X(df) \equiv X(f)$。
+\item 余切矢$X$可以看成将切矢映射到实数的函数$X:T_p\mani \to \reals$，具体形式是$df(X) \equiv X(f)$。
+\item 而张量的一般定义是$T:\underbrace{V\times V\times \cdots \times V}_{s\text{ 个}} \times  \underbrace{V^* \times V^* \times \cdots \times V^*}_{t\text{ 个}} \to \reals$
+\end{itemize}
+也就是说，切矢就是一个$(0,1)$型张量；余切矢就是一个$(1,0)$型张量。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 度规的逆 \ech}
+\bch
+我们可以利用度规把一个切矢变成余切矢
+$$g_X \equiv g(X,)$$
+我们也可以定义余切空间$T_p^*\mani$上的度规$h(,)$满足把两个切矢对应的余切矢映射到实数，且值等于切矢的内积
+$$
+h(g_X,g_Y) = g(X,Y)
+$$
+$h$就称作度规的逆，也就是$h$定义了余切空间上的内积
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 度规的逆的分量表示 \ech}
+\bch
+利用$(0,2)$张量分量的定义$h(dx^\mu,dx^\nu) \equiv h^{\mu \nu}$证明，在给定基底的情况下，上面的等式$h(g_X,g_Y) = g(X,Y)$等价于
+$$
+g_{\mu \nu} g_{\rho \sigma} h^{\nu \sigma} = g_{\mu \rho}
+$$
+或
+$$g_{\rho \sigma} h^{\sigma \nu} = \delta_\rho^{\ \nu}
+$$
+上面的等式对应的矩阵形式就是说$h$是$g$的逆矩阵。通常将$h^{\mu \nu}$直接记作$g^{\mu \nu}$不会引发歧义。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 度规的逆的分量表示 \ech}
+\bch
+度规的逆又可以把余切矢自然对应到一个切矢：
+$$
+h_{df} \equiv h(df,) : V_p^* \mani \to \reals
+$$
+使验证：
+\begin{itemize}
+\item
+上面定义的合理性：也即$h_{g_X} = X$。
+\item
+分量形式为
+$$
+(h_{df})^\nu = h(f_\mu dx^\mu,dx^\nu) = f_\mu h^{\mu \nu}
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 张量的升降指标 \ech}
+\bch
+把矢量升降指标的定义推广，按照以下方法升降张量的指标：
+\begin{itemize}
+\item 升指标：乘以度规的逆：
+$$T_{\cdots \mu \cdots}^{\cdots\ \cdots}  g^{\mu \rho} = T_{\cdots\ \cdots}^{\cdots \rho \cdots}$$
+\item 降指标：乘以度规本身：
+$$T_{\cdots\ \cdots}^{\cdots \mu \cdots} g_{\mu \rho} = T_{\cdots \rho \cdots}^{\cdots\ \cdots}$$
+\end{itemize}
+请学有余力的同学用映射语言重新叙述上面的两个等式。
+\ech
+\end{frame}
+
+\section{Fields}
+\begin{frame}
+\frametitle{\bch 场 \ech}
+\bch
+我们之前在流形$\mani$上的某一点定义了矢量和张量。
+\cpic{0.2}{good}
+假如我们能在每一点都定义矢量或张量，我们就得到了一个矢量场或张量场。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 矢量场 \ech}
+\bch
+流形$\mani$上的矢量场$X$定义为光滑标量场间的映射
+$$
+X: C^\infty_\mani \to C^\infty_\mani
+$$
+如何找到这样的一个映射，而且它和我们之前对给定点定义的矢量建立联系呢？
+\cpic{0.15}{speechless}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 矢量场 \ech}
+\bch
+\begin{itemize}
+\item
+我们回忆，给定点$p$，矢量$X_p$是标量场到实数的映射$C^\infty_\mani \to \reals$。
+\item
+如果我们在每一点都定义了矢量$X_p$，对给定的标量场$f$，$X_p(f)$（随$p$变动时）显然也构成了一个标量场。
+\item
+定义矢量场{\color{blue}$$(X(f))(p) = X_p(f)$$}坐标表象和$X_p$一致，$X = X^\mu \partial_\mu$，不过现在是对一片点都有定义。
+\item 流形$\mani$上的所有矢量场记作$\mathcal{V}_\mani$。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 矢量场的复合不是矢量场 \ech}
+\bch
+\begin{itemize}
+\item
+矢量场$X$是标量场到标量场的映射$(X(f))(p) = X_p(f)$。
+\item
+这让我们产生一种感觉：我们可以把得到的标量场$X(f)$再喂给另一个矢量场$Y$产生另一个新的标量场$Y(X(f))$。
+\item
+但并不能说复合函数$Y \circ X$是一个矢量场：使验证它不满足莱布尼兹律，也就是$(Y\circ X)_p$不是一个$T_p\mani$上的元素。
+\cpic{0.15}{sad}
+\item 粗略地讲，$Y\circ X$是一个二阶导数，而矢量是一个一阶导数。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 矢量场对易子 \ech}
+\bch
+\begin{itemize}
+\item 一般我们有
+$$(X\circ Y)(fg) = X(Y(fg)) = X(f Y(g) + gY(f)) $$ $$= X(f) Y(g) + f X(Y(g)) + X(g) Y(f) + g X(Y(f)) $$ $$\not= fX(Y(g)) + g X(Y(f))
+$$
+\item
+但我们把$X$和$Y$交换位置再相减就可以消去不符合莱布尼兹律的项。
+$$(XY-YX)(fg) = f(XY-YX)(g) + g(XY-YX)(f)$$
+\item
+因此，两个矢量场的对易子$[X,Y] \equiv XY-YX$还是矢量场。
+\item
+使验证：对易子的坐标表象是$$[X,Y] = \left( X^\mu \partial_\mu Y^\nu - Y^\mu \partial_\mu X^\nu\right) \partial_\nu$$
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 李导数 \ech}
+\bch
+因为两个矢量场的对易子还是矢量场，当我们固定$X$而变化$Y$，就相当于得到了一个矢量场到矢量场的映射
+$$
+\mathcal{L}_X\equiv [X,]: \mathcal{V}_\mani \to \mathcal{V}_\mani
+$$
+具体形式为
+$$
+\mathcal{L}_X(Y) = [X,Y]
+$$
+
+$\mathcal{L}_X$称为{\color{purple} \bf 李导数}。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 余切矢量场 \ech}
+\bch
+现在事情就简单了：对一个矢量场，把每点的矢量对偶一下就得到了余切矢量场。所有余切矢量场的集合记作$\mathcal{V}^*_\mani$。
+\cpic{0.2}{good}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 张量场 \ech}
+\bch
+同样的，如果我们对$\mani$上的每点都定义了张量$T$，就得到了一个张量场。
+\cpic{0.3}{happy}
+一般我们都假定张量场是光滑的。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 张量场的更严格定义 \ech}
+\bch
+当然上面这个定义不是特别严格，从映射的角度，一个$(s,t)$型张量场就是多重线性映射
+$$
+T: \underbrace{\mathcal{V}_\mani\times \mathcal{V}_\mani\times \cdots \times \mathcal{V}_\mani}_{s\text{ 个}} \times  \underbrace{\mathcal{V}^*_\mani \times \mathcal{V}^*_\mani \times \cdots \times \mathcal{V}^*_\mani}_{t\text{ 个}} \to \field_\mani
+$$
+也就是把$s$个矢量场和$t$个对偶矢量场映射到一个标量场。因此张量场记作
+$$T(X_1,\cdots,X_s;df_1,\cdots,df_t)(p) \equiv T(X_{1p},\cdots,X_{sp};df_{1p},\cdots,df_{tp}) $$
+
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 度规张量场 \ech}
+\bch
+特别的我们有度规张量场$g(X,Y)$。
+\ech
+\end{frame}
+
+
+
+\section{Changing Basis}
+
+\begin{frame}
+\frametitle{\bch 局部坐标的变换 \ech}
+\bch
+我们知道，在同时存在两个（或多个）图$(O_a,\psi_a)$和$(O_b,\psi_b)$覆盖的开集内，两种局部坐标之间的变换为
+$$
+\psi_a \circ \psi_b^{-1}
+$$
+假设$a$代表的局部坐标为$x^\mu(p)$，$b$代表的局部坐标为$u^\nu (p)$，坐标变换映射就可以显式地写成一个$\reals^n \to \reals^n$的映射
+$$
+x^\mu = x^\mu ( u^\nu) 
+$$
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 基的变换 \ech}
+\bch
+$\frac{\partial}{\partial x^\mu}$是切空间$T_p\mani$的一组基。假如我们用$u$而不用$x$的话，这组基就相应地变成
+$$
+\frac{\partial}{\partial u^\mu}
+$$
+但根据多元函数的链式法则我们有{\color{blue}
+$$
+\frac{\partial}{\partial x^\mu} = \frac{\partial u^\nu}{\partial x^\mu} \frac{\partial}{\partial u^\nu}
+$$}
+于是基底的变换矩阵就是
+$$
+\frac{\partial x^\mu}{\partial u^\nu} 
+$$
+变换矩阵$J^\mu_{\ \nu} = \frac{\partial x^\mu}{\partial u^\nu} $也是流形$\mani$上的一个$(1,1)$张量场。
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 切矢分量的变换 \ech}
+\bch
+任意的$V \in T_p \mani$按两种基展开为
+$$V = X^\mu \frac{\partial}{\partial x^\mu}  = U^\nu \frac{\partial}{\partial u^\nu}$$
+根据之前的基变换公式又有
+$$
+U^\nu \frac{\partial}{\partial u^\nu} = X^\mu \frac{\partial}{\partial x^\mu}  = X^\mu \frac{\partial u^\nu}{\partial x^\mu} \frac{\partial}{\partial u^\nu}
+$$
+于是我们得到任意切矢的分量的变换关系
+$$
+U^\nu = \frac{\partial u^\nu}{\partial x^\mu} X^\mu 
+$$
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 张量分量的变换 \ech}
+\bch
+请自行仿照上面过程推导
+\begin{itemize}
+\item 余切矢基底的变换：$$dx^\mu = \frac{\partial x^\mu}{\partial u^\nu} du^\nu$$
+\item 余切矢分量的变换：$$U_\nu = \frac{\partial x^\mu}{\partial u^\nu} X_\mu$$
+\item $(s,t)$张量分量的变换：$$U^{\nu_1\cdots \nu_t}_{\mu_1\cdots \mu_s} = \frac{\partial u^{\nu_1}}{\partial x^{\sigma_1}} \cdots \frac{\partial u^{\nu_t}}{\partial x^{\sigma_t}} \frac{\partial x^{\rho_1}}{\partial u^{\mu_1} }\cdots \frac{\partial x^{\rho_s}}{\partial u^{\mu_s}} X^{\sigma_1\cdots \sigma_t}_{\rho_1\cdots \rho_s}
+$$
+（提示：回忆张量分量的定义）
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 我傻了，你们呢 \ech}
+\bch
+还记得$\partial_\mu$和$dx^\mu$是什么意思的同学请举手。
+\cpic{0.3}{sad}
+\ech
+\end{frame}
+
+\section{homework}
+\begin{frame}
+\frametitle{\bch 练习：球面的坐标变换 \ech}
+\bch
+我们知道描述一个球面$S^2$至少需要两个图：南极投影$P_S$和北极投影$P_N$。
+\cpic{0.11}{seph}
+\begin{itemize}
+\item
+南极投影可以完成除南极点以外所有点到$\reals^2$（下方红色平面）的映射；
+\item
+北极投影可以完成除北极点以外所有点到$\reals^2$（上方蓝色平面）的映射。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 练习：球面的坐标变换 \ech}
+\bch
+\begin{enumerate}
+\item 假设已知单位球面上非极点的南极坐标（南极投影点$P_S$在红色平面上的坐标）为$(x,y)$，求这个点的北极坐标为$(u,v)$。
+\item 试用$(\partial_x,\partial_y)$表示$(\partial_u,\partial_v)$。
+\item 在南极放置一个$q=4\pi\epsilon_0$的点电荷，点电荷的电势是球面上的标量场$f$。求这个标量场在南极坐标和北极坐标下的表示。
+\item 在南极坐标为$(2,1)$的点有一个切矢$X = \partial_x + 2 \partial_y$，求这个切矢对$f$的作用$X(f)$。写出这个切矢在北极坐标基$(\partial_u,\partial_v)$下的表达式，重新求这个切矢对$f$的作用，验证两者是相等的。说出$X(f)$的物理意义。
+\end{enumerate}
+\ech
+\end{frame}
+
+\end{document}

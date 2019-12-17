@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Spin}{2}{0}{1}
+\beamer@sectionintoc {2}{Compactness}{3}{0}{2}
+\beamer@sectionintoc {3}{Symplectic Groups}{5}{0}{3}
+\beamer@sectionintoc {4}{QFT}{13}{0}{4}

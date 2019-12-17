@@ -1,6 +1,6 @@
 \contentsline {section}{\numberline {1}无边界的经典电磁场}{2}{section.1}% 
 \contentsline {subsection}{\numberline {1.1}麦克斯韦方程}{2}{subsection.1.1}% 
-\contentsline {subsection}{\numberline {1.2}格林函数}{2}{subsection.1.2}% 
+\contentsline {subsection}{\numberline {1.2}格林函数}{3}{subsection.1.2}% 
 \contentsline {subsection}{\numberline {1.3}推迟势}{4}{subsection.1.3}% 
 \contentsline {section}{\numberline {2}静场}{5}{section.2}% 
 \contentsline {subsection}{\numberline {2.1}拉普拉斯方程}{5}{subsection.2.1}% 
@@ -17,3 +17,9 @@
 \contentsline {subsection}{\numberline {3.4}介质中的边值问题}{30}{subsection.3.4}% 
 \contentsline {section}{\numberline {4}动场}{31}{section.4}% 
 \contentsline {subsection}{\numberline {4.1}自由无界空间中的场}{31}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}波导和谐振腔}{31}{subsection.4.2}% 
+\contentsline {subsubsection}{\numberline {4.2.1}谐振腔}{31}{subsubsection.4.2.1}% 
+\contentsline {subsubsection}{\numberline {4.2.2}波导}{34}{subsubsection.4.2.2}% 
+\contentsline {subsection}{\numberline {4.3}辐射}{35}{subsection.4.3}% 
+\contentsline {subsubsection}{\numberline {4.3.1}多极展开}{35}{subsubsection.4.3.1}% 
+\contentsline {subsubsection}{\numberline {4.3.2}电偶极辐射}{36}{subsubsection.4.3.2}% 
