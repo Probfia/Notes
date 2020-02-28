@@ -1,0 +1,435 @@
+\documentclass[aspectratio=1610,14pt,mathserif]{beamer}
+\batchmode
+%\input{macros.tex}
+\usepackage{xeCJK}
+\setCJKmainfont{STFangsong}
+\usepackage{beamerthemesplit}
+\usetheme{Boadilla}
+%\useoutertheme{smoothbars}
+\usecolortheme{beaver}
+
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{eufrak}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage{tcolorbox}
+
+%\def\bch{\begin{CJK}{UTF8}{gbsn}}
+%\def\ech{\end{CJK}}
+\newcommand{\bch}{}
+\newcommand{\ech}{}
+\def\bcenter{\begin{center}}
+\def\ecenter{\end{center}}
+\def\skipline{{\vskip0.1in}}
+\def\skiplines{{\vskip0.2in}}
+\def\tbox#1{\begin{tcolorbox}#1\end{tcolorbox}}
+
+\newcommand{\field}{\mathscr{F}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\card}{\mathrm{card \ }}
+\newcommand{\mani}{\mathcal{M}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
+\def\secpage#1#2{\begin{frame}\bch\bcenter{\bf \Huge #1} \skipline \tbox{#2}\ecenter\ech\end{frame}}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\unit}[1]{\ {{\rm \ #1}}}
+\newcommand{\mev}{\ {\rm MeV}}
+\newcommand{\pfrac}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand{\bea}{\begin{equation*}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation*}}
+
+\newcommand{\red}[1]{{\color{red} #1}}
+\def\green#1{{\color[rgb]{0.1,0.6,0.3}#1}}
+\newcommand{\purple}[1]{{\color{purple} #1}}
+\newcommand{\orange}[1]{{\color{orange} #1}}
+\newcommand{\blue}[1]{{\color{blue} #1}}
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+
+\title{Quantum Field Theory}
+\substitle{Introduction, SHO and Occupation Number Representation}
+\author{高寒}
+  \date{\today}
+
+
+\begin{document}
+
+\begin{frame}
+ 
+\titlepage
+\begin{center}
+\tableofcontents
+\end{center}
+
+\end{frame}
+
+\section{Introduction}
+\secpage{Introduction}{$$c=\hbar =\mu_0 =\epsilon_0= k_B=1$$}
+
+\begin{frame}
+\frametitle{\bch 参考书目 \ech}
+\bch
+\begin{itemize}
+\item 主要参考：T. Lancaster, S. J. Blundell: \emph{Quantum Field Theory for the Gifted Amateur}
+\item Banks: \emph{Modern Quantum Field Theory A Concise Introduction}
+\item 其他：David Tong: \emph{Lectures on Quantum Field Theory}\url{http://www.damtp.cam.ac.uk/user/tong/qft/qft.pdf}
+\item Peskin: \emph{An Introduction to Quantum Field Theory}
+\item Zee: \emph{Quantum Field Theory in a Nutshell}
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 为什么需要量子场论 \ech}
+\bch
+\begin{itemize}
+\item 量子力学和狭义相对论是不相容的：量子力学的粒子数不变，但$\Delta E \sim \frac{1}{\Delta t}$，$E = mc^2$，在非常短的时间尺度内......
+\item 为什么所有电子，光子，质子......都长得一摸一样？
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 什么是场 \ech}
+\bch
+\begin{itemize}
+\item 场是时空的函数$\phi(x^\mu)$。
+\cpic{0.3}{field}
+\item 但在学习场论中我们一般不把场当成时空的函数，而是生活在时空各点上的一个个数（或者矢量、张量）。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 单位制 \ech}
+\bch
+\begin{itemize}
+\item 我们采用自然单位制$c = \hbar = \epsilon_0 = k_B = 1$。
+\item 在这种单位制下，只有一个独立的量纲，我们习惯选取为能量，并且以$\mev$为单位。
+\item 因为$\hbar c = 197\unit{MeV\cdot fm}$，$1\unit{fm} = \frac{1}{197} \mev^{-1}$。
+\item 常见量的量纲：
+\begin{enumerate}
+\item $\text{质量} = \text{能量} = \text{频率} = \text{温度}$
+\item $\text{长度} = \text{时间} = \text{能量}^{-1}$
+\end{enumerate}
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 狭义相对论 \ech}
+\bch
+\begin{itemize}
+\item 度规$g_{\mu \nu} = g^{\mu \nu} = \diag(1,-1,-1,-1)$。
+\item $a^\mu = (a_0,\vec a),\quad \partial_\mu = (\partial_t,\vec \nabla)$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 傅立叶变换 \ech}
+\bch
+\begin{itemize}
+\item 利用傅立叶变换把拉氏量和哈密顿量对角化。
+\item 习惯约定：归一化系数全部放在对动量（波矢）的积分体积元上
+$$f(k) = \int d^4 x\ f(x) e^{ik\cdot x},\quad f(x) = \int \frac{d^4 k}{(2\pi)^4} f(k) e^{-ik\cdot x}$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 泛函导数 \ech}
+\bch
+\cpic{0.4}{func}
+$$ F[f] = \lim_{N\to \infty} F(f_1,f_2,\dots,f_N)$$
+$$ \frac{\delta F}{\delta f} \to \pfrac{F}{f_n}$$
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 拉氏密度 \ech}
+\bch
+\begin{itemize}
+\item 拉氏密度
+$$S = \int dt \ L = \int dt d^3 \vec x \ \lag$$
+\item
+泛函导数$\frac{\delta S}{\delta \phi} = 0$得到欧拉-拉格朗日方程
+$$
+\partial_\mu \pfrac{\lag}{(\partial_\mu \phi)} - \pfrac{\lag}{\phi} = 0
+$$
+\item 场的广义动量$\pi = \pfac{\lag}{\dot{\phi}}$，哈密顿密度$\mathcal{H} =  \pi \dot{\phi}- \lag$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 标量场 \ech}
+\bch
+\begin{itemize}
+\item 自由场论
+$$
+\lag = \frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{1}{2}m^2 \phi^2
+$$
+\item 含外源的场论
+$$
+\lag[J] = \lag[J=0] + J(x) \phi(x)
+$$
+\item $SO(2)$场论
+$$
+\lag = \frac{1}{2} \partial_\mu \phi_1 \partial^\mu \phi_1 - \frac{1}{2}m^2 \phi_1^2 +  \frac{1}{2} \partial_\mu \phi_2\partial^\mu \phi_2 - \frac{1}{2}m^2 \phi_2^2
+$$
+\item $U(1)$场论：$\psi = \frac{1}{\sqrt 2} (\phi_1 + i \phi_2)$
+$$
+\lag = \partial_\mu \psi \partial^\mu \psi^* - m^2 \psi \psi^*
+$$
+\item 相互作用场论：$\lag$中含$\phi^3$以上的项。
+\end{itemize}
+\ech
+\end{frame}
+
+\section{Second Quantization}
+\secpage{量子力学二次量子化}{$$\hat H = \hbar \omega (\hat{a}^\dagger \hat{a} + \frac{1}{2})$$}
+
+\begin{frame}
+\frametitle{\bch 一次量子化和二次量子化 \ech}
+\bch
+\begin{itemize}
+\item \blue{一次量子化：粒子表现得像波。}
+\item 例子：电子是一个非定域的存在，需要用波函数表征。
+\item \blue{二次量子化：波表现得像粒子。}
+\item 例子：电磁波事实上由一个个光子构成。
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 声子数算符 \ech}
+\bch
+$$ \hat H = \frac{1}{2}\hat p^2 + \frac{1}{2}\omega^2 \hat q^2 = \hbar \omega (\hat a^\dagger \hat a + \frac{1}{2} )$$
+\begin{itemize}
+\item 能量的量子化表现得像新的粒子：声子。
+\item 挂在弹簧上的谐振子是实物粒子，将其一次量子化后得到波函数；波函数的二次量子化得到我们的“假想”粒子声子。
+\end{itemize}
+\ech
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{\bch 多个谐振子 \ech}
+\bch
+\begin{itemize}
+\item $N$个解耦的谐振子，频率分别为$\omega_k$，哈密顿量
+$$
+\hat{H} = \sum_{k=1}^N (\frac{1}{2m_k} \hat{p}_k^2 + \frac{1}{2} m_k \omega_k^2 \hat{x}_k^2)
+$$
+\item 每个谐振子都可以单独定义产生湮灭算符进行二次量子化
+$$
+\hat{H}_k = \hbar \omega_k (\hat{n}_k + \frac{1}{2}) ,\quad \hat{H} = \sum_{k=1}^N \hat{H}_k
+$$
+\item 系统的态定义为
+$$
+|n_1,n_2,\dots,n_N\rangle = \frac{1}{\sqrt{n_1! n_2! \dots n_N!}} (\hat{a}_1^\dagger)^{n_1} (\hat{a}_2^\dagger)^{n_2}\dots(\hat{a}_N)^{n_N}|0\rangle
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 小学语文 \ech}
+\bch
+\begin{itemize}
+\item 考虑一维无限深势阱$-L/2<x<L/2$，其中的粒子动量只能取离散值
+$$
+p_n = \frac{n\pi}{L}
+$$
+\item 如果我们有多个粒子$A,B,C,\cdots$，我们可以用这样的语言描述量子体系：
+\begin{center}
+\red{粒子$A$处于$p_1$态上，粒子$B$处于$p_3$态上,......}
+\end{center}
+\item 我们也可以换一个角度描述：
+\begin{center}
+\blue{$p_1$态上有3个粒子，$p_2$态上有1个粒子,......}
+\end{center}
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 占据数表象 \ech}
+\bch
+\begin{itemize}
+\item 因为量子力学中全同粒子的不可分辨性，第二种描述显然好过第一种。
+\item 我们把第$p_k$个模式上有$n_k$个粒子的态记作
+$$
+|n_1,n_2,\dots,n_k,\dots\rangle
+$$
+\item 占据数表象是多个谐振子模式总声子态的推广。粒子体系的哈密顿量对占据数态的作用
+$$
+\hat H |n_1,n_2,\dots,n_k,\dots\rangle = \sum_k n_k E_k |n_1,n_2,\dots,n_k,\dots\rangle
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\bch 波色子和费米子 \ech}
+\bch
+\begin{itemize}
+\item 向真空内加入一个动量为$p_i$的粒子和加入一个动量为$p_j$的粒子有两种方式
+$$
+\hat{a}_i^\dagger \hat{a}_j^\dagger |0\rangle ,\quad \hat{a}_j^\dagger \hat{a}_i^\dagger |0\rangle 
+$$
+\item 这两种方式都正比于占据数态$|\dots,1,\dots,1,\dots\rangle$，因此$\hat{a}_i^\dagger \hat{a}_n^\dagger \propto\hat{a}_j^\dagger \hat{a}_m^\dagger$。
+\item 但是算符不对易，它们不一定是相等的。如果$\hat{a}_i^\dagger \hat{a}_j^\dagger = \hat{a}_j^\dagger \hat{a}_i^\dagger$，称粒子为波色子；如果$\hat{a}_i^\dagger \hat{a}_j^\dagger = -\hat{a}_j^\dagger \hat{a}_i^\dagger$，称粒子为费米子。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 对易和反对易 \ech}
+\bch
+\begin{itemize}
+\item
+泡利不相容原理。
+\item 定义波色子的产生湮灭算符
+$$
+[\hat{a}_i,\hat{a}_j^\dagger] = \delta_{ij}
+$$
+\item 重新定义费米子的产生湮灭算符
+$$
+\{\hat{b}_i,\hat{b}_j^\dagger\} = \delta_{ij}
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 连续极限 \ech}
+\bch
+\begin{itemize}
+\item 我们之前讨论了有限空间内粒子的产生湮灭算符，它们满足$[\hat{a}_i,\hat{a}_j^\dagger] = \delta_{ij}$。
+\item 如果取$L\to \infty$，动量谱趋于连续分布
+$$
+[\hat{a}_p,\hat{a}_q^\dagger] =2\pi \delta(p-q)
+$$
+粒子数算符
+$$
+\hat N = \int \frac{dp}{2\pi}\ \hat{a}^\dagger_p \hat{a}_p
+$$
+哈密顿量
+$$
+\hat H = \int \frac{dp}{2\pi}\ E_p\hat{a}^\dagger_p \hat{a}_p
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 场算符 \ech}
+\bch
+\begin{itemize}
+\item 场算符
+$$
+\hat \psi^\dagger(\vec x) = \int \frac{d^3 \vec p}{(2\pi)^3} \hat a^\dagger_{\vec p} e^{-i\vec p \cdot \vec x}
+$$
+\item
+对易关系
+$$
+[\hat \psi(\vec x) ,\hat \psi^\dagger(\vec y) ] = \delta(\vec y - \vec x)
+$$
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 一般算符推广 \ech}
+\bch
+\begin{itemize}
+\item 希尔伯特空间的单粒子力学量算符$\hat A$对应到Fock空间
+$$
+\hat A \to \sum \langle p | A | q\rangle \hat a^\dagger_p \hat a_q
+$$
+\item 密度算符
+$$
+\hat \rho(\vec x) =\hat \psi^\dagger(\vec x) \hat \psi(\vec x)
+$$
+\item 坐标函数的推广。
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 相互作用势散射振幅 \ech}
+\bch
+\begin{itemize}
+\item 二体势推广
+$$
+\hat V(\vec x-\vec y)  \to \frac{1}{2} \int d^3 \vec x d^3 \vec y \hat \psi^\dagger(\vec x)\hat \psi^\dagger(\vec y)V(\vec x-\vec y) \hat \psi(\vec y) \hat \psi(\vec x)
+$$
+\item 相互作用绘景散射振幅
+$$
+\mathcal{M} = \langle f | e^{-i\int dt \hat V(t)} | i\rangle \simeq \delta_{fi} - i {\cal T} \langle f | \hat V |i \rangle 
+$$
+\item 化简
+\begin{equation*}
+\begin{aligned}
+\mathcal{M} &\simeq -i(2\pi)^3T [ V(\vec q_1  - \vec p_1) + V(\vec q_2 - \vec p_1)] {\delta(\vec p_1 + \vec p_2 - \vec q_1 - \vec q_2)}\\&= -i [V(\vec q_1  - \vec p_1) + V(\vec q_2 - \vec p_1)] \mathcal{VT}
+\end{aligned}
+\end{equation*}
+\item 用费曼图表示，高阶散射振幅...
+\end{itemize}
+\ech
+\end{frame}
+
+\begin{frame}
+\frametitle{\bch 作业 \ech}
+\bch
+\begin{enumerate}
+\item 计算$1\unit{Mpc} =\ ? \mev^{-1}$
+\item 已知$f(x) = \int \frac{dk}{2\pi} f(k) e^{ikx}$，求证$\int dx \left(\frac{df(x)}{dx}\right)^2 = \int \frac{dk}{2\pi}k^2 f(k)f(-k)$
+\item 泛函$$Z[J] = e^{-\frac{1}{2} \int dx dy\ J(x) D(x-y) J(y)},\quad D(x)=D(-x)$$ 求$\frac{\delta^2 Z}{\delta J^2}$
+\item 计算$\langle \vec p | \hat \psi^\dagger(\vec x)\hat \psi(\vec y) | \vec p \rangle$。
+\end{enumerate}
+\ech
+\end{frame}
+
+
+
+\end{document}

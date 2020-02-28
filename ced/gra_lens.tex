@@ -1,0 +1,122 @@
+\documentclass[a4paper,11pt]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,
+            linkcolor=blue,
+		 urlcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+\usepackage{float}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[H]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\newtheorem{eg}{例}[section]
+\newtheorem{ans}{解答}[section]
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+\newcommand{\red}{\color{red}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\del}{\vec{\nabla}}
+\newcommand{\epv}{\epsilon_0}
+\newcommand{\pfrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\emptyline}{\vspace{0.7cm} \\}
+\newcommand{\dist}{\left| \vec{x} - \vec{x}' \right|}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\res}{\mathrm{res\ }}
+
+\title{光学在引力场中偏折的介质模拟}
+\author{高寒}
+\date{\today}
+
+
+
+
+
+
+
+
+
+\begin{document}
+\tableofcontents
+\section{基本原理}
+根据广义相对论，光在时空中走过的路径为闵可夫斯基流形上的测地线
+\beq
+S[x^\mu (s)] = \int ds \ \sqrt{-g_{\mu \nu} \frac{dx^\mu}{ds} \frac{dx^\nu }{dx}}
+\eeq
+其中$g_{\mu \nu}$为度规，原则上可以由给定物质分布下的爱因斯坦场方程解出。光在引力场中的运动轨迹就是使得泛函$S$取极值的点
+\beq
+\delta S = 0
+\eeq
+\par
+另一方面，几何光学极限下，光在介质中从$A$到$B$点的路径也可以由类似的原理表述，也就是最小光程（最短时间）原理
+\beq
+S = \int ds \sqrt{ n \frac{dx^i}{ds} \frac{dx^j}{ds} \delta_{ij}}
+\eeq
+光的路径由
+\beq
+\delta S = 0
+\eeq
+上面两个方程在形式上十分相似，建议我们可以用均匀时空中的不均匀介质来模拟弯曲时空中光在真空中的轨迹，后者在天体物理研究，例如引力透镜等方面具有重要意义。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

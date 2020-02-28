@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{ctexart}
+\documentclass[a4paper,11pt]{ctexbook}
 
 \usepackage{amsmath}
 \usepackage{color}
@@ -39,15 +39,16 @@
 \newcommand{\eea}{\end{aligned}\end{equation}}
 \newcommand{\red}{\color{red}}
 \newcommand{\lag}{\mathcal{L}}
-\newcommand{\diag}{\mathrm{diag}}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
 \newcommand{\del}{\vec{\nabla}}
 \newcommand{\epv}{\epsilon_0}
 \newcommand{\pfrac}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\emptyline}{\vspace{0.7cm} \\}
 \newcommand{\dist}{\left| \vec{x} - \vec{x}' \right|}
-\newcommand{\sgn}{\mathrm{sgn}}
-\newcommand{\res}{\mathrm{res\ }}
-
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\res}{res}
+\newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
 
 \title{Classical Electrodynamic}
 \author{Probfia}
@@ -55,8 +56,374 @@
 
 
 \begin{document}
+
 \maketitle
+
 \tableofcontents
+
+\chapter{从作用量出发的电动力学}
+\section{电磁场的作用量}
+\subsection{自由电磁场的作用量和运动方程}
+作为最简单的杨-米尔斯规范场论，电磁场是由一组矢量场$A^\mu$描述的。由$A^\mu$可以构造电磁场张量
+\beq
+F_{\mu \nu} = \partial_\mu A_\nu - \partial_\nu A_\mu
+\eeq
+$F$是一个反称张量，它有6个独立分量，因此我们可以把这六个独立分量形式上分解成两组3维空间中的矢量，分别是
+\beq
+E_i = F_{0i} = - F_{i0}
+\eeq
+\beq
+B_i = -\epsilon_{ijk} F_{jk} = \epsilon_{ijk} F_{kj}
+\eeq
+分别称为电场和磁场\footnote{在我们的度规习惯下，矢量的空间分量满足$v^i = (\vec v)^i = -v_i$，但对电磁场我们不做此区分，即$E_i = E^i$，$B_i = B^i$，因为它们并不是一个洛伦兹矢量。}。于是，电磁场张量可以显式地写成
+\beq
+F_{\mu \nu} = \mat{0 & E_1 & E_2 & E_3 \\ -E_1 &0 & -B_3 & B_2 \\ -E_2 & B_3 & 0 &-B_1 \\ -E_3 & -B_2 & B_1 &0}
+\eeq
+在闵可夫斯基度规$\eta_{\mu \nu} = \diag (1,-1,-1,-1)$下，得到
+\bea
+F^{\mu \nu} &= F_{\rho \sigma} \eta^{\rho \mu} \eta^{\sigma \nu} = \eta^{\mu \rho} F_{\rho \sigma} \eta^{\sigma \nu} \\
+&= \mat{1 & & & \\ & -1 & & \\ & & -1 & \\ & & & -1}  \mat{0 & E_1 & E_2 & E_3 \\ -E_1 &0 & -B_3 & B_2 \\ -E_2 & B_3 & 0 &-B_1 \\ -E_3 & -B_2 & B_1 &0}  \mat{1 & & & \\ & -1 & & \\ & & -1 & \\ & & & -1} \\
+&= \mat{0 &E_1 & E_2 & E_3 \\ E_1 & 0 & B_3 & -B_2 \\ E_2 & -B_3 & 0 &B_1 \\ E_3 & B_2 & -B_1 &0 }\mat{1 & & & \\ & -1 & & \\ & & -1 & \\ & & & -1} \\
+&= \mat{0 & -E_1 & -E_2 & -E_3 \\ E_1 & 0 & -B_3 & B_2 \\ E_2 & B_3 & 0 & -B_1 \\ E_3 & -B_2 & B_1 & 0}
+\eea
+即上标的$F$只需把各个电场反号，磁场不变。
+\par
+$F_{\mu \nu}$的一个最重要的特征是，它是规范不变的：$A_\mu \to A_\mu + \partial_\mu \lambda$称为一个规范变换，在规范变换下，$F_{\mu \nu} \to F_{\mu \nu}$不变。
+\par
+下面我们来构造$A^\mu$的作用量，有两个条件，第一，它是一个洛伦兹不变的标量，第二，它是规范不变的。第一个要求告诉我们必须把上下指标全部收缩掉，第二个要求告诉我们只能出现$\sim F_{\mu \nu}$的项而不能单独出现$A_\mu$。于是，最简单的作用量是
+\beq
+S[A^\mu] = \int d^4 x \ -\frac{1}{4} F_{\mu\nu}F^{\mu \nu}
+\eeq
+积分号内的量是电磁场的拉氏量
+\beq
+\lag = -\frac{1}{4} F_{\mu\nu}F^{\mu \nu}
+\eeq
+\begin{eg}
+用电磁场表示出拉氏量。
+\end{eg}
+\begin{ans}
+注意到$\lag = -\frac{1}{4} F_{\mu\nu}F^{\mu \nu} = \frac{1}{4} F_{\mu\nu}F^{\nu \mu} = \frac{1}{4} \tr F_{\mu\nu}F^{\nu \rho}$，有
+\bea
+\lag &= \frac{1}{4}\tr \mat{0 & E_1 & E_2 & E_3 \\ -E_1 &0 & -B_3 & B_2 \\ -E_2 & B_3 & 0 &-B_1 \\ -E_3 & -B_2 & B_1 &0} \mat{0 & -E_1 & -E_2 & -E_3 \\ E_1 & 0 & -B_3 & B_2 \\ E_2 & B_3 & 0 & -B_1 \\ E_3 & -B_2 & B_1 & 0} \\
+&=\frac{1}{4} \tr \mat{ \vec E^2 & \dots & \dots& \dots \\ \dots & E_1^2 -B_3^2 - B_2^2 & \dots & \dots \\ \dots & \dots & E_2^2 - B_3^2 - B_1^2 & \cdots \\ \cdots & \cdots & \cdots & E_3^2-B_2^2 - B_1^2 } = \frac{1}{2}( \vec E^2 - \vec B^2)
+\eea
+这事实上就是电场能量减去磁场能量。
+\end{ans}
+\par
+接下来我们来求出$A^\mu$的运动方程：基本原理就是变分法：假设$A^\mu \to A^\mu + \delta A^\mu$，有
+\beq
+F_{\mu \nu} \to F_{\mu \nu} + \delta F _{\mu \nu} = F_{\mu \nu} + \partial_\mu \delta A_\nu - \partial_\nu \delta A_\mu
+\eeq
+\beq
+\delta S = -\frac{1}{4} \int d^4 x \ (F_{\mu \nu} \delta F^{\mu \nu} + \delta F_{\mu \nu} F^{\mu \nu}) = - \frac{1}{2} \int d^4 x \ F_{\mu \nu} \delta F^{\mu \nu}
+\eeq
+继续化简被积项
+\bea
+F_{\mu \nu} \delta F^{\mu \nu} &= F_{\mu \nu} \partial^\mu \delta A^\nu - F_{\mu \nu} \partial^\nu \delta A^\mu \\
+&= F_{\mu \nu} \partial^\mu \delta A^\nu - F_{\nu \mu} \partial^\mu \delta A^\nu = 2F_{\mu \nu} \partial^\mu \delta A^\nu
+\eea
+于是
+\bea
+\delta S &= -\int d^4 x\ F_{\mu \nu} \partial^\mu \delta A^\nu = -\int d^4 x \partial^\mu ( F_{\mu \nu} \delta A^\nu) + \int d^4 x \ \partial^\mu F_{\mu \nu} \delta A^\nu = \int d^4 x \ \partial^\mu F_{\mu \nu} \delta A^\nu 
+\eea
+其中假设了空间足够大使得边界项为零。于是，运动方程为
+\beq
+\partial^\mu F_{\mu \nu} = 0
+\eeq
+利用$F_{\mu \nu}$的定义继续化简
+\beq
+0= \partial^\mu F_{\mu \nu} = \partial^2 A_\nu - \partial_\nu \partial^\mu  A_\mu
+\eeq
+\par
+另外，根据$F_{\mu \nu}$的定义可以得到下面的数学恒等式
+\beq
+\partial_\mu F_{\rho \sigma} + \partial_{\rho} F_{\sigma \mu} + \partial_\sigma F_{\mu \rho} = 0
+\eeq
+\begin{eg}
+用电场和磁场表示出运动方程。
+\end{eg}
+\begin{ans}
+在运动方程$\partial^\mu F_{\mu \nu}=0$中令$\mu=0$得到
+\beq
+0 = \partial^\mu F_{\mu 0} = \partial^i F_{i0} = \partial_i E_i = \del \cdot \vec E
+\eeq
+令$\mu = i$得到
+\bea
+0 &= \partial^\mu F_{\mu i} = \partial^0 F_{0i} + \partial^j F_{ji} \\
+&= \partial_0 E_i - \partial_j \epsilon_{ijk} B_k
+\eea
+也即
+\beq
+\del \times \vec B = \pfrac{\vec E }{t}
+\eeq
+\end{ans}
+\subsection{与源耦合的电磁场}
+我们在电磁场作用量中引入一个新的项$A_\mu j^\mu$
+\beq
+S[A^\mu] = \int d^4 x \ -\frac{1}{4} F_{\mu\nu}F^{\mu \nu} - A_\mu j^\mu
+\eeq
+这一项的引入显然会破坏规范不变性，因此，我们可以对源$j^\mu$一些要求是的理论依然是规范不变的：考虑规范变换$A_\mu \to A_\mu + \partial_\mu \epsilon$对作用量的改变
+\bea
+\delta S &= -\int d^4 x\ \partial_\mu \epsilon j^\mu = -\int d^4 x\ \partial_\mu(\epsilon j^\mu) + \int d^4 x\ \partial_\mu j^\mu \epsilon \\
+&= \int d^4 x \epsilon \partial_\mu j^\mu
+\eea
+上式对任意的$\epsilon$都等于零就可以保证引入外源后的作用量依然规范不变，那么我们得到了对源的要求
+\beq
+\partial_\mu j^\mu = 0
+\eeq
+这表明，如果我们要将一个外源引入电磁场，这个外源必须是一个守恒流。
+\par
+我们再给出存在外源时的运动方程：现在场的无穷小变化带来的作用量变化为
+\beq
+\delta S = \int d^4 x (\partial^\mu F_{\mu \nu} - j_\nu) \delta A^\nu
+\eeq
+于是运动方程现在为
+\beq
+\partial^\mu F_{\mu \nu} = j_\nu
+\eeq
+\begin{eg}
+定义源的四个分量为$j^\mu = (\rho,\vec j)$，试求与外源耦合的场的运动方程。
+\end{eg}
+\begin{ans}
+注意到$j_\mu = \eta_{\mu \nu}j^\nu = (\rho,-\vec j)$，运动方程中取$\nu = 0$有
+\beq
+\rho = \partial^\mu F_{\mu 0} = -\partial^i E_i = \del \cdot \vec E
+\eeq
+取$\nu = i$有
+\bea
+-j^i &= \partial^\mu F_{\mu i} = \partial^0 F_{0i} + \partial^j F_{ji} \\
+&=\partial_0.E^i - \partial_j \epsilon_{ijk} B_k
+\eea
+即
+\beq
+\del \times \vec B = \vec j + \pfrac{\vec E}{t}
+\eeq
+\end{ans}
+
+\subsection{场的能量动量张量}
+对任意的含$n$个场$\phi_a$的作用量
+\beq
+S[\phi_a] = \int d^4 x\sqrt{-\det g} \ \lag(\phi_a,\partial_\mu \phi_a)
+\eeq
+诺特定理告诉我们，若场的无穷小变换$\phi_a \to \phi_a + \delta \phi_a$使得拉氏量变换为$\lag \to \lag + \partial_\mu \delta F^\mu$（从而使得作用量不变），则有守恒流
+\beq
+j^\mu = \pfrac{\lag}{(\partial_\mu \phi_a)} \delta \phi_a - F^\mu
+\eeq
+对平移不变的理论，就有能量动量张量
+\beq
+T^\mu_\nu = \pfrac{\lag}{(\partial_\mu \phi_a)} \partial_\nu \phi_a - \lag \delta^\mu_\nu
+\eeq
+满足守恒条件
+\beq
+\partial_\mu T^\mu_\nu = 0
+\eeq
+上标的能量动量张量为
+\beq
+T^{\mu \nu} = \pfrac{\lag}{(\partial_\mu \phi_a)} \partial^\nu \phi_a - \lag g^{\mu \nu}
+\eeq
+或等效地定义为
+\beq
+T^{\mu \nu} =- \frac{2}{\sqrt{-\det g}} \frac{\delta S}{\delta g_{\mu \nu}}
+\eeq
+代入电磁场的拉氏量就得到
+\beq
+T^{\mu \nu} = -F^{\mu \alpha} F^{\nu \beta} g_{\alpha \beta} - g^{\mu \nu} \lag
+\eeq
+用电磁场表示的显式形式为
+\beq
+T^{\mu \nu} = \mat{u & \vec g^T  \\
+\vec g &  T_{ij} }
+\eeq
+
+其中$u = \frac{1}{2} \vec E^2 + \frac{1}{2} \vec B^2$为能量密度，$\vec g = \vec E \times \vec B$为动量密度，$T_{ij} = \frac{1}{2}(\vec E^2 \delta_{ij}-2 E_i E_j) + \frac{1}{2} \vec(B^2\delta_{ij}- 2B_i B_j)$为应力张量。
+
+\subsection{场的洛伦兹变换}
+电磁场本身不是一个矢量，而是一个反称张量，这个反称张量按洛伦兹群$SO(1,3)$的6维表示变换。
+\par
+一般的协变矢量的变换规则和最简单的协变矢量$dx^\mu$相同
+\beq
+d\bar{x}^\mu = \pfrac{\bar{x}^\mu}{x^\nu} dx^\nu
+\eeq
+逆变矢量就反过来
+\beq
+\bar v_\mu = \pfrac{x^\nu}{\bar x^\mu} v_\nu
+\eeq
+作为二阶逆变张量，电磁场张量的变换为
+\beq
+\bar F_{\mu \nu} = \pfrac{x^\rho}{\bar x^\mu} \pfrac{x^\sigma}{\bar x^\nu} F_{\rho \sigma}
+\eeq
+或者反过来
+\beq
+F_{\mu \nu} = \pfrac{\bar x^\rho}{x^\mu} \pfrac{\bar x^\sigma}{x^\nu} \bar F_{\rho \sigma}
+\eeq
+我们考虑一个特殊的洛伦兹变换：沿$z$轴的推动，也就是$\bar x$坐标系在$x$坐标系中沿$z$轴以$v$的速度运动，有
+\bea
+\bar t &=\gamma ( t - v z) \\
+\bar x & = x \\
+\bar y &= y \\
+\bar z &= \gamma (z -vt)
+\eea
+变换矩阵相应写成
+\beq
+\pfrac{\bar x^\mu}{x^\nu} = a^\mu_\nu = \mat{ \gamma & 0 & 0 & -\gamma v  \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+-\gamma v & 0 & 0 & \gamma}
+\eeq
+如果我们已知$\bar x$系中的场，就可以得到$x$系中的场：
+\bea
+ &\mat{0 & E_1 & E_2 & E_3 \\ -E_1 &0 & -B_3 & B_2 \\ -E_2 & B_3 & 0 &-B_1 \\ -E_3 & -B_2 & B_1 &0} = F_{\mu \nu} = a^\rho_\mu a^\sigma_\nu \bar F_{\rho \sigma} \\
+ =& a^\rho_\mu \bar F_{\rho \sigma}  a^\sigma_\nu \\
+ =& \mat{ \gamma & 0 & 0 & -\gamma v  \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+-\gamma v & 0 & 0 & \gamma} \mat{0 & \bar E_1 & \bar E_2 & \bar E_3 \\ -\bar E_1 &0 & -\bar B_3 & \bar B_2 \\ -\bar E_2 & \bar B_3 & 0 &-\bar B_1 \\ -\bar E_3 & -\bar B_2 & \bar B_1 &0} \mat{ \gamma & 0 & 0 & -\gamma v  \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+-\gamma v & 0 & 0 & \gamma}  \\
+=& \mat{0 & \gamma \bar E_1 + \gamma v \bar B_2 & \gamma \bar E_2 - \gamma v \bar B_1 & \bar E_3 \\
+ -\gamma \bar E_1 - \gamma v \bar B_2 & 0 & -\bar B_3 & \gamma \bar B_2 + \gamma v \bar E_1 \\
+ -\gamma \bar E_2 + \gamma v \bar B_1 & \bar B_3 & 0 & -\gamma \bar B_1 + \gamma v \bar E_2 \\
+ -\bar E_3 &- \gamma \bar B_2 - \gamma v \bar E_1 & \gamma \bar B_1 - \gamma v \bar E_2 & 0}
+\eea
+或者写成
+\beq
+\vec E_{\perp} = \gamma(\bar{\vec E}_{\perp} - \vec v \times \bar{\vec B}_{\perp})
+\eeq
+\beq
+\vec B_{\perp} = \gamma(\bar{\vec B}_{\perp} + \vec v \times \bar{\vec E}_{\perp})
+\eeq
+\beq
+\vec E_{\parallel} = \bar{\vec E}_{\parallel}
+\eeq
+\beq
+\vec B_{\parallel} = \bar{\vec B}_{\parallel}
+\eeq
+或者反过来
+\beq
+\bar{\vec E}_{\perp} = \gamma({\vec E}_{\perp} + \vec v \times {\vec B}_{\perp})
+\eeq
+\beq
+\bar{\vec B}_{\perp} = \gamma({\vec B}_{\perp} - \vec v \times {\vec E}_{\perp})
+\eeq
+\beq
+\bar{\vec E}_{\parallel} = \vec E_{\parallel}
+\eeq
+\beq
+\bar{\vec B}_{\parallel} = \vec B_{\parallel}
+\eeq
+\begin{eg}
+求低速匀速运动电荷的场。
+\end{eg}
+\begin{ans}
+取电荷沿$z$轴运动，观测时刻$\bar x$系和$x$系原点重合，在电荷静止系中
+\beq
+\bar E_i = \frac{q}{4\pi} \frac{\bar x_i}{\bar r^3}
+\eeq
+实验室系中，电场的平行分量依然为
+\beq
+E_z = \bar E_z = \frac{q}{4\pi} \frac{\bar z}{\bar r^3}
+\eeq
+横向分量变为
+\beq
+E_i = \gamma \bar E_i =  \gamma \frac{q}{4\pi} \frac{\bar x_i}{\bar r^3},\quad i=1,2
+\eeq
+磁场的平行分量为零，横向分量为
+\bea
+B_x &= -\gamma v\bar E_y = -\frac{q}{4\pi} \frac{v \bar y}{\bar r^3} \\
+B_y &=\gamma v \bar E_x = \frac{q}{4\pi} \frac{v \bar x}{\bar r^3} 
+\eea
+另一方面，需要把$\bar x$换为$x$，有
+\bea
+\bar x &= x\\
+\bar y &= y \\
+\bar z &= \gamma z \simeq z + \frac{v^2}{2} z
+\eea
+因此，距离因子的修正都是$O(v^2)$阶的，可以略去。精确到$O(v)$的电磁场为
+\beq
+\vec E = \frac{q}{4\pi}\frac{\vec r}{r^3} + O(v^2)
+\eeq
+保持不变。磁场为
+\beq
+\vec B = v\times \vec E = \frac{1}{4\pi} \frac{q \vec v \times \vec x}{r^3} + O(v^2)
+\eeq
+这事实上就是毕奥-萨伐尔定律。
+\end{ans}
+
+
+\subsection{场的洛伦兹标量}
+我们关注洛伦兹不变且规范不变的张量，这要求，得到的量中不能直接出现$A_\mu$，而只能出现场强张量$F_{\mu \nu}$，而且指标必须被完全收缩掉。其中一个标量
+$$
+ F^{\mu \nu} F_{\mu \nu}
+ $$
+已经被我们用来构造拉氏量了。还可能构造的另一个标量是
+$$
+\epsilon^{\mu \nu \rho \sigma} F_{\mu \nu} F_{\rho \sigma}
+$$
+它也是一个规范不变的标量。定义
+\beq
+^*F^{\mu \nu} = \frac{1}{2} \epsilon^{\mu \nu \rho\sigma}F_{\rho \sigma}
+\eeq
+上面这个标量也可以写成
+$$
+^*F^{\mu \nu} F_{\mu \nu}
+$$
+\begin{eg}
+用场表示出$^*F^{\mu \nu}$。
+\end{eg}
+\begin{ans}
+这显然也是一个反称张量。非对角项为
+\bea
+^*F^{0i} &= \frac{1}{2} \epsilon^{0i\rho \sigma} F_{\rho \sigma} \\
+&=\frac{1}{2} \epsilon^{ijk} F_{jk} = \epsilon^{ijk} (-\epsilon_{jkl }B_l) \\
+&= -B_i
+\eea
+\bea
+^*F^{ij} &= \frac{1}{2} \epsilon^{ij\rho \sigma} F_{\rho \sigma} = \frac{1}{2} \epsilon^{ij0k} F_{0k} + \frac{1}{2} \epsilon^{ijk0} F_{k0} \\
+&= \epsilon^{ijk} E_k
+\eea
+也就是说，$^*F$张量是电磁对偶$\vec E \to -\vec B, \vec B \to \vec E$后的场强张量。
+\end{ans}
+下面我们来计算$^*F^{\mu \nu} F_{\mu \nu}$，$\epsilon$的4个指标轮流取0，有
+\bea
+\epsilon^{\mu \nu \rho \sigma} F_{\mu \nu} F_{\rho \sigma} &= \epsilon^{0ijk} F_{0i}F_{jk} + \epsilon^{i0jk}F_{i0}F_{jk} + \epsilon^{ij0k} F_{ij} F_{0k} + \epsilon^{ijk0} F_{ij} F_{k0} \\
+&= -2\epsilon^{ijk} E_i \epsilon^{jkl} B_l - 2\epsilon^{ijk} \epsilon^{ijl} B_l E_k \\
+&= 8 \vec E \cdot \vec B
+\eea
+故
+\beq
+^*F^{\mu \nu} F_{\mu \nu} = 4\vec E \cdot \vec B
+\eeq
+按道理来说，洛伦兹标量$\epsilon^{\mu \nu \rho \sigma} F_{\mu \nu} F_{\rho \sigma} $也可以用来构造作用量，但我们接下来证明，这样的作用量给不出任何运动方程，而仅有边界效应。
+\par
+依然考虑场的变化$A_\mu \to A_\mu + \delta A_\mu$，有
+\bea
+\delta S &= \int d^4 x \ \epsilon^{\mu \nu \rho \sigma} (\delta F_{\mu \nu} F_{\rho \sigma} +F_{\mu \nu} \delta F_{\rho \sigma}) \\
+&= \int d^4 x (\epsilon^{\mu \nu \rho \sigma}\delta F_{\mu \nu} F_{\rho \sigma} + \epsilon^{\rho \sigma \mu \nu}F_{\mu \nu} \delta F_{\rho \sigma}) \\
+&= 2\int d^4 x\  \epsilon^{\mu \nu \rho \sigma}\delta F_{\mu \nu} F_{\rho \sigma} \\
+&= 2\int d^4 x\ \epsilon^{\mu \nu \rho \sigma}\delta F_{\mu \nu} (\partial_\rho A_\sigma - \partial_\sigma A_\rho) \\
+&= 4\int d^4 x\ \epsilon^{\mu \nu \rho \sigma}(\partial_\mu \delta A_\nu - \partial_\nu \delta A_\mu)\partial_\rho  A_\sigma \\
+&= 8\int d^4 x\ \epsilon^{\mu \nu \rho \sigma}\partial_\mu \delta A_\nu \partial_\rho  A_\sigma \\
+&= 8\epsilon^{\mu \nu \rho \sigma} \int d^4 x \ \partial_\mu( \delta A_\nu \partial_\rho  A_\sigma) - 8\epsilon^{\mu \nu \rho \sigma} \int d^4 x \ \partial_\mu \partial_\rho A_\sigma \delta A_\nu \\
+&= - 8\epsilon^{\mu \nu \rho \sigma} \int d^4 x \ \partial_\mu \partial_\rho A_\sigma \delta A_\nu \\
+&\equiv 0
+\eea
+推导过程中扔掉了所有的全导数项（边界项），最后一步利用了$\epsilon^{\mu \nu \rho \sigma}$乘以一个对称符号$\partial_\mu \partial_\rho$恒等于0的性质。
+\begin{eg}
+证明
+\beq
+\partial_\mu ^*F^{\mu \nu} = 0
+\eeq
+\end{eg}
+\begin{ans}
+我们有
+\beq
+\partial_\mu ^*F^{\mu \nu} = \epsilon^{\mu \nu \alpha \beta} \partial_\mu ( \partial_\alpha A_\beta - \partial_\beta A_\alpha)
+\eeq
+偏导数项以$\partial_\mu \partial_\alpha$和$\partial_\mu \partial_\beta$的形式出现，都可以和$\epsilon^{\mu \nu \alpha \beta}$相抵消变为0。
+\end{ans}
+
+
 
 
 
@@ -93,11 +460,11 @@
 \eeq
 两边乘$e^{-i\omega t + i \vec{k} \cdot \vec{x}} dt d^3 \vec{x}$做积分，得到傅立叶空间中的方程为
 \beq
-(\vec{k}^2 - \omega^2 ) G= e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0}
+(\vec{k}^2 - \omega^2 ) G(\omega,\vec k)= e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0}
 \eeq
 傅立叶逆变换为
 \beq
-G = \int \frac{d\omega}{2\pi} \int \frac{d^3 \vec{k}}{(2\pi)^3} \frac{1}{\vec{k}^2-\omega^2} e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0} e^{i\omega t - i \vec{k} \cdot \vec{x}}
+G(t,\vec x) = \int \frac{d\omega}{2\pi} \int \frac{d^3 \vec{k}}{(2\pi)^3} \frac{1}{\vec{k}^2-\omega^2} e^{-i\omega t_0 + i \vec{k} \cdot \vec{x}_0} e^{i\omega t - i \vec{k} \cdot \vec{x}}
 \eeq
 这个积分可以这样进行，首先，由于傅立叶空间中$\vec{x}$是一个给定的量，记$\vec{x}-\vec{x}_0$的长度为$r$，$\vec{x}-\vec{x}_0$与$\vec{k}$的夹角为$\theta$（随$\vec{k}$变化而变化，从而被对$d^3 \vec{k}$的积分积掉。第二个积分因此可以改到在球坐标下进行。球坐标下的体积元$d^3 \vec{k} = k^2 \sin \theta dk d\theta d\phi$，因此有
 \beq
@@ -160,7 +527,8 @@ G_F &= 2\pi \int_{\omega = -\infty}^\infty \frac{d\omega}{2\pi} e^{i\omega (t-t_
 \eea
 推迟势的物理意义在于否定了超距作用：一个位于$\vec{x}'$点的电子必须经过$\sim \frac{1}{c} \left| \vec{x}' - \vec{x} \right|$的时间后才能感受到位于$\vec{x}$处的电子发生的变化，信息以光速传递。此外可以看出，$\phi \sim \frac{1}{r}$，即势在无穷远处消散。这都是符合我们的物理直觉的。
 
-\section{静场}
+\chapter{静场}
+\section{真空中的静场}
 \subsection{拉普拉斯方程}
 假设电荷分布和电流分布都不显含时间$t$，则从\cref{retp}可以看出，势函数同样不显含时间。这样不随时间演化的场称为静场。此时\cref{maxpot}简化为
 \bea
@@ -731,7 +1099,7 @@ a_{lm} = \int \sin \theta d \theta d \varphi V(\theta,\varphi) Y_{lm}(\theta,\va
 \begin{cases}
 u\big|_{S} = V(\vec x) ;\\
 \text{或} \\
-\pfrac{u}{n}\big|_{S} = \frac{\sigma(\vec{x})}{\epsilon_0}
+\pfrac{u}{n}\big|_{S} = -\frac{\sigma(\vec{x})}{\epsilon_0}
 \end{cases}
 \eeq
 我们考虑同样边界的点源问题
@@ -765,7 +1133,7 @@ u(\vec{x}) = \int_V d^3 \vec{x}' G(\vec x; \vec{x}') \frac{\rho(\vec{x}')} {\eps
 \eeq
 对第二类边界条件，右边项
 \beq
-\int_{\partial V} dS ( u \pfrac{G}{n} -G \pfrac{u}{n}) = -\int_{\partial V} dS  \frac{\sigma(\vec{x})}{\epsilon_0}G(\vec x; \vec{x}' )
+\int_{\partial V} dS ( u \pfrac{G}{n} -G \pfrac{u}{n}) = \int_{\partial V} dS  \frac{\sigma(\vec{x})}{\epsilon_0}G(\vec x; \vec{x}' )
 \eeq
 于是
 \beq
@@ -773,7 +1141,7 @@ u(\vec{x}') = \int_V d^3 \vec{x} G(\vec x; \vec{x}') \frac{\rho(\vec x)} {\epsil
 \eeq
 或
 \beq
-u(\vec{x}) = \int_V d^3 \vec{x}' G(\vec x; \vec{x}') \frac{\rho(\vec{x}')} {\epsilon_0} - \int_{\partial V} dS' \frac{\sigma(\vec{x}')}{\epsilon_0} G(\vec x; \vec{x}' )
+u(\vec{x}) = \int_V d^3 \vec{x}' G(\vec x; \vec{x}') \frac{\rho(\vec{x}')} {\epsilon_0} + \int_{\partial V} dS' \frac{\sigma(\vec{x}')}{\epsilon_0} G(\vec x; \vec{x}' )
 \eeq
 \par
 特别地，当空间中无自由电荷，而给定空间中某一表明上的电势分布$V(\vec x)$时，可以得到
@@ -1012,28 +1380,106 @@ A_i (\vec x) &=\epsilon_{ijk}  \int d^3 \vec{x}' \frac{\mu_0}{4\pi} M_j (\vec{x}
 
 
 
-
-\section{动场}
+\chapter{动场}
+\section{波动}
 \subsection{自由无界空间中的场}
-如果空间中没有自由电荷，且介质是线性的，把麦克斯韦方程按
-\bea
-\partial_0 \equiv \frac{\partial}{\partial_t} &\to i\omega \\
-\del &\to -i\vec k
-\eea
-傅立叶变换，一组用于确定自由无界空间中的场的方程就是
-\bea
-\vec k \cdot \vec D &= 0 \\
-\vec k \times \vec E &= \omega \vec B \\
-\vec k \cdot \vec B &= 0 \\
-\vec k \times \vec H &= -\omega \vec D + \vec{j} \\
-\vec D &= \epsilon \vec E \\
-\vec B &= \mu \vec H \\
-\vec j &= \sigma \vec E
-\eea
+如果空间中没有自由电荷，且介质是线性的，麦克斯韦方程可以化为两个波动方程
+\beq
+\mu \epsilon \frac{\partial^2 \vec E }{\partial t^2} - \nabla^2 \vec E = 0
+\eeq
+\beq
+\mu \epsilon \frac{\partial^2 \vec B }{\partial t^2} - \nabla^2 \vec B = 0
+\eeq
+波动方程在无界空间中的解可以写成傅立叶模式之和
+\beq
+\vec E (\vec x,t) = \int \frac{d^3 \vec k}{(2\pi)^3} \ \vec E(\vec k) e^{i\vec k \cdot \vec x - i \omega_k t}
+\eeq
+其中色散关系由波动方程给出
+\beq
+\omega_{\vec k} = \frac{1}{\sqrt{\mu \epsilon}} k = vk
+\eeq
+对$\del \cdot \vec E = 0$和$\del \cdot \vec B =0$两边傅立叶变换得到
+\beq
+\vec k \cdot \vec E = \vec k \cdot \vec B =0
+\eeq
+表明无界空间中的电磁波是横波。
 
-\subsection{波导和谐振腔}
+\subsection{波动在导体中的传播}
+我们依然从麦克斯韦方程出发，推导出电磁波在导体中的传播模式，在导体中存在自由电流$\vec j = \sigma \vec E$，故有
+\beq
+\del \times \vec E = - \pfrac{\vec B}{t}
+\eeq
+\beq
+\del \times \vec B = \mu \epsilon \pfrac{\vec E }{t} + \mu \sigma \vec E
+\eeq
+现在我们有
+\beq
+\nabla^2 \vec E - \mu \epsilon \pfrac{^2 \vec E}{t^2} - \mu \sigma \pfrac{\vec E}{t} = 0
+\eeq
+为了得到色散关系，两边傅立叶变换得到
+\beq
+-\vec k^2 + \mu \epsilon \omega^2 + i \mu \sigma \omega = 0
+\eeq
+解出
+\beq
+\omega = \frac{-i\sigma \mu + \sqrt{-\sigma^2 \mu^2 + 4\mu \epsilon k^2}}{2\mu \epsilon}
+\eeq
+对于不良导体，按$\sigma$将上式展开成
+\beq
+\omega = \frac{1}{\sqrt{\epsilon \mu}} k - \frac{i\sigma}{2\epsilon} + O(\sigma^2)
+\eeq
+效果等同于一个引入了不依赖于频率的耗散。
+\par
+对于良导体，按$k$将上式展开成
+\beq
+\omega = -\frac{i}{\sigma \mu} k^2 - \frac{i \epsilon }{\sigma^3 \mu^2} k^4 + O(k^6)
+\eeq
+仅有虚部，表明，波不能在良导体中传播，它将迅速耗散。为了进一步研究这个特性，我们从上式中的领头阶中反解出
+\beq
+k \simeq \sqrt{i\omega \mu \sigma} = \frac{1+i}{\sqrt{2}} \omega \mu \sigma
+\eeq
+也就意味着波将按
+\beq
+\delta \sim \sqrt{\frac{2}{\sigma\omega \mu}}
+\eeq
+的特征尺度消散。在高频和良导体近似下，$\delta \to 0$，没有波可以进入导体内部。于是根据一般的边界条件
+\bea
+\vec n \cdot (\vec D_1 - \vec D_2) &= \sigma_f \\
+\vec n \times (\vec E_1 - \vec E_2)&= 0 \\
+\vec n \cdot (\vec B_1 - \vec B_2) &= 0 \\
+\vec n \times ( \vec H_1 - \vec H_2) &= \vec K_f
+\eea
+的中间两式可以得到理想导体边界条件
+\bea
+\vec n \times \vec E &= 0\\
+\vec n \cdot \vec B &= 0
+\eea
+\begin{eg}
+对实际金属导体，其电导率通常是频率的函数，一个简单的模型给出
+\beq
+\sigma(\omega) = \frac{\sigma_D}{1-i\tau \omega}
+\eeq
+试给出金属对不同频率外电场的响应。
+\end{eg}
+\begin{ans}
+现在导体中的色散关系由
+\beq
+-k^2 + \mu \epsilon \omega^2 + \frac{i\mu \omega \sigma_D}{1-i\tau \omega} = 0
+\eeq
+当$\omega \ll \frac{1}{\tau}$时，结果退化为上面讨论的良导体。当$\omega \gg \frac{1}{\tau}$时，色散关系近似为
+\beq
+-k^2 + \mu \epsilon \omega^2 - \frac{\mu \sigma_D}{\tau} \simeq 0
+\eeq
+从中解出
+\beq
+\omega \simeq \sqrt{\frac{k^2 + \frac{\mu \sigma_D}{\tau}}{\mu \epsilon}}
+\eeq
+也就是说，实际的金属导体对极高频电磁波事实上是透明的。
+\end{ans}
+
+\section{波导和谐振腔}
 对有界的空间，我们可以想象，场的本质模式变成离散情形。通常我们要处理的是理想导体作为边界的电磁场问题，在这里，导体表面处必须满足电场的切向分量等于0，且散度定理$\del \cdot \vec E=0$成立。也就是法向电场的法向导数$\pfrac{E_n}{n}=0$成立。
-\subsubsection{谐振腔}
+\subsection{谐振腔}
 在一个完全由理想导体包围的区域内，电场$\vec E$满足波动方程
 \beq
 \nabla^2 \vec E = \frac{1}{c^2} \pfrac{^2}{ t^2} \vec E
@@ -1149,7 +1595,7 @@ E_\theta \sim E_z \sim J_m(\frac{\mu_{m,n}r}{a})\left(c \cos m\theta + s \sin m 
 \eeq
 \end{ans}
 
-\subsubsection{波导}
+\subsection{波导}
 波导与谐振腔的不同之处在于，波导在某个方向（常取作$z$方向）是无界的，也就是说，在这个方向上的模式是连续的，我们可以按$\vec E \sim \vec E(x,y) e^{i(kz - \omega t)}$把时间上的传播模式和$z$轴上的传播模式先分离变量，从而将问题化为一个二维的亥姆霍兹方程求解问题
 \beq
 \nabla^2 \vec E = - k_T^2 \vec E
@@ -1205,78 +1651,31 @@ k^2 = \left(\frac{\omega}{c}\right)^2 - k_{T,mn}^2
 \eeq
 
 
-\subsection{辐射}
-上面都讨论的是自由空间中场的传播，但事实上我们更感兴趣的是由源激发的场。回忆我们一开始的推迟势公式，简单起见，我们暂时使用$c=1$的单位制。
+\section{辐射}
+之前都讨论的是自由空间中场的传播，但事实上我们更感兴趣的是由源激发的场。回忆我们一开始的推迟势公式，简单起见，我们暂时使用$c=1$的单位制。
 \beq
-\phi_{ret}( \vec x, t) = \frac{1}{4\pi \epv}\int d^3 \vec{x}'\ \frac{\rho(\vec x', t - |\vec x - \vec{x}'|)}{|\vec x - \vec{x}'}
+\phi_{ret}( \vec x, t) = \frac{1}{4\pi \epv}\int d^3 \vec{x}'\ \frac{\rho(\vec x', t - |\vec x - \vec{x}'|)}{|\vec x - \vec{x}'|}
 \eeq
 \beq
-\vec A_{ret}( \vec x, t) = \frac{\mu_0}{4\pi}\int d^3 \vec{x}'\ \frac{\vec j(\vec x', t - |\vec x - \vec{x}'|)}{|\vec x - \vec{x}'}
+\vec A_{ret}( \vec x, t) = \frac{\mu_0}{4\pi}\int d^3 \vec{x}'\ \frac{\vec j(\vec x', t - |\vec x - \vec{x}'|)}{|\vec x - \vec{x}'|}
 \eeq
-\subsubsection{多极展开}
-我们在静场的多极展开那里讨论过$|\vec x| \gg | \vec x'|$时$\frac{1}{|\vec x - \vec{x}'|}$的展开式。
+\par
+对于辐射问题，我们关心电磁波由源点向足够远出的场点的传播。对一般的电磁波总有$E \sim B$，能流密度$S \sim EB \sim E^2$，在足够大的球面上的总功率为
 \beq
-\frac{1}{|\vec x - \vec{x}'|} =\frac{1}{r} + \frac{\vec x\cdot \vec x' }{r^3} + O(\frac{1}{r^3})
- \eeq
-另外还有一个展开式
-\beq
-|\vec x - \vec{x}'| \simeq r - \frac{\vec x \cdot \vec x'}{r}+ O(\frac{1}{r})
+P \sim Sr^2
 \eeq
-电流（和电荷）同样可以继续展开
-\bea
-\vec j ( \vec x', t - |\vec x - \vec{x}'| ) &\simeq \vec j(\vec x', t - r + \frac{\vec x \cdot \vec x'}{r}) \\
-&= \vec j (\vec x', t - r) + \dot{\vec j} (\vec x', t - r) \frac{\vec x \cdot \vec x'}{r} + O(\frac{1}{r})
-\eea
-于是
-\beq
-\vec A (\vec x) \simeq \frac{\mu_0}{4\pi r} \int  d^3 \vec x'\ \left( \vec j (\vec x', t - r) + \dot{\vec j} (\vec x', t - r) \frac{\vec x \cdot \vec x'}{r} \right) \left(1 + \frac{\vec x\cdot \vec x' }{r^2} \right)
-\eeq
-我们可以将上式按$\frac{1}{r}$各阶展开：
-\begin{itemize}
-\item $\sim \frac{1}{r}$阶
-\beq
-\vec A^{(1)}  = \frac{\mu_0}{4\pi r} \int d^3 \vec x'\ \vec j (\vec x', t - r)
-\eeq
-积分号内的等式这样变形：用指标语言
-\beq
-\partial'_j (x'_i j_j) = j_i + x'_i \partial'_j j_j = j_i - x'_i \dot \rho = j_i - \dot{p}_i
-\eeq
-简单认为全导数项积分消失，就得到了
-\beq
-\vec A^{(1)}  = A^{ED} = \frac{\mu_0}{4\pi r} \int d^3 \vec x'\ \vec \dot{p} (\vec x', t - r)
-\eeq
-也就是说，矢势的最低阶贡献是时变电偶极矩产生的。
-\item $\sim \frac{1}{r^2}$阶
-\beq
-\vec A^{(2)} = \frac{\mu_0}{4\pi r^2} \int d^3 \vec x'\ \dot{\vec j} ( \vec x',t - r) (\vec x \cdot \vec x')
-\eeq
-我们同样可以把积分号内的$\dot{j}_i x_j$变形，利用
-\beq
-\partial'_k (x'_j x'_i \dot{j}_k) = -x'_i x'_j \ddot \rho + x'_j \dot{j}_i + x'_i \dot{j}_j
-\eeq
-有
-\beq
- x_j   \int d^3 \vec x'\ \dot{j}_i x'_j = \frac{1}{2} x_j  \int d^3 \vec x'\ \dot j_i x'_j  + \frac{1}{2} x_j \int d^3 \vec x'\ (\ddot{\rho} x_i' x_j'  - \dot j_j x'_i)
-\eeq
-磁矩的定义是
-\beq
-m_j = \frac{1}{2} \int d^3 \vec x' \ \epsilon_{jkl} x_k j_l
-\eeq
-于是我们把该阶矢势分解成了两项：
-电四极辐射：
-\beq
-\vec A^{EQ} = \frac{\mu_0}{24\pi r^2} \int d^3\ddot{\hat D} (\vec x', t-r) \cdot \vec x
-\eeq
-磁偶极辐射：
-\beq
-\vec A^{MD} = \frac{\mu_0}{4\pi r^2} \int d^3 \dot{\vec m}  (\vec x', t-r) \times \vec x
-\eeq
+因此，辐射场中只有$S \sim \frac{1}{r^2}$的项贡献我们感兴趣的功率，因此我们关心$E \sim B \sim A \sim \frac{1}{r}$的辐射。
 
-
-\end{itemize}
-
-\subsubsection{电偶极辐射}
-
+\subsection{电偶极辐射}
+\beq
+\vec B = \frac{e^{ikr}}{4\pi \epv c^3 r} \ddot{\vec{p}} \times \vec e_r
+\eeq
+\beq
+\vec E = \frac{e^{ikr}}{4\pi \epv c^2 r} (\ddot{\vec{p}} \times \vec e_r)\times \vec e_r
+\eeq
+\beq
+\vec S = \frac{1}{32\pi^2 \epv c^3 r^2} |\ddot{\vec p} \times \vec e_r|^2 \vec e_r
+\eeq
 
 
 

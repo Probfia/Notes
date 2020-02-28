@@ -1,0 +1,473 @@
+\documentclass[aspectratio=1610,14pt,mathserif]{beamer}
+\batchmode
+%\input{macros.tex}
+\usepackage{xeCJK}
+\setCJKmainfont{STFangsong}
+\usepackage{beamerthemesplit}
+\usetheme{Boadilla}
+%\useoutertheme{smoothbars}
+\usecolortheme{beaver}
+
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{eufrak}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage{tcolorbox}
+
+%\def\bch{\begin{CJK}{UTF8}{gbsn}}
+%\def\ech{\end{CJK}}
+\newcommand{\bch}{}
+\newcommand{\ech}{}
+\def\bcenter{\begin{center}}
+\def\ecenter{\end{center}}
+\def\skipline{{\vskip0.1in}}
+\def\skiplines{{\vskip0.2in}}
+\def\tbox#1{\begin{tcolorbox}#1\end{tcolorbox}}
+
+\newcommand{\field}{\mathscr{F}}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexs}{\mathbb{C}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\dim}{\mathrm{dim\ }}
+\newcommand{\diag}{\mathrm{diag \ }}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\so}{\mathfrak{so}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\card}{\mathrm{card \ }}
+\newcommand{\mani}{\mathcal{M}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
+\def\secpage#1#2{\begin{frame}\bch\bcenter{\bf \Huge #1} \skipline \tbox{#2}\ecenter\ech\end{frame}}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\mev}{\ {\rm MeV}}
+
+\newcommand{\bea}{\begin{equation*}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation*}}
+
+\newcommand{\red}[1]{{\color{red} #1}}
+\def\green#1{{\color[rgb]{0.1,0.6,0.3}#1}}
+\newcommand{\purple}[1]{{\color{purple} #1}}
+\newcommand{\orange}[1]{{\color{orange} #1}}
+\newcommand{\blue}[1]{{\color{blue} #1}}
+\newtheorem{thm}{定理}[section]
+\newtheorem{axm}{公理}[section]
+\newtheorem{dfn}{定义}[section]
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[h!]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\title{Group Theory: Symmetry in the Particle World}
+\substitle{$SU(3)_f$ Symmetry Breaking and Field Theory}
+\author{Han G.}
+  \date{\today}
+
+
+\begin{document}
+
+\begin{frame}
+ 
+\titlepage
+
+\end{frame}
+
+\begin{frame}{内容提要}
+\tableofcontents
+\end{frame}
+
+\section{Quantization of Scalar and Spinor}
+\secpage{准备知识：复标量场和旋量场}{$$\lag = \bar{\psi}(i\slashed{\partial}-m)\psi$$}
+
+\begin{frame}{自旋$0$粒子：复标量场}
+\begin{itemize}
+\item 自由标量场的拉氏量
+$$
+\lag = \frac{1}{2}(\partial \phi)^2 - \frac{1}{2}m^2 \phi^2
+$$
+\item 量子化后描述质量为$m$的自旋$0$粒子。
+\end{itemize}
+\end{frame}
+
+\begin{frame}{自旋$\frac{1}{2}$粒子：旋量场}
+\begin{itemize}
+\item 自由旋量场的拉氏量
+$$
+\lag =  \bar{\psi}(i\slashed{\partial}-m)\psi
+$$
+\item
+我们知道，旋量是$4$分量列向量，$\bar{\psi} =\psi^\dagger \gamma^0 $，$\slashed{\partial} = \gamma^\mu \partial_\mu$。这些在量子力学seminar上都讨论了。
+\item 量子化后描述质量为$m$的自旋$1/2$粒子（区分正负）。
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{如果有很多种粒子}
+那就把这些粒子的拉氏量全加起来。
+\cpic{0.4}{happy}
+\end{frame}
+
+
+\section{Flavor Symmetry Breaking}
+\secpage{味对称性破缺}{$$m_s \gg m_{u,d}$$}
+
+
+\begin{frame}{$n$重态的来源}
+\begin{itemize}
+\item
+我们在之前两节的讨论中发现，介子8重态，重子8重态和10重态的来源都是三种夸克态
+$$
+u = \mat{1\\0 \\0},\quad v = \mat{0\\1\\0},\quad s = \mat{0\\0\\1}
+$$
+的$SU(3)$旋转对称性。这称作味对称性。
+\item
+如果$SU(3)_f$对称性是精确的，同种表示中的所有粒子都具有同样的质量（最多相差静电能的量级）。
+\item
+但是，我们发现，对介子8重态，这些介子质量差得离谱；重子8重态的重子质量也差$\sim 0.2$左右。
+\item
+来源：奇夸克$s$的质量比其他两个大得多！
+$$
+\green{m_u \approx 2.3\mev,\quad m_d \approx 4.8\mev,}\quad \red{m_s \approx 95\mev}
+$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{破缺的对称性}
+\begin{itemize}
+\item
+粒子世界的$SU(3)_f$味对称性因为某种机制被破坏了。
+\item
+在一级近似下，我们认为$SU(3)_f$破缺成同位旋对称性$SU(2)_i$和超荷（奇异数）对称性$U(1)_s$。$SU(2)_i$对称性在实验上符合得很好。
+\item
+来源：$u,d$夸克差不多，象征奇异数的$s$夸克重很多。
+\item
+对称性破缺的其他粒子：原子的轨道量子数$j$在自由$SO(3)$空间中无限制：不可约表示的维数$2j+1$可以取到无穷；但假如把原子放到晶格里，$SO(3)$对称性被破坏，$j$的取值有限个。
+\end{itemize}
+\end{frame}
+
+
+
+
+\section{Meson Eightfold}
+\secpage{介子八重态}{$$4m_K^2=m_\pi^2 + 3m_\eta^2$$}
+
+\begin{frame}{构造介子场}
+\begin{itemize}
+\item
+介子8重态对应$SU(3)_f$的$(1,1)$张量表示，即伴随表示。也就是，介子场可以用盖尔曼矩阵张成
+$$
+M = \frac{1}{\sqrt 2} M_a \lambda_a = \frac{1}{2} \mat{ M_3 + \frac{1}{\sqrt 3} M_8 & M_1 - iM_2 & M_4 - iM_5 \\
+M_1 + iM_2 & -M_3 + \frac{1}{\sqrt 3} M_8 & M_6 - iM_7 \\ M_4 + iM_5 & M_6 + iM_7 & -\frac{2}{\sqrt 3} M_8 }
+$$
+\item 重新线性组合：注意同位旋对称性没有被破坏，而$\green{(\lambda_{1},\lambda_2,\lambda_3)},\red{(\lambda_4,\lambda_5),(\lambda_6,\lambda_7)},\orange{\lambda_8}$各对应一组同位旋对称性$8 \to \green{3_0} \oplus \red{2_3 \oplus 2_{-3} }\oplus \orange{1_0}$：
+$$
+M = \mat{\green{\frac{1}{\sqrt 2} \pi^0 }\orange{+ \frac{1}{\sqrt 6} \eta} &\green{ \pi^+} & \red{K^+} \\
+\green{ \pi^- }& \green{- \frac{1}{\sqrt 2} \pi^0 }\orange{+ \frac{1}{\sqrt 6} \eta } & \red{K^0} \\
+\red{ K^- }& \red{\bar{K}^0}  & \orange{- \frac{2}{\sqrt 6} \eta}}
+$$
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{构造完全$SU(3)_f$对称的拉氏量}
+\begin{itemize}
+\item 最简单的，含动能项和质量项的，$SU(3)_f$不变的标量是
+$$
+\lag = \frac{1}{2}\tr \left[(\partial M)^2 - m^2 M^2 \right]
+$$
+\item 计算出$$\tr M^2 =\green{ (\pi^0)^2 + 2\pi^+ \pi^- } + \red{2(K^0 \bar{K}^0 + K^+ K^-)} + \orange{\eta^2}$$
+\item 物理意义：介子场解耦合，所有同型（同一个同位旋）的介子质量相同，都是$m$。
+\end{itemize}
+\end{frame}
+
+\begin{frame}{破坏对称性}
+\begin{itemize}
+\item 刚刚我们建立了完美$SU(3)_f$的介子场拉氏量，它的各个介子确实是等质量的。
+\item 现在我们就来着手破坏这个美丽的对称性。
+\item \emph{悲剧就是把美好的事物毁灭给人看。}——鲁迅
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{开局一张图}
+\begin{itemize}
+\item 我们思考怎么去破坏对称性，为此我们先看熟悉的图
+\cpic{0.16}{mesons}
+\item 然后我们发现，质量差异与超荷（奇异数）$I_8$密切相关，这很容易理解，因为超荷由$s$夸克数决定，而它比其他两个夸克都重很多。我们又知道，描述超荷的盖尔曼矩阵是$\lambda_8$。
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{后面全靠编}
+\begin{itemize}
+\item 然后我们发现，质量差异与超荷（奇异数）$I_8$密切相关，这很容易理解，因为超荷由$s$夸克数决定，而它比其他两个夸克都重很多。我们又知道，描述超荷的盖尔曼矩阵是$\lambda_8$。
+\item 为此我们在原来的拉氏量中引入一个$\sim \lambda_8$的标量作为破坏对称性的项。这一项的一种可能的，也是最简单的非平凡取法是
+$$
+\tr M^2 \lambda_8
+$$
+\item 但$\lambda_8 = \frac{1}{\sqrt 3} I - \sqrt{3}\diag(0,0,1)$，前面的含单位阵的项可以吸收到原来的拉氏量中去，剩下$\sim \tr M^2\diag(0,0,1)$破坏对称性。
+\item \blue{课堂小练习}：利用$
+M = \mat{\green{\frac{1}{\sqrt 2} \pi^0 }\orange{+ \frac{1}{\sqrt 6} \eta} &\green{ \pi^+} & \red{K^+} \\
+\green{ \pi^- }& \green{- \frac{1}{\sqrt 2} \pi^0 }\orange{+ \frac{1}{\sqrt 6} \eta } & \red{K^0} \\
+\red{ K^- }& \red{\bar{K}^0}  & \orange{- \frac{2}{\sqrt 6} \eta}}
+$
+用介子场表示出$\tr M^2 \diag(0,0,1)$。
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{继续编}
+\begin{itemize}
+\item 所以，我们现在引入对称性破缺后的拉氏量，称作有效拉氏量，为
+$$
+\lag_{eff} =  \frac{1}{2}\tr \left[(\partial M)^2 - m^2 M^2 \right] - \frac{\alpha}{2} \tr M^2 \diag(0,0,1)
+$$
+\item 代入刚才\blue{课堂小练习}的结果，有效拉氏量中的质量项是
+$
+\green{\frac{1}{2} m^2\left[ (\pi^0)^2 + 2\pi^+ \pi^- ]} + \red{(m^2 + \frac{\alpha}{2})(K^0 \bar{K}^0 + K^+ K^-)} + \orange{\frac{1}{2}\left(m^2 + \frac{2}{3} \alpha\right) \eta^2}$
+\item
+于是我们马上得到，引入$SU(3)_f$破缺后，各个介子的质量为
+$$
+\green{m_\pi^2 = m^2},\quad \red{m_K^2 = m^2 + \frac{\alpha}{2}},\quad \orange{m_\eta^2 = m^2 + \frac{2}{3} \alpha}
+$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{检查一下编得怎么样}
+\begin{itemize}
+\item
+消去我们的模型参量$m$和$\alpha$，最后留下3个可观测质量的关系
+$$
+\blue{4m_K^2 = 3m_\eta^2 + m_\pi^2}
+$$
+这称为Gell-Mann--Okudo（没错，盖尔曼一人顶两）公式。
+\item
+代入数据$m_K \approx 496\mev, m_\eta \approx 548\mev, m_\pi \approx 138 \mev$，有
+$$
+LHS \approx 9.8\times 10^5\mev^2 , RHS \approx 9.2 \times 10^5 \mev^2
+$$
+还是比较靠谱。要知道，介子八重态的质量差异几乎是$\sim 300\%$，这里把差异降到了$\sim 0.06$，已经非常不错了。
+\item
+这也暗示了，引入的对称破缺的最低阶修正已经能够很好地解释现象。但是我们这里的模式其实是一个唯象模型：我们没办法第一性地直接计算出模型参数$\alpha$。
+\end{itemize}
+\end{frame}
+
+
+\section{Meson Eightfold}
+\secpage{重{\small(zh\`ong)}子八重{\small(ch\'ong)}态}{$$3m_\Lambda + m_\Sigma = 2(m_N + m_\Xi)$$}
+
+\begin{frame}{构造重子场}
+\begin{itemize}
+\item
+重子8重态同样对应$SU(3)_f$的$(1,1)$张量表示，即伴随表示。一样的套路：
+$$
+B = \frac{1}{\sqrt 2} B_a \lambda_a
+$$
+\item 但是和介子（自旋0波色子）不同，重子是自旋$1/2$费米子，它的场是旋量场。也就是，每个$B_a$是四分量的旋量。
+\item 同样的套路，把同位旋相同的粒子写在同一组盖尔曼矩阵，重新线性组合：
+$$
+B = \mat{\green{\frac{1}{\sqrt 2} \Sigma^0 } + \orange{ \frac{1}{\sqrt 6} \Lambda} & \green{\Sigma^+} & \purple{p} \\
+\green{\Sigma^-} & \green{- \frac{1}{\sqrt 2} \Sigma^0} +\orange{ \frac{1}{\sqrt 6} \Lambda} & \purple{n} \\
+\red{\Xi^-} & \red{\Xi^0} & \orange{-\frac{2}{\sqrt 6} \Lambda }}
+$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{构造完全$SU(3)_f$对称的拉氏量}
+\begin{itemize}
+\item 仿照单粒子自由狄拉克场的拉氏量写出$SU(3)$不变的自由狄拉克场拉氏量
+$$
+\lag = \tr \bar{B} (i\slashed{\partial} - m) B
+$$
+\item 很容易想到，$\bar{B}$应该是对每个重子场取狄拉克共轭$\bar{B_a} = B_a^\dagger \gamma^0$后取矩阵转置
+$$
+\bar B = \mat{\green{\frac{1}{\sqrt 2} \bar \Sigma^0 } + \orange{ \frac{1}{\sqrt 6}\bar \Lambda} & \green{\bar \Sigma^-} & \red{\bar \Xi^-} \\
+\green{\bar \Sigma^+} & \green{- \frac{1}{\sqrt 2} \bar \Sigma^0} +\orange{ \frac{1}{\sqrt 6} \bar \Lambda} &  \red{\bar \Xi^0}\\
+\purple{\bar p} & \purple{\bar n} & \orange{-\frac{2}{\sqrt 6} \bar \Lambda }}
+$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{自然解耦}
+\begin{itemize}
+\item 直接计算出
+$$
+\tr \bar B B =\green{ \bar \Sigma^0 \Sigma^0 + \bar \Sigma^+ \bar \Sigma^+ + \bar \Sigma^- \bar \Sigma^- }+\red{ \bar \Xi^- \Xi^- + \bar \Xi^0 \Xi^0} +\purple{ \bar p p + \bar n n }+\orange{ \bar \Lambda \Lambda}
+$$
+\item 所有重子自然解耦合，拉氏量中的质量项为
+$$
+m\left(\green{\sum_\Sigma \bar \Sigma \Sigma }+\red{ \sum_\Xi \bar \Xi \Xi}+\purple{\sum_N \bar N N }+\orange{\bar \Lambda \Lambda} \right)
+$$
+\item 在$SU(3)_f$对称下，4种重子的质量都是$m$。
+\end{itemize}
+\end{frame}
+
+\begin{frame}{开局一张图}
+\begin{itemize}
+\item 我们又来看图思考怎么破坏对称性
+\cpic{0.18}{bayons}
+\item 明显，我们之前引入$\lambda_8$的套路依然可行。
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{后面全靠编}
+\begin{itemize}
+\item 因为$\bar B$和$B$之间不对易，可以引入两种可能的对称破缺项
+$$\sim \tr \bar B B \diag(0,0,1) = \purple{\bar p p + \bar n n }+\orange{ \frac{2}{3} \bar \Lambda \Lambda}$$
+$$\sim \tr \bar B \diag(0,0,1) B = \red{\bar \Xi^- \Xi^- + \bar \Xi^0 \Xi^0  }+ \orange{ \frac{2}{3} \bar \Lambda \Lambda}$$
+\item 上两项的$\alpha$倍和$\beta$倍减到原拉氏量中，有效拉氏量的质量项
+\bea
+\lag_{eff} = &(\mathrm{kinetic\ terms} )\\  &-\green{m\sum_\Sigma \bar \Sigma \Sigma } - \red{(m+\beta) \sum_\Xi \bar \Xi \Xi} -\purple{(m+\alpha)\sum_N \bar N N} \\ &-\orange{\left(m + \frac{2}{3}\alpha + \frac{2}{3}\beta\right)\bar \Lambda \Lambda}
+\eea
+\end{itemize}
+\end{frame}
+
+\begin{frame}{看下编得怎么样}
+\begin{itemize}
+\item $SU(3)_f$破缺理论中的4种核子质量为
+$$
+\green{m_\Sigma = m},\quad \red{m_\Xi = m+\beta},\quad \purple{m_N = m + \alpha} ,\quad \orange{m_\Lambda = m + \frac{2}{3}(\alpha + \beta)}
+$$
+\item 消去模型参数，得到重子八重态的Gell-Mann--Okudo公式
+$$
+\blue{3m_\Lambda + m_\Sigma = 2(m_N + m_\Xi)}
+$$
+\item 代入数值$m_N \approx 939\mev, m_\Sigma \approx 1193\mev, m_\Xi \approx 1318\mev, m_\Lambda \approx 1116\mev$得到
+$$
+LHS \approx 4541\mev, \quad RHS \approx 4514\mev
+$$
+\item
+很好！
+\end{itemize}
+\end{frame}
+
+\section{Representation}
+\secpage{对称性破缺与表示论}{Throw away the 27!}
+
+
+\begin{frame}{我们从群论角度看看我们做了什么}
+\begin{itemize}
+\item
+我们的拉氏量包含了两个$(1,1)$张量相乘的项$$\varphi^i_j \varphi^k_l$$
+\item
+这个表示按道理可以分解成
+$8\otimes 8 = 27\oplus 10\oplus 10^* \oplus 8 \oplus 8 \oplus 1$，但因为两个相乘的张量上一样的，所以事实上我们只能得到
+$$
+(8\otimes 8)_S = 27\oplus 8 \oplus 1
+$$
+\item
+\blue{课堂小练习}：证明为什么$(8\otimes 8)_S = 27\oplus 8 \oplus 1$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{只保留伴随表示}
+\begin{itemize}
+\item
+本来我们要求$\varphi^i_j \varphi^k_l$按张量变换
+$$
+\varphi^i_j \varphi^k_l \to U^i_p U^k_r (U^\dagger)^q_j (U^\dagger)^s_l  \varphi^p_q \varphi^r_s
+$$
+它的各个不可约表示分解也应该按相应规则变换。
+\item
+但现在我们加入了$\sim \varphi^2 \lambda_8$的项，相当于要求
+$$
+\varphi^i_m \varphi^m_k (\lambda_8)^k_j
+$$
+按$(1,1)$张量变换，这相当于仅仅保留了伴随表示8。
+\end{itemize}
+\end{frame}
+
+\begin{frame}{上帝恩惠搞理论的}
+\begin{itemize}
+\item
+不知道为什么，在物理中，我们从来都只用考虑几个最低价的表示，特别是基础表示和伴随表示。\emph{{\small
+\item
+George Zweig, who discovered quarks independently of Gell-Mann, recalled that he thought that the weak interaction currents of the strongly interacting particles should also be classified in representations of $SU(3)$, and that both the 8- and 27-dimensional representations were to be used. At the time, a decay process requiring the presence of the 27 had been seen by an experimentalist of high reputation working with a strong team using a well understood technique.
+\item Zweig went to talk to Feynman, who liked the idea of applying $SU(3)$ to the decay, but kept saying “Throw away the 27!”
+\item Feynman turned out to be right; the experimentalists were mistaken.}}
+\end{itemize}
+\end{frame}
+
+
+\section{Pause}
+\secpage{课程中止}{下学期继续}
+
+\begin{frame}{回顾}
+
+我们来回顾一下这学期的群论都学了什么：
+\begin{itemize}
+\item
+对称性和群，群的定义和实例。
+\item
+有限群的表示论：可约与不可约，幺正定理，舒尔引理，特征标正交定理......
+\item
+连续群的表示论：$SO(N)$和$SU(N)$张量，基础表示和伴随表示，乘积表示的直和分解，群流形和$SU(2)$双覆盖......
+\item
+群论与物理：不可约表示与量子力学简并，内部对称性与外部对称性，同位旋对称性，$SU(3)_f$对称性与核子物理......
+\end{itemize}
+\end{frame}
+
+\begin{frame}{谈谈感想}
+大家来谈谈学习群论的感想。
+\cpic{0.4}{good}
+\end{frame}
+
+\begin{frame}{展望}
+我们来看看下学期我们继续学什么
+\begin{itemize}
+\item
+一般李群的李代数
+\item
+相对论的对称群：洛伦兹群和旋量。
+\item
+膨胀宇宙与共形代数。
+\item
+规范对称性。
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{下学期继续我们有趣的对称之旅}
+\cpic{0.35}{az}
+明年再见！
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

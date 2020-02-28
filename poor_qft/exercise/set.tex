@@ -1,0 +1,486 @@
+\documentclass[a4paper,11pt]{ctexart}
+\usepackage{geometry}
+\geometry{tmargin=0.8in, bmargin=0.5in, lmargin=1in, rmargin=1in}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[colorlinks,
+            linkcolor=blue,
+		 urlcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{cleveref}
+\usepackage{float}
+
+\crefname{equation}{}{}
+\crefname{figure}{图}{图}
+\crefname{footnote}{注释}{注释}
+
+%\cpic{<尺寸>}{<文件名>}}用于生成居中的图片。
+\newcommand{\cpic}[2]{
+\begin{center}
+\includegraphics[scale=#1]{#2}
+\end{center}
+}
+
+%\cpicn{<尺寸>}{<文件名>}{<注释>}用于生成居中且带有注释的图片，其label为图片名。
+\newcommand{\cpicn}[3]
+{
+\begin{figure}[H]
+\cpic{#1}{#2}
+\caption{#3\label{#2}}
+\end{figure}
+}
+
+\newtheorem{eg}{例}[section]
+\newtheorem{ex}{习题}[section]
+\newtheorem{ans}{解答}[section]
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{equation}\begin{aligned}}
+\newcommand{\eea}{\end{aligned}\end{equation}}
+\newcommand{\red}{\color{red}}
+\newcommand{\lag}{\mathcal{L}}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\del}{\vec{\nabla}}
+\newcommand{\mev}{\ \mathrm{MeV}}
+\newcommand{\epv}{\epsilon_0}
+\newcommand{\pfrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\emptyline}{\vspace{0.7cm} \\}
+\newcommand{\dist}{\left| \vec{x} - \vec{x}' \right|}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\res}{res}
+\newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\pvol}[1]{\frac{d^3 \vec #1}{(2\pi)^3}}
+
+\title{五年量子，三年场论——$\mathcal{QFT}$ Problem Set}
+\author{Gao\thanks{E-mail:gaoh26@mail2.sysu.edu.cn}}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Introduction}
+知识总结：
+\begin{itemize}
+\item 粒子物理和场论中常用$c = \hbar = \epsilon_0 = 1$的自然单位制。
+\item 推广单粒子量子力学中谐振子的产生湮灭算符到多个解耦谐振子从而自然地描述一个多粒子量子力学体系。
+\item 泛函$F[f]$是函数到数的映射，泛函导数定义为
+\beq
+\frac{\delta}{\delta f(y)}F[f(x)] = \lim_{\epsilon \to 0} \frac{F[f(x) + \epsilon \delta(x-y)] - F[f(x)]}{\epsilon}
+\eeq
+且具有乘积法则、链式法则等规律。泛函也可以看成一个无穷元函数。
+\end{itemize}
+\begin{ex}
+计算$1\ \mathrm{Mpc} = ? \mev^{-1}$。
+\end{ex}
+\begin{ans}
+由$1\ \mathrm{Mpc} = 3.1\times 10^{22}\ \mathrm{m} = 3.1\times 10^{37}\ \mathrm{fm}$和
+\beq
+1\mathrm{\ fm} = \frac{1}{197} \mev^{-1}
+\eeq
+得到
+\beq
+1\ \mathrm{Mpc} = \frac{3.1}{1.97} \times 10^{35} \mev^{-1} = 1.6\times 10^{35} \mev^{-1}
+\eeq
+\end{ans}
+
+\begin{ex}
+已知$f(x) = \int \frac{dk}{2\pi} f(k) e^{ikx}$，求证$\int dx \left(\frac{df(x)}{dx}\right)^2 = \int \frac{dk}{2\pi} k^2 f(k) f(-k)$。
+\end{ex}
+\begin{ans}
+直接计算：
+\bea
+\int dx \left(\frac{df(x)}{dx}\right)^2 &= \int dx \frac{dk_1 dk_2}{(2\pi)^2} \left(ik_1 f(k_1) e^{ik_1 x}\right) \left(ik_2 f(f_2)e^{ik_2x}\right)\\
+&= \int \frac{dk_1dk_2}{(2\pi)^2} dx -k_1k_2 f(k_1)f(k_2) e^{i(k_1+k_2) x} \\
+&= \int \frac{dk_1 dk_2}{(2\pi)^2} -k_1 k_2 f(k_1) f(k_2) (2\pi) \delta(k_1 + k_2) \\
+&= \int \frac{dk}{2\pi} k^2 f(k) f(-k)
+\eea
+\end{ans}
+
+\begin{ex}
+泛函
+\beq
+Z[J] = e^{-\frac{1}{2} \int dx dy J(x) D(x-y) J(y)} ,\quad D(x) = D(-x)
+\eeq
+求$\frac{\delta^2 Z}{\delta J^2}$。
+\end{ex}
+\begin{ans}
+两种角度解答该题：
+\begin{enumerate}
+\item  \emph{从格点列角度}，$J(x) \to J_m$，$D(x-y) \to D_{mn}$为一个对称矩阵，$\int dx \to \sum_m$，我们有
+\beq
+Z[J] \to Z(J_k) = e^{-\frac{1}{2} J_m D_{mn} J_n}
+\eeq
+从而
+\bea
+\pfrac{Z(J_k)}{J_i} &= e^{-\frac{1}{2} J_m D_{mn} J_n} \left(-\frac{1}{2}\right) \pfrac{J_m D_{mn} J_n}{J_i} \\
+&= -\frac{1}{2} e^{-\frac{1}{2} J_m D_{mn} J_n} \left(\delta_{mi} D_{mn} J_n + J_m D_{mn} \delta_{ni}\right) \\
+&= -\frac{1}{2} e^{-\frac{1}{2} J_m D_{mn} J_n} \left( D_{in} J_n + J_m D_{mi} \right) \\
+&= -\frac{1}{2} e^{-\frac{1}{2} J_m D_{mn} J_n} (2D_{in} J_n)\\
+&= - e^{-\frac{1}{2} J_m D_{mn} J_n} D_{in}J_n\\
+\eea
+\bea
+\frac{\delta^2 Z}{\delta J(x) \delta J(y) }\to \pfrac{^2 Z(J_k)}{J_i \partial J_j} &= e^{-\frac{1}{2} J_m D_{mn} J_n} (D_{jm} J_m D_{in}J_n) - e^{-\frac{1}{2} J_m D_{mn} J_n} D_{in}\delta_{nj} \\
+&=e^{-\frac{1}{2} J_m D_{mn} J_n}(D_{jm} J_m D_{in}J_n - D_{ij}) \\
+&\leftarrow Z[J] \left(\int dzdw\ D(x-z) J(z) D(y-w) J(w) - D(x-y)\right)
+\eea
+
+
+\item \emph{直接计算}，利用泛函导数链式法则$\frac{\delta }{\delta f(y)} g(F[f(x)])= g'(F[f(x)]) \frac{\delta F[f(x)]}{\delta f(y)}$，有
+\beq
+\frac{\delta Z[J]}{\delta J(x) } =-\frac{1}{2} Z[J] \frac{\delta}{\delta J(x) }\int dzdw\ J(z) D(z-w) J(w)
+\eeq
+后一个泛函导数按定义计算如下
+\bea
+& \lim_{\epsilon \to 0} \frac{\int dzdw\ [J(z) +\epsilon \delta (x-z) ]D(z-w) [J(w) + \epsilon \delta (x-w)] - \int dzdw\ J(z) D(z-w) J(w)}{\epsilon}  \\
+= &\int dzdw\  \delta (x-z)D(z-w) J(w) +  \int dzdw\  J(z)D(z-w) \delta(x-w) \\
+= &\int dw D(x-w)J(w) + \int dz J(z) D(z-x) \\
+= &2\int dw D(x-w)J(w)
+\eea
+于是
+\beq
+\frac{\delta Z[J]}{\delta J(x) } =- Z[J]\int dw D(x-w)J(w)
+\eeq
+利用泛函导数的乘积法则$\frac{\delta}{\delta f} FG = \frac{\delta F}{\delta f}G + F \frac{\delta G}{\delta f}$得到
+\bea
+\frac{\delta^2 Z[J]}{\delta J(x) \delta J(y)} &= \frac{\delta}{\delta J(y)} \frac{\delta Z[J]}{\delta J(x) } =- \frac{\delta}{\delta J(y)} Z[J]\int dw D(x-w)J(w) \\
+&= Z[J] \left[ \int dz D(y-z) J(z) \int dw D(x-w) J(w) - D(x-y)\right]\\
+&= Z[J] \left[ \int dzdw D(y-z) J(z) D(x-w) J(w) - D(x-y)\right]\\
+\eea
+\end{enumerate}
+\end{ans}
+
+\begin{ex}
+计算$\langle \vec p | \hat{\psi}^\dagger (\vec x) \hat{\psi} (\vec y) | \vec p\rangle $。
+\end{ex}
+\begin{ans}
+根据定义
+\beq
+\hat \psi(\vec x) = \int \frac{d^3 \vec k}{(2\pi)^3} \hat{a}_{\vec p} e^{i\vec p \cdot \vec x}
+\eeq
+和对易关系
+\beq
+[\hat a_{\vec p} , \hat{a}^\dagger_{\vec q}] = (2\pi)^3 \delta(\vec p - \vec q)
+\eeq
+有
+\bea
+\langle \vec p | \hat{\psi}^\dagger (\vec x) \hat{\psi} (\vec y) | \vec p\rangle &= \langle 0 | \hat{a}_{\vec p}  \hat{\psi}^\dagger (\vec x) \hat{\psi} (\vec y)\hat{a}^\dagger_{\vec p} |0\rangle \\
+&= \int \pvol{k_1} \pvol{k_2} \langle 0 | \hat{a}_{\vec p}  \hat{a}^\dagger_{\vec k_1} e^{-\vec k_1\cdot \vec x} \hat{a}_{\vec k_2} e^{i\vec k_2 \cdot \vec y} \hat{a}^\dagger_{\vec p} |0\rangle \\
+&=  \int \pvol{k_1} \pvol{k_2} \langle 0 |  \left[(2\pi)^3 \delta(\vec k_1 - \vec p) + \hat{a}^\dagger_{\vec k_1}\hat{a}_{\vec p} \right] \left[ \hat{a}^\dagger_{\vec p} \hat{a}_{\vec k_2}  + (2\pi)^3 \delta(\vec k_2 - \vec q)\right] |0\rangle  e^{i\vec k_2 \cdot \vec y-\vec k_1\cdot \vec x}\\
+&= e^{i\vec p \cdot ( \vec y - \vec x)}
+\eea
+这一矩阵元可以诠释为在$\vec y$处湮灭一个动量为$\vec p$的粒子，再在$\vec x$处产生之的振幅。
+\end{ans}
+
+\newpage
+\section{Second Quantization}
+知识总结：
+\begin{itemize}
+\item 对波动的场，傅立叶变换后的单个傅立叶模式的行为类似一个谐振子，因此可以引入模式的产生湮灭算符$\hat{a}_{\vec p},\hat{a}^\dagger_{\vec p}$将场量子化，最后在海森堡绘景下得到总的场算符
+\beq
+\hat{\psi}(x) = \int \pvol{p} \ \frac{1}{\sqrt{2\omega_{\vec p}}} \left( \hat{a}_{\vec p}e^{-ip\cdot x} + \hat{a}^\dagger_{\vec p}e^{ip\cdot x}\right)
+\eeq
+等。
+\item 因为有无穷多的傅立叶模式作为谐振子，场量子化后真空能量是发散的，带来Casmir效应。为了消除真空发散，可以定义正则排序$:\hat{A} \hat{B} \dots :$，将这串乘积重排使得湮灭算符排在右边，产生算符排在左边。
+\item 经典场中，若场$\phi$在无穷小变换$\phi \to \phi + \delta \phi$下使得拉氏量$\lag$不变，那么
+\beq
+j^\mu = \pfrac{\lag}{(\partial_\mu \phi)} \delta \phi
+\eeq
+为守恒流。$Q = \int d^3 \vec x \ j^0$为守恒荷。量子化后，正则乘积$:\hat{Q}:$为守恒量。
+\item 重矢量场拉氏量为
+\beq
+\lag = - \frac{1}{4} F^{\mu \nu} F_{\mu \nu} + \frac{1}{2}m^2 A_\mu A^\mu
+\eeq
+其自然满足横波条件$\partial_\mu A^\mu = 0$，傅立叶变换后为$k_\mu A^\mu=0$，也就是说矢量$A^\mu$的独立分量只有3个，可以用3个正交单位矢量$\epsilon_\lambda^\mu(k)$描述，这对应重矢量场的3个独立偏振模式。
+\end{itemize}
+\begin{ex}
+考虑拉氏量
+\beq
+\lag =  \frac{i}{2} \left( \psi^* \dot{\psi} - \psi \dot{\psi^*}\right) - \frac{1}{2m} \del \psi \cdot \del \psi^*
+\eeq
+\begin{enumerate}
+\item 给出场的运动方程，计算哈密顿密度
+\item 在$t=0$时刻，以$$\hat{\psi} (\vec x)= \int \frac{d^3 \vec p}{(2\pi)^3} \hat{a}_{\vec p} e^{i \vec p \cdot \vec x} $$对这个场进行二次量子化，并定义$[\hat{a}_{\vec p}, \hat{a}^\dagger_{\vec q} ] = (2\pi)^3 \delta(\vec p - \vec q)$，求证：$$[\hat{\psi}(\vec x),\hat{\psi}^\dagger (\vec y)] = \delta (\vec x - \vec y)$$
+\item 为什么场算符只包含一种产生湮灭算符？
+\end{enumerate}
+\end{ex}
+
+\begin{ans} 
+\begin{enumerate} 
+\item 场$\psi$和$\psi^*$是独立的。对$\psi$套用欧拉-拉格朗日方程得到
+\bea
+0 &= \pfrac{}{t}\pfrac{\lag}{\dot{\psi}} + \del \cdot \pfrac{\lag}{\del \psi} - \frac{\lag}{\psi} \\
+&= \frac{i}{2} \dot{\psi}^* - \frac{1}{2m} \nabla^2 \psi^* - \left(- \frac{i}{2} \dot{\psi}^*\right) \\
+&= i \pfrac{\psi^*}{t} - \frac{1}{2m} \nabla^2 \psi^*
+\eea
+对场$\psi^*$套用欧拉-拉格朗日方程，或者直接对上式取共轭就得到
+\beq
+i\pfrac{\psi}{t} + \frac{1}{2m} \nabla^2 \psi = 0
+\eeq
+这就是薛定谔方程。
+\par
+从上面计算可知，$\psi$的广义动量
+\beq
+\pi = \pfrac{\lag}{\dot{\psi}} = \frac{i}{2} \psi^*
+\eeq
+$\psi^*$的广义动量
+\beq
+\pi^* = - \frac{i}{2} \psi
+\eeq
+于是哈密顿密度
+\beq
+\mathcal{H} = \dot{\psi} \pi + \dot{\psi}^* \pi^* - \lag = \frac{1}{2m} \del \psi \cdot \del \psi^*
+\eeq
+
+\item 
+直接计算
+\bea
+\lbrack \hat{\psi}(\vec x),\hat{\psi}^\dagger (\vec y) \rbrack &= \int \frac{d^3 \vec p d^3 \vec q}{(2\pi)^6} [\hat{a}_{\vec p} e^{i\vec p \cdot \vec x},\hat{a}^\dagger_{\vec q} e^{-i\vec q \cdot \vec y}] \\
+&= \int \frac{d^3 \vec p d^3 \vec q}{(2\pi)^6} [\hat{a}_{\vec p} ,\hat{a}^\dagger_{\vec q} ]e^{i\vec p \cdot \vec x-i\vec q \cdot \vec y} \\
+&=  \int \frac{d^3 \vec p d^3 \vec q}{(2\pi)^6} (2\pi)^3 \delta(\vec p - \vec q) e^{i\vec p \cdot \vec x-i\vec q \cdot \vec y} \\
+&= \int \pvol{p}  e^{i\vec p \cdot (\vec x- \vec y)}  = \delta(\vec x - \vec y)
+\eea
+
+\item 因为薛定谔场没有反粒子概念，或者数学上讲，广义动量不在哈密顿密度中出现。
+
+\end{enumerate}
+\end{ans}
+
+
+\begin{ex}
+考虑$SU(2)$场论
+\beq
+\lag = \partial^\mu \psi^*_i \partial_\mu \psi_i - m^2 \psi^*_i \psi_i,\quad i=1,2
+\eeq
+场的$SU(2)$变换定义为
+\beq
+\mat{\psi_1 \\ \psi_2} \to e^{i \theta_a \frac{\sigma_a}{2}}\mat{\psi_1 \\ \psi_2} ,\quad a = 1,2,3
+\eeq
+其中$\sigma_a$是三个泡利矩阵。
+\begin{enumerate}
+\item 在经典场框架下，证明$Q_a = \int d^3 \vec x \frac{i}{2} \left( \psi^*_i (\sigma_a)^{ij} \pi^*_j - \pi_i (\sigma_a)^{ij} \psi_j \right)$是守恒荷。
+\item 将这个场二次量子化（你一共需要4对产生湮灭算符）。
+\item 正则排序后，用产生湮灭算符表示$\hat Q_a$，证明$[\hat Q_a,\hat Q_b] = i\epsilon_{abc} \hat Q_c$。
+\end{enumerate}
+\end{ex}
+
+\begin{ans}
+\begin{enumerate}
+\item 场的变换为
+\beq
+\psi_i = (e^{i\theta_a \frac{\sigma_a}{2}})^{ij} \psi_j \simeq \left(1 + i\theta_a \frac{\sigma_a}{2}\right) \psi_j
+\eeq
+对$\theta_a \ll 1$，场的无穷小变换为
+\beq
+\delta \psi_i = i \theta_a \frac{(\sigma_a)^{ij}}{2}\psi_j
+\eeq
+根据诺特定理，守恒流为
+\bea
+j^\mu &= \pfrac{\lag}{(\partial_\mu \psi_i)} \delta \psi_i + \pfrac{\lag}{(\partial_\mu \psi_i^*)} \delta \psi_i^* \\
+&= \partial^\mu \psi^*_i i \theta_a \frac{(\sigma_a)^{ij}}{2}\psi_j - \partial^\mu \psi_i  i \theta_a \frac{(\sigma_a)^{ij,*}}{2}\psi_j^* \\
+&= i \theta_a \left( \partial^\mu \frac{(\sigma_a)^{ij}}{2} \psi^*_i \psi_j - \partial^\mu \psi_i \frac{(\sigma_a)^{ji}}{2}\psi_j^* \right) \\
+&= i \theta_a\frac{(\sigma_a)^{ij}}{2}\left( \partial^\mu \psi^*_i \psi_j - \partial^\mu \psi_j \psi_i^* \right)
+\eea
+其中利用了$\sigma^\dagger = \sigma$，或$\sigma^*_{ij} = \sigma_{ji}$。由于$\theta_a$是任意的小量，守恒流是
+\beq
+j^\mu_a = i\frac{(\sigma_a)^{ij}}{2}\left( \partial^\mu \psi^*_i \psi_j - \partial^\mu \psi_j \psi_i^* \right)
+\eeq
+守恒荷
+\beq
+Q_a = \int d^3 \vec x \ j^0_a = i\frac{(\sigma_a)^{ij}}{2} \int d^3 \vec x \ \left( \dot{\psi}^*_i \psi_j - \dot{\psi}_j \psi_i^* \right)
+\eeq
+因为$\pi_i = \pfrac{\lag}{\dot{\psi}_i} = \psi_i^*$，也有
+\beq
+Q_a = \int d^3 \vec x \ j^0_a = i\frac{(\sigma_a)^{ij}}{2} \int d^3 \vec x \ \left( \pi_i \psi_j - \pi_j^* \psi_i^* \right)
+\eeq
+\item
+定义产生湮灭算符$\hat{a}_i,\hat{b}_i,\mathrm{h.c.}$满足
+\beq
+[\hat{a}_{i,\vec p},\hat{a}^\dagger_{j,\vec q}] = (2\pi)^3 \delta(\vec p - \vec q)\delta_{ij}
+\eeq
+等，在$t=0$时刻场算符的分解为
+\beq
+\hat{\psi}_i(\vec x) = \int \pvol{p} \ \frac{1}{\sqrt{2\omega_{\vec p}}} \left( \hat{a}_{i,\vec p} e^{i\vec p \cdot \vec x} + \hat{b}^\dagger_{i,\vec p} e^{-i \vec p \cdot \vec x} \right)
+\eeq
+\beq
+\hat{\pi}_i(\vec x) =i \int \pvol{p} \ \sqrt{\frac{\omega_{\vec p}}{2}} \left( \hat{a}^\dagger_{i,\vec p} e^{-i\vec p \cdot \vec x} -\hat{b}_{i,\vec p} e^{i \vec p \cdot \vec x} \right)
+\eeq
+及其厄米共轭。
+\item
+我们计算{\scriptsize
+\bea
+\int d^3 \vec x \ : \hat{\pi}_i \hat{\psi}_j : &= i\int d^3 \vec x \pvol{p}\pvol{q}\ \frac{1}{2} \sqrt{\frac{\omega_{\vec q}}{\omega_{\vec p}} }:\left( \hat{a}^\dagger_{i,\vec p} e^{-i\vec p \cdot \vec x} -\hat{b}_{i,\vec p} e^{i \vec p \cdot \vec x} \right)
+ \left( \hat{a}_{j,\vec q} e^{i\vec q \cdot \vec x} + \hat{b}^\dagger_{j,\vec q} e^{-i \vec q \cdot \vec x} \right) :\\
+&=i \int d^3 \vec x \pvol{p}\pvol{q}\ \frac{1}{2} \sqrt{\frac{\omega_{\vec q}}{\omega_{\vec p}} } \left( \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec q} e^{i(\vec q - \vec p)\cdot \vec x} +\hat{a}^\dagger_{i,\vec p}\hat{b}^\dagger_{j,\vec q} e^{-i (\vec p + \vec q )\cdot \vec x} - \hat{a}_{j,\vec q}\hat{b}_{i,\vec p} e^{i (\vec p+ \vec q)\cdot \vec x}  -\hat{b}^\dagger_{j,\vec q}\hat{b}_{i,\vec p} e^{i (\vec p-\vec q) \cdot \vec x}\right) \\
+&= i\int \pvol{p}\pvol{q}\ (2\pi)^3 \frac{1}{2} \sqrt{\frac{\omega_{\vec q}}{\omega_{\vec p}} }\left( \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec q} ( \delta(\vec p - \vec q) +\hat{a}^\dagger_{i,\vec p}\hat{b}^\dagger_{j,\vec q}  \delta(\vec p + \vec q) - \hat{a}_{j,\vec q}\hat{b}_{i,\vec p}  \delta(\vec p + \vec q)  -\hat{b}^\dagger_{j,\vec q}\hat{b}_{i,\vec p}  \delta(\vec p - \vec q)\right) \\
+&=i \int \pvol{p}\ \frac{1}{2} \left( \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p} +\hat{a}^\dagger_{i,\vec p}\hat{b}^\dagger_{j,-\vec p} - \hat{a}_{j,-\vec p}\hat{b}_{i,\vec p}   -\hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p} \right)
+\eea}
+于是
+\bea
+\hat{Q}_a &= i \frac{(\sigma_a)^{ij}}{2} \int d^3 \vec x \ ( :\hat{\pi}_i \hat{\psi}_j: - \mathrm{h.c.},i\leftrightarrow j) \\
+&= \frac{(\sigma_a)_{ij}}{2} \int \pvol{p}\ \left(    \hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p} - \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p}\right)
+\eea
+或者反号
+\bea
+\hat{Q}_a &= i \frac{(\sigma_a)^{ij}}{2} \int d^3 \vec x \ ( :\hat{\pi}_i \hat{\psi}_j: - \mathrm{h.c.},i\leftrightarrow j) \\
+&= \frac{(\sigma_a)^{ij}}{2} \int \pvol{p}\ \left(    \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p} - \hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p} \right) 
+\eea
+对易子
+\bea
+\lbrack\hat{Q}_a,\hat{Q}_b\rbrack &=  \frac{(\sigma_a)^{ij}}{2} \int \pvol{p}\ \left(    \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p} - \hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p} \right)  \frac{(\sigma_b)^{kl}}{2} \int \pvol{q}\ \left(    \hat{a}^\dagger_{k,\vec q}\hat{a}_{l,\vec q} - \hat{b}^\dagger_{k,\vec q}\hat{b}_{l,\vec q} \right)  - a \leftrightarrow b \\
+&=\left[\frac{(\sigma_a)^{ij}}{2}\frac{(\sigma_b)^{kl}}{2} - \frac{(\sigma_b)^{ij}}{2}\frac{(\sigma_a)^{kl}}{2} \right] \int \pvol{p}\pvol{q}  \left(    \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p} - \hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p} \right)\left(    \hat{a}^\dagger_{k,\vec q}\hat{a}_{l,\vec q} - \hat{b}^\dagger_{k,\vec q}\hat{b}_{l,\vec q} \right)
+\eea
+我们来观察第一项
+\bea
+&\frac{(\sigma_a)^{ij}(\sigma_b)^{kl}-(\sigma_b)^{ij}(\sigma_a)^{kl}}{4}\int \pvol{p}\pvol{q} \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p} \hat{a}^\dagger_{k,\vec q}\hat{a}_{l,\vec q}  \\
+=&\frac{(\sigma_a)^{ij}(\sigma_b)^{kl}-(\sigma_b)^{ij}(\sigma_a)^{kl}}{4}\int \pvol{p}\pvol{q} \hat{a}^\dagger_{i,\vec p}[\hat{a}^\dagger_{k,\vec q}\hat{a}_{j,\vec p} + (2\pi)^3 \delta_{ij} \delta(\vec p - \vec q)] \hat{a}_{l,\vec q} \\
+=&\frac{(\sigma_a)^{ij}(\sigma_b)^{jl}-(\sigma_b)^{ij}(\sigma_a)^{jl}}{4}\int \pvol{p} \hat{a}^\dagger_{i,\vec p}\hat{a}_{l,\vec p} + \frac{(\sigma_a)^{ij}(\sigma_b)^{kl}-(\sigma_b)^{ij}(\sigma_a)^{kl}}{4}\int \pvol{p}\pvol{q} \hat{a}^\dagger_{i,\vec p}\hat{a}^\dagger_{k,\vec q}\hat{a}_{j,\vec p} \hat{a}_{l,\vec q} 
+\eea
+注意到，第一项中，因为泡利矩阵满足$[\sigma_a,\sigma_b] = 2i\epsilon_{abc} \sigma_c$，前面的矩阵元乘积等于$\frac{1}{2}i \epsilon_{abc} (\sigma_c)^{il}$，因此第一项就是$i \epsilon_{abc} \frac{(\sigma_c)^{ij}}{2}\int \pvol{p} \hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p} $；再看第二项，产生算符和湮灭算符两两相邻，可以任意替换次序，且模式下标$\vec p$和$\vec q$也可以交换，于是我们先交换$i,k$，交换$j,l$，再把产生湮灭算符移回原来的位置
+\bea
+ &\frac{(\sigma_a)^{ij}(\sigma_b)^{kl}-(\sigma_b)^{ij}(\sigma_a)^{kl}}{4}\int \pvol{p}\pvol{q} \hat{a}^\dagger_{i,\vec p}\hat{a}^\dagger_{k,\vec q}\hat{a}_{j,\vec p} \hat{a}_{l,\vec q} \\=  &\frac{(\sigma_a)^{kl}(\sigma_b)^{ij}-(\sigma_b)^{kl}(\sigma_a)^{ij}}{4}\int \pvol{p}\pvol{q} \hat{a}^\dagger_{i,\vec p}\hat{a}^\dagger_{k,\vec q}\hat{a}_{j,\vec p} \hat{a}_{l,\vec q} 
+ \eea
+ 但这两个表达式正好为相反数，于是该项为0。那么同理我们有
+ \beq
+ \frac{(\sigma_a)^{ij}(\sigma_b)^{kl}-(\sigma_b)^{ij}(\sigma_a)^{kl}}{4}\int \pvol{p}\pvol{q} \hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p} \hat{b}^\dagger_{l,\vec q}\hat{b}_{k,\vec q} = - i \epsilon_{abc} \frac{(\sigma_c)^{ij}}{2}\int \pvol{p} \hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p}
+ \eeq
+ \par
+ 我们再来看交叉项
+ \bea
+ &\frac{(\sigma_a)^{ij}(\sigma_b)^{kl}-(\sigma_b)^{ij}(\sigma_a)^{kl}}{4}\int \pvol{p}\pvol{q} (\hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p} \hat{b}^\dagger_{l,\vec q}\hat{b}_{k,\vec q} - \hat{a}^\dagger_{k,\vec q}\hat{a}_{l,\vec q}\hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p})  \\
+ =&\frac{(\sigma_a)^{ij}(\sigma_b)^{kl}-(\sigma_b)^{ij}(\sigma_a)^{kl}}{4}\int \pvol{p}\pvol{q} (\hat{a}^\dagger_{i,\vec p} \hat{b}^\dagger_{l,\vec q}\hat{a}_{j,\vec p}\hat{b}_{k,\vec q} - \hat{a}^\dagger_{k,\vec q}\hat{b}^\dagger_{j,\vec p}\hat{a}_{l,\vec q}\hat{b}_{i,\vec p})
+ \eea
+ 只用同之前的方式一样将$i-k,j-l,\vec p-\vec q$互换就可以轻松证明该项为0。因此我们有
+ \bea
+ \lbrack\hat{Q}_a,\hat{Q}_b\rbrack &=i \epsilon_{abc} \frac{(\sigma_c)^{ij}}{2}\int \pvol{p}(\hat{a}^\dagger_{i,\vec p}\hat{a}_{j,\vec p} - \hat{b}^\dagger_{j,\vec p}\hat{b}_{i,\vec p})\\
+ &= i \epsilon_{abc}\hat{Q}_c
+ \eea
+ 这正好就是一个自旋$\frac{1}{2}$角动量的结构，只是被量子化的是玻色场，这暗示我们，$\hat Q_a$不应该被诠释为自旋角动量。算符$\hat{Q}_a$称为同位旋算符，$SU(2)$同位旋描述了两种粒子之间互换的对称性。
+\end{enumerate}
+\end{ans}
+\begin{ex}
+定义3个4-矢量$\epsilon^\mu_\lambda,\quad \lambda = 1,2,3$满足
+\beq \label{pol_vec_nor}
+g_{\mu \nu} \epsilon^\mu_\lambda \epsilon^\nu_{\lambda'} = - \delta_{\lambda \lambda'}
+\eeq
+和
+\beq \label{pol_vec_ort}
+p_\mu \epsilon^\mu_\lambda = 0
+\eeq
+\begin{enumerate}
+\item
+求证：
+\beq
+\sum_\lambda \epsilon^\mu_\lambda \epsilon^\nu_\lambda = -g_{\mu \nu} + \frac{p^\mu p^\nu}{p^2}\eeq
+（提示：根据已知条件，可以直接先设$\sum_\lambda \epsilon^\mu_\lambda \epsilon^\nu_\lambda = Ag^{\mu \nu} + B p^\mu p^\nu$）；
+\item 对$\vec p = p\vec e_z$的质量不为零粒子，求$\epsilon^\mu_\lambda$；
+\item 对$\vec p = p\vec e_z$的零质量粒子，求$\epsilon^\mu_\lambda$，这个结果能从上面的$m\to 0$极限得到吗？
+\end{enumerate}
+\end{ex}
+
+\begin{ans}
+\begin{enumerate}
+\item
+对\cref{pol_vec_nor}两边作用$\delta_{\lambda \lambda'}$求迹得到
+\beq
+-3 = \sum_\lambda g_{\mu \nu} \epsilon^\mu_\lambda \epsilon^\nu_\lambda
+\eeq
+对
+\beq
+\sum_\lambda \epsilon_\lambda^\mu \epsilon_\lambda^\nu = Ag^{\mu \nu} + B p^\mu p^\nu
+\eeq
+两边作用$g_{\mu \nu}$得到
+\beq
+-3= \sum_\lambda g_{\mu \nu} \epsilon^\mu_\lambda \epsilon^\nu_\lambda = Ag^{\mu \nu} g_{\mu \nu} + Bp^2 = 4A + Bp^2
+\eeq
+两边作用$p_\mu p_\nu$得到
+\beq
+0=\sum_\lambda \epsilon_\lambda^\mu p_\mu \epsilon_\lambda^\nu p_\nu = Ap^2 + Bp^4
+\eeq
+于是有
+\beq
+\begin{cases}
+4A + p^2 B &= -3 \\
+A + p^2 B &= 0
+\end{cases}
+\Rightarrow
+\begin{cases}
+A &= -1\\
+B &= \frac{1}{p^2}
+\end{cases}
+\eeq
+
+\item 我们有$p^\mu = (\sqrt{m^2 + p^2},0,0,p)$，代入横波条件\cref{pol_vec_ort}得到
+\beq
+\omega_p  \epsilon^0_\lambda - p \epsilon^3_\lambda = 0
+\eeq
+对$\epsilon_1$和$\epsilon_2$两个分量无限制。约束方程仅有一个，于是可以取3个独立的$\epsilon^\mu_\lambda$为
+\beq
+\epsilon^\mu_1 = \frac{1}{m} \mat{p\\0 \\0 \\ \omega_p}, \epsilon^\mu_2 = \mat{0 \\ 1 \\0 \\0}, \epsilon^\mu_3 = \mat{0 \\ 0 \\ 1 \\0}
+\eeq
+可以验证它们满足正交条件\cref{pol_vec_nor}。
+
+\item 我们有$p^\mu = (p,0,0,p)$，代入横波条件有
+\beq
+p\epsilon^0_\lambda - p \epsilon^3_\lambda = 0
+\eeq
+于是有
+\beq
+\epsilon^0_\lambda = \epsilon^3_\lambda
+\eeq
+代入$-1 = g_{\mu \nu} \epsilon^\mu_\lambda \epsilon^\nu_\lambda$得到
+\beq
+-1 = (\epsilon^0)^2 - (\epsilon^1)^2 - (\epsilon^2)^2 - (\epsilon^3)^2 = - (\epsilon^1)^2 - (\epsilon^2)^2
+\eeq
+于是我们一共有两个约束条件，它们使得独立的$\epsilon^\mu_\lambda$只有2个，分别为
+\beq
+\epsilon^\mu_1 = \mat{0 \\ 1 \\0 \\0}, \epsilon^\mu_2 = \mat{0 \\ 0 \\ 1 \\0}
+\eeq
+这不能由有质量粒子直接取$m\to 0 $的结果得到，虽然我们可以认为，在$m \to 0$时，第一个偏振矢因为$\epsilon^\mu_1 = \frac{1}{m} (p,0,0,\omega_p)$不可归一化而消失。
+\end{enumerate}
+\end{ans}
+
+\newpage
+\section{Gauge Field and Angular Momentum}
+知识总结：
+\begin{itemize}
+\item 麦克斯韦电磁场是最简单的规范场，其规范对称群是$U(1)$群，也称为阿贝尔规范场论。对电磁场，二次量子化时我们采用辐射规范$A^0=0,\del \cdot \vec A = 0$，其独立偏振方向有2个。
+\item 对于一个有连续对称群的场论，我们都可以用最小耦合方案$D_\mu = \partial_\mu + igA_\mu$引入一个规范场，这时规范场$A_\mu$是对称群伴随表示的一个元素，可以按对称群的李代数生成元$t_a$展开为$A_\mu = A_\mu^a t_a$。
+\item 一般的规范场场强定义为$F_{\mu \nu} = D_\mu A_\nu - D_\nu A_\mu = \partial_\mu A_\nu - \partial_\nu A_\mu +ig[A_\mu,A_\nu]$，拉氏量为$\lag = -\frac{1}{2} \tr F_{\mu \nu}F^{\mu \nu}$，其运动方程存在胶子的自相互作用。
+\item 标量场的自旋为0，矢量场的自旋为1，源于矢量场在空间旋转下自身也会发生旋转。
+\end{itemize}
+\begin{ex}
+对一般的与源$J_\mu$耦合的阿贝尔规范场拉氏量
+\beq
+\lag = -\frac{1}{4} F_{\mu \nu} F^{\mu \nu} -q j^\mu A_\mu
+\eeq
+若上述拉氏量依然有规范不变性，求证，引入的流$j^\mu$必须守恒。
+\end{ex}
+\begin{ex}
+考虑一个对称无迹张量场$h^{\mu \nu}$，其拉氏量为
+\beq
+\lag = \frac{1}{2} \partial_\lambda h^{\mu \nu} \partial^\lambda h_{\mu \nu} - \frac{1}{2}m^2 h_{\mu \nu}h^{\mu \nu}
+\eeq
+场$h_{\mu \nu}$按张量变换法则$\bar{h}_{\mu \nu} = \pfrac{x^\rho}{\bar{x}^\mu}\pfrac{x^\sigma}{\bar{x}^\nu} h_{\rho \sigma}$变换。
+\begin{enumerate}
+\item 洛伦兹转动可以写成$\pfrac{\bar x^{\mu}}{x^\nu}=e^{i \omega_a (J_a)^{\mu}_{\nu}}$，在经典场框架下给出空间旋转的守恒荷。
+\item 将这个场二次量子化。
+\item 论证这个场的自旋为2，将这个结论推广到任意$n$阶张量。
+\end{enumerate}
+\end{ex}
+
+\section{Perturbative Field Theory}
+\section{Scattering Cross Section and Decay Rate}
+\section{Path Integral}
+\section{Introductory Thermal Field Theory}
+\section{Renormalization}
+\end{document}
+
+
+
+
+
+

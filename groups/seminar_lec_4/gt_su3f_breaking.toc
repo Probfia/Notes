@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{Quantization of Scalar and Spinor}{3}{0}{1}
+\beamer@sectionintoc {2}{Flavor Symmetry Breaking}{7}{0}{2}
+\beamer@sectionintoc {3}{Meson Eightfold}{10}{0}{3}
+\beamer@sectionintoc {4}{Meson Eightfold}{18}{0}{4}
+\beamer@sectionintoc {5}{Representation}{25}{0}{5}
+\beamer@sectionintoc {6}{Pause}{29}{0}{6}
